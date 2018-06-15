@@ -1,0 +1,89 @@
+############################################
+#AAPIリクエストサンプル集
+#
+############################################
+
+@url = http://localhost:4000
+#@url = https://
+
+###ユーザー登録
+POST {{url}}/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+"user": {
+    "name": "hogehoge太郎",
+    "email": "admin@example.com", 
+    "password": "password",
+    "role": "admin"
+  }
+}
+
+###ログイン
+POST {{url}}/api/sign-in HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "hogehoge@example.com", 
+    "password": "hogehoge"
+  }
+
+###ログイン
+POST {{url}}/api/sign-in HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "fugafuga@example.com", 
+    "password": "fugafuga"
+  }
+
+###ログイン(メールアドレス相違)
+POST {{url}}/api/sign-in HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "notexists@example.com", 
+    "password": "hogehoge"
+  }
+
+###ログイン(パスワード相違)
+POST {{url}}/api/sign-in HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "hogehoge@example.com", 
+    "password": "fugafuga"
+  }
+
+#@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJzZXJ2aWNleCIsImV4cCI6MTUzMTMwMjg3MSwiaWF0IjoxNTI4ODgzNjcxLCJpc3MiOiJzZXJ2aWNleCIsImp0aSI6IjAyOTRjNTI2LTI1MmItNGUzMy04YTdjLTI1MmUzNmU5Mzc3YSIsIm5iZiI6MTUyODg4MzY3MCwic3ViIjoiMiIsInR5cCI6ImFjY2VzcyJ9.W55us44fwlCdKm-f1nhBBuZwmj21B2QyP_zd-_fNeOW5nhaGY8t5DtT4tQaQYeJDX5mE8OUg1XieQDr_HnkfoQ
+#@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTZXJ2aWNleCIsImV4cCI6MTUzMTM2NjU0MywiaWF0IjoxNTI4OTQ3MzQzLCJpc3MiOiJTZXJ2aWNleCIsImp0aSI6IjNjNzk3ZmIyLTkyOWMtNDM3OS1iOGQyLTEyNTY5ZWY4YjVjOSIsIm5iZiI6MTUyODk0NzM0Miwic3ViIjoiMiIsInR5cCI6ImFjY2VzcyJ9.QCnvAP3Anti_d4Q_TwGJ9bXDV48ZXWnommgBJbInmMVt-cXxBn4uEjKE3FesIe8vGn9fS6BW0WbK6ujw29yAlQ
+
+#@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTZXJ2aWNleCIsImV4cCI6MTUzMTM3MDczNywiaWF0IjoxNTI4OTUxNTM3LCJpc3MiOiJTZXJ2aWNleCIsImp0aSI6IjY3NjhjNjMzLWNlYzItNGRlYi05YTY5LThmMWM4M2I2ODZjNyIsIm5iZiI6MTUyODk1MTUzNiwic3ViIjoiMyIsInR5cCI6ImFjY2VzcyJ9.x5zRs7qKc9aMAXDe5YgVMtavy6nPu1dmUpcTvIRWUEzGsTnL0NP9w3IX2ZH4rg1iZTvPS5mB1OnxkLY9mGFGLg
+#@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTZXJ2aWNleCIsImV4cCI6MTUzMTM5ODE5NCwiaWF0IjoxNTI4OTc4OTk0LCJpc3MiOiJTZXJ2aWNleCIsImp0aSI6IjBlM2U4NWM1LWNhOWYtNGRjMC04MjEzLTA4ZTRiZGNlNGNiNSIsIm5iZiI6MTUyODk3ODk5Mywic3ViIjoiMiIsInR5cCI6ImFjY2VzcyJ9.fmcIU0epP1yDYQd6tsP0JRxdhEkcHLPoZpoTWnWZKVG7GzjnuUNTfhUAiPJC5-ygPaEsw-HnMVS7WO52qlcxww
+#@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTZXJ2aWNleCIsImV4cCI6MTUzMTM5ODM1NSwiaWF0IjoxNTI4OTc5MTU1LCJpc3MiOiJTZXJ2aWNleCIsImp0aSI6ImQzMjIwMGI2LTkxNzctNGVjOC1hOWQ4LTZlM2FiNTIzNmViMCIsIm5iZiI6MTUyODk3OTE1NCwic3ViIjoiMyIsInR5cCI6ImFjY2VzcyJ9.MBP6HAHwYCykarOL2nR4dY10YNdBWoTbgdqSnITiUjTW4K3mF6v1d-loTlHGPeL0F5eLSHlxoD6IAfsUXn45vw
+@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTZXJ2aWNleCIsImV4cCI6MTUzMTM5OTMxNiwiaWF0IjoxNTI4OTgwMTE2LCJpc3MiOiJTZXJ2aWNleCIsImp0aSI6IjU0OTM1YmNiLTM2NWMtNDZmNy1hYmIxLWJkMGZjODVhOTVkNSIsIm5iZiI6MTUyODk4MDExNSwic3ViIjoiMiIsInR5cCI6ImFjY2VzcyJ9.4z1Cy2DG8ALVJVkOmciR3STymvczQkvkwlWt3tO9npn-Jvctn6P4rbmQIySL7PHZDYhi5tkjsL8pXR_YMJtj7w
+
+###ユーザー情報照会(一般ユーザー用)
+GET {{url}}/api/user HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+###ユーザー一覧照会(オペレーター用)
+GET {{url}}/api/ops/users HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+###ユーザー情報照会(オペレーター用)
+GET {{url}}/api/ops/users/2 HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+###権限情報照会
+GET {{url}}/api/ops/grants HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+###ログアウト
+POST {{url}}/api/sign-out HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
