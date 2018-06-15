@@ -6,14 +6,15 @@ defmodule Servicex.Mixfile do
       app: :servicex,
       version: "0.0.1",
       elixir: "~> 1.4",
-      description: "This library is a summary of the functions that are generally required for Web service development."
+      description: "This library is a summary of the functions that are generally required for Web service development.",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
-      package:[
+      package: [
         maintainers: ["tuchro yoshimura"],
         licenses: ["MIT"],
+        links: %{"BitBucket" => "https://bitbucket.org/karabinertech_bi/servicex/src/master/"}
       ],
       deps: deps()
     ]
@@ -24,7 +25,7 @@ defmodule Servicex.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Servicex.Application, []},
+      #mod: {Servicex.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -51,6 +52,7 @@ defmodule Servicex.Mixfile do
       {:guardian, "~> 1.0"},
       {:guardian_db, "~> 1.0"},
       {:poison, "~> 3.1"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 
