@@ -6,10 +6,15 @@ defmodule Servicex.Mixfile do
       app: :servicex,
       version: "0.0.1",
       elixir: "~> 1.4",
+      description: "This library is a summary of the functions that are generally required for Web service development."
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
+      package:[
+        maintainers: ["tuchro yoshimura"],
+        licenses: ["MIT"],
+      ],
       deps: deps()
     ]
   end
