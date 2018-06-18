@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Sevicex.Gen.Migration do
+defmodule Mix.Tasks.Servicex.Gen.Migration do
   @shortdoc "Generates Servicex's migration"
 
   use Mix.Task
