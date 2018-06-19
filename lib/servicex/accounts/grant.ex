@@ -16,6 +16,6 @@ defmodule Servicex.Accounts.Grant do
     grant
     |> cast(attrs, [:role, :method, :request_path])
     |> validate_required([:role, :method, :request_path])
-    |> unique_constraint([:role, :method, :request_path])
+    #|> unique_constraint([:role, :method, :request_path])
   end
 end
