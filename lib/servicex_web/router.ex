@@ -32,6 +32,7 @@ defmodule ServicexWeb.Router do
     pipe_through [ :api, :guardian_auth]
 
     get "/user", UserController, :show_me
+    post "/grant", GrantController, :get_by_role
     post "sign-out", AuthenticatorController, :sign_out
 
   end

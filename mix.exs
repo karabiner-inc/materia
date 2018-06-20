@@ -24,7 +24,13 @@ defmodule Servicex.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [
+    mod =
+      case Mix.env() do
+        # テスト時のみアプリケーションとして起動する
+        :test -> [mod: {Servicex.Application, []}]
+        _ -> []
+      end
+    mod ++ [
       #mod: {Servicex.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
@@ -67,7 +73,7 @@ defmodule Servicex.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      "test": ["ecto.drop", "ecto.create --quiet", "ecto.migrate", "run priv/repo/seeds.exs", "test"]
     ]
   end
 end

@@ -30,7 +30,6 @@ defmodule Servicex.Accounts.User do
   end
 
   defp put_password_hash(changeset) do
-    IO.inspect(changeset)
     changeset =
     case changeset do
       %Ecto.Changeset{ valid?: true, changes: %{ password: pass }} ->

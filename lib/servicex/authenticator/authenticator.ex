@@ -26,14 +26,6 @@ defmodule Servicex.Authenticator do
     resource = Servicex.Accounts.get_user_by_email!(email)
     {:ok,  resource}
   end
-  def resource_from_claims(claims = %{"token" => token}) do
-    # Here we'll look up our resource from the claims, the subject can be
-    # found in the `"sub"` key. In `above subject_for_token/2` we returned
-    # the resource id so here we'll rely on that to look it up.
-    Logger.debug("---  #{__MODULE__} resource_from_claims by token--------------")
-    resource = Servicex.Accounts.get_user_by_token!(token)
-    {:ok,  resource}
-  end
   def resource_from_claims(_claims) do
     Logger.debug("---  #{__MODULE__} resource_from_claims by other--------------")
     {:error, :reason_for_error}

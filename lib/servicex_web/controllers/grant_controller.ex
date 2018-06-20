@@ -11,7 +11,12 @@ defmodule ServicexWeb.GrantController do
     render(conn, "index.json", grants: grants)
   end
 
-  def create(conn, %{"grant" => grant_params}) do
+  def get_by_role(conn, params) do
+    grants = Accounts.get_grant_by_role(params["role"])
+    render(conn, "index.json", grants: grants)
+  end
+
+  def create(conn, grant_params) do
     with {:ok, %Grant{} = grant} <- Accounts.create_grant(grant_params) do
       conn
       |> put_status(:created)
@@ -25,8 +30,8 @@ defmodule ServicexWeb.GrantController do
     render(conn, "show.json", grant: grant)
   end
 
-  def update(conn, %{"id" => id, "grant" => grant_params}) do
-    grant = Accounts.get_grant!(id)
+  def update(conn, grant_params) do
+    grant = Accounts.get_grant!(grant_params["id"])
 
     with {:ok, %Grant{} = grant} <- Accounts.update_grant(grant, grant_params) do
       render(conn, "show.json", grant: grant)

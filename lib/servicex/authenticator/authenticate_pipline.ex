@@ -10,5 +10,5 @@ defmodule Servicex.AuthenticatePipeline do
   plug Guardian.Plug.EnsureAuthenticated
   #plug Servicex.Plug.Debug
   plug Guardian.Plug.LoadResource, allow_blank: true
-  plug Servicex.Plug.Debug
+  #plug Servicex.Plug.Debug
 end

@@ -3,11 +3,11 @@ defmodule ServicexWeb.AuthenticatorView do
   alias ServicexWeb.AuthenticatorView
 
   def render("index.json", %{authenticator: authenticator}) do
-    %{data: render_many(authenticator, AuthenticatorView, "authenticator.json")}
+    render_many(authenticator, AuthenticatorView, "authenticator.json")
   end
 
   def render("show.json", %{authenticator: authenticator}) do
-    %{data: render_one(authenticator, AuthenticatorView, "authenticator.json")}
+    render_one(authenticator, AuthenticatorView, "authenticator.json")
   end
 
   def render("authenticator.json", %{authenticator: authenticator}) do

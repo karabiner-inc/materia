@@ -10,7 +10,10 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Servicex.Accounts.Grant
+alias Servicex.Accounts
 
-Servicex.Repo.insert!(%Grant{ role: "anybody", method: "ANY", request_path: "/api/ops/users" })
-Servicex.Repo.insert!(%Grant{ role: "admin", method: "GET", request_path: "/api/ops/grants" })
+Accounts.create_user(%{ name: "hogehoge", email: "hogehoge@example.com", password: "hogehoge", role: "admin"})
+Accounts.create_user(%{ name: "fugafuga", email: "fugafuga@example.com", password: "fugafuga", role: "operator"})
+Accounts.create_grant(%{ role: "anybody", method: "ANY", request_path: "/api/ops/users" })
+Accounts.create_grant(%{ role: "admin", method: "ANY", request_path: "/api/ops/grants" })
+Accounts.create_grant(%{ role: "operator", method: "GET", request_path: "/api/ops/grants" })

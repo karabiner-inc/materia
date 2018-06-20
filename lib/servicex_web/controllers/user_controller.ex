@@ -13,7 +13,7 @@ defmodule ServicexWeb.UserController do
     render(conn, "index.json", users: users)
   end
 
-  def create(conn, %{"user" => user_params}) do
+  def create(conn, user_params) do
     #%{"data" => %{"email" => "admin@example.com", "name" => "hogehoge太郎", "password" => "password", "role" => "admin"}}
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
       conn
@@ -25,7 +25,6 @@ defmodule ServicexWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     Logger.debug("show id: #{id}")
-    IO.inspect(conn)
     user = Accounts.get_user!(id)
     render(conn, "show.json", user: user)
   end
@@ -37,8 +36,8 @@ defmodule ServicexWeb.UserController do
     render(conn, "show.json", user: user)
   end
 
-  def update(conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user!(id)
+  def update(conn, user_params) do
+    user = Accounts.get_user!(user_params["id"])
 
     with {:ok, %User{} = user} <- Accounts.update_user(user, user_params) do
       render(conn, "show.json", user: user)

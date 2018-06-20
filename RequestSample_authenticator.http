@@ -10,14 +10,13 @@
 POST {{url}}/api/users HTTP/1.1
 Content-Type: application/json
 
-{
-"user": {
+ {
     "name": "hogehoge太郎",
     "email": "admin@example.com", 
     "password": "password",
     "role": "admin"
   }
-}
+
 
 ###ログイン
 POST {{url}}/api/sign-in HTTP/1.1
@@ -55,7 +54,7 @@ Content-Type: application/json
     "password": "fugafuga"
   }
 
-@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhcHBfZXgiLCJleHAiOjE1MzE3OTY3NzYsImlhdCI6MTUyOTM3NzU3NiwiaXNzIjoiYXBwX2V4IiwianRpIjoiNjY3NWVjYjYtNmViYS00YjI0LTk0MGYtMjdmMWU0MzQ1OWM4IiwibmJmIjoxNTI5Mzc3NTc1LCJzdWIiOiIzIiwidHlwIjoiYWNjZXNzIn0.ZAUuJbxbHEiAe1uQBTC2vhlH58NqZdf5Q5RQfd4R0oj8z-VHrf_uv9saZJS4aQ0d4bzrLrADl820LQzt3G1h8w
+@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTZXJ2aWNleCIsImV4cCI6MTUzMTg4OTM0MSwiaWF0IjoxNTI5NDcwMTQxLCJpc3MiOiJTZXJ2aWNleCIsImp0aSI6IjMxMjg0ZDE1LTk3N2YtNGZlMi1hYmI3LWU3MjI4MGRhNThlNyIsIm5iZiI6MTUyOTQ3MDE0MCwic3ViIjoiMiIsInR5cCI6ImFjY2VzcyJ9.rgSYvWLdeyHD3fSV0busPzk6aNbKYZKyPau9oGe2DZHuGLb7i1LNbE-DRqiJtX6Wze9s-ptg4OA0j6BOu3GTkg
 
 ###ユーザー情報照会(一般ユーザー用)
 GET {{url}}/api/user HTTP/1.1
@@ -68,14 +67,29 @@ Content-Type: application/json
 Authorization: {{token}}
 
 ###ユーザー情報照会(オペレーター用)
-GET {{url}}/api/ops/users/4 HTTP/1.1
+GET {{url}}/api/ops/users/2 HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+###権限情報一覧照会
+GET {{url}}/api/ops/grants HTTP/1.1
 Content-Type: application/json
 Authorization: {{token}}
 
 ###権限情報照会
-GET {{url}}/api/ops/grants HTTP/1.1
+GET {{url}}/api/ops/grants/4 HTTP/1.1
 Content-Type: application/json
 Authorization: {{token}}
+
+###ロール指定の権限照会
+POST {{url}}/api/grant HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "role": "admin"
+}
+
 
 ###ログアウト
 POST {{url}}/api/sign-out HTTP/1.1

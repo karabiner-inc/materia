@@ -4,78 +4,42 @@ defmodule ServicexWeb.GrantControllerTest do
   alias Servicex.Accounts
   alias Servicex.Accounts.Grant
 
-  @create_attrs %{request_path: "some request_path", role: "some role"}
-  @update_attrs %{request_path: "some updated request_path", role: "some updated role"}
-  @invalid_attrs %{request_path: nil, role: nil}
+  @create_attrs %{request_path: "some request_path", method: "ANY", role: "some role"}
+  @update_attrs %{request_path: "some updated request_path", method: "GET", role: "some updated role"}
 
-  def fixture(:grant) do
-    {:ok, grant} = Accounts.create_grant(@create_attrs)
-    grant
+  @admin_user_attrs %{
+    "name": "hogehoge",
+    "email": "hogehoge@example.com",
+    "password": "hogehoge",
+    "role": "admin"
+  }
+
+  defp log_in(_) do
+    token_conn = post conn, authenticator_path(conn, :sign_in), @admin_user_attrs
+      %{"token" => token } = json_response(token_conn, 201)
+    {:ok, token: token}
   end
 
-  setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
-  end
+  describe "grant CRUD" do
+    setup [:log_in]
 
-  describe "index" do
-    test "lists all grants", %{conn: conn} do
-      conn = get conn, grant_path(conn, :index)
-      assert json_response(conn, 200)["data"] == []
+    test "create grant", %{conn: conn, token: token} do
+      conn = put_req_header(conn, "authorization", "Bearer " <> token)
+      create_conn = post conn, grant_path(conn, :create), @create_attrs
+      assert json_response(create_conn, 201) == %{"id" => 4, "role" => "some role", "method" => "ANY", "request_path" => "some request_path"}
     end
-  end
-
-  describe "create grant" do
-    test "renders grant when data is valid", %{conn: conn} do
-      conn = post conn, grant_path(conn, :create), grant: @create_attrs
-      assert %{"id" => id} = json_response(conn, 201)["data"]
-
-      conn = get conn, grant_path(conn, :show, id)
-      assert json_response(conn, 200)["data"] == %{
-        "id" => id,
-        "request_path" => "some request_path",
-        "role" => "some role"}
+    test "update grant", %{conn: conn, token: token} do
+      conn = put_req_header(conn, "authorization", "Bearer " <> token)
+      update_conn = put conn, grant_path(conn, :update, 3), @update_attrs
+      assert json_response(update_conn, 200) == %{"id" => 3, "role" => "some updated role", "method" => "GET", "request_path" => "some updated request_path"}
     end
 
-    test "renders errors when data is invalid", %{conn: conn} do
-      conn = post conn, grant_path(conn, :create), grant: @invalid_attrs
-      assert json_response(conn, 422)["errors"] != %{}
+    test "delete grant", %{conn: conn, token: token} do
+      conn = put_req_header(conn, "authorization", "Bearer " <> token)
+      delete_conn = delete conn, grant_path(conn, :delete, 3)
+      assert response(delete_conn, 204) == ""
     end
+    # IO.inspect(response(unauth_conn, 401))
   end
 
-  describe "update grant" do
-    setup [:create_grant]
-
-    test "renders grant when data is valid", %{conn: conn, grant: %Grant{id: id} = grant} do
-      conn = put conn, grant_path(conn, :update, grant), grant: @update_attrs
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
-
-      conn = get conn, grant_path(conn, :show, id)
-      assert json_response(conn, 200)["data"] == %{
-        "id" => id,
-        "request_path" => "some updated request_path",
-        "role" => "some updated role"}
-    end
-
-    test "renders errors when data is invalid", %{conn: conn, grant: grant} do
-      conn = put conn, grant_path(conn, :update, grant), grant: @invalid_attrs
-      assert json_response(conn, 422)["errors"] != %{}
-    end
-  end
-
-  describe "delete grant" do
-    setup [:create_grant]
-
-    test "deletes chosen grant", %{conn: conn, grant: grant} do
-      conn = delete conn, grant_path(conn, :delete, grant)
-      assert response(conn, 204)
-      assert_error_sent 404, fn ->
-        get conn, grant_path(conn, :show, grant)
-      end
-    end
-  end
-
-  defp create_grant(_) do
-    grant = fixture(:grant)
-    {:ok, grant: grant}
-  end
 end
