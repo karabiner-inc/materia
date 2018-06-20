@@ -4,7 +4,7 @@ defmodule Servicex.Mixfile do
   def project do
     [
       app: :servicex,
-      version: "0.0.4",
+      version: "0.0.5",
       elixir: "~> 1.4",
       description: "This library is a summary of the functions that are generally required for Web service development.",
       elixirc_paths: elixirc_paths(Mix.env),
