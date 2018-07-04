@@ -2,7 +2,6 @@ defmodule Servicex.AuthenticatePipeline do
   use Guardian.Plug.Pipeline, otp_app: :servicex,
                                module: Servicex.Authenticator,
                                error_handler: Servicex.AuthenticateErrorHandler
-
   plug Guardian.Plug.VerifySession, claims: %{"typ" => "access"}
   #plug Servicex.Plug.Debug
   plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"}
