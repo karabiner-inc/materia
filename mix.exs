@@ -57,6 +57,7 @@ defmodule Servicex.Mixfile do
       {:bcrypt_elixir, "~> 1.0"},
       {:guardian, "~> 1.0"},
       {:guardian_db, "~> 1.0"},
+      {:guardian_backdoor, "~> 1.0.0", only: :test},
       {:poison, "~> 3.1"},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:timex, "~> 3.3"},
