@@ -1,4 +1,5 @@
 defmodule Servicex.TestHelper.AssertHelper do
+  use ExUnit.CaseTemplate
 
   # map中の指定した項目のみassertionを実施する
   # 時刻など変動する項目をassertion実施したくない場合用

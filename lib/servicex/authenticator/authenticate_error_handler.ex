@@ -1,4 +1,5 @@
 defmodule Servicex.AuthenticateErrorHandler do
+  @moduledoc false
   import Plug.Conn
 
   def auth_error(conn, {type, reason}, _opts) do

@@ -6,7 +6,7 @@
 @url = http://localhost:4000
 #@url = https://
 
-###ユーザー登録
+### ユーザー登録
 POST {{url}}/api/users HTTP/1.1
 Content-Type: application/json
 
@@ -15,6 +15,17 @@ Content-Type: application/json
     "email": "admin@example.com", 
     "password": "password",
     "role": "admin"
+  }
+
+### メール認証
+
+POST {{url}}/api/verify_user HTTP/1.1
+Content-Type: application/json
+
+ {
+    "verify_key": "hogehoge",
+    "email": "admin@example.com", 
+    "password": "password"
   }
 
 

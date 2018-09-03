@@ -4,7 +4,6 @@ defmodule Servicex.Accounts do
   """
 
   import Ecto.Query, warn: false
-  alias Servicex.Repo
 
   alias Servicex.Accounts.User
 
@@ -18,7 +17,8 @@ defmodule Servicex.Accounts do
 
   """
   def list_users do
-    Repo.all(User)
+    repo = Application.get_env(:servicex, :repo)
+    repo.all(User)
   end
 
   @doc """
@@ -35,13 +35,18 @@ defmodule Servicex.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+
+  def get_user!(id) do
+    repo = Application.get_env(:servicex, :repo)
+    repo.get!(User, id)
+  end
 
   def get_user_by_email!(email) do
+    repo = Application.get_env(:servicex, :repo)
     user =
     with [user] <-  User
     |> where(email: ^email)
-    |> Repo.all()
+    |> repo.all()
     do
       user
     else
@@ -62,9 +67,10 @@ defmodule Servicex.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
+    repo = Application.get_env(:servicex, :repo)
     %User{}
     |> User.changeset(attrs)
-    |> Repo.insert()
+    |> repo.insert()
   end
 
   @doc """
@@ -80,9 +86,10 @@ defmodule Servicex.Accounts do
 
   """
   def update_user(%User{} = user, attrs) do
+    repo = Application.get_env(:servicex, :repo)
     user
     |> User.changeset(attrs)
-    |> Repo.update()
+    |> repo.update()
   end
 
   @doc """
@@ -98,7 +105,8 @@ defmodule Servicex.Accounts do
 
   """
   def delete_user(%User{} = user) do
-    Repo.delete(user)
+    repo = Application.get_env(:servicex, :repo)
+    repo.delete(user)
   end
 
   @doc """
@@ -126,7 +134,8 @@ defmodule Servicex.Accounts do
 
   """
   def list_grants do
-    Repo.all(Grant)
+    repo = Application.get_env(:servicex, :repo)
+    repo.all(Grant)
   end
 
   @doc """
@@ -143,12 +152,17 @@ defmodule Servicex.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_grant!(id), do: Repo.get!(Grant, id)
+  def get_grant!(id) do
+    repo = Application.get_env(:servicex, :repo)
+    repo.get!(Grant, id)
+  end
 
   def get_grant_by_role(role) do
+    repo = Application.get_env(:servicex, :repo)
+    dc_role = String.downcase(role)
     Grant
-    |> where([g], g.role == ^role or g.role == ^"anybody")
-    |> Repo.all()
+    |> where([g], g.role == ^role or g.dc_role == ^Grant.role.anybody)
+    |> repo.all()
   end
 
   @doc """
@@ -164,9 +178,10 @@ defmodule Servicex.Accounts do
 
   """
   def create_grant(attrs \\ %{}) do
+    repo = Application.get_env(:servicex, :repo)
     %Grant{}
     |> Grant.changeset(attrs)
-    |> Repo.insert()
+    |> repo.insert()
   end
 
   @doc """
@@ -182,9 +197,10 @@ defmodule Servicex.Accounts do
 
   """
   def update_grant(%Grant{} = grant, attrs) do
+    repo = Application.get_env(:servicex, :repo)
     grant
     |> Grant.changeset(attrs)
-    |> Repo.update()
+    |> repo.update()
   end
 
   @doc """
@@ -200,7 +216,8 @@ defmodule Servicex.Accounts do
 
   """
   def delete_grant(%Grant{} = grant) do
-    Repo.delete(grant)
+    repo = Application.get_env(:servicex, :repo)
+    repo.delete(grant)
   end
 
   @doc """
@@ -214,6 +231,26 @@ defmodule Servicex.Accounts do
   """
   def change_grant(%Grant{} = grant) do
     Grant.changeset(grant, %{})
+  end
+
+  def send_verify_mail(%User{} = user) do
+
+    from = Application.get_env(:servicex, Servicex.Accounts)[:verify_mail_from_address]
+    subject = Application.get_env(:servicex, Servicex.Accounts)[:verify_mail_subject]
+    mail_template = Application.get_env(:servicex, Servicex.Accounts)[:verify_mail_template]
+    verify_url = Application.get_env(:servicex, Servicex.Accounts)[:verify_url]
+
+    # verify mail template
+    # place holders
+    #  @user_name@  display user name.
+    #  @verify_url@  service verify page url. replace that "{verify_url}?verify_key={verify_key}"
+
+    body_text = mail_template
+    |> String.replace("@user_name@", user.name)
+    |> String.replace("@verify_url@", verify_url)
+
+    {:ok, result} = Servicex.MailClient.send_mail(from, user.email, subject, body_text)
+
   end
 
 end

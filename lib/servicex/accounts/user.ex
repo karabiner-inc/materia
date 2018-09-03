@@ -9,6 +9,7 @@ defmodule Servicex.Accounts.User do
     field :password, :string, virtual: true
     field :name, :string
     field :role, :string
+    field :status, :integer, defalut: 1
 
     timestamps()
   end
@@ -16,7 +17,7 @@ defmodule Servicex.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :password, :role])
+    |> cast(attrs, [:name, :email, :password, :role, :status])
     |> validate_required([:name, :email, :password, :role])
     |> unique_constraint(:email)
     |> put_password_hash()
@@ -38,4 +39,14 @@ defmodule Servicex.Accounts.User do
         changeset
     end
   end
+
+  def status() do
+    %{
+      unactivated: 1, # アカウント有効化前
+      activated: 2, # アカウント有効中
+      frozen: 8, # アカウント凍結中
+      expired: 9, #アカウント無効
+    }
+  end
+
 end

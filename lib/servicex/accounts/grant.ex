@@ -2,7 +2,6 @@ defmodule Servicex.Accounts.Grant do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "grants" do
     field :request_path, :string
     field :method, :string
@@ -18,4 +17,13 @@ defmodule Servicex.Accounts.Grant do
     |> validate_required([:role, :method, :request_path])
     #|> unique_constraint([:role, :method, :request_path])
   end
+
+  def method do
+    %{ any: "ANY" }
+  end
+
+  def role do
+    %{ anybody: "anybody" }
+  end
+
 end

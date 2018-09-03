@@ -1,4 +1,4 @@
-defmodule Servicex.Application do
+defmodule Servicex.Test.Application do
   use Application
 
   # See https://hexdocs.pm/elixir/Application.html
@@ -9,9 +9,9 @@ defmodule Servicex.Application do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-      supervisor(Servicex.Repo, []),
+      supervisor(Servicex.Test.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(ServicexWeb.Endpoint, []),
+      supervisor(ServicexWeb.Test.Endpoint, []),
       # Start your own worker by calling: Servicex.Worker.start_link(arg1, arg2, arg3)
       # worker(Servicex.Worker, [arg1, arg2, arg3]),
       worker(Guardian.DB.Token.SweeperServer, [])

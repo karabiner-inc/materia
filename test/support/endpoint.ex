@@ -1,4 +1,4 @@
-defmodule ServicexWeb.Endpoint do
+defmodule ServicexWeb.Test.Endpoint do
   use Phoenix.Endpoint, otp_app: :servicex
 
   socket "/socket", ServicexWeb.UserSocket

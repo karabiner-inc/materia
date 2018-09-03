@@ -4,19 +4,18 @@ defmodule Servicex.Plug.GrantChecker do
   require Logger
 
   alias Servicex.Accounts
+  alias Servicex.Accounts.Grant
 
   def init(opts) do
     Logger.debug("#{__MODULE__}--- init---------------------")
-    #IO.inspect(opts)
   end
 
   def call(conn, opts) do
     Logger.debug("#{__MODULE__}--- call ---------------------")
     user = Accounts.get_user!(conn.private.guardian_default_claims["sub"])
-    #IO.inspect(user)
     grants = Accounts.get_grant_by_role(user.role)
     has_grant? = grants
-    |> Enum.any?(fn(grant) -> ( grant.method == "ANY" or grant.method == conn.method ) and Regex.match?(~r/#{grant.request_path}[0-9]*/,conn.request_path) end)
+    |> Enum.any?(fn(grant) -> ( String.upcase(grant.method) == Grant.method.any or String.upcase(grant.method) == conn.method ) and Regex.match?(~r/#{grant.request_path}[0-9]*/,conn.request_path) end)
 
     conn =
     if has_grant? do
@@ -24,12 +23,10 @@ defmodule Servicex.Plug.GrantChecker do
       conn
     else
       Logger.debug("#{__MODULE__}--- call has_grant?:#{has_grant?}---------------------")
-      #keyword = Keyword.get(opts, :error_handler, conn.private[:guardian_error_handler])
       conn
       |> halt()
       |> send_resp(401, Poison.encode!(%{message: "no grant"}))
     end
-    #IO.puts("------- has_grant? #{has_grant?}")
     conn
   end
 
