@@ -55,3 +55,55 @@ config :servicex, Servicex.Repo,
   database: "servicex_dev",
   hostname: "localhost",
   pool_size: 10
+
+# Configure servicex repo
+config :servicex, :repo, Servicex.Repo
+
+# Configure servicex verify mail
+config :servicex, Servicex.Accounts,
+  verify_url: "https://google.com",
+  verify_mail_from_address: "tcr.yoshimura@karabiner.tech",
+  verify_mail_subject: "【開発環境】ServiceX メールアドレス確認",
+  # verify mail template
+  # place holders
+  #  @user_name@  display user name.
+  #  @verify_url@  service verify page url. replace that "{verify_url}?verify_key={verify_key}"
+  #
+  verify_mail_template: "@user_name@ 様
+この度は弊社サービスに仮登録いただきありがとうございます。
+
+本登録の手順をご案内いたします。
+２４時間以内に下記URLへアクセスいただくことでサービスへの登録が完了いたします。
+
+ @verify_url@?verify_key=@verify_key@
+
+今後とも弊社サービスをよろしくお願いいたします。
+
+＜お問い合わせ＞
+ @support_url@
+",
+
+rregstered_mail_subject: "【開発環境】ServiceX ユーザ登録完了",
+# registrated_mail template
+  # place holders
+  #  @user_name@  display user name.
+  #  @user_mail@ display mail address.
+  #  @conntact_url@  support page url
+  #  @password_reset_url@ password reset page url
+regstered_mail_template: "@user_name@ 様
+この度は弊社サービスにご登録いただきありがとうございます。
+
+メールアドレス： @user_mail@
+パスワード： 登録時にご入力いただいたパスワード
+※ セキュリティ観点から本メールにはパスワードは記載いたしません。
+  パスワードが不明の方は下記URLよりパスワードリセットの手続きをお願いいたします。
+
+＜パスワードの再設定＞
+ @password_reset_url@
+
+＜お問い合わせ＞
+ @support_url@
+"
+
+config :servicex, Servicex.MailClient,
+  verify_mail_ses_region: "us-west-2"

@@ -1,4 +1,5 @@
 defmodule Servicex.AuthenticatePipeline do
+  @moduledoc false
   use Guardian.Plug.Pipeline, otp_app: :servicex,
                                module: Servicex.Authenticator,
                                error_handler: Servicex.AuthenticateErrorHandler

@@ -18,7 +18,8 @@ defmodule ServicexWeb.Router do
   end
 
   pipeline :grant_check do
-    plug Servicex.Plug.GrantChecker, repo: Servicex.Repo
+    repo = Application.get_env(:servicex, :repo)
+    plug Servicex.Plug.GrantChecker, repo: repo
   end
 
   scope "/api", ServicexWeb do

@@ -14,7 +14,6 @@ defmodule ServicexWeb.UserController do
   end
 
   def create(conn, user_params) do
-    #%{"data" => %{"email" => "admin@example.com", "name" => "hogehoge太郎", "password" => "password", "role" => "admin"}}
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
       conn
       |> put_status(:created)
@@ -30,7 +29,7 @@ defmodule ServicexWeb.UserController do
   end
 
   def show_me(conn, _params) do
-    Logger.debug("show")
+    Logger.debug("show_me")
     id = String.to_integer(conn.private.guardian_default_claims["sub"])
     user = Accounts.get_user!(id)
     render(conn, "show.json", user: user)
@@ -47,6 +46,15 @@ defmodule ServicexWeb.UserController do
   def delete(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
     with {:ok, %User{}} <- Accounts.delete_user(user) do
+      send_resp(conn, :no_content, "")
+    end
+  end
+
+  def send_verify_mail(conn, %{"id" => id}) do
+    # メールアドレス検証用のメール送信
+    user = Accounts.get_user!(id)
+
+    with {:ok, _result} = Accounts.send_verify_mail(user) do
       send_resp(conn, :no_content, "")
     end
   end

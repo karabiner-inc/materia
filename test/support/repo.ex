@@ -1,4 +1,4 @@
-defmodule Servicex.Repo do
+defmodule Servicex.Test.Repo do
   use Ecto.Repo, otp_app: :servicex
 
   @doc """

@@ -1,4 +1,5 @@
 defmodule Servicex.Authenticator do
+  @moduledoc false
   use Guardian, otp_app: :servicex
 
   require Logger
