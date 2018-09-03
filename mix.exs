@@ -4,7 +4,7 @@ defmodule Servicex.Mixfile do
   def project do
     [
       app: :servicex,
-      version: "0.0.4",
+      version: "0.0.8",
       elixir: "~> 1.4",
       description: "This library is a summary of the functions that are generally required for Web service development.",
       elixirc_paths: elixirc_paths(Mix.env),
@@ -26,10 +26,12 @@ defmodule Servicex.Mixfile do
   def application do
     mod =
       case Mix.env() do
-        # テスト時のみアプリケーションとして起動する
-        :test -> [mod: {Servicex.Application, []}]
+        # テストのみアプリケーションとして起動する
+        :test -> [mod: {Servicex.Test.Application, []}]
+      #  :dev -> [mod: {Servicex.Application, []}]
         _ -> []
       end
+     #[mod: {Servicex.Application, []}]
     mod ++ [
       #mod: {Servicex.Application, []},
       extra_applications: [:logger, :runtime_tools]
@@ -57,6 +59,7 @@ defmodule Servicex.Mixfile do
       {:bcrypt_elixir, "~> 1.0"},
       {:guardian, "~> 1.0"},
       {:guardian_db, "~> 1.0"},
+      {:guardian_backdoor, "~> 1.0.0", only: :test},
       {:poison, "~> 3.1"},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:timex, "~> 3.3"},
