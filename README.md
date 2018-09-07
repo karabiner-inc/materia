@@ -15,8 +15,8 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 add deps
 
 mix.exs
-```
 
+```
  defp deps do
     [
       {:phoenix, "~> 1.3.2"},
@@ -30,7 +30,6 @@ mix.exs
       {:servicex, "~> 0.1.0"}, #<- add here
     ]
   end
-
 ```
 
 add Guardian DB conf
@@ -39,8 +38,8 @@ add Guardian DB conf
 so update later.
 
 config/config.exs
-```
 
+```
 # Configures Guardian
 config :servicex, Servicex.Authenticator,
   issuer: "your_app_name",  #<- mod your app name
@@ -54,15 +53,13 @@ config :guardian, Guardian.DB,
   schema_name: "guardian_tokens", # default
   #token_types: ["refresh_token"], # store all token types if not set
   sweep_interval: 60 # default: 60 minutes
-
 ```
 
 config/dev.exs
-```
 
+```
 # Configure servicex repo
 config :servicex, :repo, YourApp.Repo  #<- add your app repo
-
 ```
 
 ```
@@ -76,22 +73,21 @@ update secret_key config
 ```
 
 config/config.exs
-```
 
+```
 # Configures Guardian
 config :servicex, Servicex.Authenticator,
   issuer: "your_app_name",  
   # Generate mix task 
   # > mix phx.gen.secret
   secret_key: "your secusecret token" #<- mod your token
-
 ```
 
 add application config
 
 lib/your_app/application.ex
-```
 
+```
   def start(_type, _args) do
     import Supervisor.Spec
 
@@ -111,7 +107,6 @@ lib/your_app/application.ex
     opts = [strategy: :one_for_one, name: YourApp.Supervisor]
     Supervisor.start_link(children, opts)
   end
-
 ```
 
 do generate migration file for servicex and migrate
@@ -125,23 +120,21 @@ do generate migration file for servicex and migrate
 add guardian pipeline
 
 lib/your_app_web/router.ex
-```
 
+```
   pipeline :guardian_auth do
     plug Servicex.AuthenticatePipeline #<-- guardian jwt token authentication by user model.
   end
   pipeline :grant_check do
     plug Servicex.Plug.GrantChecker, repo: YourApp.Repo #<-- Grant check by user ,role and grant model.
   end
-
-
 ```
 
 add servicex user and grant model path.
 
 lib/your_app_web/router.ex
-```
 
+```
   scope "/your-path", ServicexWeb do
     pipe_through [ :api]
 
@@ -161,9 +154,7 @@ lib/your_app_web/router.ex
     resources "/users", UserController, except: [:edit, :new]
     resources "/grants", GrantController, except: [:new, :edit]
   end
-
-'''
-
+```
 
 regiter grant record.
 servicex grant is white list about user role and request mothod.
@@ -175,6 +166,7 @@ user hogehoge is administrator.
 user fugafuga is ordialy operator.
 
 priv/repo/seed.exs
+
 ```
 alias Servicex.Accounts
 
@@ -182,8 +174,8 @@ Accounts.create_user(%{ name: "hogehoge", email: "hogehoge@example.com", passwor
 Accounts.create_user(%{ name: "fugafuga", email: "fugafuga@example.com", password: "fugafuga", role: "operator"})
 Accounts.create_grant(%{ role: "anybody", method: "ANY", request_path: "/your-path/users" })
 Accounts.create_grant(%{ role: "admin", method: "GET", request_path: "/your-path/grants" })
-
 ```
+
 ※ grant.role "anybody" is a special reserved keyword by Servicex and its means all roles.
 ※ grant.method "ANY" is a special reserved keyword by Servicex and its means all request methods.
 
@@ -204,6 +196,7 @@ request sample
 ```
 
 Request
+
 ```
 POST http://lodalhost:4000/your-path/sign-in HTTP/1.1
 Content-Type: application/json
@@ -215,6 +208,7 @@ Content-Type: application/json
 ```
 
 Response
+
 ```
 {
   "token": "your_jwd_token",
@@ -223,6 +217,7 @@ Response
 ```
 
 Request
+
 ```
 GET {{url}}/admin/show-me HTTP/1.1
 Content-Type: application/json
@@ -230,6 +225,7 @@ Authorization: Bearer your_jwd_token
 ```
 
 Responce
+
 ```
 {
   "role": "admin",
@@ -237,7 +233,6 @@ Responce
   "id": 1,
   "email": "hogehoge@example.com"
 }
-
 ```
 
 ## Learn more
