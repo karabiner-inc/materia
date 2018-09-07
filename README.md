@@ -209,15 +209,16 @@ Content-Type: application/json
 Response
 ```
 {
-  "token": "jwt token",
+  "token": "your_jwd_token",
   "id": 1
 }
 ```
 
-Request```
+Request
+```
 GET {{url}}/admin/show-me HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhcHBfYWRtaW4iLCJleHAiOjE1Mzg3MzA0ODUsImlhdCI6MTUzNjMxMTI4NSwiaXNzIjoiYXBwX2FkbWluIiwianRpIjoiZTdiZmNlYzUtNmZlNC00YjY5LTlhMWEtNmRjMjRmODZlNTNjIiwibmJmIjoxNTM2MzExMjg0LCJzdWIiOiIxIiwidHlwIjoiYWNjZXNzIn0.JL1qxqK9JA6R176ataDI0wZj4MoxpdiOx_EEHCqHfbvPZzH_uSDkhAnfxEHa5cCL4KzcZbcCrniflzLsLZ_2pg
+Authorization: Bearer your_jwd_token
 ```
 
 Responce
