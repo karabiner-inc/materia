@@ -10,7 +10,8 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
-## Usage
+
+## Installation
 
 add deps
 
@@ -155,6 +156,8 @@ lib/your_app_web/router.ex
     resources "/grants", GrantController, except: [:new, :edit]
   end
 ```
+
+## Usage
 
 regiter grant record.
 servicex grant is white list about user role and request mothod.
