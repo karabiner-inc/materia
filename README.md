@@ -35,7 +35,7 @@ mix.exs
 
 add Guardian DB conf
 
-※is must do mix.deps.get before secret_key config
+is must do mix.deps.get before secret_key config.
 so update later.
 
 config/config.exs
