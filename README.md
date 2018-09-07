@@ -14,7 +14,8 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 
 add deps
 
-```mix.exs
+mix.exs
+```
 
  defp deps do
     [
@@ -37,7 +38,8 @@ add Guardian DB conf
 ※is must do mix.deps.get before secret_key config
 so update later.
 
-```config/config.exs
+config/config.exs
+```
 
 # Configures Guardian
 config :servicex, Servicex.Authenticator,
@@ -55,7 +57,8 @@ config :guardian, Guardian.DB,
 
 ```
 
-```config/dev.exs
+config/dev.exs
+```
 
 # Configure servicex repo
 config :servicex, :repo, YourApp.Repo  #<- add your app repo
@@ -72,7 +75,8 @@ update secret_key config
 > mix phx.gen.secret
 ```
 
-```config/config.exs
+config/config.exs
+```
 
 # Configures Guardian
 config :servicex, Servicex.Authenticator,
@@ -85,7 +89,8 @@ config :servicex, Servicex.Authenticator,
 
 add application config
 
-```lib/your_app/application.ex
+lib/your_app/application.ex
+```
 
   def start(_type, _args) do
     import Supervisor.Spec
@@ -119,7 +124,8 @@ do generate migration file for servicex and migrate
 
 add guardian pipeline
 
-```lib/your_app_web/router.ex
+lib/your_app_web/router.ex
+```
 
   pipeline :guardian_auth do
     plug Servicex.AuthenticatePipeline #<-- guardian jwt token authentication by user model.
@@ -133,7 +139,8 @@ add guardian pipeline
 
 add servicex user and grant model path.
 
-```lib/your_app_web/router.ex
+lib/your_app_web/router.ex
+```
 
   scope "/your-path", ServicexWeb do
     pipe_through [ :api]
@@ -167,7 +174,8 @@ for example
 user hogehoge is administrator.
 user fugafuga is ordialy operator.
 
-``` priv/repo/seed.exs
+priv/repo/seed.exs
+```
 alias Servicex.Accounts
 
 Accounts.create_user(%{ name: "hogehoge", email: "hogehoge@example.com", password: "hogehoge", role: "admin"})
@@ -192,7 +200,7 @@ other request method for "/your-path/grants" is not arrowed anyone.
 request sample 
 
 ```
-mix phx.server
+> mix phx.server
 ```
 
 Request
