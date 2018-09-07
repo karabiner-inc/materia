@@ -69,7 +69,7 @@ defmodule Servicex.Accounts do
   def create_user(attrs \\ %{}) do
     repo = Application.get_env(:servicex, :repo)
     %User{}
-    |> User.changeset(attrs)
+    |> User.changeset_create(attrs)
     |> repo.insert()
   end
 

@@ -15,10 +15,18 @@ defmodule Servicex.Accounts.User do
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset_create(user, attrs) do
     user
     |> cast(attrs, [:name, :email, :password, :role, :status])
     |> validate_required([:name, :email, :password, :role])
+    |> unique_constraint(:email)
+    |> put_password_hash()
+  end
+
+  @doc false
+  def changeset(user, attrs) do
+    user
+    |> cast(attrs, [:name, :email, :password, :role, :status])
     |> unique_constraint(:email)
     |> put_password_hash()
   end

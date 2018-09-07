@@ -46,7 +46,7 @@ defmodule Mix.Tasks.Servicex.Gen.Migration do
         add :name, :string
         add :email, :string
         add :hashed_password, :string
-        add :role, :string,
+        add :role, :string
         add :status, :integer
 
         timestamps()
