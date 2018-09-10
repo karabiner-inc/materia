@@ -116,7 +116,7 @@ do generate migration file for servicex and migrate
 > mix servicex.gen.migration
 > mix ecto.create
 > mix ecto.migrate
-'''
+```
 
 add guardian pipeline
 
