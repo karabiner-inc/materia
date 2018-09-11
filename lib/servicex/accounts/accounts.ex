@@ -161,7 +161,7 @@ defmodule Servicex.Accounts do
     repo = Application.get_env(:servicex, :repo)
     dc_role = String.downcase(role)
     Grant
-    |> where([g], g.role == ^role or g.dc_role == ^Grant.role.anybody)
+    |> where([g], g.role == ^dc_role or g.role == ^Grant.role.anybody)
     |> repo.all()
   end
 
