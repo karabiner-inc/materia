@@ -143,7 +143,7 @@ lib/your_app_web/router.ex
   end
 
   scope "/your-path", ServicexWeb do
-    pipe_through [ :api]
+    pipe_through [ :api, :guardian_auth]
 
     get "/show-me", UserController, :show_me
     post "sign-out", AuthenticatorController, :sign_out
