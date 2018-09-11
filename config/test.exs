@@ -6,7 +6,7 @@ config :servicex, ServicexWeb.Test.Endpoint,
   http: [port: 4001],
   #server: false,
   debug_errors: true,
-  code_reloader: true,
+  code_reloader: false,
   check_origin: false,
   watchers: []
 
@@ -21,3 +21,5 @@ config :servicex, Servicex.Test.Repo,
   database: "servicex_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+  config :servicex, repo: Servicex.Test.Repo
