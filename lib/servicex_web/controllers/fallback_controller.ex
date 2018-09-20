@@ -7,6 +7,7 @@ defmodule ServicexWeb.FallbackController do
   use ServicexWeb, :controller
 
   alias Servicex.Errors.ServicexError
+  alias Ecto.StaleEntryError
 
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
@@ -14,13 +15,19 @@ defmodule ServicexWeb.FallbackController do
     |> render(ServicexWeb.ChangesetView, "error.json", changeset: changeset)
   end
 
-  def call(conn, {:error, %MatchError{} = match_error}) do
+  def call(conn, %MatchError{} = match_error) do
     call(conn, match_error.term)
   end
 
-  def call(conn, {:error, %ServicexError{} = error}) do
+  def call(conn, %ServicexError{} = error) do
     conn
     |> put_status(:internal_server_error)
+    |> ServicexWeb.ErrorView.render_error(error)
+  end
+
+  def call(conn, %StaleEntryError{} = error) do
+    conn
+    |> put_status(:unprocessable_entity)
     |> ServicexWeb.ErrorView.render_error(error)
   end
 
