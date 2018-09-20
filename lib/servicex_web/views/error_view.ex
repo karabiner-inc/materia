@@ -1,6 +1,8 @@
 defmodule ServicexWeb.ErrorView do
   use ServicexWeb, :view
 
+  alias Servicex.Errors.ServicexError
+
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
   # def render("500.html", _assigns) do
@@ -12,5 +14,11 @@ defmodule ServicexWeb.ErrorView do
   # "Not Found".
   def template_not_found(template, _assigns) do
     Phoenix.Controller.status_message_from_template(template)
+  end
+
+  def render_error(conn, %ServicexError{} = error) do
+    gettext = Application.get_env(:servicex, :gettext)
+    message = error.message
+    Plug.Conn.send_resp(conn, 500, Gettext.gettext(gettext, message))
   end
 end
