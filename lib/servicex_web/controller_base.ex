@@ -1,11 +1,12 @@
 defmodule Servicex.ControllerBase do
 
   alias Ecto.Multi
+  alias Servicex.Errors.ServicexError
 
   require Logger
 
-  def get_user_id_by_conn(conn) do
-    user_id =
+  def get_user_id(conn) do
+    _user_id =
       try do
         conn.private.guardian_default_claims["sub"]
       rescue
