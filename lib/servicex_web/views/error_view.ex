@@ -20,21 +20,46 @@ defmodule ServicexWeb.ErrorView do
   end
 
   def render_error(conn, %ServicexError{} = error) do
-    gettext = Application.get_env(:servicex, :gettext)
     message = error.message
-    Plug.Conn.send_resp(conn, 500, Gettext.gettext(gettext, message))
+    |> gettext_message()
+    |> encode_message()
+    Plug.Conn.send_resp(conn, 500, message)
   end
 
   def render_error(conn, %StaleEntryError{} = error) do
-    gettext = Application.get_env(:servicex, :gettext)
+    Logger.error("#{__MODULE__} render_error/2. error:#{inspect(error)}")
     # StaleEntryErrorのmessageはスキーマの全情報が含まれる。隠匿の為固定メッセージでエラー送出する
-    Plug.Conn.send_resp(conn, :unprocessable_entity, Gettext.gettext(gettext, "attempted to update a stale struct"))
+    message = "attempted to update a stale struct"
+    |> gettext_message()
+    |> encode_message()
+    Plug.Conn.send_resp(conn, :unprocessable_entity, message)
   end
 
   def render_error(conn, error) do
-    gettext = Application.get_env(:servicex, :gettext)
-    Logger.error("#{__MODULE__} render_error/2. error.message:#{inspect(error.message)}")
+    Logger.error("#{__MODULE__} render_error/2. error:#{inspect(error)}")
     # errorによってどのような項目が含まれているか異なる為、隠匿の為固定メッセージでエラー送出する
-    Plug.Conn.send_resp(conn, 500, Gettext.gettext(gettext, "Internal Server Error"))
+    message = "Internal Server Error"
+    |> gettext_message()
+    |> encode_message()
+    Plug.Conn.send_resp(conn, 500, message)
+  end
+
+  def gettext_message(message) when is_binary(message) do
+    gettext = Application.get_env(:servicex, :gettext)
+    Gettext.gettext(gettext, message)
+  end
+
+  def gettext_message(message) do
+    message
+  end
+
+  def encode_message(message) do
+
+    with {:ok, json_message} <- Poison.encode(message) do
+      json_message
+    else
+      {:error, reason} ->
+        "\"#{__MODULE__} encode_message. error message encode failed. reason:#{inspect(reason)}\""
+    end
   end
 end
