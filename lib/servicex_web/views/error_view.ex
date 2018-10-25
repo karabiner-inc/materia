@@ -46,7 +46,7 @@ defmodule ServicexWeb.ErrorView do
 
   def gettext_message(message) when is_binary(message) do
     gettext = Application.get_env(:servicex, :gettext)
-    Gettext.gettext(gettext, message)
+    Gettext.dgettext(gettext, "errors", message)
   end
 
   def gettext_message(message) do

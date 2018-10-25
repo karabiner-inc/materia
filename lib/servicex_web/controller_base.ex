@@ -33,7 +33,7 @@ defmodule Servicex.ControllerBase do
           IO.inspect(reason)
       end
     rescue
-      e -> e
+      e -> throw e
     end
   end
 
