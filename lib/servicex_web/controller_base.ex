@@ -29,11 +29,13 @@ defmodule Servicex.ControllerBase do
         |> Phoenix.Controller.render("show.json", result_map)
       else
         {:error, reason} ->
-          Logger.debug("#{__MODULE__} transaction_flow. Ecto.Multi transaction was failed.")
-          IO.inspect(reason)
+          Logger.debug("#{__MODULE__} transaction_flow. Ecto.Multi transaction was failed. #{inspect(reason)}")
+          raise ServicexError, message: "Ecto.Multi transaction was failed. module:#{inspect(module)} function:#{function_atom}"
       end
     rescue
-      e -> throw e
+      e ->
+        Logger.debug("#{__MODULE__} transaction_flow. exception occured.")
+        e
     end
   end
 
