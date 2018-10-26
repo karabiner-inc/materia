@@ -26,6 +26,7 @@ defmodule ServicexWeb.Router do
     pipe_through :api
 
     post "sign-in", AuthenticatorController, :sign_in
+    post "refresh", AuthenticatorController, :refresh
 
   end
 
@@ -35,6 +36,7 @@ defmodule ServicexWeb.Router do
     get "/user", UserController, :show_me
     post "/grant", GrantController, :get_by_role
     post "sign-out", AuthenticatorController, :sign_out
+    get "auth-check", AuthenticatorController, :is_authenticated
 
   end
 

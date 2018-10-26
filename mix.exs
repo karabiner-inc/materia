@@ -47,8 +47,9 @@ defmodule Servicex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.2"},
-      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix, "== 1.3.2"},
+      {:phoenix_pubsub, "== 1.0.2"},
+      {:plug, "== 1.5.1"},
       {:phoenix_ecto, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.10"},
@@ -58,7 +59,8 @@ defmodule Servicex.Mixfile do
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
       {:guardian, "~> 1.0"},
-      {:guardian_db, "~> 1.0"},
+      #{:guardian_db, "~> 1.0"},
+      {:guardian_db, git: "https://github.com/ueberauth/guardian_db"},
       {:guardian_backdoor, "~> 1.0.0", only: :test},
       {:poison, "~> 3.1"},
       {:ex_doc, ">= 0.0.0", only: :dev},
