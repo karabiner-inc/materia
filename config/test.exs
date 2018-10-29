@@ -11,7 +11,7 @@ config :servicex, ServicexWeb.Test.Endpoint,
   watchers: []
 
 # Print only warnings and errors during test
-config :logger, level: :info
+config :logger, level: :debug
 
 # Configure your database
 config :servicex, Servicex.Test.Repo,
@@ -23,3 +23,11 @@ config :servicex, Servicex.Test.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
   config :servicex, repo: Servicex.Test.Repo
+
+# Configures GuardianDB
+config :guardian, Guardian.DB,
+repo: Servicex.Test.Repo,
+schema_name: "guardian_tokens", # default
+#token_types: ["refresh_token"], # store all token types if not set
+sweep_interval: 60 # default: 60 minutes
+

@@ -2,6 +2,8 @@ defmodule Servicex.Authenticator do
   @moduledoc false
   use Guardian, otp_app: :servicex
 
+  alias Servicex.Errors.ServicexError
+
   require Logger
 
   def subject_for_token(resource, _claims) do
@@ -19,7 +21,7 @@ defmodule Servicex.Authenticator do
     {:error, :reason_for_error}
   end
 
-  def resource_from_claims(claims = %{"email" => email}) do
+  def resource_from_claims(_claims = %{"email" => email}) do
     # Here we'll look up our resource from the claims, the subject can be
     # found in the `"sub"` key. In `above subject_for_token/2` we returned
     # the resource id so here we'll rely on that to look it up.
@@ -57,6 +59,94 @@ defmodule Servicex.Authenticator do
     Logger.debug("---  #{__MODULE__} on_revoke --------------")
     with {:ok, _} <- Guardian.DB.on_revoke(claims, token) do
       {:ok, claims}
+    end
+  end
+
+  def sign_in(email, password) do
+    config = get_config()
+    access_token_ttl = config[:access_token_ttl]
+    Logger.debug("#{__MODULE__} --- sign_in access_token_ttl:#{inspect(access_token_ttl)}")
+    if access_token_ttl == nil do
+      raise ServicexError, message: "servicex.Authenticator access_token_ttl config not found."
+    end
+
+    claims = %{"email" => email}
+    Logger.debug("#{__MODULE__} --- sign_in claims:#{inspect(claims)}")
+    with {:ok,  nil} <- resource_from_claims(claims) do
+      {:error, "email or password is invalid"}
+    else
+      {:ok,  resource} ->
+         if Comeonin.Bcrypt.checkpw(password, resource.hashed_password) do
+          Logger.debug("#{__MODULE__} --- sign_in Comeonin.Bcrypt.checkpw == true")
+           with {:ok, access_token, _access_claims} <- encode_and_sign(resource, claims, [token_type: "access", ttl: access_token_ttl]) do
+            Logger.debug("#{__MODULE__} --- sign_in Servicex.Authenticator.encode_and_sign ok")
+            Logger.debug("#{__MODULE__} --- sign_in access_token:#{access_token}")
+            result = %{id: resource.id ,access_token: access_token}
+            refresh_token_ttl = config[:refresh_token_ttl]
+              Logger.debug("#{__MODULE__} --- sign_in refresh_token_ttl:#{inspect(refresh_token_ttl)}")
+            if refresh_token_ttl != nil do
+              refresh_token_ttl = config[:refresh_token_ttl]
+              Logger.debug("#{__MODULE__} --- sign_in refresh_token_ttl:#{inspect(refresh_token_ttl)}")
+              with {:ok, refresh_token, _refresh_claims} <- encode_and_sign(resource, claims, [token_type: "refresh", ttl: refresh_token_ttl]) do
+                result = Map.put(result, :refresh_token, refresh_token)
+                {:ok, result}
+              else
+                _ ->
+                {:error, "email or password is invalid"}
+              end
+            else
+              {:ok, result}
+            end
+           else
+            _ ->
+            {:error, "email or password is invalid"}
+           end
+         else
+          {:error, "email or password is invalid"}
+         end
+      _ ->
+        {:error, "email or password is invalid"}
+    end
+
+  end
+
+  def refresh_tokens(refresh_token) do
+    config = get_config()
+    access_token_ttl = config[:access_token_ttl]
+    Logger.debug("#{__MODULE__} --- refresh_tokens access_token_ttl:#{inspect(access_token_ttl)}")
+    if access_token_ttl == nil do
+      raise ServicexError, message: "servicex.Authenticator access_token_ttl config not found."
+    end
+
+    with {:ok, _refresh, new_access} <- exchange(refresh_token, "refresh", "access", [ttl: access_token_ttl]) do
+      {token, claims} = new_access
+      Logger.debug("#{__MODULE__} --- refresh_tokens new_access_token:#{inspect(token)}")
+      with {:ok, _} <-  Guardian.DB.after_encode_and_sign(%{}, "access", claims, token) do
+        refresh_token_ttl = config[:refresh_token_ttl]
+        Logger.debug("#{__MODULE__} --- refresh_tokens refresh_token_ttl:#{inspect(refresh_token_ttl)}")
+        if refresh_token_ttl == nil do
+          raise ServicexError, message: "servicex.Authenticator refresh_token_ttl config not found."
+        end
+        with {:ok, _old_refresh, new_refresh} <- refresh(refresh_token, [ttl: refresh_token_ttl]) do
+          {:ok, new_access, new_refresh}
+        else
+          _ -> {:error, "invalid token"}
+        end
+      else
+        _ -> {:error, "invalid token"}
+      end
+    else
+      _ -> {:error, "invalid token"}
+    end
+
+  end
+
+  defp get_config() do
+    config = Application.get_env(:servicex, Servicex.Authenticator)
+    if config == nil do
+      raise ServicexError, message: "servicex.Authenticator config not found."
+    else
+      config
     end
   end
 end

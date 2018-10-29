@@ -7,7 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :servicex,
-  ecto_repos: [Servicex.Repo]
+  ecto_repos: [Servicex.Test.Repo]
 
 # Configures the endpoint
 config :servicex, ServicexWeb.Endpoint,
@@ -25,14 +25,9 @@ config :logger, :console,
 # Configures Guardian
 config :servicex, Servicex.Authenticator,
   issuer: "Servicex",
-  secret_key: "VlY6rTO8s+oM6/l4tPY0mmpKubd1zLEDSKxOjHA4r90ifZzCOYVY5IBEhdicZStw"
-
-# Configures GuardianDB
-config :guardian, Guardian.DB,
-  repo: Servicex.Repo,
-  schema_name: "guardian_tokens", # default
-  #token_types: ["refresh_token"], # store all token types if not set
-  sweep_interval: 60 # default: 60 minutes
+  secret_key: "VlY6rTO8s+oM6/l4tPY0mmpKubd1zLEDSKxOjHA4r90ifZzCOYVY5IBEhdicZStw",
+  access_token_ttl: {10, :minutes},
+  refresh_token_ttl: {1, :days}
 
 # Configures gettext for Servicex
 config :servicex, gettext: ServicexWeb.Gettext
@@ -40,3 +35,4 @@ config :servicex, gettext: ServicexWeb.Gettext
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
