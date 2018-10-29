@@ -25,9 +25,9 @@ config :logger, :console,
 # Configures Guardian
 config :servicex, Servicex.Authenticator,
   issuer: "Servicex",
-  secret_key: "VlY6rTO8s+oM6/l4tPY0mmpKubd1zLEDSKxOjHA4r90ifZzCOYVY5IBEhdicZStw",
-  access_token_ttl: {10, :minutes},
-  refresh_token_ttl: {1, :days}
+  access_token_ttl: {10, :minutes}, #必須
+  refresh_token_ttl: {1, :days}, # refresh_tokenを定義しない場合sign-inはaccess_tokenのみ返す
+  secret_key: "VlY6rTO8s+oM6/l4tPY0mmpKubd1zLEDSKxOjHA4r90ifZzCOYVY5IBEhdicZStw"
 
 # Configures gettext for Servicex
 config :servicex, gettext: ServicexWeb.Gettext

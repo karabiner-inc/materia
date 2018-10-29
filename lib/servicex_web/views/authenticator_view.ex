@@ -14,7 +14,7 @@ defmodule ServicexWeb.AuthenticatorView do
     result = %{id: authenticator.id,
       access_token: authenticator.access_token,
     }
-    if authenticator.refresh_token != nil do
+    if Map.has_key?(authenticator, :refresh_token) and authenticator.refresh_token != nil do
       Map.put(result, :refresh_token, authenticator.refresh_token)
     else
       result
