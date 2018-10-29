@@ -42,9 +42,15 @@ defmodule ServicexWeb.AuthenticatorController do
     Logger.debug("--- ServicexWeb.AuthenticateController sign_in_with_refresh-----------------")
 
     with {:ok, result} <- Servicex.Authenticator.sign_in(email, password) do
+      authenticator =
+      if Map.has_key?(result, :refresh_token) do
+        %{id: result.id ,access_token: result.access_token, refresh_token: result.refresh_token}
+      else
+        %{id: result.id ,access_token: result.access_token}
+      end
     conn
       |> put_status(:created)
-      |> render("show.json", authenticator: %{id: result.id ,access_token: result.access_token, refresh_token: result.refresh_token})
+      |> render("show.json", authenticator: authenticator)
     else
       {:error, message} ->
         handle_unauthenticated(conn, message)
