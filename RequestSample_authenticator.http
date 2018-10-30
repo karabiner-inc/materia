@@ -6,6 +6,15 @@
 @url = http://localhost:4001
 #@url = https://
 
+### ユーザー仮登録
+POST {{url}}/api/tmp-registration HTTP/1.1
+Content-Type: application/json
+
+ {
+    "email": "kari3@example.com", 
+    "role": "service-user"
+  }
+
 ### ユーザー登録
 POST {{url}}/api/ops/users HTTP/1.1
 Content-Type: application/json

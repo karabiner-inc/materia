@@ -27,6 +27,7 @@ config :servicex, Servicex.Authenticator,
   issuer: "Servicex",
   access_token_ttl: {10, :minutes}, #必須
   refresh_token_ttl: {1, :days}, # refresh_tokenを定義しない場合sign-inはaccess_tokenのみ返す
+  user_registration_token_ttl: {35, :minutes},
   secret_key: "VlY6rTO8s+oM6/l4tPY0mmpKubd1zLEDSKxOjHA4r90ifZzCOYVY5IBEhdicZStw"
 
 # Configures gettext for Servicex

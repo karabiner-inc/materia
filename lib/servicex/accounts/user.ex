@@ -15,6 +15,16 @@ defmodule Servicex.Accounts.User do
   end
 
   @doc false
+  def changeset_tmp_registration(user, attrs) do
+    user
+    |> cast(attrs, [:name, :email, :password, :role, :status])
+    |> put_change(:status, status.unactivated)
+    |> validate_required([:email, :role, :status])
+    |> unique_constraint(:email)
+    |> put_password_hash()
+  end
+
+  @doc false
   def changeset_create(user, attrs) do
     user
     |> cast(attrs, [:name, :email, :password, :role, :status])
@@ -50,8 +60,8 @@ defmodule Servicex.Accounts.User do
 
   def status() do
     %{
-      unactivated: 1, # アカウント有効化前
-      activated: 2, # アカウント有効中
+      unactivated: 0, # アカウント有効化前
+      activated: 1, # アカウント有効中
       frozen: 8, # アカウント凍結中
       expired: 9, #アカウント無効
     }

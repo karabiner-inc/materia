@@ -6,6 +6,10 @@ defmodule Servicex.Accounts do
   import Ecto.Query, warn: false
 
   alias Servicex.Accounts.User
+  alias Servicex.Authenticator
+  alias Servicex.Errors.ServicexError
+
+  require Logger
 
   @doc """
   Returns the list of users.
@@ -250,6 +254,22 @@ defmodule Servicex.Accounts do
     |> String.replace("@verify_url@", verify_url)
 
     {:ok, result} = Servicex.MailClient.send_mail(from, user.email, subject, body_text)
+
+  end
+
+  def create_tmp_user(attrs \\ %{}) do
+    repo = Application.get_env(:servicex, :repo)
+    %User{}
+    |> User.changeset_tmp_registration(attrs)
+    |> repo.insert()
+  end
+
+  def regster_tmp_user(_result, email, role) do
+
+    {:ok, user} = create_tmp_user(%{email: email, role: role})
+    {:ok, user_registration_token} = Authenticator.get_user_registration_token(email)
+    result = %{user: user, user_registration_token: user_registration_token}
+    {:ok, result }
 
   end
 

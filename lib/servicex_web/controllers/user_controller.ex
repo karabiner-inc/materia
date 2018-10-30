@@ -58,4 +58,8 @@ defmodule ServicexWeb.UserController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def regstration_tmp_user(conn, %{"email" => email, "role" => role}) do
+    Servicex.ControllerBase.transaction_flow(conn, :tmp_user, Servicex.Accounts, :regster_tmp_user, [email, role])
+  end
 end

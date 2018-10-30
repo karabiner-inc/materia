@@ -27,6 +27,7 @@ defmodule ServicexWeb.Router do
 
     post "sign-in", AuthenticatorController, :sign_in
     post "refresh", AuthenticatorController, :refresh
+    post "tmp-registration", UserController, :regstration_tmp_user
 
   end
 
