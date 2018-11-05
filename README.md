@@ -147,6 +147,9 @@ lib/your_app_web/router.ex
 
     get "/show-me", UserController, :show_me
     post "sign-out", AuthenticatorController, :sign_out
+
+    resources "/addresses", AddressController, except: [:index, :new, :edit]
+    get "/my-addresses", AddressController, :my_addresses
   end
 
   scope "/your-path", ServicexWeb do

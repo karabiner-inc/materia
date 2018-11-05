@@ -253,4 +253,121 @@ defmodule Servicex.Accounts do
 
   end
 
+
+  alias Servicex.Accounts.Address
+
+  @doc """
+  Returns the list of addresses.
+
+  ## Examples
+
+      iex> list_addresses()
+      [%Address{}, ...]
+
+  """
+  def list_addresses do
+    repo = Application.get_env(:servicex, :repo)
+    repo.all(Address)
+  end
+
+  @doc """
+  Returns the list of my addresses.
+
+  ## Examples
+
+      iex> list_my_addresses()
+      [%Address{}, ...]
+
+  """
+  def list_my_addresses(user_id) do
+    repo = Application.get_env(:servicex, :repo)
+    query = from a in Address, where: a.user_id == ^user_id, order_by: [desc: a.inserted_at], select: a
+    repo.all(query)
+  end
+
+  @doc """
+  Gets a single address.
+
+  Raises `Ecto.NoResultsError` if the Address does not exist.
+
+  ## Examples
+
+      iex> get_address!(123)
+      %Address{}
+
+      iex> get_address!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_address!(id) do
+    repo = Application.get_env(:servicex, :repo)
+    repo.get!(Address, id)
+  end
+  @doc """
+  Creates a address.
+
+  ## Examples
+
+      iex> create_address(%{field: value})
+      {:ok, %Address{}}
+
+      iex> create_address(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_address(attrs \\ %{}) do
+    repo = Application.get_env(:servicex, :repo)
+    %Address{}
+    |> Address.changeset(attrs)
+    |> repo.insert()
+  end
+
+  @doc """
+  Updates a address.
+
+  ## Examples
+
+      iex> update_address(address, %{field: new_value})
+      {:ok, %Address{}}
+
+      iex> update_address(address, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_address(%Address{} = address, attrs) do
+    repo = Application.get_env(:servicex, :repo)
+    address
+    |> Address.changeset(attrs)
+    |> repo.update()
+  end
+
+  @doc """
+  Deletes a Address.
+
+  ## Examples
+
+      iex> delete_address(address)
+      {:ok, %Address{}}
+
+      iex> delete_address(address)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_address(%Address{} = address) do
+    repo = Application.get_env(:servicex, :repo)
+    repo.delete(address)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking address changes.
+
+  ## Examples
+
+      iex> change_address(address)
+      %Ecto.Changeset{source: %Address{}}
+
+  """
+  def change_address(%Address{} = address) do
+    Address.changeset(address, %{})
+  end
 end
