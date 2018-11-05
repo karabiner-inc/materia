@@ -157,6 +157,15 @@ lib/your_app_web/router.ex
   end
 ```
 
+## Mailer
+### SendGrid
+Add SendGrid API Key.
+lib/config.exs
+```
+config :sendgrid, api_key: System.get_env("SENDGRID_API_KEY")
+```
+
+
 ## Usage
 
 regiter grant record.

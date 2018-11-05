@@ -65,6 +65,7 @@ defmodule Servicex.Mixfile do
       {:poison, "~> 3.1"},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:timex, "~> 3.3"},
+      {:sendgrid, "~> 1.8"},
     ]
   end
 
