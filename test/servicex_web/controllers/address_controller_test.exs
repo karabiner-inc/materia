@@ -4,8 +4,8 @@ defmodule ServicexWeb.AddressControllerTest do
   alias Servicex.Accounts
   alias Servicex.Accounts.Address
 
-  @create_attrs %{address1: "some address1", address2: "some address2", latitud: "120.5", location: "some location", longitude: "120.5", zip_code: "some zip_code"}
-  @update_attrs %{address1: "some updated address1", address2: "some updated address2", latitud: "456.7", location: "some updated location", longitude: "456.7", zip_code: "some updated zip_code"}
+  @create_attrs %{address1: "some address1", address2: "some address2", latitud: "120.5", location: "some location", longitude: "120.5", zip_code: "some zip_code", subject: "some subject"}
+  @update_attrs %{address1: "some updated address1", address2: "some updated address2", latitud: "456.7", location: "some updated location", longitude: "456.7", zip_code: "some updated zip_code" , subject: "some updated subject"}
   @invalid_attrs %{address1: nil, address2: nil, latitud: nil, location: nil, longitude: nil, zip_code: nil}
   @admin_user_attrs %{
     "name": "hogehoge",
@@ -59,7 +59,9 @@ defmodule ServicexWeb.AddressControllerTest do
         "latitud" => "120.5",
         "location" => "some location",
         "longitude" => "120.5",
-        "zip_code" => "some zip_code"}
+        "zip_code" => "some zip_code",
+        "subject" => "some subject"
+      }
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -83,7 +85,9 @@ defmodule ServicexWeb.AddressControllerTest do
         "latitud" => "456.7",
         "location" => "some updated location",
         "longitude" => "456.7",
-        "zip_code" => "some updated zip_code"}
+        "zip_code" => "some updated zip_code",
+        "subject" => "some updated subject"
+      }
     end
 
     test "renders errors when data is invalid", %{conn: conn, address: address} do

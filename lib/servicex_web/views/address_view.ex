@@ -17,6 +17,8 @@ defmodule ServicexWeb.AddressView do
       address1: address.address1,
       address2: address.address2,
       latitud: address.latitud,
-      longitude: address.longitude}
+      longitude: address.longitude,
+      subject: address.subject,
+    }
   end
 end

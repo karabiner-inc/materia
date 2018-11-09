@@ -10,6 +10,7 @@ defmodule Servicex.Accounts.Address do
     field :location, :string
     field :longitude, :decimal
     field :zip_code, :string
+    field :subject, :string
     belongs_to :user, Servicex.Accounts.Users
 
     timestamps()
@@ -18,7 +19,7 @@ defmodule Servicex.Accounts.Address do
   @doc false
   def changeset(address, attrs) do
     address
-    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitud, :longitude, :user_id])
+    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitud, :longitude, :user_id, :subject])
     # |> validate_required([:location, :zip_code, :address1, :address2, :latitud, :longitude])
   end
 end

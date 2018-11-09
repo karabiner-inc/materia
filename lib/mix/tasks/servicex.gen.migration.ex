@@ -92,12 +92,13 @@ defmodule Mix.Tasks.Servicex.Gen.Migration do
         add :address2, :string
         add :latitud, :decimal
         add :longitude, :decimal
+        add :subject, :string
         add :user_id, references(:users, on_delete: :nothing)
   
         timestamps()
       end
   
-      create index(:addresses, [:user_id])
+      create index(:addresses, [:user_id, :subject])
     end
   end
   """)
