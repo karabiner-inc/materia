@@ -130,4 +130,74 @@ defmodule Servicex.AccountsTest do
   #    assert %Ecto.Changeset{} = Accounts.change_grant(grant)
   #  end
   #end
+
+  # describe "addresses" do
+  #   alias Servicex.Accounts.Address
+
+  #   @valid_attrs %{address1: "some address1", address2: "some address2", latitud: "120.5", location: "some location", longitude: "120.5", zip_code: "some zip_code"}
+  #   @update_attrs %{address1: "some updated address1", address2: "some updated address2", latitud: "456.7", location: "some updated location", longitude: "456.7", zip_code: "some updated zip_code"}
+  #   @invalid_attrs %{address1: nil, address2: nil, latitud: nil, location: nil, longitude: nil, zip_code: nil}
+
+  #   def address_fixture(attrs \\ %{}) do
+  #     {:ok, address} =
+  #       attrs
+  #       |> Enum.into(@valid_attrs)
+  #       |> Accounts.create_address()
+
+  #     address
+  #   end
+
+  #   test "list_addresses/0 returns all addresses" do
+  #     address = address_fixture()
+  #     assert Accounts.list_addresses() == [address]
+  #   end
+
+  #   test "get_address!/1 returns the address with given id" do
+  #     address = address_fixture()
+  #     assert Accounts.get_address!(address.id) == address
+  #   end
+
+  #   test "create_address/1 with valid data creates a address" do
+  #     assert {:ok, %Address{} = address} = Accounts.create_address(@valid_attrs)
+  #     assert address.address1 == "some address1"
+  #     assert address.address2 == "some address2"
+  #     assert address.latitud == Decimal.new("120.5")
+  #     assert address.location == "some location"
+  #     assert address.longitude == Decimal.new("120.5")
+  #     assert address.zip_code == "some zip_code"
+  #   end
+
+  #   test "create_address/1 with invalid data returns error changeset" do
+  #     assert {:error, %Ecto.Changeset{}} = Accounts.create_address(@invalid_attrs)
+  #   end
+
+  #   test "update_address/2 with valid data updates the address" do
+  #     address = address_fixture()
+  #     assert {:ok, address} = Accounts.update_address(address, @update_attrs)
+  #     assert %Address{} = address
+  #     assert address.address1 == "some updated address1"
+  #     assert address.address2 == "some updated address2"
+  #     assert address.latitud == Decimal.new("456.7")
+  #     assert address.location == "some updated location"
+  #     assert address.longitude == Decimal.new("456.7")
+  #     assert address.zip_code == "some updated zip_code"
+  #   end
+
+  #   test "update_address/2 with invalid data returns error changeset" do
+  #     address = address_fixture()
+  #     assert {:error, %Ecto.Changeset{}} = Accounts.update_address(address, @invalid_attrs)
+  #     assert address == Accounts.get_address!(address.id)
+  #   end
+
+  #   test "delete_address/1 deletes the address" do
+  #     address = address_fixture()
+  #     assert {:ok, %Address{}} = Accounts.delete_address(address)
+  #     assert_raise Ecto.NoResultsError, fn -> Accounts.get_address!(address.id) end
+  #   end
+
+  #   test "change_address/1 returns a address changeset" do
+  #     address = address_fixture()
+  #     assert %Ecto.Changeset{} = Accounts.change_address(address)
+  #   end
+  # end
 end

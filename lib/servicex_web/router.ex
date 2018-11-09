@@ -37,6 +37,8 @@ defmodule ServicexWeb.Router do
     post "/grant", GrantController, :get_by_role
     post "sign-out", AuthenticatorController, :sign_out
     get "auth-check", AuthenticatorController, :is_authenticated
+    resources "/addresses", AddressController, except: [:index, :new, :edit]
+    get "/my-addresses", AddressController, :my_addresses
 
   end
 
