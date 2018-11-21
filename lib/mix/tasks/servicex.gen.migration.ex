@@ -17,14 +17,19 @@ defmodule Mix.Tasks.Servicex.Gen.Migration do
     app_module = Mix.Project.config[:app] |> Atom.to_string() |> Macro.camelize()
     assigns = [app_module: app_module]
 
-  # create user migrations
-  create_file(
-    Path.join([@migrations_file_path, "#{timestamp(1)}_servicex_craete_user.exs"]) |> Path.relative_to(Mix.Project.app_path),
-    user_template(assigns))
-  # create grant migrations
-  create_file(
-    Path.join([@migrations_file_path, "#{timestamp(2)}_servicex_craete_grant.exs"]) |> Path.relative_to(Mix.Project.app_path),
-    grant_template(assigns))
+    # create user migrations
+    create_file(
+      Path.join([@migrations_file_path, "#{timestamp(1)}_servicex_craete_user.exs"]) |> Path.relative_to(Mix.Project.app_path),
+      user_template(assigns))
+    # create grant migrations
+    create_file(
+      Path.join([@migrations_file_path, "#{timestamp(2)}_servicex_craete_grant.exs"]) |> Path.relative_to(Mix.Project.app_path),
+      grant_template(assigns))
+    # create address migrations
+    create_file(
+      Path.join([@migrations_file_path, "#{timestamp(3)}_servicex_craete_address.exs"]) |> Path.relative_to(Mix.Project.app_path),
+      address_template(assigns))
+
   end
 
   defp timestamp(add_sec) do
@@ -71,6 +76,29 @@ defmodule Mix.Tasks.Servicex.Gen.Migration do
       end
 
       create unique_index(:grants, [:role, :method, :request_path])
+    end
+  end
+  """)
+
+  embed_template(:address, """
+  defmodule <%= @app_module %>.Repo.Migrations.CreateAddresses do
+    use Ecto.Migration
+  
+    def change do
+      create table(:addresses) do
+        add :location, :string
+        add :zip_code, :string
+        add :address1, :string
+        add :address2, :string
+        add :latitud, :decimal
+        add :longitude, :decimal
+        add :subject, :string
+        add :user_id, references(:users, on_delete: :nothing)
+  
+        timestamps()
+      end
+  
+      create index(:addresses, [:user_id, :subject])
     end
   end
   """)
