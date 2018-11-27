@@ -31,3 +31,14 @@ schema_name: "guardian_tokens", # default
 #token_types: ["refresh_token"], # store all token types if not set
 sweep_interval: 60 # default: 60 minutes
 
+config :servicex, Servicex.MailClient,
+  mail_ses_region: "us-west-2"
+
+# Configure servicex verify mail
+config :servicex, Servicex.Accounts,
+  verify_mail_template_id: 1,
+  system_from_email: "wataridori999@gmail.com",
+  user_registration_url: "hogehoge.example.com/user-registration",
+  registered_mail_template_id: 2,
+  sign_in_url: "hogehoge.example.com/sign-in"
+

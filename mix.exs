@@ -46,7 +46,7 @@ defmodule Servicex.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [
+    deps_list = [
       {:phoenix, "== 1.3.2"},
       {:phoenix_pubsub, "== 1.0.2"},
       {:plug, "== 1.5.1"},
@@ -66,6 +66,20 @@ defmodule Servicex.Mixfile do
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:timex, "~> 3.3"},
     ]
+      _deps_list =
+    if Mix.env() == :prod do
+      IO.puts("prod!!")
+      # 本番環境のみmasterから取得する
+      deps_list ++ [
+        {:servicex_utils, git: "https://bitbucket.org/karabinertech_bi/servicex_utils.git"},
+      ]
+    else
+      # それ以外はdevelopから取得する
+      IO.puts("dev!!")
+      deps_list ++ [
+        {:servicex_utils, git: "https://bitbucket.org/karabinertech_bi/servicex_utils.git", branch: "develop"},
+      ]
+    end
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

@@ -25,6 +25,10 @@ defmodule Mix.Tasks.Servicex.Gen.Migration do
   create_file(
     Path.join([@migrations_file_path, "#{timestamp(2)}_servicex_craete_grant.exs"]) |> Path.relative_to(Mix.Project.app_path),
     grant_template(assigns))
+  # create template migrations
+  create_file(
+    Path.join([@migrations_file_path, "#{timestamp(3)}_servicex_craete_template.exs"]) |> Path.relative_to(Mix.Project.app_path),
+    template_template(assigns))
   end
 
   defp timestamp(add_sec) do
@@ -48,11 +52,14 @@ defmodule Mix.Tasks.Servicex.Gen.Migration do
         add :hashed_password, :string
         add :role, :string
         add :status, :integer
+        add :lock_version, :bigint
 
         timestamps()
       end
 
       create unique_index(:users, [:email])
+      create index(:users, [:role, :status])
+      create index(:users, [:name])
     end
   end
   """)
@@ -72,6 +79,25 @@ defmodule Mix.Tasks.Servicex.Gen.Migration do
 
       create unique_index(:grants, [:role, :method, :request_path])
     end
+  end
+  """)
+
+  embed_template(:template, """
+  defmodule <%= @app_module %>.Repo.Migrations.CreateTemplates do
+    use Ecto.Migration
+
+    def change do
+      create table(:templates) do
+        add :subject, :string
+        add :body, :string, size: 10000
+        add :status, :integer
+        add :lock_version, :bigint
+
+        timestamps()
+      end
+
+    end
+
   end
   """)
 

@@ -14,7 +14,9 @@ defmodule ServicexWeb.UserView do
     %{id: user.id,
       name: user.name,
       email: user.email,
-      role: user.role}
+      role: user.role,
+      lock_version: user.lock_version,
+    }
   end
 
   def render("show.json", %{tmp_user: tmp_user}) do

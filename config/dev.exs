@@ -48,7 +48,7 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :servicex, Servicex.Repo,
+config :servicex, Servicex.Test.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
@@ -57,7 +57,7 @@ config :servicex, Servicex.Repo,
   pool_size: 10
 
 # Configure servicex repo
-config :servicex, :repo, Servicex.Repo
+config :servicex, :repo, Servicex.Test.Repo
 
 # Configure servicex verify mail
 config :servicex, Servicex.Accounts,

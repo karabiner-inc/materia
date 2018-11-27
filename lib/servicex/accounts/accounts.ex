@@ -7,6 +7,9 @@ defmodule Servicex.Accounts do
 
   alias Servicex.Accounts.User
   alias Servicex.Authenticator
+  alias Servicex.Mails
+  alias ServicexUtils.Ecto.EctoUtil
+
   alias Servicex.Errors.ServicexError
 
   require Logger
@@ -92,7 +95,7 @@ defmodule Servicex.Accounts do
   def update_user(%User{} = user, attrs) do
     repo = Application.get_env(:servicex, :repo)
     user
-    |> User.changeset(attrs)
+    |> User.changeset_update(attrs)
     |> repo.update()
   end
 
@@ -122,9 +125,9 @@ defmodule Servicex.Accounts do
       %Ecto.Changeset{source: %User{}}
 
   """
-  def change_user(%User{} = user) do
-    User.changeset(user, %{})
-  end
+  #def change_user(%User{} = user) do
+  #  User.changeset(user, %{})
+  #end
 
   alias Servicex.Accounts.Grant
 
@@ -266,11 +269,107 @@ defmodule Servicex.Accounts do
 
   def regster_tmp_user(_result, email, role) do
 
-    {:ok, user} = create_tmp_user(%{email: email, role: role})
+    config = Application.get_env(:servicex, Servicex.Accounts)
+
+    user = get_user_by_email!(email)
+
+    merged_user =
+    if user == nil do
+      {:ok, created_user} = create_tmp_user(%{email: email, role: role})
+      created_user
+    else
+      if user.status != User.status.unactivated do
+        raise ServicexError, message: "this email address was already registered."
+      else
+        {:ok, updated_user} = update_user(user, %{role: role})
+        updated_user
+      end
+    end
+
     {:ok, user_registration_token} = Authenticator.get_user_registration_token(email)
-    result = %{user: user, user_registration_token: user_registration_token}
+
+    email = merged_user.email
+    template_id =config[:verify_mail_template_id]
+    from_email = config[:system_from_email]
+    user_registration_url = config[:user_registration_url]
+    if template_id != nil do
+
+      if from_email == nil do
+        raise ServicexError, message: "config :servicex, Servicex.Accounts, system_from_email not found."
+      end
+
+      #認証メール送信
+      replace_list = [
+        {"{!email}", email},
+        {"{!user_registration_url}", user_registration_url},
+        {"!{user_regstration_token}", user_registration_token},
+      ]
+      template = Mails.get_template!(template_id)
+      with {:ok, message} <- Mails.send_mail(from_email, email, template.subject, template.body, replace_list) do
+        Logger.debug("#{__MODULE__} regster_tmp_user. send mail success. message:#{inspect(message)}")
+      else
+        {:error, reason} ->
+          Logger.debug("#{__MODULE__} regster_tmp_user. send mail error. reason:#{inspect(reason)}")
+          raise ServicexError, message: "send tmp registration mail error."
+      end
+
+    end
+
+    result = %{user: merged_user, user_registration_token: user_registration_token}
     {:ok, result }
 
+  end
+
+  def registration_user(%User{} = user, attrs) do
+    repo = Application.get_env(:servicex, :repo)
+    user
+    |> User.changeset_registration(attrs)
+    |> repo.update()
+  end
+
+
+  @doc false
+  # Ecto.Mulit用
+  def update_user(_result, user, attr) do
+    update_user(user, attr)
+  end
+
+  def registration_user(_result, user, attr) do
+    config = Application.get_env(:servicex, Servicex.Accounts)
+
+    {:ok, user} = registration_user(user, attr)
+
+    email = user.email
+    template_id =config[:registered_mail_template_id]
+    from_email = config[:system_from_email]
+    sign_in_url = config[:sign_in_url]
+    if template_id != nil do
+
+      if from_email == nil do
+        raise ServicexError, message: "config :servicex, Servicex.Accounts, system_from_email not found."
+      end
+
+      #認証メール送信
+      replace_list = [
+        {"{!name}", user.name},
+        {"{!email}", user.email},
+        {"{!sign_in_url}", sign_in_url},
+      ]
+      template = Mails.get_template!(template_id)
+      with {:ok, message} <- Mails.send_mail(from_email, email, template.subject, template.body, replace_list) do
+        Logger.debug("#{__MODULE__} registration_user. send mail success. message:#{inspect(message)}")
+      else
+        {:error, reason} ->
+          Logger.debug("#{__MODULE__} registration_user. send mail error. reason:#{inspect(reason)}")
+          raise ServicexError, message: "send user registration mail error."
+      end
+    end
+    {:ok, user}
+  end
+
+  def list_user_by_params(params) do
+    repo = Application.get_env(:servicex, :repo)
+    EctoUtil.select_by_param(repo, User, params)
   end
 
 end

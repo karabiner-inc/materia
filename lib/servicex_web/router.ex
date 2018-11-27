@@ -17,6 +17,10 @@ defmodule ServicexWeb.Router do
     plug Servicex.AuthenticatePipeline
   end
 
+  pipeline :tmp_user_auth do
+    plug Servicex.UserRegistrationAuthPipeline
+  end
+
   pipeline :grant_check do
     repo = Application.get_env(:servicex, :repo)
     plug Servicex.Plug.GrantChecker, repo: repo
@@ -27,7 +31,15 @@ defmodule ServicexWeb.Router do
 
     post "sign-in", AuthenticatorController, :sign_in
     post "refresh", AuthenticatorController, :refresh
-    post "tmp-registration", UserController, :regstration_tmp_user
+    post "tmp-registration", UserController, :registration_tmp_user
+
+  end
+
+  scope "/api", ServicexWeb do
+    pipe_through [ :api, :tmp_user_auth]
+
+    get "tmp-varidation", AuthenticatorController, :is_varid_tmp_user
+    post "user-registration", UserController, :registration_user
 
   end
 
@@ -38,6 +50,7 @@ defmodule ServicexWeb.Router do
     post "/grant", GrantController, :get_by_role
     post "sign-out", AuthenticatorController, :sign_out
     get "auth-check", AuthenticatorController, :is_authenticated
+    post "search-users", UserController, :list_users_by_params
 
   end
 
@@ -46,6 +59,7 @@ defmodule ServicexWeb.Router do
 
     resources "/users", UserController, except: [:edit, :new]
     resources "/grants", GrantController, except: [:new, :edit]
+    resources "/templates", TemplateController, except: [:new, :edit]
 
   end
 
