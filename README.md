@@ -147,6 +147,9 @@ lib/your_app_web/router.ex
 
     get "/show-me", UserController, :show_me
     post "sign-out", AuthenticatorController, :sign_out
+
+    resources "/addresses", AddressController, except: [:index, :new, :edit]
+    get "/my-addresses", AddressController, :my_addresses
   end
 
   scope "/your-path", ServicexWeb do
@@ -156,6 +159,15 @@ lib/your_app_web/router.ex
     resources "/grants", GrantController, except: [:new, :edit]
   end
 ```
+
+## Mailer
+### SendGrid
+Add SendGrid API Key.
+lib/config.exs
+```
+config :sendgrid, api_key: System.get_env("SENDGRID_API_KEY")
+```
+
 
 ## Usage
 

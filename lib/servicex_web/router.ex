@@ -51,6 +51,8 @@ defmodule ServicexWeb.Router do
     post "sign-out", AuthenticatorController, :sign_out
     get "auth-check", AuthenticatorController, :is_authenticated
     post "search-users", UserController, :list_users_by_params
+    resources "/addresses", AddressController, except: [:index, :new, :edit]
+    get "/my-addresses", AddressController, :my_addresses
 
   end
 
