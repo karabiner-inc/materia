@@ -86,6 +86,11 @@ defmodule ServicexWeb.AuthenticatorController do
     send_resp(conn, 200, "{\"message\":\"authenticated\"}")
   end
 
+  def is_varid_tmp_user(conn, _params) do
+    Logger.debug("--- ServicexWeb.AuthenticateController is_varid_user_registration_token-----------------")
+    send_resp(conn, 200, "{\"message\":\"authenticated\"}")
+  end
+
 
   defp handle_unauthenticated(conn, reason) do
     conn

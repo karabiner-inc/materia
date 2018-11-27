@@ -13,6 +13,11 @@ defmodule ServicexWeb.UserController do
     render(conn, "index.json", users: users)
   end
 
+  def list_users_by_params(conn, params) do
+    users = Accounts.list_user_by_params(params)
+    render(conn, "index.json", users: users)
+  end
+
   def create(conn, user_params) do
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
       conn
@@ -58,4 +63,15 @@ defmodule ServicexWeb.UserController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def registration_tmp_user(conn, %{"email" => email, "role" => role}) do
+    Servicex.ControllerBase.transaction_flow(conn, :tmp_user, Servicex.Accounts, :regster_tmp_user, [email, role])
+  end
+
+  def registration_user(conn, params) do
+  id = String.to_integer(conn.private.guardian_default_claims["sub"])
+  user = Accounts.get_user!(id)
+  Servicex.ControllerBase.transaction_flow(conn, :user, Servicex.Accounts, :registration_user, [user, params])
+  end
+
 end

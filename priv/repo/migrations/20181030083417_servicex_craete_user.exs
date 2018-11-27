@@ -8,10 +8,13 @@ defmodule Servicex.Repo.Migrations.CreateUsers do
       add :hashed_password, :string
       add :role, :string
       add :status, :integer
+      add :lock_version, :bigint
 
       timestamps()
     end
 
     create unique_index(:users, [:email])
+    create index(:users, [:role, :status])
+    create index(:users, [:name])
   end
 end

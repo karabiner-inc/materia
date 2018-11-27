@@ -39,6 +39,7 @@ defmodule ServicexWeb.FallbackController do
 
   def call(conn, error) do
     try do
+      IO.puts Exception.format_stacktrace(System.stacktrace())
       throw error
     rescue
       e -> throw e

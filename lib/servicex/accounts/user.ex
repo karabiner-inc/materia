@@ -9,26 +9,50 @@ defmodule Servicex.Accounts.User do
     field :password, :string, virtual: true
     field :name, :string
     field :role, :string
-    field :status, :integer, defalut: 1
+    field :status, :integer, default: 1
+    field :lock_version, :integer, default: 0
 
     timestamps()
   end
 
   @doc false
-  def changeset_create(user, attrs) do
+  def changeset_tmp_registration(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :password, :role, :status])
-    |> validate_required([:name, :email, :password, :role])
+    |> cast(attrs, [:name, :email, :password, :role, :status, :lock_version])
+    |> put_change(:status, status.unactivated)
+    |> validate_required([:email, :role, :status])
     |> unique_constraint(:email)
-    |> put_password_hash()
+    |> optimistic_lock(:lock_version)
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset_registration(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :password, :role, :status])
+    |> cast(attrs, [:name, :password, :role, :status, :lock_version])
+    |> put_change(:status, status.activated)
+    |> validate_required([:name, :password, :role])
+    |> put_password_hash()
+    |> optimistic_lock(:lock_version)
+  end
+
+  @doc false
+  def changeset_create(user, attrs) do
+    user
+    |> cast(attrs, [:name, :email, :password, :role, :status, :lock_version])
+    |> validate_required([:name, :email, :password, :role])
     |> unique_constraint(:email)
     |> put_password_hash()
+    |> optimistic_lock(:lock_version)
+  end
+
+  @doc false
+  def changeset_update(user, attrs) do
+    user
+    |> cast(attrs, [:name, :email, :password, :role, :status, :lock_version])
+    |> validate_required([:lock_version])
+    |> unique_constraint(:email)
+    |> put_password_hash()
+    |> optimistic_lock(:lock_version)
   end
 
   def changeset_authentication(user, attrs) do
@@ -50,8 +74,8 @@ defmodule Servicex.Accounts.User do
 
   def status() do
     %{
-      unactivated: 1, # アカウント有効化前
-      activated: 2, # アカウント有効中
+      unactivated: 0, # アカウント有効化前
+      activated: 1, # アカウント有効中
       frozen: 8, # アカウント凍結中
       expired: 9, #アカウント無効
     }
