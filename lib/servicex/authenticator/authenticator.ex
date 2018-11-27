@@ -141,6 +141,31 @@ defmodule Servicex.Authenticator do
 
   end
 
+  def get_user_registration_token(email) do
+    config = get_config()
+    user_registration_token_ttl = config[:user_registration_token_ttl]
+    Logger.debug("#{__MODULE__} --- get_user_registration_token user_registration_token_ttl:#{inspect(user_registration_token_ttl)}")
+    if user_registration_token_ttl == nil do
+      raise ServicexError, message: "servicex.Authenticator user_registration_token_ttl config not found."
+    end
+    claims = %{"email" => email}
+    Logger.debug("#{__MODULE__} --- get_user_registration_token claims:#{inspect(claims)}")
+    with {:ok,  nil} <- resource_from_claims(claims) do
+      {:error, "user not found by claims"}
+    else
+      {:ok,  resource} ->
+        with {:ok, user_registration_token, _user_claims} <- encode_and_sign(resource, claims, [token_type: "user_registration", ttl: user_registration_token_ttl]) do
+          Logger.debug("#{__MODULE__} --- get_user_registration_token Servicex.Authenticator.encode_and_sign ok")
+          Logger.debug("#{__MODULE__} --- get_user_registration_token user_registration_token:#{user_registration_token}")
+          {:ok, user_registration_token}
+        else
+          _ -> {:error, "get_user_registration_token failed."}
+        end
+      _ -> {:error, "get_user_registration_token failed."}
+    end
+
+  end
+
   defp get_config() do
     config = Application.get_env(:servicex, Servicex.Authenticator)
     if config == nil do

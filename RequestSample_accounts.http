@@ -1,0 +1,30 @@
+############################################
+# APIリクエストサンプル集
+#
+############################################
+
+@url = http://localhost:4001
+#@url = https://
+
+###ログイン
+POST {{url}}/api/sign-in HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "hogehoge@example.com", 
+    "password": "hogehoge"
+  }
+
+@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTZXJ2aWNleCIsImVtYWlsIjoiaG9nZWhvZ2VAZXhhbXBsZS5jb20iLCJleHAiOjE1NDA4ODM1NDgsImlhdCI6MTU0MDg4Mjk0OCwiaXNzIjoiU2VydmljZXgiLCJqdGkiOiI4YjBiNjdjOC03YjhkLTRkODctODA1ZC1lNWNhM2Q3YTU0MDIiLCJuYmYiOjE1NDA4ODI5NDcsInN1YiI6IjEiLCJ0eXAiOiJhY2Nlc3MifQ.ADXIXfwvpqXlK2M-tfDiT3xDyr9xy_hbZ9nBqfNLSrULkLvr3yIZbYrTvltYrJvxAiQKe610anV5GjlEeVgJNQ
+
+
+### ユーザー汎用検索
+POST {{url}}/api/search-users HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+ {
+    "and": [{"role": "admin"}],
+    "or": [{"status": 8}, {"status": 1}]
+  }
+

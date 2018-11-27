@@ -6,6 +6,33 @@
 @url = http://localhost:4001
 #@url = https://
 
+### ユーザー仮登録
+POST {{url}}/api/tmp-registration HTTP/1.1
+Content-Type: application/json
+
+ {
+    "email": "wataridori-hp@q.vodafone.ne.jp", 
+    "role": "serviceuser"
+  }
+
+###仮トークン認証
+@tmp_token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTZXJ2aWNleCIsImVtYWlsIjoidGNyLnlvc2hpbXVyYUBrYXJhYmluZXIudGVjaCIsImV4cCI6MTU0MDg5NzMwNCwiaWF0IjoxNTQwODk1MjA0LCJpc3MiOiJTZXJ2aWNleCIsImp0aSI6IjY1ZDU3NjJiLWFhMTUtNDcwOS05NmE5LTM4ZjBmMGU4YTA5MiIsIm5iZiI6MTU0MDg5NTIwMywic3ViIjoiMyIsInR5cCI6InVzZXJfcmVnaXN0cmF0aW9uIn0.GBUsOZumR_9d7rWoin_vaP_YObMokvVis3A7YvEYHLkNf5JefSwHwi_7EaRM-ffWPftSb2xaTVue4KziKt5_4w
+
+GET {{url}}/api/tmp-varidation HTTP/1.1
+Content-Type: application/json
+Authorization: {{tmp_token}}
+
+###本登録
+POST {{url}}/api/user-registration HTTP/1.1
+Content-Type: application/json
+Authorization: {{tmp_token}}
+
+ {
+    "name": "つちろー", 
+    "password": "password"
+  }
+
+
 ### ユーザー登録
 POST {{url}}/api/ops/users HTTP/1.1
 Content-Type: application/json
@@ -30,16 +57,6 @@ Content-Type: application/json
 
 ###ログイン
 POST {{url}}/api/sign-in HTTP/1.1
-Content-Type: application/json
-
-{
-    "email": "hogehoge@example.com", 
-    "password": "hogehoge"
-  }
-
-
-###ログイン
-POST {{url}}/api/sign-in-with-refresh HTTP/1.1
 Content-Type: application/json
 
 {
