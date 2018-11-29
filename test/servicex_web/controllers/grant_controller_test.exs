@@ -1,8 +1,8 @@
-defmodule ServicexWeb.GrantControllerTest do
-  use ServicexWeb.ConnCase
+defmodule MateriaWeb.GrantControllerTest do
+  use MateriaWeb.ConnCase
 
-  alias Servicex.Accounts
-  alias Servicex.Accounts.Grant
+  alias Materia.Accounts
+  alias Materia.Accounts.Grant
 
   @create_attrs %{request_path: "some request_path", method: "ANY", role: "some role"}
   @update_attrs %{request_path: "some updated request_path", method: "GET", role: "some updated role"}

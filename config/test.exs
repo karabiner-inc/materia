@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :servicex, ServicexWeb.Test.Endpoint,
+config :materia, MateriaWeb.Test.Endpoint,
   http: [port: 4001],
   #server: false,
   debug_errors: true,
@@ -14,28 +14,28 @@ config :servicex, ServicexWeb.Test.Endpoint,
 config :logger, level: :debug
 
 # Configure your database
-config :servicex, Servicex.Test.Repo,
+config :materia, Materia.Test.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "servicex_test",
+  database: "materia_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-  config :servicex, repo: Servicex.Test.Repo
+config :materia, repo: Materia.Test.Repo
 
 # Configures GuardianDB
 config :guardian, Guardian.DB,
-repo: Servicex.Test.Repo,
+repo: Materia.Test.Repo,
 schema_name: "guardian_tokens", # default
 #token_types: ["refresh_token"], # store all token types if not set
 sweep_interval: 60 # default: 60 minutes
 
-config :servicex, Servicex.MailClient,
+config :materia, Materia.MailClient,
   mail_ses_region: "us-west-2"
 
-# Configure servicex verify mail
-config :servicex, Servicex.Accounts,
+# Configure materia verify mail
+config :materia, Materia.Accounts,
   verify_mail_template_id: 1,
   system_from_email: "wataridori999@gmail.com",
   user_registration_url: "hogehoge.example.com/user-registration",

@@ -1,5 +1,5 @@
-defmodule ServicexWeb.PageControllerTest do
-  use ServicexWeb.ConnCase
+defmodule MateriaWeb.PageControllerTest do
+  use MateriaWeb.ConnCase
 
   #test "GET /", %{conn: conn} do
   #  conn = get conn, "/"

@@ -1,4 +1,4 @@
-defmodule Servicex.Repo.Migrations.CreateUsers do
+defmodule Materia.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do

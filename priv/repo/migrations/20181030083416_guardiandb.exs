@@ -1,4 +1,4 @@
-defmodule Servicex.Repo.Migrations.Guardian.DB do
+defmodule Materia.Repo.Migrations.Guardian.DB do
   use Ecto.Migration
 
   def change do

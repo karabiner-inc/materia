@@ -1,4 +1,4 @@
-defmodule Servicex.Repo.Migrations.CreateAddresses do
+defmodule Materia.Repo.Migrations.CreateAddresses do
   use Ecto.Migration
 
   def change do

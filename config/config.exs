@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :servicex,
-  ecto_repos: [Servicex.Test.Repo]
+config :materia,
+  ecto_repos: [Materia.Test.Repo]
 
 # Configures the endpoint
-config :servicex, ServicexWeb.Endpoint,
+config :materia, MateriaWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "xAeVCjjYbPDJQW5oou/zXYHs9KpzNG3XOO/zZuEFxKpTCAwc09sEm9REdzlGPqnE",
-  render_errors: [view: ServicexWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Servicex.PubSub,
+  render_errors: [view: MateriaWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Materia.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
@@ -23,16 +23,16 @@ config :logger, :console,
   metadata: [:user_id]
 
 # Configures Guardian
-config :servicex, Servicex.Authenticator,
-  issuer: "Servicex",
+config :materia, Materia.Authenticator,
+  issuer: "Materia",
   access_token_ttl: {10, :minutes}, #必須
   refresh_token_ttl: {1, :days}, # refresh_tokenを定義しない場合sign-inはaccess_tokenのみ返す
   user_registration_token_ttl: {35, :minutes},
   secret_key: "VlY6rTO8s+oM6/l4tPY0mmpKubd1zLEDSKxOjHA4r90ifZzCOYVY5IBEhdicZStw",
   allowed_algos: ["HS256"]
 
-# Configures gettext for Servicex
-config :servicex, gettext: ServicexWeb.Gettext
+# Configures gettext for Materia
+config :materia, gettext: MateriaWeb.Gettext
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

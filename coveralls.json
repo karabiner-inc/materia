@@ -1,0 +1,17 @@
+{
+    "skip_files": [
+      "lib/errors/servicex_error.ex",
+      "lib/materia.ex",
+      "lib/materia/plug/debug.ex",
+      "materia/lib/materia/authenticator/authenticate_error_handler.ex",
+      "lib/materia_web/gettext.ex",
+      "lib/materia_web/router.ex",
+      "lib/mix/tasks/servicex.gen.migration.ex",
+      "test/support/application.ex",
+      "test/support/channel_case.ex",
+      "test/support/data_case.ex",
+      "test/support/endpoint.ex",
+      "test/support/repo.ex",
+      "lib/materia_web/controllers/*"
+    ]
+  }

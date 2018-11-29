@@ -1,11 +1,13 @@
-defmodule Servicex.Mixfile do
+defmodule Materia.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :servicex,
+      app: :materia,
       version: "0.1.2",
       elixir: "~> 1.4",
+      test_coverage: [tool: ExCoveralls, ignore_modules: [MateriaUtils.Ecto.EctoUtil]],
+      preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
       description: "This library is a summary of the functions that are generally required for Web service development.",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -14,7 +16,7 @@ defmodule Servicex.Mixfile do
       package: [
         maintainers: ["tuchro yoshimura"],
         licenses: ["MIT"],
-        links: %{"BitBucket" => "https://bitbucket.org/karabinertech_bi/servicex/src/master/"}
+        links: %{"BitBucket" => "https://bitbucket.org/karabinertech_bi/materia/src/master/"}
       ],
       deps: deps()
     ]
@@ -27,13 +29,13 @@ defmodule Servicex.Mixfile do
     mod =
       case Mix.env() do
         # テストのみアプリケーションとして起動する
-        :test -> [mod: {Servicex.Test.Application, []}]
-      #  :dev -> [mod: {Servicex.Application, []}]
+        :test -> [mod: {Materia.Test.Application, []}]
+      #  :dev -> [mod: {Materia.Application, []}]
         _ -> []
       end
-     #[mod: {Servicex.Application, []}]
+     #[mod: {Materia.Application, []}]
     mod ++ [
-      #mod: {Servicex.Application, []},
+      #mod: {Materia.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -63,22 +65,23 @@ defmodule Servicex.Mixfile do
       {:guardian_db, git: "https://github.com/ueberauth/guardian_db"},
       {:guardian_backdoor, "~> 1.0.0", only: :test},
       {:poison, "~> 3.1"},
-      {:ex_doc, ">= 0.0.0", only: :dev},
       {:timex, "~> 3.3"},
       {:sendgrid, "~> 1.8"},
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:excoveralls, "~> 0.10", only: :test},
     ]
       _deps_list =
     if Mix.env() == :prod do
       IO.puts("prod!!")
       # 本番環境のみmasterから取得する
       deps_list ++ [
-        {:servicex_utils, git: "https://bitbucket.org/karabinertech_bi/servicex_utils.git"},
+        {:materia_utils, git: "https://bitbucket.org/karabinertech_bi/materia_utils.git"},
       ]
     else
       # それ以外はdevelopから取得する
       IO.puts("dev!!")
       deps_list ++ [
-        {:servicex_utils, git: "https://bitbucket.org/karabinertech_bi/servicex_utils.git", branch: "develop"},
+        {:materia_utils, git: "https://bitbucket.org/karabinertech_bi/materia_utils.git", branch: "develop", app: false},
       ]
     end
   end

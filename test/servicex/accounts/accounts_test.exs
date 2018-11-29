@@ -1,10 +1,11 @@
-defmodule Servicex.AccountsTest do
-  use Servicex.DataCase
+defmodule Materia.AccountsTest do
+  use Materia.DataCase
+  doctest Materia.Accounts
 
-  alias Servicex.Accounts
+  alias Materia.Accounts
 
   #describe "users" do
-  #  alias Servicex.Accounts.User
+  #  alias Materia.Accounts.User
 #
   #  @valid_attrs %{email: "some email", hashed_password: "some hashed_password", name: "some name", role: "some role"}
   #  @update_attrs %{email: "some updated email", hashed_password: "some updated hashed_password", name: "some updated name", role: "some updated role"}
@@ -70,7 +71,7 @@ defmodule Servicex.AccountsTest do
   #end
 #
   #describe "grants" do
-  #  alias Servicex.Accounts.Grant
+  #  alias Materia.Accounts.Grant
 #
   #  @valid_attrs %{request_path: "some request_path", role: "some role"}
   #  @update_attrs %{request_path: "some updated request_path", role: "some updated role"}
@@ -132,7 +133,7 @@ defmodule Servicex.AccountsTest do
   #end
 
   # describe "addresses" do
-  #   alias Servicex.Accounts.Address
+  #   alias Materia.Accounts.Address
 
   #   @valid_attrs %{address1: "some address1", address2: "some address2", latitud: "120.5", location: "some location", longitude: "120.5", zip_code: "some zip_code"}
   #   @update_attrs %{address1: "some updated address1", address2: "some updated address2", latitud: "456.7", location: "some updated location", longitude: "456.7", zip_code: "some updated zip_code"}

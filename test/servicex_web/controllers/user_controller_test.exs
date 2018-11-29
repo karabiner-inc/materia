@@ -1,8 +1,8 @@
-defmodule ServicexWeb.UserControllerTest do
-  use ServicexWeb.ConnCase
+defmodule MateriaWeb.UserControllerTest do
+  use MateriaWeb.ConnCase
 
-  alias Servicex.Accounts
-  alias Servicex.Accounts.User
+  alias Materia.Accounts
+  alias Materia.Accounts.User
 
   @create_attrs %{email: "some email", hashed_password: "some hashed_password", name: "some name", role: "some role"}
   @update_attrs %{email: "some updated email", hashed_password: "some updated hashed_password", name: "some updated name", role: "some updated role"}

@@ -1,5 +1,5 @@
-defmodule Mix.Tasks.Servicex.Gen.Migration do
-  @shortdoc "Generates Servicex's migration"
+defmodule Mix.Tasks.Materia.Gen.Migration do
+  @shortdoc "Generates Materia's migration"
 
   use Mix.Task
 
@@ -19,21 +19,21 @@ defmodule Mix.Tasks.Servicex.Gen.Migration do
 
   # create user migrations
   create_file(
-    Path.join([@migrations_file_path, "#{timestamp(1)}_servicex_craete_user.exs"]) |> Path.relative_to(Mix.Project.app_path),
+    Path.join([@migrations_file_path, "#{timestamp(1)}_materia_craete_user.exs"]) |> Path.relative_to(Mix.Project.app_path),
     user_template(assigns))
   # create grant migrations
   create_file(
-    Path.join([@migrations_file_path, "#{timestamp(2)}_servicex_craete_grant.exs"]) |> Path.relative_to(Mix.Project.app_path),
+    Path.join([@migrations_file_path, "#{timestamp(2)}_materia_craete_grant.exs"]) |> Path.relative_to(Mix.Project.app_path),
     grant_template(assigns))
 
   # create address migrations
   create_file(
-    Path.join([@migrations_file_path, "#{timestamp(3)}_servicex_craete_address.exs"]) |> Path.relative_to(Mix.Project.app_path),
+    Path.join([@migrations_file_path, "#{timestamp(3)}_materia_craete_address.exs"]) |> Path.relative_to(Mix.Project.app_path),
     address_template(assigns))
 
   # create template migrations
   create_file(
-    Path.join([@migrations_file_path, "#{timestamp(3)}_servicex_craete_template.exs"]) |> Path.relative_to(Mix.Project.app_path),
+    Path.join([@migrations_file_path, "#{timestamp(3)}_materia_craete_template.exs"]) |> Path.relative_to(Mix.Project.app_path),
     template_template(assigns))
 
   end
@@ -90,11 +90,11 @@ defmodule Mix.Tasks.Servicex.Gen.Migration do
   """)
 
   embed_template(:template, """
-  defmodule <%= @app_module %>.Repo.Migrations.CreateTemplates do
+  defmodule <%= @app_module %>.Repo.Migrations.CreateMailTemplates do
     use Ecto.Migration
 
     def change do
-      create table(:templates) do
+      create table(:mail_templates) do
         add :subject, :string
         add :body, :string, size: 10000
         add :status, :integer

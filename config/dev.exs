@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :servicex, ServicexWeb.Endpoint,
+config :materia, MateriaWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -30,13 +30,13 @@ config :servicex, ServicexWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :servicex, ServicexWeb.Endpoint,
+config :materia, MateriaWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{lib/servicex_web/views/.*(ex)$},
-      ~r{lib/servicex_web/templates/.*(eex)$}
+      ~r{lib/materia_web/views/.*(ex)$},
+      ~r{lib/materia_web/templates/.*(eex)$}
     ]
   ]
 
@@ -48,19 +48,19 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :servicex, Servicex.Test.Repo,
+config :materia, Materia.Test.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "servicex_dev",
+  database: "materia_dev",
   hostname: "localhost",
   pool_size: 10
 
-# Configure servicex repo
-config :servicex, :repo, Servicex.Test.Repo
+# Configure materia repo
+config :materia, :repo, Materia.Test.Repo
 
-# Configure servicex verify mail
-config :servicex, Servicex.Accounts,
+# Configure materia verify mail
+config :materia, Materia.Accounts,
   verify_url: "https://google.com",
   verify_mail_from_address: "tcr.yoshimura@karabiner.tech",
   verify_mail_subject: "【開発環境】ServiceX メールアドレス確認",
@@ -105,5 +105,5 @@ regstered_mail_template: "@user_name@ 様
  @support_url@
 "
 
-config :servicex, Servicex.MailClient,
+config :materia, Materia.MailClient,
   verify_mail_ses_region: "us-west-2"

@@ -1,3 +1,3 @@
-defmodule ServicexWeb.LayoutViewTest do
-  use ServicexWeb.ConnCase, async: true
+defmodule MateriaWeb.LayoutViewTest do
+  use MateriaWeb.ConnCase, async: true
 end
