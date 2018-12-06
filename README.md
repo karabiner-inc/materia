@@ -255,31 +255,34 @@ Responce
 
 #### Step1 modify mix.exs
 
+modify
 ```
 {:servicex, git: "https://bitbucket.org/karabinertech_bi/servicex.git"},
 ```
-modify to
+
+to
 ```
 {:materia, git: "https://bitbucket.org/karabinertech_bi/materia.git"},
 ```
 
 #### Step2 replace Code
+
+ code replace that
   
-  Servicex -> Materia
-  servicex -> materia
-  MateriaErrorError -> BusinessError
+  - Servicex -> Materia
+  - servicex -> materia
+  - MateriaErrorError -> BusinessError
 
 #### Step3 Timex setting update
-
 
 mix.exs application settings add ":tzdata"
 ```
 def application do
-    [
-      mod: {AppEx.Application, []},
-      extra_applications: [:logger, :runtime_tools, :httpoison, :tzdata]
-    ]
-  end
+  [
+    mod: {AppEx.Application, []},
+    extra_applications: [:logger, :runtime_tools, :httpoison, :tzdata]
+  ]
+end
 ```
 
 #### Step4 gen migrate
@@ -293,6 +296,7 @@ priv/repo/migrations/20181001042441_servicex_craete_grant.exs
 > ls -1d priv/repo/migrations/* | grep servicex
 ```
 
+update library and gen migration files 
 ```
 > mix deps.clean servicex materia servicex_utils materia_utils
 > mix deps.update materia materia_utils
