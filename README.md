@@ -258,7 +258,7 @@ Responce
 ```
 {:servicex, git: "https://bitbucket.org/karabinertech_bi/servicex.git"},
 ```
-
+modify to
 ```
 {:materia, git: "https://bitbucket.org/karabinertech_bi/materia.git"},
 ```
@@ -267,18 +267,76 @@ Responce
   
   Servicex -> Materia
   servicex -> materia
-  ServicexError -> BusinessError
+  MateriaErrorError -> BusinessError
 
-### Step3 gen migrate
+### Step3 Timex setting update
 
-mix deps.clean servicex materia servicex_utils materia_utils
-mix deps.update materia materia_utils
-mix deps.compile
-mix materia.gen.migrate
+
+mix.exs application settings add ":tzdata"
+```
+def application do
+    [
+      mod: {AppEx.Application, []},
+      extra_applications: [:logger, :runtime_tools, :httpoison, :tzdata]
+    ]
+  end
+```
+
+### Step4 gen migrate
+
+remove old migration files
+```
+> ls -1d priv/repo/migrations/* | grep servicex
+priv/repo/migrations/20181001042440_servicex_craete_user.exs
+priv/repo/migrations/20181001042441_servicex_craete_grant.exs
+> ls -1d priv/repo/migrations/* | grep servicex | xargs rm
+> ls -1d priv/repo/migrations/* | grep servicex
+```
+
+```
+> mix deps.clean servicex materia servicex_utils materia_utils
+> mix deps.update materia materia_utils
+> mix materia.gen.migration
+
+```
+
+If a foreign key construct to the servicex schema was defined,
+You need to change the name of Materia's migration file to be before the name of your migration file.
+
+```
+ls -1 priv/repo/migrations
+20181006090000_create_your_table
+20181206081940_materia_1_craete_users.exs
+20181206081941_materia_2_craete_organizations.exs
+20181206081942_materia_3_craete_address.exs
+20181206081943_materia_4_craete_grants.exs
+20181206081944_materia_5_craete_mail_templates.exs
+```
+
+rename files
+
+```
+ls -1 priv/repo/migrations
+20180106081940_materia_1_craete_users.exs
+20180106081941_materia_2_craete_organizations.exs
+20180106081942_materia_3_craete_address.exs
+20180106081943_materia_4_craete_grants.exs
+20180106081944_materia_5_craete_mail_templates.exs
+20181006090000_create_your_table
+```
+
+### Step5 ecto.reset
+
+ecto reset
+
+```
+> mix ecto.reset
+```
 
  
-### Over View  
-  move ServicexMatching.Accounts.User -> Materia.Accounts.User
+ ## Servicex -> Materia change Over View  
+
+  - move ServicexMatching.Accounts.User -> Materia.Accounts.User
   
   ```
   
@@ -297,23 +355,28 @@ mix materia.gen.migrate
   
   ```
 
-  Mix.Tasks.Materia.Gen.Migration 
+  - Mix.Tasks.Materia.Gen.Migration 
+
   Mix.Tasks.Guardian.Db.Gen.Migration.run([])を実行しないように修正
 
-  Servicex.Accounts.Address　-> Materia.Locations.Addressに変更
-  外部キーにorganization_idを追加し organization has_many address のassociationを追加
-  lock_versionと楽観排他ロジックを追加
-  これに伴い、my_addressAPIおよび関数を削除
+  - Servicex.Accounts.Address　-> Materia.Locations.Address
 
-　Materia.Authenticator.sign_in()
-　 ユーザーのステータスをチェックし1=activate以外の場合は認証エラーとするチェックを追加
+  add columns
 
-  Materia.Accounts.registration_user()
-  本登録完了後に自動的にsign_inを行い、tokenを返すように修正
+  ```
+  add organization_id and association "organization has_many address"
+  add lock_version and optimistic_lock function
+  
+  ```
 
-  Address create -> post "create-my-addres", AddressController, :create_my_address　に変更して通常の管理者用Createも追加
+ - Materia.Authenticator.sign_in()
+
+   add check logic.
+   if user.status != User.status.activate, return response as "invalid_token"
 
 
+ - AddressAPI add endpoint ad 'create-my-address' 
+   post "create-my-addres", AddressController, :create_my_address
 
 ## Learn more
 
