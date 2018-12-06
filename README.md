@@ -251,9 +251,9 @@ Responce
 ```
 
 
-## Combert from Srvicex
+## Comvert from Srvicex
 
-### Step1 modify mix.exs
+#### Step1 modify mix.exs
 
 ```
 {:servicex, git: "https://bitbucket.org/karabinertech_bi/servicex.git"},
@@ -269,7 +269,7 @@ modify to
   servicex -> materia
   MateriaErrorError -> BusinessError
 
-### Step3 Timex setting update
+#### Step3 Timex setting update
 
 
 mix.exs application settings add ":tzdata"
@@ -282,7 +282,7 @@ def application do
   end
 ```
 
-### Step4 gen migrate
+#### Step4 gen migrate
 
 remove old migration files
 ```
@@ -334,49 +334,46 @@ ecto reset
 ```
 
  
- ## Servicex -> Materia change Over View  
+## Servicex -> Materia change Over View  
+ 
+ - move ServicexMatching.Accounts.User -> Materia.Accounts.User
+ 
+ add clumns 
+ ``` 
+ field :back_ground_img_url, :string
+ field :icon_img_url, :string
+ field :one_line_message, :string
 
-  - move ServicexMatching.Accounts.User -> Materia.Accounts.User
-  
-  ```
-  
-  field :back_ground_img_url, :string
-  field :icon_img_url, :string
-  field :one_line_message, :string
-  
-  ```
+ ```
 
-  add colmuns Materia.Accounts.User
+- add columns Materia.Accounts.User
+ 
+ ```
+ field :descriptions, :string
+ filed :external_user_id, :string
+ field :phone_number, :string
+ ```
 
-  ```
-  
-  field :descriptions, :string
-  filed :external_user_id, :string
-  
-  ```
+ - Mix.Tasks.Materia.Gen.Migration 
 
-  - Mix.Tasks.Materia.Gen.Migration 
+  change do'nt execute Mix.Tasks.Guardian.Db.Gen.Migration.run([])
+ 
+ - Servicex.Accounts.Address　-> Materia.Locations.Address
 
-  Mix.Tasks.Guardian.Db.Gen.Migration.run([])を実行しないように修正
+ add columns
+ ```
+ add organization_id, :integer # and association "organization has_many address"
+ add lock_version, :integer # and optimistic_lock logic 
+ ```
 
-  - Servicex.Accounts.Address　-> Materia.Locations.Address
+- Materia.Authenticator.sign_in()
 
-  add columns
+  add check logic.
+  if user.status != User.status.activate, return response as "invalid_token"
 
-  ```
-  add organization_id and association "organization has_many address"
-  add lock_version and optimistic_lock function
-  
-  ```
+- AddressAPI add endpoint ad 'create-my-address'
 
- - Materia.Authenticator.sign_in()
-
-   add check logic.
-   if user.status != User.status.activate, return response as "invalid_token"
-
-
- - AddressAPI add endpoint ad 'create-my-address' 
-   post "create-my-addres", AddressController, :create_my_address
+  post "create-my-addres", AddressController, :create_my_address
 
 ## Learn more
 
