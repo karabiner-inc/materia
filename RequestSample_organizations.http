@@ -1,0 +1,113 @@
+############################################
+# APIリクエストサンプル集
+#
+############################################
+
+@url = http://localhost:4001
+#@url = https://
+
+### プロジェクトおよび初期アカウント作成
+POST {{url}}/api/create-organization-account HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_profile": {"name": "fugafuga太郎",
+    "email": "fugafuga@fugafuga.co.jp", 
+    "password": "password",
+    "role": "reqruter",
+    "user_type": 2,
+    "one_line_message": "fugafuga株式会社の採用担当です",
+    "back_ground_img_url": "http://fugafuga.co.jp/bg_img.jpeg",
+    "icon_img_url": "http://fugafuga.co.jp/icon_img.jpeg",
+    "location": "Fukuoka City",
+    "zip_code": "8150000",
+    "address1": "fugafuga address1",
+    "address2": "fugafuga address2"
+  },
+  "organization": {"name": "fugafuga株式会社",
+    "one_line_message": "私たちはhogehogeしている会社です。",
+    "hp_url": "https://fugafuga.co.jp",
+    "back_ground_img_url": "http://fugafuga.co.jp/bg_img.jpeg",
+    "profile_img_url": "http://fugafuga.co.jp/pf_img.jpeg"
+  }
+}
+
+###ログイン
+POST {{url}}/api/sign-in HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "fugafuga@fugafuga.co.jp", 
+  "password": "password"
+}
+
+### ユーザープロファイル詳細(当人のみ)
+@token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhcHBfZXgiLCJleHAiOjE1Mzk4NTAwNzUsImlhdCI6MTUzNzQzMDg3NSwiaXNzIjoiYXBwX2V4IiwianRpIjoiMDExODIxNDEtMWNmOC00OTQyLTkwMjQtZTA4YzEwMGVhZGI4IiwibmJmIjoxNTM3NDMwODc0LCJzdWIiOiIxIiwidHlwIjoiYWNjZXNzIn0.wH3Xf0aHRCPiYSm9Th9xG3VLmo5W_Pjd7VtcNa77Y4Gy6JTfgFo7mCsdaahUx8B8Qzh5yKe_JSBoyARxXbKsfQ
+
+### ユーザープロファイル詳細(当人のみ)
+GET {{url}}/api/show-me HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+### プロジェクト登録
+POST {{url}}/api/create-my-project HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "back_ground_img_url": "http://fugafuga.co.jp/bg_img.png",
+    "description": "Let's do fugafuga.",
+    "thumbnail_img_url": "http://fugafuga.co.jp/img.png",
+    "overview": "fugafugaするプロジェクトの第２期",
+    "title": "fugafugaプロジェクト2ndSeason",
+    "project_category": "some project category",
+    "project_start_date": "2018-09-01 09:00:00+09:00",
+    "project_end_date": "2018-12-23 23:59:59+09:00",
+    "work_start_date": "2018-09-05 09:00:00+09:00",
+    "work_end_date": "2018-12-01 09:00:00+09:00",
+    "pay": 999999999,
+    "work_style": "remote work",
+    "location": "Fukuoka City",
+    "project_tags" : ["Elixir", "Java"]
+}
+
+### 自組織のプロジェクト一覧照会
+POST {{url}}/api/my-projects HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "status_list": [1, 2, 8, 9]
+}
+
+### プロジェクト更新
+POST {{url}}/api/update-my-project HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "id": 1,
+    "back_ground_img_url": "http://hogehoge.co.jp/bg_img.png2",
+    "description": "Let's do hogehoge2.",
+    "thumbnail_img_url": "http://hogehoge.co.jp/img.png2",
+    "overview": "hogehogeするプロジェクト2",
+    "title": "hogehogeプロジェクト2",
+    "project_category": "some project category2",
+    "project_start_date": "2018-09-01 09:00:00+09:00",
+    "project_end_date": "2018-12-23 23:59:59+09:00",
+    "work_start_date": "2018-09-05 09:00:00+09:00",
+    "work_end_date": "2018-12-01 09:00:00+09:00",
+    "pay": 0,
+    "work_style": "remote work 2",
+    "location": "Fukuoka City 2",
+    "project_tags": ["Elixir", "Python"],
+    "status": 2,
+    "lock_version": 5
+}
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-defmodule Servicex.DataCase do
+defmodule Materia.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule Servicex.DataCase do
 
   using do
     quote do
-      alias Servicex.Repo
+      alias Materia.Test.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Servicex.DataCase
+      import Materia.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Servicex.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Materia.Test.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Servicex.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Materia.Test.Repo, {:shared, self()})
     end
 
     :ok

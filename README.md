@@ -1,4 +1,4 @@
-# Servicex
+# Materia
 
 To start your Phoenix server:
 
@@ -28,7 +28,7 @@ mix.exs
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:servicex, "~> 0.1.0"}, #<- add here
+      {:materia, "~> 0.1.0"}, #<- add here
     ]
   end
 ```
@@ -42,7 +42,7 @@ config/config.exs
 
 ```
 # Configures Guardian
-config :servicex, Servicex.Authenticator,
+config :materia, Materia.Authenticator,
   issuer: "your_app_name",  #<- mod your app name
   # Generate mix task 
   # > mix phx.gen.secret
@@ -59,8 +59,8 @@ config :guardian, Guardian.DB,
 config/dev.exs
 
 ```
-# Configure servicex repo
-config :servicex, :repo, YourApp.Repo  #<- add your app repo
+# Configure materia repo
+config :materia, :repo, YourApp.Repo  #<- add your app repo
 ```
 
 ```
@@ -77,7 +77,7 @@ config/config.exs
 
 ```
 # Configures Guardian
-config :servicex, Servicex.Authenticator,
+config :materia, Materia.Authenticator,
   issuer: "your_app_name",  
   # Generate mix task 
   # > mix phx.gen.secret
@@ -110,10 +110,10 @@ lib/your_app/application.ex
   end
 ```
 
-do generate migration file for servicex and migrate
+do generate migration file for materia and migrate
 
 ```
-> mix servicex.gen.migration
+> mix materia.gen.migration
 > mix ecto.create
 > mix ecto.migrate
 ```
@@ -124,25 +124,25 @@ lib/your_app_web/router.ex
 
 ```
   pipeline :guardian_auth do
-    plug Servicex.AuthenticatePipeline #<-- guardian jwt token authentication by user model.
+    plug Materia.AuthenticatePipeline #<-- guardian jwt token authentication by user model.
   end
   pipeline :grant_check do
-    plug Servicex.Plug.GrantChecker, repo: YourApp.Repo #<-- Grant check by user ,role and grant model.
+    plug Materia.Plug.GrantChecker, repo: YourApp.Repo #<-- Grant check by user ,role and grant model.
   end
 ```
 
-add servicex user and grant model path.
+add materia user and grant model path.
 
 lib/your_app_web/router.ex
 
 ```
-  scope "/your-path", ServicexWeb do
+  scope "/your-path", MateriaWeb do
     pipe_through [ :api]
 
     post "sign-in", AuthenticatorController, :sign_in
   end
 
-  scope "/your-path", ServicexWeb do
+  scope "/your-path", MateriaWeb do
     pipe_through [ :api, :guardian_auth]
 
     get "/show-me", UserController, :show_me
@@ -152,7 +152,7 @@ lib/your_app_web/router.ex
     get "/my-addresses", AddressController, :my_addresses
   end
 
-  scope "/your-path", ServicexWeb do
+  scope "/your-path", MateriaWeb do
     pipe_through [ :api, :guardian_auth, :grant_check]
 
     resources "/users", UserController, except: [:edit, :new]
@@ -172,9 +172,9 @@ config :sendgrid, api_key: System.get_env("SENDGRID_API_KEY")
 ## Usage
 
 regiter grant record.
-servicex grant is white list about user role and request mothod.
+materia grant is white list about user role and request mothod.
 
-Servicex.Plug.GrantChecker provide simple role check function.
+Materia.Plug.GrantChecker provide simple role check function.
 
 for example
 user hogehoge is administrator.
@@ -183,7 +183,7 @@ user fugafuga is ordialy operator.
 priv/repo/seed.exs
 
 ```
-alias Servicex.Accounts
+alias Materia.Accounts
 
 Accounts.create_user(%{ name: "hogehoge", email: "hogehoge@example.com", password: "hogehoge", role: "admin"})
 Accounts.create_user(%{ name: "fugafuga", email: "fugafuga@example.com", password: "fugafuga", role: "operator"})
@@ -191,8 +191,8 @@ Accounts.create_grant(%{ role: "anybody", method: "ANY", request_path: "/your-pa
 Accounts.create_grant(%{ role: "admin", method: "GET", request_path: "/your-path/grants" })
 ```
 
-※ grant.role "anybody" is a special reserved keyword by Servicex and its means all roles.
-※ grant.method "ANY" is a special reserved keyword by Servicex and its means all request methods.
+※ grant.role "anybody" is a special reserved keyword by Materia and its means all roles.
+※ grant.method "ANY" is a special reserved keyword by Materia and its means all request methods.
 
 ```
 > mix run priv/repo/seeds.exs
@@ -226,7 +226,7 @@ Response
 
 ```
 {
-  "token": "your_jwd_token",
+  "access_token": "your_jwd_token",
   "id": 1
 }
 ```
@@ -249,6 +249,55 @@ Responce
   "email": "hogehoge@example.com"
 }
 ```
+
+
+## Combert from Srvicex
+
+#### Step1 replace Code
+  
+
+  
+  Servicex -> Materia
+  servicex -> materia
+  ServicexError -> BusinessError
+
+ 
+  move ServicexMatching.Accounts.User -> Materia.Accounts.User
+  
+  ```
+  
+  field :back_ground_img_url, :string
+  field :icon_img_url, :string
+  field :one_line_message, :string
+  
+  ```
+
+  add colmuns Materia.Accounts.User
+
+  ```
+  
+  field :descriptions, :string
+  filed :external_user_id, :string
+  
+  ```
+
+  Mix.Tasks.Materia.Gen.Migration 
+  Mix.Tasks.Guardian.Db.Gen.Migration.run([])を実行しないように修正
+
+  Servicex.Accounts.Address　-> Materia.Locations.Addressに変更
+  外部キーにorganization_idを追加し organization has_many address のassociationを追加
+  lock_versionと楽観排他ロジックを追加
+  これに伴い、my_addressAPIおよび関数を削除
+
+　Materia.Authenticator.sign_in()
+　 ユーザーのステータスをチェックし1=activate以外の場合は認証エラーとするチェックを追加
+
+  Materia.Accounts.registration_user()
+  本登録完了後に自動的にsign_inを行い、tokenを返すように修正
+
+  Address create -> post "create-my-addres", AddressController, :create_my_address　に変更して通常の管理者用Createも追加
+
+
 
 ## Learn more
 

@@ -1,4 +1,4 @@
-defmodule ServicexWeb.ChannelCase do
+defmodule MateriaWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule ServicexWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint ServicexWeb.Endpoint
+      @endpoint MateriaWeb.Test.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Servicex.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Materia.Test.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Servicex.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Materia.Test.Repo, {:shared, self()})
     end
     :ok
   end

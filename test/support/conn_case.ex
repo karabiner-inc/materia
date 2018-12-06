@@ -1,4 +1,4 @@
-defmodule ServicexWeb.ConnCase do
+defmodule MateriaWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,18 +19,18 @@ defmodule ServicexWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import ServicexWeb.Router.Helpers
+      import MateriaWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint ServicexWeb.Endpoint
+      @endpoint MateriaWeb.Test.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Servicex.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Materia.Test.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Servicex.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Materia.Test.Repo, {:shared, self()})
     end
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
