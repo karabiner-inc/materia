@@ -343,7 +343,6 @@ ecto reset
  #### move ServicexMatching.Accounts.User -> Materia.Accounts.User
  
  add clumns
-
  ```
  field :back_ground_img_url, :string
  field :icon_img_url, :string
@@ -353,7 +352,6 @@ ecto reset
 ####  Materia.Accounts.User
  
  add columns
-
  ```
  field :descriptions, :string
  filed :external_user_id, :string
@@ -367,7 +365,6 @@ ecto reset
 #### Servicex.Accounts.Address　-> Materia.Locations.Address
 
  add columns
- 
  ```
  add organization_id, :integer # and association "organization has_many address"
  add lock_version, :integer # and optimistic_lock logic 
@@ -378,7 +375,7 @@ ecto reset
   add check logic.
   if user.status != User.status.activate, return response as "invalid_token"
 
-#### AddressAPI add endpoint ad 'create-my-address'
+#### AddressAPI added endpoint 'create-my-address'
 
   post "create-my-addres", AddressController, :create_my_address
 
