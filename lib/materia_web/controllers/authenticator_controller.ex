@@ -86,8 +86,8 @@ defmodule MateriaWeb.AuthenticatorController do
     send_resp(conn, 200, "{\"message\":\"authenticated\"}")
   end
 
-  def is_varid_tmp_user(conn, _params) do
-    Logger.debug("--- MateriaWeb.AuthenticateController is_varid_user_registration_token-----------------")
+  def is_varid_token(conn, _params) do
+    Logger.debug("--- MateriaWeb.AuthenticateController is_varid_token-----------------")
     send_resp(conn, 200, "{\"message\":\"authenticated\"}")
   end
 

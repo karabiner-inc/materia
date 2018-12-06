@@ -14,7 +14,7 @@ defmodule Materia.Test.Application do
       supervisor(MateriaWeb.Test.Endpoint, []),
       # Start your own worker by calling: Materia.Worker.start_link(arg1, arg2, arg3)
       # worker(Materia.Worker, [arg1, arg2, arg3]),
-      worker(Guardian.DB.Token.SweeperServer, [])
+      # worker(Guardian.DB.Token.SweeperServer, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -26,7 +26,7 @@ defmodule Materia.Test.Application do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    MateriaWeb.Endpoint.config_change(changed, removed)
+    MateriaWeb.Test.Endpoint.config_change(changed, removed)
     :ok
   end
 end

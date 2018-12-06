@@ -20,8 +20,9 @@ defmodule MateriaWeb.FallbackController do
   end
 
   def call(conn, %BusinessError{} = error) do
+    IO.inspect(error)
     conn
-    |> put_status(:internal_server_error)
+    |> put_status(:bad_request)
     |> MateriaWeb.ErrorView.render_error(error)
   end
 

@@ -11,14 +11,14 @@ POST {{url}}/api/tmp-registration HTTP/1.1
 Content-Type: application/json
 
  {
-    "email": "wataridori-hp@q.vodafone.ne.jp", 
+    "email": "tcr.yoshimura@karabiner.tech", 
     "role": "serviceuser"
   }
 
 ###仮トークン認証
-@tmp_token = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJTZXJ2aWNleCIsImVtYWlsIjoidGNyLnlvc2hpbXVyYUBrYXJhYmluZXIudGVjaCIsImV4cCI6MTU0MDg5NzMwNCwiaWF0IjoxNTQwODk1MjA0LCJpc3MiOiJTZXJ2aWNleCIsImp0aSI6IjY1ZDU3NjJiLWFhMTUtNDcwOS05NmE5LTM4ZjBmMGU4YTA5MiIsIm5iZiI6MTU0MDg5NTIwMywic3ViIjoiMyIsInR5cCI6InVzZXJfcmVnaXN0cmF0aW9uIn0.GBUsOZumR_9d7rWoin_vaP_YObMokvVis3A7YvEYHLkNf5JefSwHwi_7EaRM-ffWPftSb2xaTVue4KziKt5_4w
+@tmp_token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNYXRlcmlhIiwiZW1haWwiOiJ0Y3IueW9zaGltdXJhQGthcmFiaW5lci50ZWNoIiwiZXhwIjoxNTQzOTc1OTM1LCJpYXQiOjE1NDM5NzM4MzUsImlzcyI6Ik1hdGVyaWEiLCJqdGkiOiJjZDcyMDczMi01MmM0LTQyZGEtODYzNC01ODEyMGZjMzc4NDMiLCJuYmYiOjE1NDM5NzM4MzQsInN1YiI6IjMiLCJ0eXAiOiJ1c2VyX3JlZ2lzdHJhdGlvbiJ9.oktmhWQAp9dS9hZlzB0ZXdeG34trEbT3xXfiZf_yBZg
 
-GET {{url}}/api/tmp-varidation HTTP/1.1
+GET {{url}}/api/varidation-tmp-user HTTP/1.1
 Content-Type: application/json
 Authorization: {{tmp_token}}
 
@@ -32,8 +32,42 @@ Authorization: {{tmp_token}}
     "password": "password"
   }
 
+###本登録&サインイン
+POST {{url}}/api/user-registration-and-sign-in HTTP/1.1
+Content-Type: application/json
+Authorization: {{tmp_token}}
 
-### ユーザー登録
+ {
+    "name": "つちろー", 
+    "password": "password"
+  }
+
+###パスワード再登録申請
+POST {{url}}/api/request-password-reset HTTP/1.1
+Content-Type: application/json
+Authorization: {{tmp_token}}
+
+ {
+    "email": "tcr.yoshimura@karabiner.tech"
+  }
+
+### PWリセットトークン認証
+@pw_reset_token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNYXRlcmlhIiwiZW1haWwiOiJ0Y3IueW9zaGltdXJhQGthcmFiaW5lci50ZWNoIiwiZXhwIjoxNTQzOTc1OTkyLCJpYXQiOjE1NDM5NzM4OTIsImlzcyI6Ik1hdGVyaWEiLCJqdGkiOiIxZGM3MjQwNi1iZjM0LTRhYjItYTA2NC1hZTFmMjdjYmI1YWMiLCJuYmYiOjE1NDM5NzM4OTEsInN1YiI6IjMiLCJ0eXAiOiJwYXNzd29yZF9yZXNldCJ9.fER3oonKbywoW8NcelqNnpZs8yain7LFcjdqK1jQi7M
+
+GET {{url}}/api/varidation-pw-reset HTTP/1.1
+Content-Type: application/json
+Authorization: {{pw_reset_token}}
+
+###パスワード再登録
+POST {{url}}/api/reset-my-password HTTP/1.1
+Content-Type: application/json
+Authorization: {{pw_reset_token}}
+
+ {
+    "password": "password2"
+  }
+
+### ユーザー登録(認証無し管理者向け登録機能)
 POST {{url}}/api/ops/users HTTP/1.1
 Content-Type: application/json
 
@@ -42,17 +76,6 @@ Content-Type: application/json
     "email": "admin@example.com", 
     "password": "password",
     "role": "admin"
-  }
-
-### メール認証
-
-POST {{url}}/api/verify_user HTTP/1.1
-Content-Type: application/json
-
- {
-    "verify_key": "hogehoge",
-    "email": "admin@example.com", 
-    "password": "password"
   }
 
 ###ログイン

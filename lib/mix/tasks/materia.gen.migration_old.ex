@@ -1,5 +1,5 @@
-defmodule Mix.Tasks.Materia.Gen.Migration do
-  @shortdoc "Generates Materia's migration"
+defmodule Mix.Tasks.Materia.Gen.MigrationOld do
+  @shortdoc "Generates Materia's migration old"
 
   use Mix.Task
 
@@ -11,30 +11,33 @@ defmodule Mix.Tasks.Materia.Gen.Migration do
   @doc false
   def run(args) do
 
-
-    Mix.Tasks.Guardian.Db.Gen.Migration.run([])
-
     app_module = Mix.Project.config[:app] |> Atom.to_string() |> Macro.camelize()
     assigns = [app_module: app_module]
 
   # create user migrations
   create_file(
-    Path.join([@migrations_file_path, "#{timestamp(1)}_materia_craete_user.exs"]) |> Path.relative_to(Mix.Project.app_path),
-    user_template(assigns))
+    Path.join([@migrations_file_path, "#{timestamp(1)}_materia_craete_users.exs"]) |> Path.relative_to(Mix.Project.app_path),
+    users_template(assigns))
+  # create organizaion migrations
+  {:ok, organizations_file} = File.read("lib/mix/templates/craete_organizations.exs")
+  create_file(
+    Path.join([@migrations_file_path, "#{timestamp(3)}_materia_craete_organizations.exs"]) |> Path.relative_to(Mix.Project.app_path),
+    organizations_file)
   # create grant migrations
   create_file(
-    Path.join([@migrations_file_path, "#{timestamp(2)}_materia_craete_grant.exs"]) |> Path.relative_to(Mix.Project.app_path),
-    grant_template(assigns))
+    Path.join([@migrations_file_path, "#{timestamp(2)}_materia_craete_grants.exs"]) |> Path.relative_to(Mix.Project.app_path),
+    grants_template(assigns))
 
   # create address migrations
   create_file(
     Path.join([@migrations_file_path, "#{timestamp(3)}_materia_craete_address.exs"]) |> Path.relative_to(Mix.Project.app_path),
     address_template(assigns))
 
-  # create template migrations
+  # create mail_template migrations
   create_file(
-    Path.join([@migrations_file_path, "#{timestamp(3)}_materia_craete_template.exs"]) |> Path.relative_to(Mix.Project.app_path),
-    template_template(assigns))
+    Path.join([@migrations_file_path, "#{timestamp(3)}_materia_craete_mail_templates.exs"]) |> Path.relative_to(Mix.Project.app_path),
+    mail_templates_template(assigns))
+
 
   end
 
@@ -48,7 +51,7 @@ defmodule Mix.Tasks.Materia.Gen.Migration do
   defp pad(i,j), do: to_string(i + j)
 
   # template
-  embed_template(:user, """
+  embed_template(:users, """
   defmodule <%= @app_module %>.Repo.Migrations.CreateUsers do
     use Ecto.Migration
 
@@ -59,6 +62,11 @@ defmodule Mix.Tasks.Materia.Gen.Migration do
         add :hashed_password, :string
         add :role, :string
         add :status, :integer
+        add :back_ground_img_url, :string
+        add :external_user_id, :string
+        add :icon_img_url, :string
+        add :one_line_message, :string
+        add :descriptions, :string, size: 10000
         add :lock_version, :bigint
 
         timestamps()
@@ -71,7 +79,7 @@ defmodule Mix.Tasks.Materia.Gen.Migration do
   end
   """)
 
-  embed_template(:grant, """
+  embed_template(:grants, """
   defmodule <%= @app_module %>.Repo.Migrations.CreateGrants do
     use Ecto.Migration
 
@@ -89,7 +97,7 @@ defmodule Mix.Tasks.Materia.Gen.Migration do
   end
   """)
 
-  embed_template(:template, """
+  embed_template(:mail_templates, """
   defmodule <%= @app_module %>.Repo.Migrations.CreateMailTemplates do
     use Ecto.Migration
 
@@ -129,5 +137,7 @@ defmodule Mix.Tasks.Materia.Gen.Migration do
 
   end
   """)
+
+  #embed_template(:organizations, organizations_file)
 
 end

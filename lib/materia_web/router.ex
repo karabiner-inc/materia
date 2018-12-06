@@ -21,6 +21,10 @@ defmodule MateriaWeb.Router do
     plug Materia.UserRegistrationAuthPipeline
   end
 
+  pipeline :pw_reset_auth do
+    plug Materia.PasswordResetAuthPipeline
+  end
+
   pipeline :grant_check do
     repo = Application.get_env(:materia, :repo)
     plug Materia.Plug.GrantChecker, repo: repo
@@ -32,14 +36,24 @@ defmodule MateriaWeb.Router do
     post "sign-in", AuthenticatorController, :sign_in
     post "refresh", AuthenticatorController, :refresh
     post "tmp-registration", UserController, :registration_tmp_user
+    post "request-password-reset", UserController, :request_password_reset
 
   end
 
   scope "/api", MateriaWeb do
     pipe_through [ :api, :tmp_user_auth]
 
-    get "tmp-varidation", AuthenticatorController, :is_varid_tmp_user
+    get "varidation-tmp-user", AuthenticatorController, :is_varid_token
     post "user-registration", UserController, :registration_user
+    post "user-registration-and-sign-in", UserController, :registration_user_and_sign_in
+
+  end
+
+  scope "/api", MateriaWeb do
+    pipe_through [ :api, :pw_reset_auth]
+
+    get "varidation-pw-reset", AuthenticatorController, :is_varid_token
+    post "reset-my-password", UserController, :reset_my_password
 
   end
 
@@ -51,17 +65,19 @@ defmodule MateriaWeb.Router do
     post "sign-out", AuthenticatorController, :sign_out
     get "auth-check", AuthenticatorController, :is_authenticated
     post "search-users", UserController, :list_users_by_params
-    resources "/addresses", AddressController, except: [:index, :new, :edit]
-    get "/my-addresses", AddressController, :my_addresses
+    resources "/addresses", AddressController, except: [:new, :edit]
+    post "create-my-addres", AddressController, :create_my_address
 
   end
 
   scope "/api/ops", MateriaWeb do
     pipe_through [ :api, :guardian_auth, :grant_check]
 
-    resources "/users", UserController, except: [:edit, :new]
     resources "/grants", GrantController, except: [:new, :edit]
-    resources "/mail_templates", MailTemplateController, except: [:new, :edit]
+    resources "/mail-templates", MailTemplateController, except: [:new, :edit]
+
+    resources "/users", UserController, except: [:edit, :new]
+    resources "/organizations", OrganizationController, except: [:new, :edit]
 
   end
 

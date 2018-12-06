@@ -16,7 +16,7 @@ defmodule MateriaWeb.GrantControllerTest do
 
   defp log_in(_) do
     token_conn = post conn, authenticator_path(conn, :sign_in), @admin_user_attrs
-      %{"token" => token } = json_response(token_conn, 201)
+      %{"access_token" => token } = json_response(token_conn, 201)
     {:ok, token: token}
   end
 
@@ -26,12 +26,12 @@ defmodule MateriaWeb.GrantControllerTest do
     test "create grant", %{conn: conn, token: token} do
       conn = put_req_header(conn, "authorization", "Bearer " <> token)
       create_conn = post conn, grant_path(conn, :create), @create_attrs
-      assert json_response(create_conn, 201) == %{"id" => 4, "role" => "some role", "method" => "ANY", "request_path" => "some request_path"}
+      assert json_response(create_conn, 201) |> Map.delete("id") == %{"role" => "some role", "method" => "ANY", "request_path" => "some request_path"}
     end
     test "update grant", %{conn: conn, token: token} do
       conn = put_req_header(conn, "authorization", "Bearer " <> token)
       update_conn = put conn, grant_path(conn, :update, 3), @update_attrs
-      assert json_response(update_conn, 200) == %{"id" => 3, "role" => "some updated role", "method" => "GET", "request_path" => "some updated request_path"}
+      assert json_response(update_conn, 200) |> Map.delete("id") == %{"role" => "some updated role", "method" => "GET", "request_path" => "some updated request_path"}
     end
 
     test "delete grant", %{conn: conn, token: token} do
@@ -39,7 +39,7 @@ defmodule MateriaWeb.GrantControllerTest do
       delete_conn = delete conn, grant_path(conn, :delete, 3)
       assert response(delete_conn, 204) == ""
     end
-    # IO.inspect(response(unauth_conn, 401))
+
   end
 
 end

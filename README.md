@@ -226,7 +226,7 @@ Response
 
 ```
 {
-  "token": "your_jwd_token",
+  "access_token": "your_jwd_token",
   "id": 1
 }
 ```
@@ -255,10 +255,47 @@ Responce
 
 #### Step1 replace Code
   
-  
+
   
   Servicex -> Materia
   servicex -> materia
+  ServicexError -> BusinessError
+
+ 
+  move ServicexMatching.Accounts.User -> Materia.Accounts.User
+  
+  ```
+  
+  field :back_ground_img_url, :string
+  field :icon_img_url, :string
+  field :one_line_message, :string
+  
+  ```
+
+  add colmuns Materia.Accounts.User
+
+  ```
+  
+  field :descriptions, :string
+  filed :external_user_id, :string
+  
+  ```
+
+  Mix.Tasks.Materia.Gen.Migration 
+  Mix.Tasks.Guardian.Db.Gen.Migration.run([])を実行しないように修正
+
+  Servicex.Accounts.Address　-> Materia.Locations.Addressに変更
+  外部キーにorganization_idを追加し organization has_many address のassociationを追加
+  lock_versionと楽観排他ロジックを追加
+  これに伴い、my_addressAPIおよび関数を削除
+
+　Materia.Authenticator.sign_in()
+　 ユーザーのステータスをチェックし1=activate以外の場合は認証エラーとするチェックを追加
+
+  Materia.Accounts.registration_user()
+  本登録完了後に自動的にsign_inを行い、tokenを返すように修正
+
+  Address create -> post "create-my-addres", AddressController, :create_my_address　に変更して通常の管理者用Createも追加
 
 
 

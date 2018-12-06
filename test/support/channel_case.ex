@@ -21,7 +21,7 @@ defmodule MateriaWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint MateriaWeb.Endpoint
+      @endpoint MateriaWeb.Test.Endpoint
     end
   end
 

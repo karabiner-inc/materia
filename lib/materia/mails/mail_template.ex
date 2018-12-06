@@ -8,6 +8,7 @@ defmodule Materia.Mails.MailTemplate do
     field :lock_version, :integer, default: 1
     field :status, :integer, default: 1
     field :subject, :string
+    field :mail_template_type, :string
 
     timestamps()
   end
@@ -15,14 +16,14 @@ defmodule Materia.Mails.MailTemplate do
   @doc false
   def changeset_create(mail_template, attrs) do
     mail_template
-    |> cast(attrs, [:subject, :body, :status, :lock_version])
-    |> validate_required([:subject, :body])
+    |> cast(attrs, [:mail_template_type, :subject, :body, :status, :lock_version])
+    |> validate_required([:mail_template_type, :subject, :body])
   end
 
   @doc false
   def changeset_update(mail_template, attrs) do
     mail_template
-    |> cast(attrs, [:subject, :body, :status, :lock_version])
+    |> cast(attrs, [:mail_template_type, :subject, :body, :status, :lock_version])
     |> validate_required([:lock_version])
     |> optimistic_lock(:lock_version)
   end

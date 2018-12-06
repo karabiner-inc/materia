@@ -1,10 +1,13 @@
-defmodule Materia.MailClient do
+defmodule Materia.Mails.MailClientAwsSes do
 
   require Logger
 
-  def send_mail(from, to, subject, body_text) do
+  @behaviour Materia.Mails.MailClient
 
-    config = Application.get_env(:materia, Materia.MailClient)
+  @spec send_mail(String.t, String.t, String.t, String.t, String.t) :: :ok | {:error, String.t} | {:error, list(String.t)}
+  def send_mail(from, to, subject, body_text, from_name \\ nil) do
+
+    config = Application.get_env(:materia, Materia.Mails.MailClient)
     region = config[:mail_ses_region]
     if region == nil do
       raise BusinessError, message: "config :materia, Materia.MailClient, mail_ses_region not found."

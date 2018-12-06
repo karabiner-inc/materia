@@ -22,7 +22,7 @@ defmodule MateriaWeb.ConnCase do
       import MateriaWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint MateriaWeb.Endpoint
+      @endpoint MateriaWeb.Test.Endpoint
     end
   end
 

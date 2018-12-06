@@ -23,7 +23,7 @@ defmodule MateriaWeb.ErrorView do
     message = error.message
     |> gettext_message()
     |> encode_message()
-    Plug.Conn.send_resp(conn, 500, message)
+    Plug.Conn.send_resp(conn, :bad_request, message)
   end
 
   def render_error(conn, %StaleEntryError{} = error) do
@@ -41,7 +41,7 @@ defmodule MateriaWeb.ErrorView do
     message = "Internal Server Error"
     |> gettext_message()
     |> encode_message()
-    Plug.Conn.send_resp(conn, 500, message)
+    Plug.Conn.send_resp(conn, :internal_server_error, message)
   end
 
   def gettext_message(message) when is_binary(message) do
