@@ -336,29 +336,29 @@ ecto reset
  
 ## Servicex -> Materia change Over View  
  
- - move ServicexMatching.Accounts.User -> Materia.Accounts.User
+ #### move ServicexMatching.Accounts.User -> Materia.Accounts.User
  
  add clumns 
- ``` 
+ ```
  field :back_ground_img_url, :string
  field :icon_img_url, :string
  field :one_line_message, :string
-
  ```
 
-- add columns Materia.Accounts.User
+####  Materia.Accounts.User
  
+ add columns
  ```
  field :descriptions, :string
  filed :external_user_id, :string
  field :phone_number, :string
  ```
 
- - Mix.Tasks.Materia.Gen.Migration 
+#### Mix.Tasks.Materia.Gen.Migration 
 
   change do'nt execute Mix.Tasks.Guardian.Db.Gen.Migration.run([])
  
- - Servicex.Accounts.Address　-> Materia.Locations.Address
+#### Servicex.Accounts.Address　-> Materia.Locations.Address
 
  add columns
  ```
@@ -366,12 +366,12 @@ ecto reset
  add lock_version, :integer # and optimistic_lock logic 
  ```
 
-- Materia.Authenticator.sign_in()
+#### Materia.Authenticator.sign_in()
 
   add check logic.
   if user.status != User.status.activate, return response as "invalid_token"
 
-- AddressAPI add endpoint ad 'create-my-address'
+#### AddressAPI add endpoint ad 'create-my-address'
 
   post "create-my-addres", AddressController, :create_my_address
 
