@@ -253,15 +253,31 @@ Responce
 
 ## Combert from Srvicex
 
-#### Step1 replace Code
-  
+### Step1 modify mix.exs
 
+```
+{:servicex, git: "https://bitbucket.org/karabinertech_bi/servicex.git"},
+```
+
+```
+{:materia, git: "https://bitbucket.org/karabinertech_bi/materia.git"},
+```
+
+#### Step2 replace Code
   
   Servicex -> Materia
   servicex -> materia
   ServicexError -> BusinessError
 
+### Step3 gen migrate
+
+mix deps.clean servicex materia servicex_utils materia_utils
+mix deps.update materia materia_utils
+mix deps.compile
+mix materia.gen.migrate
+
  
+### Over View  
   move ServicexMatching.Accounts.User -> Materia.Accounts.User
   
   ```
