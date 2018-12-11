@@ -135,9 +135,9 @@ defmodule Materia.AccountsTest do
   # describe "addresses" do
   #   alias Materia.Accounts.Address
 
-  #   @valid_attrs %{address1: "some address1", address2: "some address2", latitud: "120.5", location: "some location", longitude: "120.5", zip_code: "some zip_code"}
-  #   @update_attrs %{address1: "some updated address1", address2: "some updated address2", latitud: "456.7", location: "some updated location", longitude: "456.7", zip_code: "some updated zip_code"}
-  #   @invalid_attrs %{address1: nil, address2: nil, latitud: nil, location: nil, longitude: nil, zip_code: nil}
+  #   @valid_attrs %{address1: "some address1", address2: "some address2", latitude: "120.5", location: "some location", longitude: "120.5", zip_code: "some zip_code"}
+  #   @update_attrs %{address1: "some updated address1", address2: "some updated address2", latitude: "456.7", location: "some updated location", longitude: "456.7", zip_code: "some updated zip_code"}
+  #   @invalid_attrs %{address1: nil, address2: nil, latitude: nil, location: nil, longitude: nil, zip_code: nil}
 
   #   def address_fixture(attrs \\ %{}) do
   #     {:ok, address} =
@@ -162,7 +162,7 @@ defmodule Materia.AccountsTest do
   #     assert {:ok, %Address{} = address} = Accounts.create_address(@valid_attrs)
   #     assert address.address1 == "some address1"
   #     assert address.address2 == "some address2"
-  #     assert address.latitud == Decimal.new("120.5")
+  #     assert address.latitude == Decimal.new("120.5")
   #     assert address.location == "some location"
   #     assert address.longitude == Decimal.new("120.5")
   #     assert address.zip_code == "some zip_code"
@@ -178,7 +178,7 @@ defmodule Materia.AccountsTest do
   #     assert %Address{} = address
   #     assert address.address1 == "some updated address1"
   #     assert address.address2 == "some updated address2"
-  #     assert address.latitud == Decimal.new("456.7")
+  #     assert address.latitude == Decimal.new("456.7")
   #     assert address.location == "some updated location"
   #     assert address.longitude == Decimal.new("456.7")
   #     assert address.zip_code == "some updated zip_code"

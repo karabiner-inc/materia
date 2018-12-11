@@ -18,7 +18,7 @@ defmodule MateriaWeb.AddressView do
       zip_code: address.zip_code,
       address1: address.address1,
       address2: address.address2,
-      latitud: address.latitud,
+      latitude: address.latitude,
       longitude: address.longitude,
       subject: address.subject,
       lock_version: address.lock_version,
