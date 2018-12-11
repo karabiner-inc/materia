@@ -15,7 +15,7 @@ defmodule MateriaWeb.AddressControllerTest do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
-  # :location, :zip_code, :address1, :address2, :latitud, :longitude, :user_id, :organization_id, :subject, :lock_version]
+  # :location, :zip_code, :address1, :address2, :latitude, :longitude, :user_id, :organization_id, :subject, :lock_version]
 
   describe "Address REST API" do
     test "CRUD test", %{conn: conn} do
@@ -36,7 +36,7 @@ defmodule MateriaWeb.AddressControllerTest do
           "zip_code" => "some zip_code",
           "address1" => "some address1",
           "address2" => "some address2",
-          "latitud" => 0.1,
+          "latitude" => 0.1,
           "user_id" => 1,
           "organization_id" => 1,
           "subject" => "some subject",
@@ -56,7 +56,7 @@ defmodule MateriaWeb.AddressControllerTest do
           "zip_code" => "updated zip_code",
           "address1" => "updated address1",
           "address2" => "updated address2",
-          "latitud" => 0.2,
+          "latitude" => 0.2,
           "user_id" => 2,
           "organization_id" => 1,
           "subject" => "updated subject",
@@ -101,7 +101,7 @@ defmodule MateriaWeb.AddressControllerTest do
           "zip_code" => "some zip_code",
           "address1" => "some address1",
           "address2" => "some address2",
-          "latitud" => 0.1,
+          "latitude" => 0.1,
           "user_id" => 999999,
           "subject" => "some subject",
         })

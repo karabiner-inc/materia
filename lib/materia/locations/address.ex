@@ -6,7 +6,7 @@ defmodule Materia.Locations.Address do
   schema "addresses" do
     field :address1, :string
     field :address2, :string
-    field :latitud, :decimal
+    field :latitude, :decimal
     field :location, :string
     field :longitude, :decimal
     field :zip_code, :string
@@ -21,13 +21,13 @@ defmodule Materia.Locations.Address do
   @doc false
   def create_changeset(address, attrs) do
     address
-    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitud, :longitude, :user_id, :organization_id, :subject, :lock_version])
+    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitude, :longitude, :user_id, :organization_id, :subject, :lock_version])
     |> validate_required([:subject])
   end
 
   def update_changeset(address, attrs) do
     address
-    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitud, :longitude, :user_id, :organization_id, :subject, :lock_version])
+    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitude, :longitude, :user_id, :organization_id, :subject, :lock_version])
     |> validate_required([:lock_version])
     |> optimistic_lock(:lock_version)
   end

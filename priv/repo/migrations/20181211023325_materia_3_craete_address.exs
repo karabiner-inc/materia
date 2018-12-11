@@ -7,7 +7,7 @@ defmodule Materia.Repo.Migrations.CreateAddresses do
       add :zip_code, :string
       add :address1, :string
       add :address2, :string
-      add :latitud, :decimal
+      add :latitude, :decimal
       add :longitude, :decimal
       add :subject, :string
       add :lock_version, :bigint
