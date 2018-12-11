@@ -251,53 +251,133 @@ Responce
 ```
 
 
-## Combert from Srvicex
+## Comvert from Srvicex
 
-#### Step1 replace Code
-  
+#### Step1 modify mix.exs
 
+modify
+```
+{:servicex, git: "https://bitbucket.org/karabinertech_bi/servicex.git"},
+```
+
+to
+```
+{:materia, git: "https://bitbucket.org/karabinertech_bi/materia.git"},
+```
+
+#### Step2 replace Code
+
+ code replace that
   
-  Servicex -> Materia
-  servicex -> materia
-  ServicexError -> BusinessError
+  - Servicex -> Materia
+  - servicex -> materia
+  - MateriaErrorError -> BusinessError
+
+#### Step3 Timex setting update
+
+mix.exs application settings add ":tzdata"
+```
+def application do
+  [
+    mod: {AppEx.Application, []},
+    extra_applications: [:logger, :runtime_tools, :httpoison, :tzdata]
+  ]
+end
+```
+
+#### Step4 gen migrate
+
+remove old migration files
+```
+> ls -1d priv/repo/migrations/* | grep servicex
+priv/repo/migrations/20181001042440_servicex_craete_user.exs
+priv/repo/migrations/20181001042441_servicex_craete_grant.exs
+> ls -1d priv/repo/migrations/* | grep servicex | xargs rm
+> ls -1d priv/repo/migrations/* | grep servicex
+```
+
+update library and gen migration files 
+```
+> mix deps.clean servicex materia servicex_utils materia_utils
+> mix deps.update materia materia_utils
+> mix materia.gen.migration
+
+```
+
+If a foreign key construct to the servicex schema was defined,
+You need to change the name of Materia's migration file to be before the name of your migration file.
+
+```
+ls -1 priv/repo/migrations
+20181006090000_create_your_table
+20181206081940_materia_1_craete_users.exs
+20181206081941_materia_2_craete_organizations.exs
+20181206081942_materia_3_craete_address.exs
+20181206081943_materia_4_craete_grants.exs
+20181206081944_materia_5_craete_mail_templates.exs
+```
+
+rename files
+
+```
+ls -1 priv/repo/migrations
+20180106081940_materia_1_craete_users.exs
+20180106081941_materia_2_craete_organizations.exs
+20180106081942_materia_3_craete_address.exs
+20180106081943_materia_4_craete_grants.exs
+20180106081944_materia_5_craete_mail_templates.exs
+20181006090000_create_your_table
+```
+
+### Step5 ecto.reset
+
+ecto reset
+
+```
+> mix ecto.reset
+```
 
  
-  move ServicexMatching.Accounts.User -> Materia.Accounts.User
-  
-  ```
-  
-  field :back_ground_img_url, :string
-  field :icon_img_url, :string
-  field :one_line_message, :string
-  
-  ```
+## Servicex -> Materia change Over View  
+ 
+#### move ServicexMatching.Accounts.User -> Materia.Accounts.User
+ 
+ add clumns
+```
+ field :back_ground_img_url, :string
+ field :icon_img_url, :string
+ field :one_line_message, :string
+```
 
-  add colmuns Materia.Accounts.User
+####  Materia.Accounts.User
+ 
+ add columns
+```
+ field :descriptions, :string
+ filed :external_user_id, :string
+ field :phone_number, :string
+```
 
-  ```
-  
-  field :descriptions, :string
-  filed :external_user_id, :string
-  
-  ```
+#### Mix.Tasks.Materia.Gen.Migration 
 
-  Mix.Tasks.Materia.Gen.Migration 
-  Mix.Tasks.Guardian.Db.Gen.Migration.run([])を実行しないように修正
+  change do'nt execute Mix.Tasks.Guardian.Db.Gen.Migration.run([])
+ 
+#### Servicex.Accounts.Address　-> Materia.Locations.Address
 
-  Servicex.Accounts.Address　-> Materia.Locations.Addressに変更
-  外部キーにorganization_idを追加し organization has_many address のassociationを追加
-  lock_versionと楽観排他ロジックを追加
-  これに伴い、my_addressAPIおよび関数を削除
+ add columns
+```
+ add organization_id, :integer # and association "organization has_many address"
+ add lock_version, :integer # and optimistic_lock logic 
+```
 
-　Materia.Authenticator.sign_in()
-　 ユーザーのステータスをチェックし1=activate以外の場合は認証エラーとするチェックを追加
+#### Materia.Authenticator.sign_in()
 
-  Materia.Accounts.registration_user()
-  本登録完了後に自動的にsign_inを行い、tokenを返すように修正
+  add check logic.
+  if user.status != User.status.activate, return response as "invalid_token"
 
-  Address create -> post "create-my-addres", AddressController, :create_my_address　に変更して通常の管理者用Createも追加
+#### AddressAPI added endpoint 'create-my-address'
 
-
+  post "create-my-addres", AddressController, :create_my_address
 
 ## Learn more
 
