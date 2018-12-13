@@ -78,7 +78,9 @@ defmodule Materia.Authenticator do
   def on_refresh({old_token, old_claims}, {new_token, new_claims}, _options) do
     Logger.debug("---  #{__MODULE__} on_refresh --------------")
 
-    with {:ok, _, _} <- Guardian.DB.on_refresh({old_token, old_claims}, {new_token, new_claims}) do
+    #with {:ok, _, _} <- Guardian.DB.on_refresh({old_token, old_claims}, {new_token, new_claims}) do
+    with {:ok, _, _} <- on_refresh({old_token, old_claims}, {new_token, new_claims}) do
+
       {:ok, {old_token, old_claims}, {new_token, new_claims}}
     end
   end
@@ -265,5 +267,12 @@ defmodule Materia.Authenticator do
     else
       config
     end
+  end
+
+  defp on_refresh({old_token, old_claims}, {new_token, new_claims}) do
+    Guardian.DB.on_revoke(old_claims, old_token)
+    Guardian.DB.after_encode_and_sign(%{}, new_claims["typ"], new_claims, new_token)
+
+    {:ok, {old_token, old_claims}, {new_token, new_claims}}
   end
 end
