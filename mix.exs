@@ -14,9 +14,9 @@ defmodule Materia.Mixfile do
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
       package: [
-        maintainers: ["tuchro yoshimura"],
+        maintainers: ["karabiner.inc"],
         licenses: ["MIT"],
-        links: %{"BitBucket" => "https://bitbucket.org/karabinertech_bi/materia/src/master/"}
+        links: %{"GitHub" => "hhttps://github.com/karabiner-inc/materia"}
       ],
       deps: deps()
     ]

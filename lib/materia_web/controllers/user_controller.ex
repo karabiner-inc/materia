@@ -65,13 +65,13 @@ defmodule MateriaWeb.UserController do
   end
 
   def registration_tmp_user(conn, %{"email" => email, "role" => role}) do
-    Materia.ControllerBase.transaction_flow(conn, :tmp_user, Materia.Accounts, :regster_tmp_user, [email, role])
+    MateriaWeb.ControllerBase.transaction_flow(conn, :tmp_user, Materia.Accounts, :regster_tmp_user, [email, role])
   end
 
   def registration_user(conn, params) do
     id = String.to_integer(conn.private.guardian_default_claims["sub"])
     user = Accounts.get_user!(id)
-    conn = Materia.ControllerBase.transaction_flow(conn, :user, Materia.Accounts, :registration_user, [user, params])
+    conn = MateriaWeb.ControllerBase.transaction_flow(conn, :user, Materia.Accounts, :registration_user, [user, params])
     if Map.has_key?(conn, :private) do
       token = conn.private.guardian_default_token
       Materia.Authenticator.revoke(token)
@@ -82,20 +82,20 @@ defmodule MateriaWeb.UserController do
   def registration_user_and_sign_in(conn, params) do
     id = String.to_integer(conn.private.guardian_default_claims["sub"])
     user = Accounts.get_user!(id)
-    conn = Materia.ControllerBase.transaction_flow(conn, :user_token, Materia.Accounts, :registration_user_and_sign_in, [user, params])
+    conn = MateriaWeb.ControllerBase.transaction_flow(conn, :user_token, Materia.Accounts, :registration_user_and_sign_in, [user, params])
     token = conn.private.guardian_default_token
     Materia.Authenticator.revoke(token)
     conn
   end
 
   def request_password_reset(conn, %{"email" => email}) do
-    Materia.ControllerBase.transaction_flow(conn, :password_reset, Materia.Accounts, :request_password_reset, [email])
+    MateriaWeb.ControllerBase.transaction_flow(conn, :password_reset, Materia.Accounts, :request_password_reset, [email])
   end
 
   def reset_my_password(conn, %{"password" => password}) do
     id = String.to_integer(conn.private.guardian_default_claims["sub"])
     user = Accounts.get_user!(id)
-    conn = Materia.ControllerBase.transaction_flow(conn, :user, Materia.Accounts, :reset_my_password, [user, password])
+    conn = MateriaWeb.ControllerBase.transaction_flow(conn, :user, Materia.Accounts, :reset_my_password, [user, password])
     token = conn.private.guardian_default_token
     Materia.Authenticator.revoke(token)
     conn
