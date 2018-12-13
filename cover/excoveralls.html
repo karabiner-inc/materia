@@ -393,7 +393,7 @@ function find(y) {
           </li>
         
           <li>
-            <span class='cov medium'>69.0</span>
+            <span class='cov medium'>66.7</span>
             <a href='#lib/materia/authenticator/authenticator.ex'>
               
               
@@ -692,10 +692,10 @@ function find(y) {
       </div>
 
       <div id='stats' class='high'>
-        <div class='percentage'>82.7</div>
-        <div class='sloc'>555</div>
+        <div class='percentage'>82.3</div>
+        <div class='sloc'>558</div>
         <div class='hits'>9205</div>
-        <div class='misses'>96</div>
+        <div class='misses'>99</div>
       </div>
       <div id='files'>
         
@@ -10709,10 +10709,10 @@ function find(y) {
           <div class='file'>
             <h2 id='lib/materia/authenticator/authenticator.ex'>lib/materia/authenticator/authenticator.ex</h1>
             <div id='stats' class='medium'>
-              <div class='percentage'>69.0</div>
-              <div class='sloc'>87</div>
+              <div class='percentage'>66.7</div>
+              <div class='sloc'>90</div>
               <div class='hits'>1424</div>
-              <div class='misses'>27</div>
+              <div class='misses'>30</div>
             </div>
             <table id='source'>
               <thead>
@@ -11364,18 +11364,18 @@ function find(y) {
                   
                 
                   
-                      <tr class='miss'>
+                      <tr>
                         <td class='line'>80</td>
-                        <td class='hits'>0</td>
-                        <td class='source'>    with {:ok, _, _} &lt;- Guardian.DB.on_refresh({old_token, old_claims}, {new_token, new_claims}) do</td>
+                        <td class='hits'></td>
+                        <td class='source'>    #with {:ok, _, _} &lt;- Guardian.DB.on_refresh({old_token, old_claims}, {new_token, new_claims}) do</td>
                       </tr>
-                    
+                  
                 
                   
                       <tr class='miss'>
                         <td class='line'>81</td>
                         <td class='hits'>0</td>
-                        <td class='source'>      {:ok, {old_token, old_claims}, {new_token, new_claims}}</td>
+                        <td class='source'>    with {:ok, _, _} &lt;- on_refresh({old_token, old_claims}, {new_token, new_claims}) do</td>
                       </tr>
                     
                 
@@ -11383,23 +11383,23 @@ function find(y) {
                       <tr>
                         <td class='line'>82</td>
                         <td class='hits'></td>
-                        <td class='source'>    end</td>
+                        <td class='source'></td>
                       </tr>
                   
                 
                   
-                      <tr>
+                      <tr class='miss'>
                         <td class='line'>83</td>
-                        <td class='hits'></td>
-                        <td class='source'>  end</td>
+                        <td class='hits'>0</td>
+                        <td class='source'>      {:ok, {old_token, old_claims}, {new_token, new_claims}}</td>
                       </tr>
-                  
+                    
                 
                   
                       <tr>
                         <td class='line'>84</td>
                         <td class='hits'></td>
-                        <td class='source'></td>
+                        <td class='source'>    end</td>
                       </tr>
                   
                 
@@ -11407,23 +11407,23 @@ function find(y) {
                       <tr>
                         <td class='line'>85</td>
                         <td class='hits'></td>
-                        <td class='source'>  def on_revoke(claims, token, _options) do</td>
+                        <td class='source'>  end</td>
                       </tr>
                   
                 
                   
-                      <tr class='hit'>
+                      <tr>
                         <td class='line'>86</td>
-                        <td class='hits'>5</td>
-                        <td class='source'>    Logger.debug(&quot;---  #{__MODULE__} on_revoke --------------&quot;)</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
                       </tr>
-                    
+                  
                 
                   
                       <tr>
                         <td class='line'>87</td>
                         <td class='hits'></td>
-                        <td class='source'></td>
+                        <td class='source'>  def on_revoke(claims, token, _options) do</td>
                       </tr>
                   
                 
@@ -11431,7 +11431,7 @@ function find(y) {
                       <tr class='hit'>
                         <td class='line'>88</td>
                         <td class='hits'>5</td>
-                        <td class='source'>    with {:ok, _} &lt;- Guardian.DB.on_revoke(claims, token) do</td>
+                        <td class='source'>    Logger.debug(&quot;---  #{__MODULE__} on_revoke --------------&quot;)</td>
                       </tr>
                     
                 
@@ -11439,23 +11439,23 @@ function find(y) {
                       <tr>
                         <td class='line'>89</td>
                         <td class='hits'></td>
-                        <td class='source'>      {:ok, claims}</td>
+                        <td class='source'></td>
                       </tr>
                   
                 
                   
-                      <tr>
+                      <tr class='hit'>
                         <td class='line'>90</td>
-                        <td class='hits'></td>
-                        <td class='source'>    end</td>
+                        <td class='hits'>5</td>
+                        <td class='source'>    with {:ok, _} &lt;- Guardian.DB.on_revoke(claims, token) do</td>
                       </tr>
-                  
+                    
                 
                   
                       <tr>
                         <td class='line'>91</td>
                         <td class='hits'></td>
-                        <td class='source'>  end</td>
+                        <td class='source'>      {:ok, claims}</td>
                       </tr>
                   
                 
@@ -11463,7 +11463,7 @@ function find(y) {
                       <tr>
                         <td class='line'>92</td>
                         <td class='hits'></td>
-                        <td class='source'></td>
+                        <td class='source'>    end</td>
                       </tr>
                   
                 
@@ -11471,13 +11471,29 @@ function find(y) {
                       <tr>
                         <td class='line'>93</td>
                         <td class='hits'></td>
+                        <td class='source'>  end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>94</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>95</td>
+                        <td class='hits'></td>
                         <td class='source'>  def sign_in(email, password) do</td>
                       </tr>
                   
                 
                   
                       <tr class='hit'>
-                        <td class='line'>94</td>
+                        <td class='line'>96</td>
                         <td class='hits'>19</td>
                         <td class='source'>    config = get_config()</td>
                       </tr>
@@ -11485,7 +11501,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>95</td>
+                        <td class='line'>97</td>
                         <td class='hits'>19</td>
                         <td class='source'>    access_token_ttl = config[:access_token_ttl]</td>
                       </tr>
@@ -11493,7 +11509,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>96</td>
+                        <td class='line'>98</td>
                         <td class='hits'>19</td>
                         <td class='source'>    Logger.debug(&quot;#{__MODULE__} --- sign_in access_token_ttl:#{inspect(access_token_ttl)}&quot;)</td>
                       </tr>
@@ -11501,7 +11517,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>97</td>
+                        <td class='line'>99</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -11509,7 +11525,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>98</td>
+                        <td class='line'>100</td>
                         <td class='hits'>19</td>
                         <td class='source'>    if access_token_ttl == nil do</td>
                       </tr>
@@ -11517,7 +11533,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>99</td>
+                        <td class='line'>101</td>
                         <td class='hits'>0</td>
                         <td class='source'>      raise BusinessError, message: &quot;materia.Authenticator access_token_ttl config not found.&quot;</td>
                       </tr>
@@ -11525,7 +11541,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>100</td>
+                        <td class='line'>102</td>
                         <td class='hits'></td>
                         <td class='source'>    end</td>
                       </tr>
@@ -11533,7 +11549,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>101</td>
+                        <td class='line'>103</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -11541,7 +11557,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>102</td>
+                        <td class='line'>104</td>
                         <td class='hits'>19</td>
                         <td class='source'>    claims = %{&quot;email&quot; =&gt; email}</td>
                       </tr>
@@ -11549,7 +11565,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>103</td>
+                        <td class='line'>105</td>
                         <td class='hits'>19</td>
                         <td class='source'>    Logger.debug(&quot;#{__MODULE__} --- sign_in claims:#{inspect(claims)}&quot;)</td>
                       </tr>
@@ -11557,7 +11573,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>104</td>
+                        <td class='line'>106</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -11565,7 +11581,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>105</td>
+                        <td class='line'>107</td>
                         <td class='hits'>19</td>
                         <td class='source'>    with {:ok, nil} &lt;- resource_from_claims(claims) do</td>
                       </tr>
@@ -11573,7 +11589,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>106</td>
+                        <td class='line'>108</td>
                         <td class='hits'></td>
                         <td class='source'>      {:error, @msg_err_invalid_email_or_pass}</td>
                       </tr>
@@ -11581,7 +11597,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>107</td>
+                        <td class='line'>109</td>
                         <td class='hits'></td>
                         <td class='source'>    else</td>
                       </tr>
@@ -11589,7 +11605,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>108</td>
+                        <td class='line'>110</td>
                         <td class='hits'></td>
                         <td class='source'>      {:ok, resource} -&gt;</td>
                       </tr>
@@ -11597,7 +11613,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>109</td>
+                        <td class='line'>111</td>
                         <td class='hits'>19</td>
                         <td class='source'>        if resource.status != Materia.Accounts.User.status().activated do</td>
                       </tr>
@@ -11605,7 +11621,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>110</td>
+                        <td class='line'>112</td>
                         <td class='hits'></td>
                         <td class='source'>          {:error, @msg_err_invalid_email_or_pass}</td>
                       </tr>
@@ -11613,7 +11629,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>111</td>
+                        <td class='line'>113</td>
                         <td class='hits'></td>
                         <td class='source'>        else</td>
                       </tr>
@@ -11621,7 +11637,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>112</td>
+                        <td class='line'>114</td>
                         <td class='hits'>19</td>
                         <td class='source'>          if Comeonin.Bcrypt.checkpw(password, resource.hashed_password) do</td>
                       </tr>
@@ -11629,7 +11645,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>113</td>
+                        <td class='line'>115</td>
                         <td class='hits'>17</td>
                         <td class='source'>            Logger.debug(&quot;#{__MODULE__} --- sign_in Comeonin.Bcrypt.checkpw == true&quot;)</td>
                       </tr>
@@ -11637,7 +11653,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>114</td>
+                        <td class='line'>116</td>
                         <td class='hits'>17</td>
                         <td class='source'>            with {:ok, access_token, _access_claims} &lt;-</td>
                       </tr>
@@ -11645,7 +11661,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>115</td>
+                        <td class='line'>117</td>
                         <td class='hits'></td>
                         <td class='source'>                   encode_and_sign(resource, claims, token_type: &quot;access&quot;, ttl: access_token_ttl) do</td>
                       </tr>
@@ -11653,7 +11669,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>116</td>
+                        <td class='line'>118</td>
                         <td class='hits'>17</td>
                         <td class='source'>              Logger.debug(&quot;#{__MODULE__} --- sign_in Materia.Authenticator.encode_and_sign ok&quot;)</td>
                       </tr>
@@ -11661,7 +11677,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>117</td>
+                        <td class='line'>119</td>
                         <td class='hits'>17</td>
                         <td class='source'>              Logger.debug(&quot;#{__MODULE__} --- sign_in access_token:#{access_token}&quot;)</td>
                       </tr>
@@ -11669,7 +11685,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>118</td>
+                        <td class='line'>120</td>
                         <td class='hits'>17</td>
                         <td class='source'>              result = %{id: resource.id, access_token: access_token}</td>
                       </tr>
@@ -11677,7 +11693,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>119</td>
+                        <td class='line'>121</td>
                         <td class='hits'>17</td>
                         <td class='source'>              refresh_token_ttl = config[:refresh_token_ttl]</td>
                       </tr>
@@ -11685,7 +11701,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>120</td>
+                        <td class='line'>122</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -11693,7 +11709,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>121</td>
+                        <td class='line'>123</td>
                         <td class='hits'>17</td>
                         <td class='source'>              Logger.debug(</td>
                       </tr>
@@ -11701,7 +11717,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>122</td>
+                        <td class='line'>124</td>
                         <td class='hits'>17</td>
                         <td class='source'>                &quot;#{__MODULE__} --- sign_in refresh_token_ttl:#{inspect(refresh_token_ttl)}&quot;</td>
                       </tr>
@@ -11709,7 +11725,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>123</td>
+                        <td class='line'>125</td>
                         <td class='hits'></td>
                         <td class='source'>              )</td>
                       </tr>
@@ -11717,7 +11733,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>124</td>
+                        <td class='line'>126</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -11725,7 +11741,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>125</td>
+                        <td class='line'>127</td>
                         <td class='hits'>17</td>
                         <td class='source'>              if refresh_token_ttl != nil do</td>
                       </tr>
@@ -11733,7 +11749,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>126</td>
+                        <td class='line'>128</td>
                         <td class='hits'>17</td>
                         <td class='source'>                refresh_token_ttl = config[:refresh_token_ttl]</td>
                       </tr>
@@ -11741,7 +11757,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>127</td>
+                        <td class='line'>129</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -11749,7 +11765,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>128</td>
+                        <td class='line'>130</td>
                         <td class='hits'>17</td>
                         <td class='source'>                Logger.debug(</td>
                       </tr>
@@ -11757,7 +11773,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>129</td>
+                        <td class='line'>131</td>
                         <td class='hits'>17</td>
                         <td class='source'>                  &quot;#{__MODULE__} --- sign_in refresh_token_ttl:#{inspect(refresh_token_ttl)}&quot;</td>
                       </tr>
@@ -11765,7 +11781,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>130</td>
+                        <td class='line'>132</td>
                         <td class='hits'></td>
                         <td class='source'>                )</td>
                       </tr>
@@ -11773,7 +11789,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>131</td>
+                        <td class='line'>133</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -11781,7 +11797,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>132</td>
+                        <td class='line'>134</td>
                         <td class='hits'>17</td>
                         <td class='source'>                with {:ok, refresh_token, _refresh_claims} &lt;-</td>
                       </tr>
@@ -11789,7 +11805,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>133</td>
+                        <td class='line'>135</td>
                         <td class='hits'></td>
                         <td class='source'>                       encode_and_sign(</td>
                       </tr>
@@ -11797,7 +11813,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>134</td>
+                        <td class='line'>136</td>
                         <td class='hits'></td>
                         <td class='source'>                         resource,</td>
                       </tr>
@@ -11805,7 +11821,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>135</td>
+                        <td class='line'>137</td>
                         <td class='hits'></td>
                         <td class='source'>                         claims,</td>
                       </tr>
@@ -11813,7 +11829,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>136</td>
+                        <td class='line'>138</td>
                         <td class='hits'></td>
                         <td class='source'>                         token_type: &quot;refresh&quot;,</td>
                       </tr>
@@ -11821,7 +11837,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>137</td>
+                        <td class='line'>139</td>
                         <td class='hits'></td>
                         <td class='source'>                         ttl: refresh_token_ttl</td>
                       </tr>
@@ -11829,7 +11845,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>138</td>
+                        <td class='line'>140</td>
                         <td class='hits'></td>
                         <td class='source'>                       ) do</td>
                       </tr>
@@ -11837,7 +11853,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>139</td>
+                        <td class='line'>141</td>
                         <td class='hits'>17</td>
                         <td class='source'>                  result = Map.put(result, :refresh_token, refresh_token)</td>
                       </tr>
@@ -11845,7 +11861,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>140</td>
+                        <td class='line'>142</td>
                         <td class='hits'></td>
                         <td class='source'>                  {:ok, result}</td>
                       </tr>
@@ -11853,7 +11869,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>141</td>
+                        <td class='line'>143</td>
                         <td class='hits'></td>
                         <td class='source'>                else</td>
                       </tr>
@@ -11861,7 +11877,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>142</td>
+                        <td class='line'>144</td>
                         <td class='hits'></td>
                         <td class='source'>                  _ -&gt;</td>
                       </tr>
@@ -11869,7 +11885,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>143</td>
+                        <td class='line'>145</td>
                         <td class='hits'></td>
                         <td class='source'>                    {:error, @msg_err_invalid_email_or_pass}</td>
                       </tr>
@@ -11877,7 +11893,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>144</td>
+                        <td class='line'>146</td>
                         <td class='hits'></td>
                         <td class='source'>                end</td>
                       </tr>
@@ -11885,7 +11901,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>145</td>
+                        <td class='line'>147</td>
                         <td class='hits'></td>
                         <td class='source'>              else</td>
                       </tr>
@@ -11893,7 +11909,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>146</td>
+                        <td class='line'>148</td>
                         <td class='hits'></td>
                         <td class='source'>                {:ok, result}</td>
                       </tr>
@@ -11901,7 +11917,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>147</td>
+                        <td class='line'>149</td>
                         <td class='hits'></td>
                         <td class='source'>              end</td>
                       </tr>
@@ -11909,7 +11925,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>148</td>
+                        <td class='line'>150</td>
                         <td class='hits'></td>
                         <td class='source'>            else</td>
                       </tr>
@@ -11917,7 +11933,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>149</td>
+                        <td class='line'>151</td>
                         <td class='hits'></td>
                         <td class='source'>              _ -&gt;</td>
                       </tr>
@@ -11925,7 +11941,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>150</td>
+                        <td class='line'>152</td>
                         <td class='hits'></td>
                         <td class='source'>                {:error, @msg_err_invalid_email_or_pass}</td>
                       </tr>
@@ -11933,7 +11949,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>151</td>
+                        <td class='line'>153</td>
                         <td class='hits'></td>
                         <td class='source'>            end</td>
                       </tr>
@@ -11941,7 +11957,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>152</td>
+                        <td class='line'>154</td>
                         <td class='hits'></td>
                         <td class='source'>          else</td>
                       </tr>
@@ -11949,7 +11965,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>153</td>
+                        <td class='line'>155</td>
                         <td class='hits'></td>
                         <td class='source'>            {:error, @msg_err_invalid_email_or_pass}</td>
                       </tr>
@@ -11957,7 +11973,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>154</td>
+                        <td class='line'>156</td>
                         <td class='hits'></td>
                         <td class='source'>          end</td>
                       </tr>
@@ -11965,25 +11981,9 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>155</td>
-                        <td class='hits'></td>
-                        <td class='source'>        end</td>
-                      </tr>
-                  
-                
-                  
-                      <tr>
-                        <td class='line'>156</td>
-                        <td class='hits'></td>
-                        <td class='source'></td>
-                      </tr>
-                  
-                
-                  
-                      <tr>
                         <td class='line'>157</td>
                         <td class='hits'></td>
-                        <td class='source'>      _ -&gt;</td>
+                        <td class='source'>        end</td>
                       </tr>
                   
                 
@@ -11991,7 +11991,7 @@ function find(y) {
                       <tr>
                         <td class='line'>158</td>
                         <td class='hits'></td>
-                        <td class='source'>        {:error, @msg_err_invalid_email_or_pass}</td>
+                        <td class='source'></td>
                       </tr>
                   
                 
@@ -11999,7 +11999,7 @@ function find(y) {
                       <tr>
                         <td class='line'>159</td>
                         <td class='hits'></td>
-                        <td class='source'>    end</td>
+                        <td class='source'>      _ -&gt;</td>
                       </tr>
                   
                 
@@ -12007,7 +12007,7 @@ function find(y) {
                       <tr>
                         <td class='line'>160</td>
                         <td class='hits'></td>
-                        <td class='source'>  end</td>
+                        <td class='source'>        {:error, @msg_err_invalid_email_or_pass}</td>
                       </tr>
                   
                 
@@ -12015,7 +12015,7 @@ function find(y) {
                       <tr>
                         <td class='line'>161</td>
                         <td class='hits'></td>
-                        <td class='source'></td>
+                        <td class='source'>    end</td>
                       </tr>
                   
                 
@@ -12023,13 +12023,29 @@ function find(y) {
                       <tr>
                         <td class='line'>162</td>
                         <td class='hits'></td>
+                        <td class='source'>  end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>163</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>164</td>
+                        <td class='hits'></td>
                         <td class='source'>  def refresh_tokens(refresh_token) do</td>
                       </tr>
                   
                 
                   
                       <tr class='miss'>
-                        <td class='line'>163</td>
+                        <td class='line'>165</td>
                         <td class='hits'>0</td>
                         <td class='source'>    config = get_config()</td>
                       </tr>
@@ -12037,7 +12053,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>164</td>
+                        <td class='line'>166</td>
                         <td class='hits'>0</td>
                         <td class='source'>    access_token_ttl = config[:access_token_ttl]</td>
                       </tr>
@@ -12045,7 +12061,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>165</td>
+                        <td class='line'>167</td>
                         <td class='hits'>0</td>
                         <td class='source'>    Logger.debug(&quot;#{__MODULE__} --- refresh_tokens access_token_ttl:#{inspect(access_token_ttl)}&quot;)</td>
                       </tr>
@@ -12053,7 +12069,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>166</td>
+                        <td class='line'>168</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -12061,7 +12077,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>167</td>
+                        <td class='line'>169</td>
                         <td class='hits'>0</td>
                         <td class='source'>    if access_token_ttl == nil do</td>
                       </tr>
@@ -12069,7 +12085,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>168</td>
+                        <td class='line'>170</td>
                         <td class='hits'>0</td>
                         <td class='source'>      raise BusinessError, message: &quot;materia.Authenticator access_token_ttl config not found.&quot;</td>
                       </tr>
@@ -12077,7 +12093,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>169</td>
+                        <td class='line'>171</td>
                         <td class='hits'></td>
                         <td class='source'>    end</td>
                       </tr>
@@ -12085,25 +12101,9 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>170</td>
-                        <td class='hits'></td>
-                        <td class='source'></td>
-                      </tr>
-                  
-                
-                  
-                      <tr class='miss'>
-                        <td class='line'>171</td>
-                        <td class='hits'>0</td>
-                        <td class='source'>    with {:ok, _refresh, new_access} &lt;-</td>
-                      </tr>
-                    
-                
-                  
-                      <tr>
                         <td class='line'>172</td>
                         <td class='hits'></td>
-                        <td class='source'>           exchange(refresh_token, &quot;refresh&quot;, &quot;access&quot;, ttl: access_token_ttl) do</td>
+                        <td class='source'></td>
                       </tr>
                   
                 
@@ -12111,13 +12111,29 @@ function find(y) {
                       <tr class='miss'>
                         <td class='line'>173</td>
                         <td class='hits'>0</td>
+                        <td class='source'>    with {:ok, _refresh, new_access} &lt;-</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>174</td>
+                        <td class='hits'></td>
+                        <td class='source'>           exchange(refresh_token, &quot;refresh&quot;, &quot;access&quot;, ttl: access_token_ttl) do</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='miss'>
+                        <td class='line'>175</td>
+                        <td class='hits'>0</td>
                         <td class='source'>      {token, claims} = new_access</td>
                       </tr>
                     
                 
                   
                       <tr class='miss'>
-                        <td class='line'>174</td>
+                        <td class='line'>176</td>
                         <td class='hits'>0</td>
                         <td class='source'>      Logger.debug(&quot;#{__MODULE__} --- refresh_tokens new_access_token:#{inspect(token)}&quot;)</td>
                       </tr>
@@ -12125,7 +12141,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>175</td>
+                        <td class='line'>177</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -12133,7 +12149,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>176</td>
+                        <td class='line'>178</td>
                         <td class='hits'>0</td>
                         <td class='source'>      with {:ok, _} &lt;- Guardian.DB.after_encode_and_sign(%{}, &quot;access&quot;, claims, token) do</td>
                       </tr>
@@ -12141,7 +12157,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>177</td>
+                        <td class='line'>179</td>
                         <td class='hits'>0</td>
                         <td class='source'>        refresh_token_ttl = config[:refresh_token_ttl]</td>
                       </tr>
@@ -12149,7 +12165,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>178</td>
+                        <td class='line'>180</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -12157,7 +12173,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>179</td>
+                        <td class='line'>181</td>
                         <td class='hits'>0</td>
                         <td class='source'>        Logger.debug(</td>
                       </tr>
@@ -12165,7 +12181,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>180</td>
+                        <td class='line'>182</td>
                         <td class='hits'>0</td>
                         <td class='source'>          &quot;#{__MODULE__} --- refresh_tokens refresh_token_ttl:#{inspect(refresh_token_ttl)}&quot;</td>
                       </tr>
@@ -12173,7 +12189,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>181</td>
+                        <td class='line'>183</td>
                         <td class='hits'></td>
                         <td class='source'>        )</td>
                       </tr>
@@ -12181,7 +12197,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>182</td>
+                        <td class='line'>184</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -12189,7 +12205,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>183</td>
+                        <td class='line'>185</td>
                         <td class='hits'>0</td>
                         <td class='source'>        if refresh_token_ttl == nil do</td>
                       </tr>
@@ -12197,7 +12213,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>184</td>
+                        <td class='line'>186</td>
                         <td class='hits'>0</td>
                         <td class='source'>          raise BusinessError,</td>
                       </tr>
@@ -12205,7 +12221,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>185</td>
+                        <td class='line'>187</td>
                         <td class='hits'></td>
                         <td class='source'>            message: &quot;materia.Authenticator refresh_token_ttl config not found.&quot;</td>
                       </tr>
@@ -12213,7 +12229,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>186</td>
+                        <td class='line'>188</td>
                         <td class='hits'></td>
                         <td class='source'>        end</td>
                       </tr>
@@ -12221,7 +12237,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>187</td>
+                        <td class='line'>189</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -12229,7 +12245,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>188</td>
+                        <td class='line'>190</td>
                         <td class='hits'>0</td>
                         <td class='source'>        with {:ok, _old_refresh, new_refresh} &lt;- refresh(refresh_token, ttl: refresh_token_ttl) do</td>
                       </tr>
@@ -12237,7 +12253,7 @@ function find(y) {
                 
                   
                       <tr class='miss'>
-                        <td class='line'>189</td>
+                        <td class='line'>191</td>
                         <td class='hits'>0</td>
                         <td class='source'>          {:ok, new_access, new_refresh}</td>
                       </tr>
@@ -12245,7 +12261,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>190</td>
+                        <td class='line'>192</td>
                         <td class='hits'></td>
                         <td class='source'>        else</td>
                       </tr>
@@ -12253,7 +12269,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>191</td>
+                        <td class='line'>193</td>
                         <td class='hits'></td>
                         <td class='source'>          _ -&gt; {:error, @msg_err_invalid_token}</td>
                       </tr>
@@ -12261,7 +12277,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>192</td>
+                        <td class='line'>194</td>
                         <td class='hits'></td>
                         <td class='source'>        end</td>
                       </tr>
@@ -12269,7 +12285,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>193</td>
+                        <td class='line'>195</td>
                         <td class='hits'></td>
                         <td class='source'>      else</td>
                       </tr>
@@ -12277,7 +12293,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>194</td>
+                        <td class='line'>196</td>
                         <td class='hits'></td>
                         <td class='source'>        _ -&gt; {:error, @msg_err_invalid_token}</td>
                       </tr>
@@ -12285,7 +12301,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>195</td>
+                        <td class='line'>197</td>
                         <td class='hits'></td>
                         <td class='source'>      end</td>
                       </tr>
@@ -12293,7 +12309,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>196</td>
+                        <td class='line'>198</td>
                         <td class='hits'></td>
                         <td class='source'>    else</td>
                       </tr>
@@ -12301,7 +12317,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>197</td>
+                        <td class='line'>199</td>
                         <td class='hits'></td>
                         <td class='source'>      _ -&gt; {:error, @msg_err_invalid_token}</td>
                       </tr>
@@ -12309,7 +12325,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>198</td>
+                        <td class='line'>200</td>
                         <td class='hits'></td>
                         <td class='source'>    end</td>
                       </tr>
@@ -12317,7 +12333,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>199</td>
+                        <td class='line'>201</td>
                         <td class='hits'></td>
                         <td class='source'>  end</td>
                       </tr>
@@ -12325,7 +12341,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>200</td>
+                        <td class='line'>202</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -12333,7 +12349,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>201</td>
+                        <td class='line'>203</td>
                         <td class='hits'></td>
                         <td class='source'>  def get_user_registration_token(email) do</td>
                       </tr>
@@ -12341,7 +12357,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>202</td>
+                        <td class='line'>204</td>
                         <td class='hits'>9</td>
                         <td class='source'>    config = get_config()</td>
                       </tr>
@@ -12349,25 +12365,9 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>203</td>
-                        <td class='hits'>9</td>
-                        <td class='source'>    user_registration_token_ttl = config[:user_registration_token_ttl]</td>
-                      </tr>
-                    
-                
-                  
-                      <tr>
-                        <td class='line'>204</td>
-                        <td class='hits'></td>
-                        <td class='source'></td>
-                      </tr>
-                  
-                
-                  
-                      <tr class='hit'>
                         <td class='line'>205</td>
                         <td class='hits'>9</td>
-                        <td class='source'>    Logger.debug(&quot;#{__MODULE__} --- get_user_registration_token user_registration_token_ttl:#{inspect(user_registration_token_ttl)}&quot;)</td>
+                        <td class='source'>    user_registration_token_ttl = config[:user_registration_token_ttl]</td>
                       </tr>
                     
                 
@@ -12383,29 +12383,13 @@ function find(y) {
                       <tr class='hit'>
                         <td class='line'>207</td>
                         <td class='hits'>9</td>
-                        <td class='source'>    if user_registration_token_ttl == nil do</td>
+                        <td class='source'>    Logger.debug(&quot;#{__MODULE__} --- get_user_registration_token user_registration_token_ttl:#{inspect(user_registration_token_ttl)}&quot;)</td>
                       </tr>
                     
                 
                   
-                      <tr class='miss'>
+                      <tr>
                         <td class='line'>208</td>
-                        <td class='hits'>0</td>
-                        <td class='source'>      raise BusinessError, message: &quot;materia.Authenticator user_registration_token_ttl config not found.&quot;</td>
-                      </tr>
-                    
-                
-                  
-                      <tr>
-                        <td class='line'>209</td>
-                        <td class='hits'></td>
-                        <td class='source'>    end</td>
-                      </tr>
-                  
-                
-                  
-                      <tr>
-                        <td class='line'>210</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -12413,11 +12397,27 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>211</td>
+                        <td class='line'>209</td>
                         <td class='hits'>9</td>
-                        <td class='source'>    get_custom_token(email, &quot;user_registration&quot;, user_registration_token_ttl)</td>
+                        <td class='source'>    if user_registration_token_ttl == nil do</td>
                       </tr>
                     
+                
+                  
+                      <tr class='miss'>
+                        <td class='line'>210</td>
+                        <td class='hits'>0</td>
+                        <td class='source'>      raise BusinessError, message: &quot;materia.Authenticator user_registration_token_ttl config not found.&quot;</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>211</td>
+                        <td class='hits'></td>
+                        <td class='source'>    end</td>
+                      </tr>
+                  
                 
                   
                       <tr>
@@ -12428,12 +12428,12 @@ function find(y) {
                   
                 
                   
-                      <tr>
+                      <tr class='hit'>
                         <td class='line'>213</td>
-                        <td class='hits'></td>
-                        <td class='source'>  end</td>
+                        <td class='hits'>9</td>
+                        <td class='source'>    get_custom_token(email, &quot;user_registration&quot;, user_registration_token_ttl)</td>
                       </tr>
-                  
+                    
                 
                   
                       <tr>
@@ -12447,13 +12447,29 @@ function find(y) {
                       <tr>
                         <td class='line'>215</td>
                         <td class='hits'></td>
+                        <td class='source'>  end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>216</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>217</td>
+                        <td class='hits'></td>
                         <td class='source'>  def get_password_reset_token(email) do</td>
                       </tr>
                   
                 
                   
                       <tr class='hit'>
-                        <td class='line'>216</td>
+                        <td class='line'>218</td>
                         <td class='hits'>5</td>
                         <td class='source'>    config = get_config()</td>
                       </tr>
@@ -12461,25 +12477,9 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>217</td>
-                        <td class='hits'>5</td>
-                        <td class='source'>    password_reset_token_ttl = config[:password_reset_token_ttl]</td>
-                      </tr>
-                    
-                
-                  
-                      <tr>
-                        <td class='line'>218</td>
-                        <td class='hits'></td>
-                        <td class='source'></td>
-                      </tr>
-                  
-                
-                  
-                      <tr class='hit'>
                         <td class='line'>219</td>
                         <td class='hits'>5</td>
-                        <td class='source'>    Logger.debug(&quot;#{__MODULE__} --- get_password_reset_token password_reset_token_ttl:#{inspect(password_reset_token_ttl)}&quot;)</td>
+                        <td class='source'>    password_reset_token_ttl = config[:password_reset_token_ttl]</td>
                       </tr>
                     
                 
@@ -12495,29 +12495,13 @@ function find(y) {
                       <tr class='hit'>
                         <td class='line'>221</td>
                         <td class='hits'>5</td>
-                        <td class='source'>    if password_reset_token_ttl == nil do</td>
+                        <td class='source'>    Logger.debug(&quot;#{__MODULE__} --- get_password_reset_token password_reset_token_ttl:#{inspect(password_reset_token_ttl)}&quot;)</td>
                       </tr>
                     
                 
                   
-                      <tr class='miss'>
+                      <tr>
                         <td class='line'>222</td>
-                        <td class='hits'>0</td>
-                        <td class='source'>      raise BusinessError, message: &quot;materia.Authenticator password_reset_token_ttl config not found.&quot;</td>
-                      </tr>
-                    
-                
-                  
-                      <tr>
-                        <td class='line'>223</td>
-                        <td class='hits'></td>
-                        <td class='source'>    end</td>
-                      </tr>
-                  
-                
-                  
-                      <tr>
-                        <td class='line'>224</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -12525,11 +12509,27 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>225</td>
+                        <td class='line'>223</td>
                         <td class='hits'>5</td>
-                        <td class='source'>    get_custom_token(email, &quot;password_reset&quot;, password_reset_token_ttl)</td>
+                        <td class='source'>    if password_reset_token_ttl == nil do</td>
                       </tr>
                     
+                
+                  
+                      <tr class='miss'>
+                        <td class='line'>224</td>
+                        <td class='hits'>0</td>
+                        <td class='source'>      raise BusinessError, message: &quot;materia.Authenticator password_reset_token_ttl config not found.&quot;</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>225</td>
+                        <td class='hits'></td>
+                        <td class='source'>    end</td>
+                      </tr>
+                  
                 
                   
                       <tr>
@@ -12540,12 +12540,12 @@ function find(y) {
                   
                 
                   
-                      <tr>
+                      <tr class='hit'>
                         <td class='line'>227</td>
-                        <td class='hits'></td>
-                        <td class='source'>  end</td>
+                        <td class='hits'>5</td>
+                        <td class='source'>    get_custom_token(email, &quot;password_reset&quot;, password_reset_token_ttl)</td>
                       </tr>
-                  
+                    
                 
                   
                       <tr>
@@ -12559,7 +12559,7 @@ function find(y) {
                       <tr>
                         <td class='line'>229</td>
                         <td class='hits'></td>
-                        <td class='source'>  @doc false</td>
+                        <td class='source'>  end</td>
                       </tr>
                   
                 
@@ -12567,13 +12567,29 @@ function find(y) {
                       <tr>
                         <td class='line'>230</td>
                         <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>231</td>
+                        <td class='hits'></td>
+                        <td class='source'>  @doc false</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>232</td>
+                        <td class='hits'></td>
                         <td class='source'>  defp get_custom_token(email, token_type, token_ttl) do</td>
                       </tr>
                   
                 
                   
                       <tr class='hit'>
-                        <td class='line'>231</td>
+                        <td class='line'>233</td>
                         <td class='hits'>14</td>
                         <td class='source'>    claims = %{&quot;email&quot; =&gt; email}</td>
                       </tr>
@@ -12581,7 +12597,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>232</td>
+                        <td class='line'>234</td>
                         <td class='hits'>14</td>
                         <td class='source'>    Logger.debug(&quot;#{__MODULE__} --- get_custom_token start. claims:#{inspect(claims)}&quot;)</td>
                       </tr>
@@ -12589,7 +12605,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>233</td>
+                        <td class='line'>235</td>
                         <td class='hits'></td>
                         <td class='source'></td>
                       </tr>
@@ -12597,7 +12613,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>234</td>
+                        <td class='line'>236</td>
                         <td class='hits'>14</td>
                         <td class='source'>    with {:ok, nil} &lt;- resource_from_claims(claims) do</td>
                       </tr>
@@ -12605,7 +12621,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>235</td>
+                        <td class='line'>237</td>
                         <td class='hits'></td>
                         <td class='source'>      {:error, &quot;user not found by claims&quot;}</td>
                       </tr>
@@ -12613,7 +12629,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>236</td>
+                        <td class='line'>238</td>
                         <td class='hits'></td>
                         <td class='source'>    else</td>
                       </tr>
@@ -12621,7 +12637,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>237</td>
+                        <td class='line'>239</td>
                         <td class='hits'></td>
                         <td class='source'>      {:ok, resource} -&gt;</td>
                       </tr>
@@ -12629,7 +12645,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>238</td>
+                        <td class='line'>240</td>
                         <td class='hits'>14</td>
                         <td class='source'>        with {:ok, user_registration_token, _user_claims} &lt;-</td>
                       </tr>
@@ -12637,7 +12653,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>239</td>
+                        <td class='line'>241</td>
                         <td class='hits'></td>
                         <td class='source'>               encode_and_sign(</td>
                       </tr>
@@ -12645,7 +12661,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>240</td>
+                        <td class='line'>242</td>
                         <td class='hits'></td>
                         <td class='source'>                 resource,</td>
                       </tr>
@@ -12653,7 +12669,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>241</td>
+                        <td class='line'>243</td>
                         <td class='hits'></td>
                         <td class='source'>                 claims,</td>
                       </tr>
@@ -12661,7 +12677,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>242</td>
+                        <td class='line'>244</td>
                         <td class='hits'></td>
                         <td class='source'>                 token_type: token_type,</td>
                       </tr>
@@ -12669,7 +12685,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>243</td>
+                        <td class='line'>245</td>
                         <td class='hits'></td>
                         <td class='source'>                 ttl: token_ttl</td>
                       </tr>
@@ -12677,7 +12693,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>244</td>
+                        <td class='line'>246</td>
                         <td class='hits'></td>
                         <td class='source'>               ) do</td>
                       </tr>
@@ -12685,7 +12701,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>245</td>
+                        <td class='line'>247</td>
                         <td class='hits'>14</td>
                         <td class='source'>          Logger.debug(&quot;#{__MODULE__} --- get_custom_token Materia.Authenticator.encode_and_sign ok&quot;)</td>
                       </tr>
@@ -12693,7 +12709,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>246</td>
+                        <td class='line'>248</td>
                         <td class='hits'>14</td>
                         <td class='source'>          Logger.debug(&quot;#{__MODULE__} --- get_custom_token user_registration_token:#{user_registration_token}&quot;)</td>
                       </tr>
@@ -12701,25 +12717,9 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>247</td>
-                        <td class='hits'></td>
-                        <td class='source'></td>
-                      </tr>
-                  
-                
-                  
-                      <tr>
-                        <td class='line'>248</td>
-                        <td class='hits'></td>
-                        <td class='source'>          {:ok, user_registration_token}</td>
-                      </tr>
-                  
-                
-                  
-                      <tr>
                         <td class='line'>249</td>
                         <td class='hits'></td>
-                        <td class='source'>        else</td>
+                        <td class='source'></td>
                       </tr>
                   
                 
@@ -12727,7 +12727,7 @@ function find(y) {
                       <tr>
                         <td class='line'>250</td>
                         <td class='hits'></td>
-                        <td class='source'>          _ -&gt; {:error, &quot;get_custom_token failed.&quot;}</td>
+                        <td class='source'>          {:ok, user_registration_token}</td>
                       </tr>
                   
                 
@@ -12735,7 +12735,7 @@ function find(y) {
                       <tr>
                         <td class='line'>251</td>
                         <td class='hits'></td>
-                        <td class='source'>        end</td>
+                        <td class='source'>        else</td>
                       </tr>
                   
                 
@@ -12743,7 +12743,7 @@ function find(y) {
                       <tr>
                         <td class='line'>252</td>
                         <td class='hits'></td>
-                        <td class='source'></td>
+                        <td class='source'>          _ -&gt; {:error, &quot;get_custom_token failed.&quot;}</td>
                       </tr>
                   
                 
@@ -12751,7 +12751,7 @@ function find(y) {
                       <tr>
                         <td class='line'>253</td>
                         <td class='hits'></td>
-                        <td class='source'>      _ -&gt;</td>
+                        <td class='source'>        end</td>
                       </tr>
                   
                 
@@ -12759,7 +12759,7 @@ function find(y) {
                       <tr>
                         <td class='line'>254</td>
                         <td class='hits'></td>
-                        <td class='source'>        {:error, &quot;get_custom_token failed.&quot;}</td>
+                        <td class='source'></td>
                       </tr>
                   
                 
@@ -12767,7 +12767,7 @@ function find(y) {
                       <tr>
                         <td class='line'>255</td>
                         <td class='hits'></td>
-                        <td class='source'>    end</td>
+                        <td class='source'>      _ -&gt;</td>
                       </tr>
                   
                 
@@ -12775,7 +12775,7 @@ function find(y) {
                       <tr>
                         <td class='line'>256</td>
                         <td class='hits'></td>
-                        <td class='source'></td>
+                        <td class='source'>        {:error, &quot;get_custom_token failed.&quot;}</td>
                       </tr>
                   
                 
@@ -12783,7 +12783,7 @@ function find(y) {
                       <tr>
                         <td class='line'>257</td>
                         <td class='hits'></td>
-                        <td class='source'>  end</td>
+                        <td class='source'>    end</td>
                       </tr>
                   
                 
@@ -12799,23 +12799,23 @@ function find(y) {
                       <tr>
                         <td class='line'>259</td>
                         <td class='hits'></td>
-                        <td class='source'>  defp get_config() do</td>
+                        <td class='source'>  end</td>
                       </tr>
                   
                 
                   
-                      <tr class='hit'>
+                      <tr>
                         <td class='line'>260</td>
-                        <td class='hits'>33</td>
-                        <td class='source'>    config = Application.get_env(:materia, Materia.Authenticator)</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
                       </tr>
-                    
+                  
                 
                   
                       <tr>
                         <td class='line'>261</td>
                         <td class='hits'></td>
-                        <td class='source'></td>
+                        <td class='source'>  defp get_config() do</td>
                       </tr>
                   
                 
@@ -12823,13 +12823,29 @@ function find(y) {
                       <tr class='hit'>
                         <td class='line'>262</td>
                         <td class='hits'>33</td>
+                        <td class='source'>    config = Application.get_env(:materia, Materia.Authenticator)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>263</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>264</td>
+                        <td class='hits'>33</td>
                         <td class='source'>    if config == nil do</td>
                       </tr>
                     
                 
                   
                       <tr class='miss'>
-                        <td class='line'>263</td>
+                        <td class='line'>265</td>
                         <td class='hits'>0</td>
                         <td class='source'>      raise BusinessError, message: &quot;materia.Authenticator config not found.&quot;</td>
                       </tr>
@@ -12837,7 +12853,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>264</td>
+                        <td class='line'>266</td>
                         <td class='hits'></td>
                         <td class='source'>    else</td>
                       </tr>
@@ -12845,7 +12861,7 @@ function find(y) {
                 
                   
                       <tr class='hit'>
-                        <td class='line'>265</td>
+                        <td class='line'>267</td>
                         <td class='hits'>33</td>
                         <td class='source'>      config</td>
                       </tr>
@@ -12853,7 +12869,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>266</td>
+                        <td class='line'>268</td>
                         <td class='hits'></td>
                         <td class='source'>    end</td>
                       </tr>
@@ -12861,7 +12877,7 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>267</td>
+                        <td class='line'>269</td>
                         <td class='hits'></td>
                         <td class='source'>  end</td>
                       </tr>
@@ -12869,7 +12885,63 @@ function find(y) {
                 
                   
                       <tr>
-                        <td class='line'>268</td>
+                        <td class='line'>270</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>271</td>
+                        <td class='hits'></td>
+                        <td class='source'>  defp on_refresh({old_token, old_claims}, {new_token, new_claims}) do</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='miss'>
+                        <td class='line'>272</td>
+                        <td class='hits'>0</td>
+                        <td class='source'>    Guardian.DB.on_revoke(old_claims, old_token)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr class='miss'>
+                        <td class='line'>273</td>
+                        <td class='hits'>0</td>
+                        <td class='source'>    Guardian.DB.after_encode_and_sign(%{}, new_claims[&quot;typ&quot;], new_claims, new_token)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>274</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='miss'>
+                        <td class='line'>275</td>
+                        <td class='hits'>0</td>
+                        <td class='source'>    {:ok, {old_token, old_claims}, {new_token, new_claims}}</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>276</td>
+                        <td class='hits'></td>
+                        <td class='source'>  end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>277</td>
                         <td class='hits'></td>
                         <td class='source'>end</td>
                       </tr>
