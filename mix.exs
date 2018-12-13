@@ -61,8 +61,7 @@ defmodule Materia.Mixfile do
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
       {:guardian, "~> 1.0"},
-      #{:guardian_db, "~> 1.0"},
-      {:guardian_db, git: "https://github.com/ueberauth/guardian_db"},
+      {:guardian_db, "~> 1.0"},
       {:guardian_backdoor, "~> 1.0.0", only: :test},
       {:poison, "~> 3.1"},
       {:timex, "~> 3.3"},
@@ -75,13 +74,13 @@ defmodule Materia.Mixfile do
       IO.puts("prod!!")
       # 本番環境のみmasterから取得する
       deps_list ++ [
-        {:materia_utils, git: "https://bitbucket.org/karabinertech_bi/materia_utils.git"},
+        {:materia_utils, git: "git@github.com:karabiner-inc/materia_utils.git"},
       ]
     else
       # それ以外はdevelopから取得する
       IO.puts("dev!!")
       deps_list ++ [
-        {:materia_utils, git: "https://bitbucket.org/karabinertech_bi/materia_utils.git", branch: "develop", app: false},
+        {:materia_utils, git: "git@github.com:karabiner-inc/materia_utils.git", branch: "develop", app: false},
       ]
     end
   end
