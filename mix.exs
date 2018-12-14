@@ -4,9 +4,9 @@ defmodule Materia.Mixfile do
   def project do
     [
       app: :materia,
-      version: "0.1.2",
-      elixir: "~> 1.4",
-      test_coverage: [tool: ExCoveralls, ignore_modules: [MateriaUtils.Ecto.EctoUtil]],
+      version: "0.1.0",
+      elixir: "~> 1.6",
+      test_coverage: [tool: ExCoveralls],
       preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
       description: "This library is a summary of the functions that are generally required for Web service development.",
       elixirc_paths: elixirc_paths(Mix.env),
@@ -16,7 +16,7 @@ defmodule Materia.Mixfile do
       package: [
         maintainers: ["karabiner.inc"],
         licenses: ["MIT"],
-        links: %{"GitHub" => "hhttps://github.com/karabiner-inc/materia"}
+        links: %{"GitHub" => "https://github.com/karabiner-inc/materia"}
       ],
       deps: deps()
     ]

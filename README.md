@@ -1,5 +1,8 @@
 # Materia
 
+[![hex.pm](https://img.shields.io/apm/l/materia.svg)](https://github.com/karabiner-inc/materia)
+[![Coverage Status](https://coveralls.io/repos/github/karabiner-inc/materia/badge.svg?branch=)](https://coveralls.io/github/karabiner-inc/materia?branch=)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
