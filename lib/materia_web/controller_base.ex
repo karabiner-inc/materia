@@ -1,4 +1,4 @@
-defmodule Materia.ControllerBase do
+defmodule MateriaWeb.ControllerBase do
 
   alias Ecto.Multi
   alias Materia.Errors.BusinessError
