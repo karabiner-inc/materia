@@ -66,23 +66,10 @@ defmodule Materia.Mixfile do
       {:poison, "~> 3.1"},
       {:timex, "~> 3.3"},
       {:sendgrid, "~> 1.8"},
+      {:materia_utils, "~> 0.1.1"},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:excoveralls, "~> 0.10", only: :test},
     ]
-      _deps_list =
-    if Mix.env() == :prod do
-      IO.puts("prod!!")
-      # 本番環境のみmasterから取得する
-      deps_list ++ [
-        {:materia_utils, git: "git@github.com:karabiner-inc/materia_utils.git"},
-      ]
-    else
-      # それ以外はdevelopから取得する
-      IO.puts("dev!!")
-      deps_list ++ [
-        {:materia_utils, git: "git@github.com:karabiner-inc/materia_utils.git", branch: "develop", app: false},
-      ]
-    end
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
