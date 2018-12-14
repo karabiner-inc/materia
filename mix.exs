@@ -49,9 +49,9 @@ defmodule Materia.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     deps_list = [
-      {:phoenix, "== 1.3.2"},
-      {:phoenix_pubsub, "== 1.0.2"},
-      {:plug, "== 1.5.1"},
+      {:phoenix, "~> 1.3.2"},
+      {:phoenix_pubsub, "~> 1.0.2"},
+      {:plug, "~> 1.5.1"},
       {:phoenix_ecto, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.10"},
