@@ -67,7 +67,7 @@ defmodule Materia.Mixfile do
       {:timex, "~> 3.3"},
       {:sendgrid, "~> 1.8"},
       {:materia_utils, "~> 0.1.1"},
-      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:ex_doc, ">= 0.0.0", only: :test},
       {:excoveralls, "~> 0.10", only: :test},
     ]
   end
