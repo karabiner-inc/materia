@@ -8,7 +8,9 @@ defmodule MateriaWeb.ControllerBase do
   def get_user_id(conn) do
     _user_id =
       try do
-        conn.private.guardian_default_claims["sub"]
+        sub = conn.private.guardian_default_claims["sub"]
+        {:ok, sub_map} = Poison.decode(sub)
+        sub_map["user_id"]
       rescue
         _e in KeyError ->
           Logger.debug("#{__MODULE__} conn.private.guardian_default_claims[\"sub\"] is not found. anonymus operation!")

@@ -17,8 +17,8 @@ defmodule Materia.Authenticator do
     # A unique `id` is a good subject, a non-unique email address
     # is a poor subject.
     Logger.debug("---  #{__MODULE__} subject_for_token --------------")
-    sub = to_string(resource.id)
-    {:ok, sub}
+    #sub = to_string(resource.id)
+    {:ok, sub} =  Poison.encode(%{user_id: resource.id})
   end
 
   def subject_for_token(_, _) do
@@ -52,7 +52,8 @@ defmodule Materia.Authenticator do
   def on_verify(claims, token, _options) do
     Logger.debug("---  #{__MODULE__} on_verify --------------")
 
-    user = Materia.Accounts.get_user!(claims["sub"])
+    user = Materia.Accounts.get_user!(get_user_id_from_claims(claims))
+
     case claims["typ"] do
       "access" ->
         if user.status != User.status.activated do
@@ -67,7 +68,7 @@ defmodule Materia.Authenticator do
           raise BusinessError, message: @msg_err_invalid_token
         end
       _ ->
-        raise BusinessErrr, message: @msg_err_invalid_token
+        raise BusinessError, message: @msg_err_invalid_token
     end
 
     with {:ok, _} <- Guardian.DB.on_verify(claims, token) do
@@ -229,6 +230,11 @@ defmodule Materia.Authenticator do
 
   end
 
+  def get_user_id_from_claims(claims) do
+    {:ok, sub} = Poison.decode(claims["sub"])
+    user_id = sub["user_id"]
+  end
+
   @doc false
   defp get_custom_token(email, token_type, token_ttl) do
     claims = %{"email" => email}
@@ -275,4 +281,5 @@ defmodule Materia.Authenticator do
 
     {:ok, {old_token, old_claims}, {new_token, new_claims}}
   end
+
 end
