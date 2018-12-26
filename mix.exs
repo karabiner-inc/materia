@@ -4,7 +4,7 @@ defmodule Materia.Mixfile do
   def project do
     [
       app: :materia,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.6",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
