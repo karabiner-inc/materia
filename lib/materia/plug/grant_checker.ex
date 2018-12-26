@@ -5,6 +5,7 @@ defmodule Materia.Plug.GrantChecker do
 
   alias Materia.Accounts
   alias Materia.Accounts.Grant
+  alias MateriaWeb.ControllerBase
 
   def init(opts) do
     Logger.debug("#{__MODULE__}--- init---------------------")
@@ -12,7 +13,7 @@ defmodule Materia.Plug.GrantChecker do
 
   def call(conn, opts) do
     Logger.debug("#{__MODULE__}--- call ---------------------")
-    user = Accounts.get_user!(conn.private.guardian_default_claims["sub"])
+    user = Accounts.get_user!(ControllerBase.get_user_id(conn))
     grants = Accounts.get_grant_by_role(user.role)
     has_grant? = grants
     |> Enum.any?(fn(grant) -> ( String.upcase(grant.method) == Grant.method.any or String.upcase(grant.method) == conn.method ) and Regex.match?(~r/#{grant.request_path}[0-9]*/,conn.request_path) end)

@@ -3,6 +3,7 @@ defmodule MateriaWeb.UserController do
 
   alias Materia.Accounts
   alias Materia.Accounts.User
+  alias MateriaWeb.ControllerBase
 
   action_fallback MateriaWeb.FallbackController
 
@@ -35,7 +36,8 @@ defmodule MateriaWeb.UserController do
 
   def show_me(conn, _params) do
     Logger.debug("show_me")
-    id = String.to_integer(conn.private.guardian_default_claims["sub"])
+    #id = String.to_integer(conn.private.guardian_default_claims["sub"])
+    id = ControllerBase.get_user_id(conn)
     user = Accounts.get_user!(id)
     render(conn, "show.json", user: user)
   end
@@ -69,7 +71,8 @@ defmodule MateriaWeb.UserController do
   end
 
   def registration_user(conn, params) do
-    id = String.to_integer(conn.private.guardian_default_claims["sub"])
+    #id = String.to_integer(conn.private.guardian_default_claims["sub"])
+    id = ControllerBase.get_user_id(conn)
     user = Accounts.get_user!(id)
     conn = MateriaWeb.ControllerBase.transaction_flow(conn, :user, Materia.Accounts, :registration_user, [user, params])
     if Map.has_key?(conn, :private) do
@@ -80,7 +83,8 @@ defmodule MateriaWeb.UserController do
   end
 
   def registration_user_and_sign_in(conn, params) do
-    id = String.to_integer(conn.private.guardian_default_claims["sub"])
+    #id = String.to_integer(conn.private.guardian_default_claims["sub"])
+    id = ControllerBase.get_user_id(conn)
     user = Accounts.get_user!(id)
     conn = MateriaWeb.ControllerBase.transaction_flow(conn, :user_token, Materia.Accounts, :registration_user_and_sign_in, [user, params])
     token = conn.private.guardian_default_token
@@ -93,7 +97,8 @@ defmodule MateriaWeb.UserController do
   end
 
   def reset_my_password(conn, %{"password" => password}) do
-    id = String.to_integer(conn.private.guardian_default_claims["sub"])
+    #id = String.to_integer(conn.private.guardian_default_claims["sub"])
+    id = ControllerBase.get_user_id(conn)
     user = Accounts.get_user!(id)
     conn = MateriaWeb.ControllerBase.transaction_flow(conn, :user, Materia.Accounts, :reset_my_password, [user, password])
     token = conn.private.guardian_default_token

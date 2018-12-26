@@ -1,5 +1,7 @@
 defmodule Materia.Mails.MailClientAwsSes do
 
+  alias Materia.Errors.BusinessError
+
   require Logger
 
   @behaviour Materia.Mails.MailClient
