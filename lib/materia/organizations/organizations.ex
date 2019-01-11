@@ -279,11 +279,11 @@ defmodule Materia.Organizations do
   ## Examples
 
   ```
-  iex(1)> organization = Materia.Organizations.get_organization!(1)
+  iex(1)> {:ok, organization} = Materia.Organizations.create_organization(%{name: "test_delete_organiztion_001"})
   iex(2)> {:ok, organization} = Materia.Organizations.delete_organization(organization)
   iex(3)> organizations = Materia.Organizations.list_organizations()
-  iex(4)> MateriaWeb.OrganizationView.render("index.json", %{organizations: organizations})
-  []
+  iex(4)> MateriaWeb.OrganizationView.render("index.json", %{organizations: organizations}) |> length()
+  1
   ```
 
   """

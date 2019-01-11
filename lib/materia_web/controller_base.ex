@@ -3,19 +3,34 @@ defmodule MateriaWeb.ControllerBase do
   alias Ecto.Multi
   alias Materia.Errors.BusinessError
 
+  alias Materia.UserAuthenticator
+  alias Materia.AccountAuthenticator
+
   require Logger
 
   def get_user_id(conn) do
     _user_id =
+    try do
+      clames = conn.private.guardian_default_claims
+      UserAuthenticator.get_user_id_from_claims(clames)
+    rescue
+      _e in KeyError ->
+        Logger.debug("#{__MODULE__} conn.private.guardian_default_claims is not found. anonymus operation!")
+        raise BusinessError, message: "conn.private.guardian_default_claims is not found. anonymus operation!\rthis endpoint need Materia.UserAuthPipeline. check your app's router.ex"
+    end
+  end
+
+  def get_account_id(conn) do
+    _account_code =
       try do
-        sub = conn.private.guardian_default_claims["sub"]
-        {:ok, sub_map} = Poison.decode(sub)
-        sub_map["user_id"]
+        clames = conn.private.guardian_default_claims
+        AccountAuthenticator.get_account_id_from_claims(clames)
       rescue
         _e in KeyError ->
-          Logger.debug("#{__MODULE__} conn.private.guardian_default_claims[\"sub\"] is not found. anonymus operation!")
-          raise BusinessError, message: "conn.private.guardian_default_claims[\"sub\"] is not found. anonymus operation!\rthis endpoint need Materia.AuthenticatePipeline. check your app's router.ex"
+          Logger.debug("#{__MODULE__} conn.private.guardian_default_claims is not found. anonymus operation!")
+          raise BusinessError, message: "conn.private.guardian_default_claims is not found. anonymus operation!\rthis endpoint need Materia.AccountAuthPipeline. check your app's router.ex"
       end
+
   end
 
   def transaction_flow(conn, controler_atom, module, function_atom, attr \\ [%{}]) do

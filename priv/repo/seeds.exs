@@ -31,6 +31,8 @@ Accounts.update_user(user_hogehoge, %{organization_id: organization_hogehoge.id}
 Locations.create_address(%{organization_id: organization_hogehoge.id, subject: "registry", location: "福岡県", zip_code: "810-ZZZZ", address1: "福岡市中央区", address2: "天神 x-x-xx"})
 Locations.create_address(%{organization_id: organization_hogehoge.id, subject: "branch", location: "福岡県", zip_code: "812-ZZZZ", address1: "北九州市小倉北区", address2: "浅野 x-x-xx"})
 
+Accounts.create_account(%{"name" => "hogehoge account", "start_datetime" => "2019-01-10T10:03:50.293740Z", "main_user_id" => user_hogehoge.id, "organization_id" => organization_hogehoge.id})
+
 alias Materia.Mails
 
 Mails.create_mail_template(%{ mail_template_type: "user_registration_request", subject: "【注意！登録は完了していません】{!email}様 本登録のご案内", body: "{!email}様\nこの度は当サービスへ仮登録をいただき誠にありがとうございます。\n\n本登録のご案内をいたます。\n\n下記URLのリンクをクリックし、必要情報を入力の上、30分以内に本登録操作の完了をお願いいたします。\n操作完了後\"【本登録完了しました】\"のタイトルのメールが届きましたら本登録完了となります。\n\n https://{!user_registration_url}?param=!{user_regstration_token} \n\n------------------------------\nカラビナテクノロジー株式会社\n〒810-0001 \n福岡市中央区天神1-2-4 農業共済ビル2F\n------------------------------" })

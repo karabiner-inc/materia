@@ -8,6 +8,8 @@ defmodule MateriaWeb.AuthenticatorController do
   #alias Materia.Accounts
   #alias Materia.Accounts.User
 
+  action_fallback MateriaWeb.FallbackController
+
   require Logger
 
   #def sign_in(conn, _params = %{ "email" => email, "password" => password }) do
@@ -37,11 +39,30 @@ defmodule MateriaWeb.AuthenticatorController do
   #  end
 #
   #end
+  def sign_in(conn, _params = %{ "account" => account, "email" => email, "password" => password }) do
+    Logger.debug("--- MateriaWeb.AuthenticateController sign_in with account-----------------")
+
+    with {:ok, result} <- Materia.AccountAuthenticator.sign_in(account, email, password) do
+      authenticator =
+      if Map.has_key?(result, :refresh_token) do
+        %{id: result.id ,access_token: result.access_token, refresh_token: result.refresh_token}
+      else
+        %{id: result.id ,access_token: result.access_token}
+      end
+    conn
+      |> put_status(:created)
+      |> render("show.json", authenticator: authenticator)
+    else
+      {:error, message} ->
+        handle_unauthenticated(conn, message)
+    end
+
+  end
 
   def sign_in(conn, _params = %{ "email" => email, "password" => password }) do
-    Logger.debug("--- MateriaWeb.AuthenticateController sign_in_with_refresh-----------------")
+    Logger.debug("--- MateriaWeb.AuthenticateController sign_in-----------------")
 
-    with {:ok, result} <- Materia.Authenticator.sign_in(email, password) do
+    with {:ok, result} <- Materia.UserAuthenticator.sign_in(email, password) do
       authenticator =
       if Map.has_key?(result, :refresh_token) do
         %{id: result.id ,access_token: result.access_token, refresh_token: result.refresh_token}
@@ -59,12 +80,14 @@ defmodule MateriaWeb.AuthenticatorController do
   end
 
   def refresh(conn, _params = %{ "refresh_token" => refresh_token}) do
-    with {:ok, access, _refresh } <- Materia.Authenticator.refresh_tokens(refresh_token) do
+    with {:ok, access, _refresh } <- Materia.UserAuthenticator.refresh_tokens(refresh_token) do
       {access_token, _access_claims} = access
       {refresh_token, refresh_claims} = access
+      {:ok, sub} = Poison.decode(refresh_claims["sub"])
+      IO.inspect(sub)
       conn
         |> put_status(:created)
-        |> render("show.json", authenticator: %{id: refresh_claims["sub"] ,access_token: access_token, refresh_token: refresh_token})
+        |> render("show.json", authenticator: %{id: sub["user_id"] ,access_token: access_token, refresh_token: refresh_token})
       else
         {:error, message} ->
           handle_unauthenticated(conn, message)
@@ -74,7 +97,7 @@ defmodule MateriaWeb.AuthenticatorController do
   def sign_out(conn, _params) do
     Logger.debug("--- MateriaWeb.AuthenticateController sign_out-----------------")
     token = conn.private[:guardian_default_token]
-    with {:ok, _claims} = Materia.Authenticator.revoke(token) do
+    with {:ok, _claims} = Materia.UserAuthenticator.revoke(token) do
       conn
       |> put_status(200)
       |> render("delete.json", [])
