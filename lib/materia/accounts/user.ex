@@ -48,7 +48,7 @@ defmodule Materia.Accounts.User do
   def changeset_create(user, attrs) do
     user
     |> cast(attrs, [:organization_id, :name, :email, :password, :role, :status, :external_user_id, :back_ground_img_url, :icon_img_url, :one_line_message, :descriptions, :phone_number, :lock_version])
-    |> validate_required([:name, :email, :password, :role])
+    |> validate_required([:email, :password, :role])
     |> unique_constraint(:email)
     |> put_password_hash()
     |> optimistic_lock(:lock_version)

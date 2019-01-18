@@ -36,7 +36,6 @@ defmodule MateriaWeb.UserController do
 
   def show_me(conn, _params) do
     Logger.debug("show_me")
-    #id = String.to_integer(conn.private.guardian_default_claims["sub"])
     id = ControllerBase.get_user_id(conn)
     user = Accounts.get_user!(id)
     render(conn, "show.json", user: user)
@@ -57,14 +56,14 @@ defmodule MateriaWeb.UserController do
     end
   end
 
-  def send_verify_mail(conn, %{"id" => id}) do
-    # メールアドレス検証用のメール送信
-    user = Accounts.get_user!(id)
-
-    with {:ok, _result} = Accounts.send_verify_mail(user) do
-      send_resp(conn, :no_content, "")
-    end
-  end
+  #def send_verify_mail(conn, %{"id" => id}) do
+  #  # メールアドレス検証用のメール送信
+  #  user = Accounts.get_user!(id)
+#
+  #  with {:ok, _result} = Accounts.send_verify_mail(user) do
+  #    send_resp(conn, :no_content, "")
+  #  end
+  #end
 
   def registration_tmp_user(conn, %{"email" => email, "role" => role}) do
     MateriaWeb.ControllerBase.transaction_flow(conn, :tmp_user, Materia.Accounts, :regster_tmp_user, [email, role])
@@ -77,7 +76,7 @@ defmodule MateriaWeb.UserController do
     conn = MateriaWeb.ControllerBase.transaction_flow(conn, :user, Materia.Accounts, :registration_user, [user, params])
     if Map.has_key?(conn, :private) do
       token = conn.private.guardian_default_token
-      Materia.Authenticator.revoke(token)
+      Materia.UserAuthenticator.revoke(token)
     end
     conn
   end
@@ -88,7 +87,7 @@ defmodule MateriaWeb.UserController do
     user = Accounts.get_user!(id)
     conn = MateriaWeb.ControllerBase.transaction_flow(conn, :user_token, Materia.Accounts, :registration_user_and_sign_in, [user, params])
     token = conn.private.guardian_default_token
-    Materia.Authenticator.revoke(token)
+    Materia.UserAuthenticator.revoke(token)
     conn
   end
 
@@ -102,7 +101,7 @@ defmodule MateriaWeb.UserController do
     user = Accounts.get_user!(id)
     conn = MateriaWeb.ControllerBase.transaction_flow(conn, :user, Materia.Accounts, :reset_my_password, [user, password])
     token = conn.private.guardian_default_token
-    Materia.Authenticator.revoke(token)
+    Materia.UserAuthenticator.revoke(token)
     conn
   end
 

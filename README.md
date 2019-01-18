@@ -1,6 +1,6 @@
 # Materia
 
-[![hex.pm](https://img.shields.io/apm/l/materia.svg)](https://github.com/karabiner-inc/materia)
+[![hex.pm](https://img.shields.io/hexpm/l/materia.svg)](https://github.com/karabiner-inc/materia)
 [![Coverage Status](https://coveralls.io/repos/github/karabiner-inc/materia/badge.svg?branch=master)](https://coveralls.io/github/karabiner-inc/materia?branch=master)
 
 To start your Phoenix server:
@@ -45,10 +45,21 @@ config/config.exs
 
 ```
 # Configures Guardian
+# Configures Materia.Authenticator common settings
 config :materia, Materia.Authenticator,
-  issuer: "your_app_name",  #<- mod your app name
-  # Generate mix task 
-  # > mix phx.gen.secret
+  access_token_ttl: {10, :minutes}, #必須
+  refresh_token_ttl: {1, :days}, # refresh_tokenを定義しない場合sign-inはaccess_tokenのみ返す
+  user_registration_token_ttl: {35, :minutes},
+  password_reset_token_ttl: {35, :minutes}
+
+# Configures UserAuthenticator (if you wont user user authenticator)
+config :materia, Materia.UserAuthenticator,
+  issuer: "your_app_name",
+  secret_key: "your secusecret token"
+
+# Configures AccountAuthenticator  (if you wont user account authenticator)
+config :materia, Materia.AccountAuthenticator,
+  issuer: "your_app_name",
   secret_key: "your secusecret token"
 
 # Configures GuardianDB
@@ -127,7 +138,7 @@ lib/your_app_web/router.ex
 
 ```
   pipeline :guardian_auth do
-    plug Materia.AuthenticatePipeline #<-- guardian jwt token authentication by user model.
+    plug Materia.UserAuthePipeline #<-- guardian jwt token authentication by user model. you can use AccountAuthPiplein if you wont account authentication 
   end
   pipeline :grant_check do
     plug Materia.Plug.GrantChecker, repo: YourApp.Repo #<-- Grant check by user ,role and grant model.

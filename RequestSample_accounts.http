@@ -6,17 +6,26 @@
 @url = http://localhost:4001
 #@url = https://
 
-###ログイン
+###ログイン(ユーザー認証)
 POST {{url}}/api/sign-in HTTP/1.1
 Content-Type: application/json
 
 {
+    "email": "fugafuga@example.com", 
+    "password": "fugafuga"
+  }
+
+###ログイン(アカウント＋ユーザー認証)
+POST {{url}}/api/sign-in HTTP/1.1
+Content-Type: application/json
+
+{
+    "account": "hogehoge account",
     "email": "hogehoge@example.com", 
     "password": "hogehoge"
   }
 
-@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNYXRlcmlhIiwiZW1haWwiOiJob2dlaG9nZUBleGFtcGxlLmNvbSIsImV4cCI6MTU0NTgxMTc4OSwiaWF0IjoxNTQ1ODExMTg5LCJpc3MiOiJNYXRlcmlhIiwianRpIjoiMWEzYmM0ZGMtZWJmYS00MWUyLWJiNjctNDYxMTJmMzU4Njc2IiwibmJmIjoxNTQ1ODExMTg4LCJzdWIiOiJ7XCJ1c2VyX2lkXCI6MX0iLCJ0eXAiOiJhY2Nlc3MifQ.taF2To9CACyPMyZcmDjCi82VKmhA-fq8QApVhfiA8DY
-
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNYXRlcmlhIiwiZW1haWwiOiJmdWdhZnVnYUBleGFtcGxlLmNvbSIsImV4cCI6MTU0NzExNTc0MiwiaWF0IjoxNTQ3MTE1MTQyLCJpc3MiOiJNYXRlcmlhIiwianRpIjoiZDdlNTY1N2MtYmJmYi00ZWVlLTgyOWMtNTMzMWQ3YzYxNGJmIiwibmJmIjoxNTQ3MTE1MTQxLCJzdWIiOiJ7XCJ1c2VyX2lkXCI6Mn0iLCJ0eXAiOiJhY2Nlc3MifQ.BRWP0jtVN47tCg94ssfQJ6WLldP_FHgjoz7r4HSIM4U
 
 ### ユーザー汎用検索
 POST {{url}}/api/search-users HTTP/1.1

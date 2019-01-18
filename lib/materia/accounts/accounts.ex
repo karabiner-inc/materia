@@ -6,13 +6,17 @@ defmodule Materia.Accounts do
   import Ecto.Query, warn: false
 
   alias Materia.Accounts.User
-  alias Materia.Authenticator
+  alias Materia.Accounts.Account
+  alias Materia.UserAuthenticator
   alias Materia.Mails
   alias MateriaUtils.Ecto.EctoUtil
+  alias MateriaUtils.Calendar.CalendarUtil
 
   alias Materia.Errors.BusinessError
 
   require Logger
+
+  @repo Application.get_env(:materia, :repo)
 
   @msg_err_duplicate_emal "this email address was already registered."
 
@@ -103,11 +107,10 @@ defmodule Materia.Accounts do
 
   """
   def list_users do
-    repo = Application.get_env(:materia, :repo)
 
     User
-    |> repo.all()
-    |> repo.preload([:organization, :addresses])
+    |> @repo.all()
+    |> @repo.preload([:organization, :addresses])
   end
 
   @doc """
@@ -197,11 +200,10 @@ defmodule Materia.Accounts do
 
   """
   def list_users_by_params(params) do
-    repo = Application.get_env(:materia, :repo)
 
-    repo
+    @repo
     |> EctoUtil.select_by_param(User, params)
-    |> repo.preload(:organization)
+    |> @repo.preload(:organization)
   end
 
   @doc """
@@ -273,11 +275,11 @@ defmodule Materia.Accounts do
 
   """
   def get_user!(id) do
-    repo = Application.get_env(:materia, :repo)
+
 
     User
-    |> repo.get!(id)
-    |> repo.preload([:organization, :addresses])
+    |> @repo.get!(id)
+    |> @repo.preload([:organization, :addresses])
   end
 
   @doc """
@@ -319,14 +321,14 @@ defmodule Materia.Accounts do
 
   """
   def get_user_by_email(email) do
-    repo = Application.get_env(:materia, :repo)
+
 
     user =
       with [user] <-
              User
              |> where(email: ^email)
-             |> repo.all()
-             |> repo.preload(:organization) do
+             |> @repo.all()
+             |> @repo.preload(:organization) do
         user
       else
         _ -> nil
@@ -379,11 +381,11 @@ defmodule Materia.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
-    repo = Application.get_env(:materia, :repo)
+
 
     %User{}
     |> User.changeset_create(attrs)
-    |> repo.insert()
+    |> @repo.insert()
   end
 
   @doc """
@@ -455,11 +457,10 @@ defmodule Materia.Accounts do
 
   """
   def update_user(%User{} = user, attrs) do
-    repo = Application.get_env(:materia, :repo)
 
     user
     |> User.changeset_update(attrs)
-    |> repo.update()
+    |> @repo.update()
   end
 
   @doc """
@@ -471,35 +472,20 @@ defmodule Materia.Accounts do
 
   ```
 
-  iex(1)> user = Materia.Accounts.get_user!(1)
-  iex(2)> Materia.Accounts.delete_user(user)
-  iex(3)> users = Materia.Accounts.list_users()
-  iex(4)> MateriaWeb.UserView.render("index.json", %{users: users})
-  [
-    %{
-      addresses: [],
-      back_ground_img_url: nil,
-      descriptions: nil,
-      email: "fugafuga@example.com",
-      external_user_id: nil,
-      icon_img_url: nil,
-      id: 2,
-      lock_version: 1,
-      name: "fugafuga",
-      organization: nil,
-      role: "operator",
-      phone_number: nil,
-      status: 1
-    }
-  ]
+  iex(1)> {:ok, user} = Materia.Accounts.create_user(%{name: "test_delete_user001", email: "test_delete_user001@example.com", password: "test_delete_user001", role: "operator", organization_id: 1})
+  iex(2)> Materia.Accounts.list_users_by_params(%{ "and" => [%{"name" => "test_delete_user001"}]}) |> length()
+  1
+  iex(3)> Materia.Accounts.delete_user(user)
+  iex(4)> Materia.Accounts.list_users_by_params(%{ "and" => [%{"name" => "test_delete_user001"}]}) |> length()
+  0
 
   ```
 
 
   """
   def delete_user(%User{} = user) do
-    repo = Application.get_env(:materia, :repo)
-    repo.delete(user)
+
+    @repo.delete(user)
   end
 
   alias Materia.Accounts.Grant
@@ -532,8 +518,8 @@ defmodule Materia.Accounts do
 
   """
   def list_grants do
-    repo = Application.get_env(:materia, :repo)
-    repo.all(Grant)
+
+    @repo.all(Grant)
   end
 
   @doc """
@@ -553,8 +539,8 @@ defmodule Materia.Accounts do
 
   """
   def get_grant!(id) do
-    repo = Application.get_env(:materia, :repo)
-    repo.get!(Grant, id)
+
+    @repo.get!(Grant, id)
   end
 
   @doc """
@@ -587,12 +573,12 @@ defmodule Materia.Accounts do
 
   """
   def get_grant_by_role(role) do
-    repo = Application.get_env(:materia, :repo)
+
     dc_role = String.downcase(role)
 
     Grant
     |> where([g], g.role == ^dc_role or g.role == ^Grant.role().anybody)
-    |> repo.all()
+    |> @repo.all()
   end
 
   @doc """
@@ -610,11 +596,10 @@ defmodule Materia.Accounts do
 
   """
   def create_grant(attrs \\ %{}) do
-    repo = Application.get_env(:materia, :repo)
 
     %Grant{}
     |> Grant.changeset(attrs)
-    |> repo.insert()
+    |> @repo.insert()
   end
 
   @doc """
@@ -634,11 +619,10 @@ defmodule Materia.Accounts do
 
   """
   def update_grant(%Grant{} = grant, attrs) do
-    repo = Application.get_env(:materia, :repo)
 
     grant
     |> Grant.changeset(attrs)
-    |> repo.update()
+    |> @repo.update()
   end
 
   @doc """
@@ -670,8 +654,8 @@ defmodule Materia.Accounts do
 
   """
   def delete_grant(%Grant{} = grant) do
-    repo = Application.get_env(:materia, :repo)
-    repo.delete(grant)
+
+    @repo.delete(grant)
   end
 
   @doc """
@@ -693,11 +677,10 @@ defmodule Materia.Accounts do
 
   @doc false
   defp create_tmp_user(attrs \\ %{}) do
-    repo = Application.get_env(:materia, :repo)
 
     %User{}
     |> User.changeset_tmp_registration(attrs)
-    |> repo.insert()
+    |> @repo.insert()
   end
 
   @doc """
@@ -745,7 +728,7 @@ defmodule Materia.Accounts do
         end
       end
 
-    {:ok, user_registration_token} = Authenticator.get_user_registration_token(email)
+    {:ok, user_registration_token} = UserAuthenticator.get_user_registration_token(email)
 
     email = merged_user.email
     template_type = config[:user_registration_request_mail_template_type]
@@ -770,10 +753,10 @@ defmodule Materia.Accounts do
 
   @doc false
   defp registration_user(%User{} = user, attrs) do
-    repo = Application.get_env(:materia, :repo)
+
     user
     |> User.changeset_registration(attrs)
-    |> repo.update()
+    |> @repo.update()
   end
 
   @doc """
@@ -936,7 +919,7 @@ defmodule Materia.Accounts do
 
     {:ok, user} = registration_user(_result, user, attr)
 
-    {:ok, result} = Authenticator.sign_in(user.email, user.password)
+    {:ok, result} = UserAuthenticator.sign_in(user.email, user.password)
 
     user_with_token = %{
       user: user,
@@ -970,7 +953,7 @@ defmodule Materia.Accounts do
       # ユーザーが存在しない場合も素知らぬ顔で正常終了する
       {:ok, %{password_reset_token: ""}}
     else
-      {:ok, password_reset_token} = Authenticator.get_password_reset_token(email)
+      {:ok, password_reset_token} = UserAuthenticator.get_password_reset_token(email)
 
       email = email
       template_type = config[:password_reset_request_mail_template_type]
@@ -1115,6 +1098,143 @@ defmodule Materia.Accounts do
         )
         raise BusinessError, message: "send user registration mail error."
     end
+  end
+
+  alias Materia.Accounts.Account
+
+  @doc """
+  Returns the list of accounts.
+
+  ## Examples
+
+  iex(1)> accounts = Materia.Accounts.list_accounts()
+  iex(2)> length(accounts)
+  1
+
+  """
+  def list_accounts do
+    @repo.all(Account)
+    |> @repo.preload(:organization)
+    |> @repo.preload(:main_user)
+  end
+
+  @doc """
+  Gets a single account.
+
+  Raises `Ecto.NoResultsError` if the Account does not exist.
+
+  ## Examples
+
+  iex(1)> account = Materia.Accounts.get_account!(1)
+  iex(2)> MateriaWeb.AccountView.render("show.json", %{account: account}) |> Map.delete(:start_datetime)
+  %{
+    descriptions: nil,
+    expired_datetime: nil,
+    external_code: "hogehoge_code",
+    frozen_datetime: nil,
+    id: 1,
+    lock_version: 0,
+    main_user: nil,
+    name: "hogehoge account",
+    organization: nil,
+    status: 1
+  }
+
+  """
+  def get_account!(id), do: @repo.get!(Account, id)
+
+
+  @doc """
+  iex(1)> accounts = Materia.Accounts.list_accounts_by_params(%{"and" => [ %{"status" => 1}, %{"organization_id" => 1} ]})
+  iex(2)> length(accounts)
+  1
+
+  """
+  def list_accounts_by_params(params) do
+    @repo
+    |> EctoUtil.select_by_param(Account, params)
+    |> @repo.preload(:organization)
+    |> @repo.preload(:main_user)
+  end
+
+  @doc """
+  Creates a accounts.
+
+  ## Examples
+
+  iex(1)> {:ok, account} = Materia.Accounts.create_account(%{"external_code" => "craete_account_test001"})
+  iex(2)> MateriaWeb.AccountView.render("show.json", %{account: account}) |> Map.delete(:id) |> Map.delete(:start_datetime)
+  %{
+    descriptions: nil,
+    expired_datetime: nil,
+    external_code: "craete_account_test001",
+    frozen_datetime: nil,
+    lock_version: 0,
+    main_user: nil,
+    name: nil,
+    organization: nil,
+    status: 1
+  }
+
+  """
+  def create_account(attrs \\ %{}) do
+    attrs =
+    if Map.has_key?(attrs, "start_datetime") do
+      attrs
+    else
+      Map.put(attrs, "start_datetime", CalendarUtil.now())
+    end
+    %Account{}
+    |> Account.create_changeset(attrs)
+    |> @repo.insert()
+  end
+
+  @doc """
+  Updates a account.
+
+  ## Examples
+
+  iex(1)> {:ok, account} = Materia.Accounts.create_account(%{"external_code" => "update_account_test001"})
+  iex(2)> {:ok, updated_account} = Materia.Accounts.update_account(account, %{"status" => 8})
+  iex(3)> updated_account.status
+  8
+  iex(4)> updated_account.frozen_datetime != nil
+  true
+
+  """
+  def update_account(%Account{} = account, attrs) do
+
+    # ステータスが更新されている場合、
+    if Map.has_key?(attrs, "status") do
+      attrs =
+      cond do
+      attrs["status"] == Account.status.activated ->
+        Map.put(attrs, "start_datetime", CalendarUtil.now())
+      attrs["status"] == Account.status.frozen ->
+        Map.put(attrs, "frozen_datetime", CalendarUtil.now())
+      attrs["status"] == Account.status.expired ->
+        Map.put(attrs, "expired_datetime", CalendarUtil.now())
+      end
+    end
+
+    account
+    |> Account.update_changeset(attrs)
+    |> @repo.update()
+  end
+
+  @doc """
+  Deletes a Account.
+
+  ## Examples
+
+  iex(1)> {:ok, account} = Materia.Accounts.create_account(%{"external_code" => "delete_account_test001"})
+  iex(2)> {:ok, deleted_account} = Materia.Accounts.delete_account(account)
+  iex(3)> Materia.Accounts.list_accounts_by_params(%{"and" => [ %{"id" => account.id} ] })
+  []
+
+  """
+  def delete_account(%Account{} = account) do
+    @repo.delete(account)
   end
 
 

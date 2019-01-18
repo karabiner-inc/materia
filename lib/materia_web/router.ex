@@ -14,7 +14,11 @@ defmodule MateriaWeb.Router do
   end
 
   pipeline :guardian_auth do
-    plug Materia.AuthenticatePipeline
+    plug Materia.UserAuthPipeline
+  end
+
+  pipeline :guardian_auth_acount do
+    plug Materia.AccountAuthPipeline
   end
 
   pipeline :tmp_user_auth do
@@ -67,7 +71,15 @@ defmodule MateriaWeb.Router do
     post "search-users", UserController, :list_users_by_params
     resources "/addresses", AddressController, except: [:new, :edit]
     post "create-my-addres", AddressController, :create_my_address
+    resources "/accounts", AccountController, except: [:new, :edit]
+    post "search-accounts", AccountController, :list_accounts_by_params
 
+  end
+
+  scope "/api", MateriaWeb do
+    pipe_through [ :api, :guardian_auth_acount]
+
+    get "/my-account", AccountController, :show_my_account
   end
 
   scope "/api/ops", MateriaWeb do

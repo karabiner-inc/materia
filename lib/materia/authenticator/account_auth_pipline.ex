@@ -1,11 +1,11 @@
-defmodule Materia.UserRegistrationAuthPipeline do
+defmodule Materia.AccountAuthPipeline do
   @moduledoc false
   use Guardian.Plug.Pipeline, otp_app: :materia,
-                               module: Materia.UserAuthenticator,
+                               module: Materia.AccountAuthenticator,
                                error_handler: Materia.AuthenticateErrorHandler
-  plug Guardian.Plug.VerifySession, claims: %{"typ" => "user_registration"}
+  plug Guardian.Plug.VerifySession, claims: %{"typ" => "access"}
   #plug Materia.Plug.Debug
-  plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "user_registration"}
+  plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"}
   #plug Materia.Plug.Debug
   plug Guardian.Plug.EnsureAuthenticated
   #plug Materia.Plug.Debug
