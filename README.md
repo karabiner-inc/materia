@@ -1,6 +1,6 @@
 # Materia
 
-[![hex.pm](https://img.shields.io/apm/l/materia.svg)](https://github.com/karabiner-inc/materia)
+[![hex.pm](https://img.shields.io/bower/l/materia.svg)](https://github.com/karabiner-inc/materia)
 [![Coverage Status](https://coveralls.io/repos/github/karabiner-inc/materia/badge.svg?branch=master)](https://coveralls.io/github/karabiner-inc/materia?branch=master)
 
 To start your Phoenix server:
