@@ -84,7 +84,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
     test "sign-in life cycle by account and user", %{conn: conn} do
 
       attr = %{
-        "account" => "hogehoge account",
+        "account" => "hogehoge_code",
         "email" => "hogehoge@example.com",
         "password" => "hogehoge",
       }
@@ -155,7 +155,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
     assert resp_show_my_account == %{
       "descriptions" => nil,
       "expired_datetime" => nil,
-      "external_code" => nil,
+      "external_code" => "hogehoge_code",
       "frozen_datetime" => nil,
       "id" => 1,
       "lock_version" => 0,
@@ -183,7 +183,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
     assert resp_show_my_account2 == %{
       "descriptions" => nil,
       "expired_datetime" => nil,
-      "external_code" => nil,
+      "external_code" => "hogehoge_code",
       "frozen_datetime" => nil,
       "id" => 1,
       "lock_version" => 0,

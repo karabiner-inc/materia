@@ -36,7 +36,7 @@ defmodule Materia.AccountAuthenticator do
       {:error, "account #{account} not found."}
     else
       org_accounts = Accounts.list_accounts_by_params(%{"and" => [%{"organization_id" => user.organization_id}]})
-      org_account = Enum.find(org_accounts, fn(org_account) -> org_account.name === account end)
+      org_account = Enum.find(org_accounts, fn(org_account) -> org_account.external_code === account end)
       if org_account == nil do
         {:error, "account #{account} not found."}
       else

@@ -5,7 +5,7 @@ defmodule MateriaWeb.AccountControllerTest do
   alias Materia.Accounts.Account
 
   @admin_user_attrs %{
-    account: "hogehoge account",
+    account: "hogehoge_code",
     email: "hogehoge@example.com",
     password: "hogehoge",
   }

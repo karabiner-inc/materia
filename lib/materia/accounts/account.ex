@@ -22,7 +22,7 @@ defmodule Materia.Accounts.Account do
   def create_changeset(account, attrs) do
     account
     |> cast(attrs, [:external_code, :name, :start_datetime, :descriptions, :frozen_datetime, :expired_datetime,:status, :organization_id, :main_user_id, :lock_version])
-    |> validate_required([:name, :start_datetime])
+    |> validate_required([:external_code, :start_datetime])
     |> unique_constraint(:code)
   end
 

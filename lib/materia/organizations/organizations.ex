@@ -8,6 +8,7 @@ defmodule Materia.Organizations do
 
   alias Materia.Organizations.Organization
   alias MateriaUtils.Calendar.CalendarUtil
+  alias MateriaUtils.Ecto.EctoUtil
   alias Materia.Errors.BusinessError
 
   require Logger
@@ -71,6 +72,22 @@ defmodule Materia.Organizations do
     repo = Application.get_env(:materia, :repo)
     Organization
     |> repo.all()
+    |> repo.preload(:addresses)
+  end
+
+  @doc """
+
+  ## Examples
+  ```
+  iex(1)> orgs = Materia.Organizations.list_organizations_by_params(%{"and" => [%{"name" => "hogehoge.inc"}]})
+  iex(2)> length(orgs)
+  1
+  ```
+  """
+  def list_organizations_by_params(params) do
+    repo = Application.get_env(:materia, :repo)
+    repo
+    |> EctoUtil.select_by_param(Organization, params)
     |> repo.preload(:addresses)
   end
 

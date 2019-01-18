@@ -1130,7 +1130,7 @@ defmodule Materia.Accounts do
   %{
     descriptions: nil,
     expired_datetime: nil,
-    external_code: nil,
+    external_code: "hogehoge_code",
     frozen_datetime: nil,
     id: 1,
     lock_version: 0,
@@ -1162,16 +1162,16 @@ defmodule Materia.Accounts do
 
   ## Examples
 
-  iex(1)> {:ok, account} = Materia.Accounts.create_account(%{"name" => "craete_account_test001"})
+  iex(1)> {:ok, account} = Materia.Accounts.create_account(%{"external_code" => "craete_account_test001"})
   iex(2)> MateriaWeb.AccountView.render("show.json", %{account: account}) |> Map.delete(:id) |> Map.delete(:start_datetime)
   %{
     descriptions: nil,
     expired_datetime: nil,
-    external_code: nil,
+    external_code: "craete_account_test001",
     frozen_datetime: nil,
     lock_version: 0,
     main_user: nil,
-    name: "craete_account_test001",
+    name: nil,
     organization: nil,
     status: 1
   }
@@ -1194,7 +1194,7 @@ defmodule Materia.Accounts do
 
   ## Examples
 
-  iex(1)> {:ok, account} = Materia.Accounts.create_account(%{"name" => "update_account_test001"})
+  iex(1)> {:ok, account} = Materia.Accounts.create_account(%{"external_code" => "update_account_test001"})
   iex(2)> {:ok, updated_account} = Materia.Accounts.update_account(account, %{"status" => 8})
   iex(3)> updated_account.status
   8
@@ -1227,7 +1227,7 @@ defmodule Materia.Accounts do
 
   ## Examples
 
-  iex(1)> {:ok, account} = Materia.Accounts.create_account(%{"name" => "delete_account_test001"})
+  iex(1)> {:ok, account} = Materia.Accounts.create_account(%{"external_code" => "delete_account_test001"})
   iex(2)> {:ok, deleted_account} = Materia.Accounts.delete_account(account)
   iex(3)> Materia.Accounts.list_accounts_by_params(%{"and" => [ %{"id" => account.id} ] })
   []
