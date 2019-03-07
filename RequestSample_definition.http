@@ -1,0 +1,45 @@
+############################################
+# APIリクエストサンプル集
+############################################
+### 認証 / authenticator_path
+POST {{url}}/api/sign-in HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "fugafuga@example.com",
+  "password": "fugafuga"
+}
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+    client.global.set("user_id", response.body.id);
+  %}
+
+### 値定義情報取得
+POST {{url}}/api/search-definitions HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{}
+
+### 値定義情報取得
+POST {{url}}/api/search-definitions HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "and": [{"definition_category": "Test1"}, {"language_code": "JP"}]
+}
+
+###
+### 値定義情報取得
+POST {{url}}/api/search-definitions HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "and": [{"language_code": "JP"}],
+  "or":  [{"definition_code": "Test_1_01"}, {"definition_code": "Test_2_02"}]
+}
+
+###
