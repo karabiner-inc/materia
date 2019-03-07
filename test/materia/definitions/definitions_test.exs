@@ -1,6 +1,7 @@
 defmodule Materia.DefinitionsTest do
   use Materia.DataCase
 
+  doctest Materia.Accounts
   alias Materia.Definitions
 
   describe "value_definitions" do

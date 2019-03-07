@@ -23,4 +23,11 @@ defmodule Materia.Definitions.ValueDefinition do
     |> cast(attrs, [:definition_category, :definition_name, :definition_code, :definition_value, :definition_abbreviated, :display_sort_no, :display_discernment_code, :language_code, :status, :lock_version])
     |> validate_required([:definition_category, :definition_name, :definition_code, :definition_value, :display_sort_no])
   end
+
+  def update_changeset(value_definition, attrs) do
+    value_definition
+    |> cast(attrs, [:definition_category, :definition_name, :definition_code, :definition_value, :definition_abbreviated, :display_sort_no, :display_discernment_code, :language_code, :status, :lock_version])
+    |> validate_required([:definition_category, :definition_name, :definition_code, :definition_value, :display_sort_no, :lock_version])
+    |> optimistic_lock(:lock_version)
+  end
 end
