@@ -73,7 +73,8 @@ defmodule MateriaWeb.Router do
     post "create-my-addres", AddressController, :create_my_address
     resources "/accounts", AccountController, except: [:new, :edit]
     post "search-accounts", AccountController, :list_accounts_by_params
-
+    resources "/value-definitions", ValueDefinitionController, except: [:new, :edit]
+    post "search-definitions", ValueDefinitionController, :list_definitions_by_params
   end
 
   scope "/api", MateriaWeb do
