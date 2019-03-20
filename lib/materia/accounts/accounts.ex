@@ -58,7 +58,7 @@ defmodule Materia.Accounts do
           location: "福岡県",
           lock_version: 0,
           longitude: nil,
-          organization: [],
+          organization: nil,
           subject: "living",
           user: [],
           zip_code: "810-ZZZZ"
@@ -71,7 +71,7 @@ defmodule Materia.Accounts do
           location: "福岡県",
           lock_version: 0,
           longitude: nil,
-          organization: [],
+          organization: nil,
           subject: "billing",
           user: [],
           zip_code: "810-ZZZZ"
@@ -226,7 +226,7 @@ defmodule Materia.Accounts do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "billing",
         user: [],
         zip_code: "810-ZZZZ"
@@ -239,7 +239,7 @@ defmodule Materia.Accounts do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "living",
         user: [],
         zip_code: "810-ZZZZ"
@@ -355,7 +355,7 @@ defmodule Materia.Accounts do
     icon_img_url: nil,
     lock_version: 1,
     name: "テスト０１",
-    organization: [],
+    organization: nil,
     phone_number: nil,
     role: "operator",
     status: 1
@@ -371,7 +371,7 @@ defmodule Materia.Accounts do
     icon_img_url: "https://test02.com/icon_img.png",
     lock_version: 1,
     name: "テスト０２",
-    organization: [],
+    organization: nil,
     role: "operator",
     phone_number: "090-YYYY-XXXX",
     status: 1
@@ -408,7 +408,7 @@ defmodule Materia.Accounts do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "billing",
         user: [],
         zip_code: "810-ZZZZ"
@@ -421,7 +421,7 @@ defmodule Materia.Accounts do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "living",
         user: [],
         zip_code: "810-ZZZZ"
@@ -702,7 +702,7 @@ defmodule Materia.Accounts do
     icon_img_url: nil,
     lock_version: 1,
     name: nil,
-    organization: [],
+    organization: nil,
     phone_number: nil,
     role: "operator",
     status: 0
@@ -777,7 +777,7 @@ defmodule Materia.Accounts do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "billing",
         user: [],
         zip_code: "810-ZZZZ"
@@ -790,7 +790,7 @@ defmodule Materia.Accounts do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "living",
         user: [],
         zip_code: "810-ZZZZ"
@@ -849,7 +849,7 @@ defmodule Materia.Accounts do
     icon_img_url: nil,
     lock_version: 2,
     name: "test002 user",
-    organization: [],
+    organization: nil,
     phone_number: nil,
     role: "operator",
     status: 1
@@ -905,7 +905,7 @@ defmodule Materia.Accounts do
     icon_img_url: nil,
     lock_version: 2,
     name: "test003 user",
-    organization: [],
+    organization: nil,
     phone_number: nil,
     role: "operator",
     status: 1
@@ -999,7 +999,7 @@ defmodule Materia.Accounts do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "billing",
         user: [],
         zip_code: "810-ZZZZ"
@@ -1012,7 +1012,7 @@ defmodule Materia.Accounts do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "living",
         user: [],
         zip_code: "810-ZZZZ"

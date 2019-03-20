@@ -105,7 +105,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
           "location" => "福岡県",
           "lock_version" => 0,
           "longitude" => nil,
-          "organization" => [],
+          "organization" => nil,
           "subject" => "billing",
           "user" => [],
           "zip_code" => "810-ZZZZ"
@@ -118,7 +118,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
           "location" => "福岡県",
           "lock_version" => 0,
           "longitude" => nil,
-          "organization" => [],
+          "organization" => nil,
           "subject" => "living",
           "user" => [],
           "zip_code" => "810-ZZZZ"

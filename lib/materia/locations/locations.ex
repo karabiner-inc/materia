@@ -36,7 +36,7 @@ defmodule Materia.Locations do
       id: 1,
       lock_version: 2,
       name: "hogehoge",
-      organization: [],
+      organization: nil,
       phone_number: nil,
       role: "admin",
       status: 1
@@ -63,7 +63,7 @@ defmodule Materia.Locations do
       id: 1,
       lock_version: 2,
       name: "hogehoge",
-      organization: [],
+      organization: nil,
       phone_number: nil,
       role: "admin",
       status: 1
@@ -159,7 +159,7 @@ defmodule Materia.Locations do
       id: 1,
       lock_version: 2,
       name: "hogehoge",
-      organization: [],
+      organization: nil,
       phone_number: nil,
       role: "admin",
       status: 1
@@ -192,7 +192,7 @@ defmodule Materia.Locations do
   location: nil,
   lock_version: 0,
   longitude: nil,
-  organization: [],
+  organization: nil,
   subject: "living",
   user: [],
   zip_code: nil
@@ -239,7 +239,7 @@ defmodule Materia.Locations do
       id: 1,
       lock_version: 2,
       name: "hogehoge",
-      organization: [],
+      organization: nil,
       phone_number: nil,
       role: "admin",
       status: 1
@@ -289,7 +289,7 @@ defmodule Materia.Locations do
         id: 1,
         lock_version: 2,
         name: "hogehoge",
-        organization: [],
+        organization: nil,
         phone_number: nil,
         role: "admin",
         status: 1

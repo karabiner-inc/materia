@@ -37,7 +37,7 @@ defmodule Mix.Tasks.Materia.Gen.Migration do
 
   defp timestamp(add_sec) do
     {{y, m, d}, {hh, mm, ss}} = :calendar.universal_time()
-    "#{y}#{pad(m)}#{pad(d)}#{pad(hh)}#{pad(mm)}#{pad(ss , add_sec )}"
+    "#{y}#{pad(m)}#{pad(d)}#{pad(hh)}#{pad(mm)}#{pad(ss)}#{add_sec}"
   end
 
   defp pad(i,j \\ 0)
