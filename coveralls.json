@@ -1,10 +1,13 @@
 {
     "skip_files": [
-      "lib/errors/business_error.ex",
+      "lib/materia/errors/business_error.ex",
       "lib/materia/mails/mail_client_aws_ses.ex",
       "lib/materia/mails/mail_client_sendgrid.ex",
       "lib/materia/mails/mail_clinet.ex",
       "lib/materia/plug/debug.ex",
+      "lib/materia/authenticator/account_auth_pipline.ex",
+      "lib/materia/authenticator/user_auth_pipline.ex",
+      "lib/materia/authenticator/authenticate_base.ex",
       "lib/materia/authenticator/authenticate_error_handler.ex",
       "lib/materia/authenticator/authenticate_pipline.ex",
       "lib/materia/authenticator/password_reset_auth_pipline.ex",

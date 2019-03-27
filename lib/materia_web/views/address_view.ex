@@ -33,7 +33,7 @@ defmodule MateriaWeb.AddressView do
       if Ecto.assoc_loaded?(address.organization) do
         Map.put(result_map, :organization, OrganizationView.render("show.json", %{organization: address.organization}))
       else
-        Map.put(result_map, :organization, [])
+        Map.put(result_map, :organization, nil)
       end
   end
 end

@@ -11,6 +11,8 @@ defmodule MateriaWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    #plug Materia.Plug.Debug
+    plug Materia.Plug.ConnLogger
   end
 
   pipeline :guardian_auth do
@@ -37,27 +39,33 @@ defmodule MateriaWeb.Router do
   scope "/api", MateriaWeb do
     pipe_through :api
 
-    post "sign-in", AuthenticatorController, :sign_in
-    post "refresh", AuthenticatorController, :refresh
-    post "tmp-registration", UserController, :registration_tmp_user
-    post "request-password-reset", UserController, :request_password_reset
+    post "/sign-in", AuthenticatorController, :sign_in
+    post "/refresh", AuthenticatorController, :refresh
+    post "/tmp-registration", UserController, :registration_tmp_user
+    post "/request-password-reset", UserController, :request_password_reset
+
+    get "/client-logs/:id", ClientLogController, :show
+    post "/client-logs", ClientLogController, :create
+    post "/search-client-logs", ClientLogController,:list_client_logs_by_params
+    get "/conn_logs/:id", ConnLogController, :show
+    post "/search-conn-logs", ConnLogController, :list_conn_logs_by_params
 
   end
 
   scope "/api", MateriaWeb do
     pipe_through [ :api, :tmp_user_auth]
 
-    get "varidation-tmp-user", AuthenticatorController, :is_varid_token
-    post "user-registration", UserController, :registration_user
-    post "user-registration-and-sign-in", UserController, :registration_user_and_sign_in
+    get "/varidation-tmp-user", AuthenticatorController, :is_varid_token
+    post "/user-registration", UserController, :registration_user
+    post "/user-registration-and-sign-in", UserController, :registration_user_and_sign_in
 
   end
 
   scope "/api", MateriaWeb do
     pipe_through [ :api, :pw_reset_auth]
 
-    get "varidation-pw-reset", AuthenticatorController, :is_varid_token
-    post "reset-my-password", UserController, :reset_my_password
+    get "/varidation-pw-reset", AuthenticatorController, :is_varid_token
+    post "/reset-my-password", UserController, :reset_my_password
 
   end
 
@@ -66,15 +74,15 @@ defmodule MateriaWeb.Router do
 
     get "/user", UserController, :show_me
     post "/grant", GrantController, :get_by_role
-    post "sign-out", AuthenticatorController, :sign_out
-    get "auth-check", AuthenticatorController, :is_authenticated
-    post "search-users", UserController, :list_users_by_params
+    post "/sign-out", AuthenticatorController, :sign_out
+    get "/auth-check", AuthenticatorController, :is_authenticated
+    post "/search-users", UserController, :list_users_by_params
     resources "/addresses", AddressController, except: [:new, :edit]
-    post "create-my-addres", AddressController, :create_my_address
+    post "/create-my-addres", AddressController, :create_my_address
     resources "/accounts", AccountController, except: [:new, :edit]
-    post "search-accounts", AccountController, :list_accounts_by_params
+    post "/search-accounts", AccountController, :list_accounts_by_params
     resources "/value-definitions", ValueDefinitionController, except: [:new, :edit]
-    post "search-definitions", ValueDefinitionController, :list_definitions_by_params
+    post "/search-definitions", ValueDefinitionController, :list_definitions_by_params
   end
 
   scope "/api", MateriaWeb do

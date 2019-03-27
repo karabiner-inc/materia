@@ -36,7 +36,7 @@ defmodule MateriaWeb.UserView do
       if Ecto.assoc_loaded?(user.organization) do
         Map.put(result_map, :organization, OrganizationView.render("show.json", %{organization: user.organization}))
       else
-        Map.put(result_map, :organization, [])
+        Map.put(result_map, :organization, nil)
       end
   end
 
