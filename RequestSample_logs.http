@@ -1,0 +1,32 @@
+############################################
+# APIリクエストサンプル集
+#
+############################################
+
+@url = http://localhost:4001
+#@url = https://
+
+### プロジェクトおよび初期アカウント作成
+POST {{url}}/api/client-logs HTTP/1.1
+Content-Type: application/json
+
+{
+  "client_ip":  "some client_ip",
+  "evidence_url":  "some evidence_url",
+  "log_datetime":  "2010-04-17T14:00:00.000000Z",
+  "routing_path":  "some routing_path",
+  "trace_log":  "some trace_log",
+  "user_agent":  "some user_agent",
+  "user_id":  42
+}
+
+### プロジェクトおよび初期アカウント作成
+GET {{url}}/api/client-logs/2 HTTP/1.1
+Content-Type: application/json
+
+
+
+
+
+
+

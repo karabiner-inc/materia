@@ -33,7 +33,7 @@ defmodule Materia.Organizations do
           location: "福岡県",
           lock_version: 0,
           longitude: nil,
-          organization: [],
+          organization: nil,
           subject: "branch",
           user: [],
           zip_code: "812-ZZZZ"
@@ -46,7 +46,7 @@ defmodule Materia.Organizations do
           location: "福岡県",
           lock_version: 0,
           longitude: nil,
-          organization: [],
+          organization: nil,
           subject: "registry",
           user: [],
           zip_code: "810-ZZZZ"
@@ -111,7 +111,7 @@ defmodule Materia.Organizations do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "branch",
         user: [],
         zip_code: "812-ZZZZ"
@@ -124,7 +124,7 @@ defmodule Materia.Organizations do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "registry",
         user: [],
         zip_code: "810-ZZZZ"
@@ -211,7 +211,7 @@ defmodule Materia.Organizations do
         id: 1,
         lock_version: 3,
         name: "hogehoge",
-        organization: [],
+        organization: nil,
         phone_number: nil,
         role: "admin",
         status: 1
@@ -250,7 +250,7 @@ defmodule Materia.Organizations do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "branch",
         user: [],
         zip_code: "812-ZZZZ"
@@ -263,7 +263,7 @@ defmodule Materia.Organizations do
         location: "福岡県",
         lock_version: 0,
         longitude: nil,
-        organization: [],
+        organization: nil,
         subject: "registry",
         user: [],
         zip_code: "810-ZZZZ"
