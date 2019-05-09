@@ -10,6 +10,8 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+alias MateriaUtils.Test.TsvParser
+
 alias Materia.Accounts
 alias Materia.Locations
 
@@ -48,3 +50,26 @@ Materia.Definitions.create_value_definition(%{definition_category: "Test2", defi
 Materia.Definitions.create_value_definition(%{definition_category: "Test2", definition_name: "定義2", definition_code: "Test_2_02", definition_value: "定義値2_2", definition_abbreviated: "2_2", display_sort_no: "2", language_code: "JP"})
 Materia.Definitions.create_value_definition(%{definition_category: "Test2", definition_name: "定義2", definition_code: "Test_2_01", definition_value: "Definition2_1", definition_abbreviated: "2_1", display_sort_no: "1", language_code: "EN"})
 Materia.Definitions.create_value_definition(%{definition_category: "Test2", definition_name: "定義2", definition_code: "Test_2_02", definition_value: "Definition2_2", definition_abbreviated: "2_2", display_sort_no: "2", language_code: "EN"})
+
+alias Materia.Tags
+
+tags = "
+tag_category	label	normalized
+hobby	car	car
+hobby	cooking	cooking
+hobby	elixir	elixir
+skills	Elixir	elixir
+skills	ELIXIR	elixir
+skills	Java	 java
+"
+
+#TsvParser.parse_tsv_to_json(tags, "tag_category")
+#|> Enum.map(fn j -> j |> Tags.create_tag() end)
+
+jsons = TsvParser.parse_tsv_to_json(tags, "tag_category")
+
+    results = jsons
+    |> Enum.map(fn(json) ->
+      {:ok, result} = json
+      |> Tags.create_tag()
+    end)

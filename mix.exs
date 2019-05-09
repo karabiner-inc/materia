@@ -66,8 +66,8 @@ defmodule Materia.Mixfile do
       {:poison, "~> 3.1"},
       {:timex, "~> 3.3"},
       {:sendgrid, "~> 1.8"},
-      #{:materia_utils, "~> 0.1.1"},
-      {:materia_utils, "~> 0.1.1"},
+      {:mojiex, "~> 0.1.0"},
+      {:materia_utils, git: "https://github.com/karabiner-inc/materia_utils.git"},
       {:ex_doc, ">= 0.0.0", only: :test},
       {:excoveralls, "~> 0.10", only: :test},
     ]
