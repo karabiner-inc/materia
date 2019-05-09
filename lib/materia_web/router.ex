@@ -50,6 +50,9 @@ defmodule MateriaWeb.Router do
     get "/conn_logs/:id", ConnLogController, :show
     post "/search-conn-logs", ConnLogController, :list_conn_logs_by_params
 
+    post "/like-serach-tags", TagController, :list_tags_by_normalized
+    post "/tags", TagController, :merge
+
   end
 
   scope "/api", MateriaWeb do
