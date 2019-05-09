@@ -54,33 +54,6 @@ defmodule MateriaWeb.TagControllerTest do
       resp = json_response(conn, 200)
       assert length(resp) == 1
 
-
-      #list_tags_by_normalized
-
-      ## 一覧紹介
-      #conn_index0 = get(conn_auth, account_path(conn, :index))
-      #resp_index0 = json_response(conn_index0, 200)
-#
-      ## check log
-      #params = %{"and" => [%{"req_path" => "/api/accounts"}]}
-      #conn = post(conn, conn_log_path(conn, :list_conn_logs_by_params, params))
-      #resp = json_response(conn, 200)
-      #log = resp
-      #|> List.last()
-      #assert log == %{
-      #  "assigns" => "%{}",
-      #  "id" => log["id"],
-      #  "inserted_at" => log["inserted_at"],
-      #  "owner_pid" => log["owner_pid"],
-      #  "remote_ip" => log["remote_ip"],
-      #  "req_body_params" => "%{}",
-      #  "req_headers" => log["req_headers"],
-      #  "req_method" => "GET",
-      #  "req_path" => "/api/accounts",
-      #  "req_path_params" => "%{}",
-      #  "user_agent" => nil,
-      #  "user_id" => 1
-      #}
     end
   end
 end
