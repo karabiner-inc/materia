@@ -21,6 +21,7 @@ defmodule Materia.Mails.MailClientSendGrid do
     |> Email.add_to(to)
     |> Email.put_from(from, from_name)
     |> Email.put_text(body_text)
+    |> Email.put_html(String.replace(body_text, "\n", "<br/>"))
     |> Email.put_subject(subject)
     |> Mailer.send()
 
