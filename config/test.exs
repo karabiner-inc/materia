@@ -11,7 +11,7 @@ config :materia, MateriaWeb.Test.Endpoint,
   watchers: []
 
 # Print only warnings and errors during test
-config :logger, level: :info
+config :logger, level: :debug
 
 # Configure your database
 config :materia, Materia.Test.Repo,
