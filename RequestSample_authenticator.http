@@ -6,6 +6,19 @@
 @url = http://localhost:4001
 #@url = https://
 
+### アプリケーション認証(paramsとして指定)
+GET {{url}}/app/is_authenticated_app?app_key=test_app_key HTTP/1.1
+Content-Type: application/json
+
+### アプリケーション認証(Authorizationとして指定)
+GET {{url}}/app/is_authenticated_app HTTP/1.1
+Content-Type: application/json
+Authorization: test_app_key
+
+### アプリケーション認証(どちらも指定しないとエラー)
+GET {{url}}/app/is_authenticated_app HTTP/1.1
+Content-Type: application/json
+
 ### ユーザー仮登録
 POST {{url}}/api/tmp-registration HTTP/1.1
 Content-Type: application/json

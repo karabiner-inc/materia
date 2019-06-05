@@ -30,3 +30,8 @@ config :guardian, Guardian.DB,
  schema_name: "guardian_tokens", # default
 #token_types: ["refresh_token"], # store all token types if not set
  sweep_interval: 60 # default: 60 minutes
+
+# Configure materia application authenticator
+# recomend you generate complex app_key by "mix phx.gen.secret" command.
+config :materia, Materia.Plug.ApplicationKeyChecker,
+  app_key: "test_app_key"
