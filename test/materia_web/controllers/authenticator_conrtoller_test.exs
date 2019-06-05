@@ -199,16 +199,15 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
      resp_sing_out = response(conn_sign_out, 200)
      assert resp_sing_out == "{\"ok\":true}"
 
-     conn_valid3 = get(conn_sign_out, "/api/auth-check")
+     conn_valid3 = get(conn_auth2, "/api/auth-check")
      resp_valid3 = response(conn_valid3, 401)
-     assert resp_valid3 == "{\"message\":\"unauthenticated\"}"
+     assert resp_valid3 == "{\"message\":\"invalid_token\"}"
 
     end
   end
 
   describe "application authentication pattern" do
     test "valid case app_key in params", %{conn: conn} do
-      IO.inspect(conn)
       conn = get(conn, "/app/is_authenticated_app", [app_key: "test_app_key"])
       resp = response(conn, 200)
       assert resp == "{\"message\":\"authenticated\"}"
