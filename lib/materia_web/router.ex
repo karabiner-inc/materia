@@ -36,8 +36,20 @@ defmodule MateriaWeb.Router do
     plug Materia.Plug.GrantChecker, repo: repo
   end
 
+  pipeline :application_auth do
+    conf = Application.get_env(:materia, Materia.Plug.ApplicationKeyChecker)
+    plug Materia.Plug.ApplicationKeyChecker, conf: conf
+  end
+
+  scope "/app", MateriaWeb do
+    pipe_through [:api, :application_auth]
+    get "/is_authenticated_app", AuthenticatorController, :is_authenticated
+  end
+
   scope "/api", MateriaWeb do
     pipe_through :api
+
+    get "health-check", HealthCheckController, :health_check
 
     post "/sign-in", AuthenticatorController, :sign_in
     post "/refresh", AuthenticatorController, :refresh

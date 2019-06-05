@@ -107,3 +107,8 @@ regstered_mail_template: "@user_name@ 様
 
 config :materia, Materia.MailClient,
   verify_mail_ses_region: "us-west-2"
+
+# Configure materia application authenticator
+# recomend you generate complex app_key by "mix phx.gen.secret" command.
+config :materia, Materia.Plug.ApplicationKeyChecker,
+  app_key: "test_app_key"
