@@ -42,12 +42,14 @@ defmodule MateriaWeb.Router do
   end
 
   scope "/app", MateriaWeb do
-    pipe_through :application_auth
+    pipe_through [:api, :application_auth]
     get "/is_authenticated_app", AuthenticatorController, :is_authenticated
   end
 
   scope "/api", MateriaWeb do
     pipe_through :api
+
+    get "health-check", HealthCheckController, :health_check
 
     post "/sign-in", AuthenticatorController, :sign_in
     post "/refresh", AuthenticatorController, :refresh
