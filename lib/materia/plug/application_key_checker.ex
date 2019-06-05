@@ -76,7 +76,7 @@ defmodule Materia.Plug.ApplicationKeyChecker do
       Logger.debug("#{__MODULE__}--- call app_key is valid ---------------------")
       # remove api_key in params
       removed_params = conn.params
-      |> Map.delete("api_key")
+      |> Map.delete("app_key")
 
       conn
       |> Map.put(:params, removed_params)
