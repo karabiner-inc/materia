@@ -11,7 +11,7 @@ config :materia, MateriaWeb.Test.Endpoint,
   watchers: []
 
 # Print only warnings and errors during test
-config :logger, level: :info
+config :logger, level: :debug
 
 # Configure your database
 config :materia, Materia.Test.Repo,
@@ -58,5 +58,10 @@ config :materia, Materia.Accounts,
   password_reset_request_mail_template_type: "password_reset_request",
   password_reset_url: "hogehoge.example.com/pw-reset",
   password_reset_completed_mail_template_type: "password_reset_completed"
+
+# Configure materia application authenticator
+# recomend generate app_key generate by "mix phx.gen.secret" command.
+config :materia, Materia.Plug.ApplicationKeyChecker,
+  app_key: "test_app_key"
 
 

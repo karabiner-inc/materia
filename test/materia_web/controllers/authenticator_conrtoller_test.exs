@@ -37,7 +37,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
       "status" => 1
     }
 
-    conn_valid = get(conn_auth, authenticator_path(conn, :is_authenticated))
+    conn_valid = get(conn_auth, "/api/auth-check")
     resp_valid = response(conn_valid, 200)
     assert resp_valid == "{\"message\":\"authenticated\"}"
 
@@ -72,7 +72,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
     resp_sing_out = response(conn_sign_out, 200)
     assert resp_sing_out == "{\"ok\":true}"
 
-    conn_valid3 = get(conn_auth2, authenticator_path(conn, :is_authenticated))
+    conn_valid3 = get(conn_auth2, "/api/auth-check")
     resp_valid3 = response(conn_valid3, 401)
     assert resp_valid3 == "{\"message\":\"invalid_token\"}"
 
@@ -166,7 +166,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
       "status" => 1
     }
 
-    conn_valid = get(conn_auth, authenticator_path(conn, :is_authenticated))
+    conn_valid = get(conn_auth, "/api/auth-check")
     resp_valid = response(conn_valid, 200)
     assert resp_valid == "{\"message\":\"authenticated\"}"
 
@@ -199,11 +199,53 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
      resp_sing_out = response(conn_sign_out, 200)
      assert resp_sing_out == "{\"ok\":true}"
 
-     conn_valid3 = get(conn_auth2, authenticator_path(conn, :is_authenticated))
+     conn_valid3 = get(conn_sign_out, "/api/auth-check")
      resp_valid3 = response(conn_valid3, 401)
-     assert resp_valid3 == "{\"message\":\"invalid_token\"}"
+     assert resp_valid3 == "{\"message\":\"unauthenticated\"}"
 
     end
   end
+
+  describe "application authentication pattern" do
+    test "valid case app_key in params", %{conn: conn} do
+      conn = get(conn, "/app/is_authenticated_app", [app_key: "test_app_key"])
+      resp = response(conn, 200)
+      assert resp == "{\"message\":\"authenticated\"}"
+    end
+
+    test "invalid case app_key in params", %{conn: conn} do
+      conn = get(conn, "/app/is_authenticated_app", [app_key: "hogehoge"])
+      resp = response(conn, 401)
+      assert resp == "{\"message\":\"invalid_token\"}"
+    end
+
+    test "valid case app_key in req_header", %{conn: conn} do
+      puted_conn = conn
+      |> put_req_header("authorization", "test_app_key")
+      conn = get(puted_conn, "/app/is_authenticated_app")
+      resp = response(conn, 200)
+      assert resp == "{\"message\":\"authenticated\"}"
+    end
+
+    test "invalid case app_key in req_header", %{conn: conn} do
+      puted_conn = conn
+      |> put_req_header("authorization", "test_app_xxx_key")
+      conn = get(puted_conn, "/app/is_authenticated_app")
+      resp = response(conn, 401)
+      assert resp == "{\"message\":\"invalid_token\"}"
+    end
+
+    test "invalid case app_key not containd", %{conn: conn} do
+      conn = get(conn, "/app/is_authenticated_app")
+      resp = response(conn, 401)
+      assert resp == "{\"message\":\"invalid_token\"}"
+    end
+
+  end
+
+
+
+  #put_req_header(conn, "accept", "application/json")
+
 
 end
