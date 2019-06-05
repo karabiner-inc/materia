@@ -230,14 +230,14 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
     test "invalid case app_key in req_header", %{conn: conn} do
       puted_conn = conn
       |> put_req_header("authorization", "test_app_xxx_key")
-      conn = get(puted_conn, "/app/is_authenticated_app")
-      resp = response(conn, 401)
+      get_conn = get(puted_conn, "/app/is_authenticated_app")
+      resp = response(get_conn, 401)
       assert resp == "{\"message\":\"invalid_token\"}"
     end
 
     test "invalid case app_key not containd", %{conn: conn} do
-      conn = get(conn, "/app/is_authenticated_app")
-      resp = response(conn, 401)
+      get_conn = get(conn, "/app/is_authenticated_app")
+      resp = response(get_conn, 401)
       assert resp == "{\"message\":\"invalid_token\"}"
     end
 
