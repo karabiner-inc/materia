@@ -49,7 +49,7 @@ defmodule Materia.Plug.ApplicationKeyChecker do
 
   def init(opts) do
     Logger.debug("#{__MODULE__}--- init---------------------")
-    IO.inspect(opts)
+    opts
   end
 
   def call(conn, opts) do

@@ -569,6 +569,17 @@ function find(y) {
           </li>
         
           <li>
+            <span class='cov high'>89.5</span>
+            <a href='#lib/materia/plug/application_key_checker.ex'>
+              
+              
+                <span class='dirname'>lib/materia/plug/</span>
+              
+              <span class='basename'>application_key_checker.ex</span>
+            </a>
+          </li>
+        
+          <li>
             <span class='cov high'>91.4</span>
             <a href='#lib/materia/plug/conn_logger.ex'>
               
@@ -924,9 +935,9 @@ function find(y) {
 
       <div id='stats' class='high'>
         <div class='percentage'>87.1</div>
-        <div class='sloc'>766</div>
-        <div class='hits'>16188</div>
-        <div class='misses'>99</div>
+        <div class='sloc'>785</div>
+        <div class='hits'>16239</div>
+        <div class='misses'>101</div>
       </div>
       <div id='files'>
         
@@ -1316,7 +1327,7 @@ function find(y) {
             <div id='stats' class='high'>
               <div class='percentage'>92.3</div>
               <div class='sloc'>117</div>
-              <div class='hits'>1650</div>
+              <div class='hits'>1649</div>
               <div class='misses'>9</div>
             </div>
             <table id='source'>
@@ -3579,7 +3590,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>281</td>
-                        <td class='hits'>171</td>
+                        <td class='hits'>170</td>
                         <td class='source'>    |&gt; @repo.preload([:organization, :addresses])</td>
                       </tr>
                     
@@ -11518,7 +11529,7 @@ function find(y) {
             <div id='stats' class='high'>
               <div class='percentage'>91.7</div>
               <div class='sloc'>12</div>
-              <div class='hits'>737</div>
+              <div class='hits'>735</div>
               <div class='misses'>1</div>
             </div>
             <table id='source'>
@@ -11573,7 +11584,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>5</td>
-                        <td class='hits'>422</td>
+                        <td class='hits'>421</td>
                         <td class='source'>  schema &quot;users&quot; do</td>
                       </tr>
                     
@@ -12205,7 +12216,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>84</td>
-                        <td class='hits'>170</td>
+                        <td class='hits'>169</td>
                         <td class='source'>    %{</td>
                       </tr>
                     
@@ -18516,7 +18527,7 @@ function find(y) {
             <div id='stats' class='high'>
               <div class='percentage'>100</div>
               <div class='sloc'>3</div>
-              <div class='hits'>208</div>
+              <div class='hits'>207</div>
               <div class='misses'>0</div>
             </div>
             <table id='source'>
@@ -18571,7 +18582,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>5</td>
-                        <td class='hits'>203</td>
+                        <td class='hits'>202</td>
                         <td class='source'>  schema &quot;addresses&quot; do</td>
                       </tr>
                     
@@ -25412,7 +25423,7 @@ function find(y) {
             <div id='stats' class='high'>
               <div class='percentage'>100</div>
               <div class='sloc'>4</div>
-              <div class='hits'>189</div>
+              <div class='hits'>188</div>
               <div class='misses'>0</div>
             </div>
             <table id='source'>
@@ -25467,7 +25478,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>5</td>
-                        <td class='hits'>182</td>
+                        <td class='hits'>181</td>
                         <td class='source'>  schema &quot;organizations&quot; do</td>
                       </tr>
                     
@@ -28290,11 +28301,760 @@ function find(y) {
           </div>
         
           <div class='file'>
+            <h2 id='lib/materia/plug/application_key_checker.ex'>lib/materia/plug/application_key_checker.ex</h1>
+            <div id='stats' class='high'>
+              <div class='percentage'>89.5</div>
+              <div class='sloc'>19</div>
+              <div class='hits'>59</div>
+              <div class='misses'>2</div>
+            </div>
+            <table id='source'>
+              <thead>
+                <tr>
+                  <th>Line</th>
+                  <th>Hits</th>
+                  <th>Source</th>
+                </tr>
+              <tbody>
+                
+                  
+                      <tr>
+                        <td class='line'>0</td>
+                        <td class='hits'></td>
+                        <td class='source'>defmodule Materia.Plug.ApplicationKeyChecker do</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>1</td>
+                        <td class='hits'></td>
+                        <td class='source'>  @doc &quot;&quot;&quot;</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>2</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>3</td>
+                        <td class='hits'></td>
+                        <td class='source'>  check other application server request authenticate.</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>4</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>5</td>
+                        <td class='hits'></td>
+                        <td class='source'>  application who request must contain app_key in request parameter or &quot;Authentication&quot; in http header.</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>6</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>7</td>
+                        <td class='hits'></td>
+                        <td class='source'>  eg:</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>8</td>
+                        <td class='hits'></td>
+                        <td class='source'>  ```</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>9</td>
+                        <td class='hits'></td>
+                        <td class='source'>  GET {{url}}/app/is_valid_app?app_key=your_app_key</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>10</td>
+                        <td class='hits'></td>
+                        <td class='source'>  ```</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>11</td>
+                        <td class='hits'></td>
+                        <td class='source'>  or</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>12</td>
+                        <td class='hits'></td>
+                        <td class='source'>  ```</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>13</td>
+                        <td class='hits'></td>
+                        <td class='source'>  GET {{url}}/app/is_valid_app</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>14</td>
+                        <td class='hits'></td>
+                        <td class='source'>  Authorization: your_app_key</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>15</td>
+                        <td class='hits'></td>
+                        <td class='source'>  ```</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>16</td>
+                        <td class='hits'></td>
+                        <td class='source'>  server who recive request must configure app_key in phoenix config file.</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>17</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>18</td>
+                        <td class='hits'></td>
+                        <td class='source'>  eg:</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>19</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>20</td>
+                        <td class='hits'></td>
+                        <td class='source'>  ```</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>21</td>
+                        <td class='hits'></td>
+                        <td class='source'>  config :materia, Materia.Plug.ApplicationKeyChecker,</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>22</td>
+                        <td class='hits'></td>
+                        <td class='source'>    app_key: &quot;your_app_key&quot;</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>23</td>
+                        <td class='hits'></td>
+                        <td class='source'>  ```</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>24</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>25</td>
+                        <td class='hits'></td>
+                        <td class='source'>  recomend you generate complex app_key by &quot;mix phx.gen.secret&quot; command.</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>26</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>27</td>
+                        <td class='hits'></td>
+                        <td class='source'>  and add  pipline in router.ex</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>28</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>29</td>
+                        <td class='hits'></td>
+                        <td class='source'>  eg:</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>30</td>
+                        <td class='hits'></td>
+                        <td class='source'>  ```</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>31</td>
+                        <td class='hits'></td>
+                        <td class='source'>  pipeline :application_auth do</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>32</td>
+                        <td class='hits'></td>
+                        <td class='source'>    conf = Application.get_env(:materia, Materia.Plug.ApplicationKeyChecker)</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>33</td>
+                        <td class='hits'></td>
+                        <td class='source'>    plug Materia.Plug.ApplicationKeyChecker, conf: conf</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>34</td>
+                        <td class='hits'></td>
+                        <td class='source'>  end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>35</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>36</td>
+                        <td class='hits'></td>
+                        <td class='source'>  scope &quot;/app&quot;, MateriaWeb do</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>37</td>
+                        <td class='hits'></td>
+                        <td class='source'>    pipe_through :application_auth</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>38</td>
+                        <td class='hits'></td>
+                        <td class='source'>    get &quot;/your-endpoint&quot;, YourController, :your_function</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>39</td>
+                        <td class='hits'></td>
+                        <td class='source'>  end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>40</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>41</td>
+                        <td class='hits'></td>
+                        <td class='source'>  ```</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>42</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>43</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>44</td>
+                        <td class='hits'></td>
+                        <td class='source'>  &quot;&quot;&quot;</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>45</td>
+                        <td class='hits'></td>
+                        <td class='source'>  import Plug.Conn</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>46</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>47</td>
+                        <td class='hits'></td>
+                        <td class='source'>  require Logger</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>48</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>49</td>
+                        <td class='hits'></td>
+                        <td class='source'>  def init(opts) do</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='miss'>
+                        <td class='line'>50</td>
+                        <td class='hits'>0</td>
+                        <td class='source'>    Logger.debug(&quot;#{__MODULE__}--- init---------------------&quot;)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr class='miss'>
+                        <td class='line'>51</td>
+                        <td class='hits'>0</td>
+                        <td class='source'>    opts</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>52</td>
+                        <td class='hits'></td>
+                        <td class='source'>  end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>53</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>54</td>
+                        <td class='hits'></td>
+                        <td class='source'>  def call(conn, opts) do</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>55</td>
+                        <td class='hits'>5</td>
+                        <td class='source'>    Logger.debug(&quot;#{__MODULE__}--- call ---------------------&quot;)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>56</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>57</td>
+                        <td class='hits'>5</td>
+                        <td class='source'>    app_key =</td>
+                      </tr>
+                    
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>58</td>
+                        <td class='hits'>5</td>
+                        <td class='source'>    if conn.params[&quot;app_key&quot;] == nil do</td>
+                      </tr>
+                    
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>59</td>
+                        <td class='hits'>3</td>
+                        <td class='source'>      authorization = conn.req_headers</td>
+                      </tr>
+                    
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>60</td>
+                        <td class='hits'>5</td>
+                        <td class='source'>      |&gt; Enum.find(fn{k,v} -&gt; String.downcase(k) == &quot;authorization&quot; end)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>61</td>
+                        <td class='hits'>3</td>
+                        <td class='source'>      if authorization == nil do</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>62</td>
+                        <td class='hits'></td>
+                        <td class='source'>        nil</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>63</td>
+                        <td class='hits'></td>
+                        <td class='source'>      else</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>64</td>
+                        <td class='hits'>2</td>
+                        <td class='source'>         {k, v} = authorization</td>
+                      </tr>
+                    
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>65</td>
+                        <td class='hits'>2</td>
+                        <td class='source'>         v</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>66</td>
+                        <td class='hits'></td>
+                        <td class='source'>      end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>67</td>
+                        <td class='hits'></td>
+                        <td class='source'>    else</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>68</td>
+                        <td class='hits'>2</td>
+                        <td class='source'>      conn.params[&quot;app_key&quot;]</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>69</td>
+                        <td class='hits'></td>
+                        <td class='source'>    end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>70</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>71</td>
+                        <td class='hits'>5</td>
+                        <td class='source'>    Logger.debug(&quot;#{__MODULE__}--- call opt:#{opts[:conf][:app_key]}&quot;)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>72</td>
+                        <td class='hits'>5</td>
+                        <td class='source'>    Logger.debug(&quot;#{__MODULE__}--- call request app_key:#{app_key}&quot;)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>73</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>74</td>
+                        <td class='hits'>5</td>
+                        <td class='source'>    if app_key != nil &amp;&amp;  app_key == opts[:conf][:app_key] do</td>
+                      </tr>
+                    
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>75</td>
+                        <td class='hits'>2</td>
+                        <td class='source'>      Logger.debug(&quot;#{__MODULE__}--- call app_key is valid ---------------------&quot;)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>76</td>
+                        <td class='hits'></td>
+                        <td class='source'>      # remove api_key in params</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>77</td>
+                        <td class='hits'>2</td>
+                        <td class='source'>      removed_params = conn.params</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>78</td>
+                        <td class='hits'></td>
+                        <td class='source'>      |&gt; Map.delete(&quot;api_key&quot;)</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>79</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>80</td>
+                        <td class='hits'></td>
+                        <td class='source'>      conn</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>81</td>
+                        <td class='hits'>2</td>
+                        <td class='source'>      |&gt; Map.put(:params, removed_params)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>82</td>
+                        <td class='hits'></td>
+                        <td class='source'>    else</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>83</td>
+                        <td class='hits'>3</td>
+                        <td class='source'>      Logger.debug(&quot;#{__MODULE__}--- call app_key is invalid ---------------------&quot;)</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>84</td>
+                        <td class='hits'></td>
+                        <td class='source'>      conn</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>85</td>
+                        <td class='hits'></td>
+                        <td class='source'>      |&gt; halt()</td>
+                      </tr>
+                  
+                
+                  
+                      <tr class='hit'>
+                        <td class='line'>86</td>
+                        <td class='hits'>3</td>
+                        <td class='source'>      |&gt; send_resp(401, Poison.encode!(%{message: &quot;invalid_token&quot;}))</td>
+                      </tr>
+                    
+                
+                  
+                      <tr>
+                        <td class='line'>87</td>
+                        <td class='hits'></td>
+                        <td class='source'>    end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>88</td>
+                        <td class='hits'></td>
+                        <td class='source'>  end</td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>89</td>
+                        <td class='hits'></td>
+                        <td class='source'></td>
+                      </tr>
+                  
+                
+                  
+                      <tr>
+                        <td class='line'>90</td>
+                        <td class='hits'></td>
+                        <td class='source'>end</td>
+                      </tr>
+                  
+                
+              </tbody>
+            </table>
+          </div>
+        
+          <div class='file'>
             <h2 id='lib/materia/plug/conn_logger.ex'>lib/materia/plug/conn_logger.ex</h1>
             <div id='stats' class='high'>
               <div class='percentage'>91.4</div>
               <div class='sloc'>35</div>
-              <div class='hits'>3720</div>
+              <div class='hits'>3713</div>
               <div class='misses'>3</div>
             </div>
             <table id='source'>
@@ -28461,7 +29221,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>19</td>
-                        <td class='hits'>51</td>
+                        <td class='hits'>52</td>
                         <td class='source'>    if authorization != nil do</td>
                       </tr>
                     
@@ -28469,7 +29229,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>20</td>
-                        <td class='hits'>100</td>
+                        <td class='hits'>99</td>
                         <td class='source'>      Logger.debug(&quot;#{__MODULE__}--- call authorization is not nil.&quot;)</td>
                       </tr>
                     
@@ -28477,7 +29237,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>21</td>
-                        <td class='hits'>100</td>
+                        <td class='hits'>99</td>
                         <td class='source'>      {&quot;authorization&quot;, token} = authorization</td>
                       </tr>
                     
@@ -28485,7 +29245,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>22</td>
-                        <td class='hits'>100</td>
+                        <td class='hits'>99</td>
                         <td class='source'>      access_token = token</td>
                       </tr>
                     
@@ -28509,7 +29269,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>25</td>
-                        <td class='hits'>100</td>
+                        <td class='hits'>99</td>
                         <td class='source'>      try do</td>
                       </tr>
                     
@@ -28517,7 +29277,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>26</td>
-                        <td class='hits'>100</td>
+                        <td class='hits'>99</td>
                         <td class='source'>        {:ok, claims } = Jwt.decode_token(UserAuthenticator, access_token)</td>
                       </tr>
                     
@@ -28525,7 +29285,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>27</td>
-                        <td class='hits'>99</td>
+                        <td class='hits'>98</td>
                         <td class='source'>        user_id = UserAuthenticator.get_user_id_from_claims(claims)</td>
                       </tr>
                     
@@ -28533,7 +29293,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>28</td>
-                        <td class='hits'>99</td>
+                        <td class='hits'>98</td>
                         <td class='source'>        Logger.debug(&quot;#{__MODULE__}--- call user_id:#{user_id}&quot;)</td>
                       </tr>
                     
@@ -28541,7 +29301,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>29</td>
-                        <td class='hits'>99</td>
+                        <td class='hits'>98</td>
                         <td class='source'>        user_id</td>
                       </tr>
                     
@@ -32318,7 +33078,7 @@ function find(y) {
             <div id='stats' class='high'>
               <div class='percentage'>86.7</div>
               <div class='sloc'>30</div>
-              <div class='hits'>179</div>
+              <div class='hits'>183</div>
               <div class='misses'>4</div>
             </div>
             <table id='source'>
@@ -33189,7 +33949,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>107</td>
-                        <td class='hits'>2</td>
+                        <td class='hits'>4</td>
                         <td class='source'>    Logger.debug(&quot;--- MateriaWeb.AuthenticateController is_authenticated-----------------&quot;)</td>
                       </tr>
                     
@@ -33197,7 +33957,7 @@ function find(y) {
                   
                       <tr class='hit'>
                         <td class='line'>108</td>
-                        <td class='hits'>2</td>
+                        <td class='hits'>4</td>
                         <td class='source'>    send_resp(conn, 200, &quot;{\&quot;message\&quot;:\&quot;authenticated\&quot;}&quot;)</td>
                       </tr>
                     

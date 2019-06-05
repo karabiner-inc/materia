@@ -26,7 +26,7 @@ defmodule Materia.Plug.GrantChecker do
       Logger.debug("#{__MODULE__}--- call has_grant?:#{has_grant?}---------------------")
       conn
       |> halt()
-      |> send_resp(401, Poison.encode!(%{message: "invalid_token"}))
+      |> send_resp(401, Poison.encode!(%{message: "no grant"}))
     end
     conn
   end

@@ -208,6 +208,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
 
   describe "application authentication pattern" do
     test "valid case app_key in params", %{conn: conn} do
+      IO.inspect(conn)
       conn = get(conn, "/app/is_authenticated_app", [app_key: "test_app_key"])
       resp = response(conn, 200)
       assert resp == "{\"message\":\"authenticated\"}"
@@ -242,10 +243,5 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
     end
 
   end
-
-
-
-  #put_req_header(conn, "accept", "application/json")
-
 
 end
