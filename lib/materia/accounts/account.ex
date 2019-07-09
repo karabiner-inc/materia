@@ -2,13 +2,14 @@ defmodule Materia.Accounts.Account do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @timestamps_opts [type: :naive_datetime_usec] # timestamps() の型
 
   schema "accounts" do
     field :external_code, :string
     field :name, :string
-    field :start_datetime, :utc_datetime
-    field :frozen_datetime, :utc_datetime
-    field :expired_datetime, :utc_datetime
+    field :start_datetime, :utc_datetime_usec
+    field :frozen_datetime, :utc_datetime_usec
+    field :expired_datetime, :utc_datetime_usec
     field :descriptions, :string
     field :status, :integer, default: 1
     field :lock_version, :integer, default: 0

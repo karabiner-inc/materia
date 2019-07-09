@@ -2,6 +2,7 @@ defmodule Materia.Organizations.Organization do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @timestamps_opts [type: :naive_datetime_usec] # timestamps() の型
 
   schema "organizations" do
     field :back_ground_img_url, :string

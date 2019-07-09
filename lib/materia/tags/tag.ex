@@ -2,6 +2,7 @@ defmodule Materia.Tags.Tag do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @timestamps_opts [type: :naive_datetime_usec] # timestamps() の型
 
   schema "tags" do
     field :tag_category, :string

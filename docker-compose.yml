@@ -1,0 +1,28 @@
+version: '3.4'
+volumes:
+  materia.db.volume:
+    name: materia.db.volume
+services:
+  api:
+    build: .
+    ports:
+      - '4000:4000'
+    container_name: "materia.api"
+    command: mix phx.server
+    environment:
+      - MIX_ENV=dev
+      - PORT=4000
+    volumes:
+      - .:/app
+    depends_on:
+      - materia_db
+  materia_db:
+    image: postgres:9.6
+    container_name: "materia.db"
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=materia_db
+    volumes:
+      - materia.db.volume:/var/lib/postgresql/data

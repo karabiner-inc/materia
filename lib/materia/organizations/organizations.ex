@@ -188,7 +188,7 @@ defmodule Materia.Organizations do
 
   ```
   iex(1)> user = Materia.Accounts.get_user!(1)
-  iex(2)> {:ok, organization} = Materia.Organizations.create_my_organization(%{}, user.id, %{name: "OurCompany"})
+  iex(2)> {:ok, organization} = Materia.Organizations.create_my_organization(Application.get_env(:materia, :repo), %{}, user.id, %{name: "OurCompany"})
   iex(3)> MateriaWeb.OrganizationView.render("show.json", %{organization: organization}) |> Map.delete(:id)
   %{
     addresses: [],
@@ -221,7 +221,7 @@ defmodule Materia.Organizations do
   ```
 
   """
-  def create_my_organization(_result, user_id, attrs \\ %{}) do
+  def create_my_organization(_repo, _result, user_id, attrs \\ %{}) do
     repo = Application.get_env(:materia, :repo)
     user = Accounts.get_user!(user_id)
     organization = Ecto.build_assoc(user, :organization, attrs)

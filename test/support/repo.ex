@@ -1,5 +1,5 @@
 defmodule Materia.Test.Repo do
-  use Ecto.Repo, otp_app: :materia
+  use Ecto.Repo, otp_app: :materia, adapter: Ecto.Adapters.Postgres
 
   @doc """
   Dynamically loads the repository url from the

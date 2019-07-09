@@ -20,7 +20,8 @@ config :materia, Materia.Test.Repo,
   password: "postgres",
   database: "materia_test",
   hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  migration_timestamps: [type: :naive_datetime_usec]
 
 config :materia, repo: Materia.Test.Repo
 

@@ -2,6 +2,7 @@ defmodule Materia.Locations.Address do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @timestamps_opts [type: :naive_datetime_usec] # timestamps() の型
 
   schema "addresses" do
     field :address1, :string

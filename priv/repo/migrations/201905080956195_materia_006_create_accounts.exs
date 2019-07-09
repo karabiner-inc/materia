@@ -5,9 +5,9 @@ defmodule Materia.Repo.Migrations.CreateAccounts do
     create table(:accounts) do
       add :external_code, :string
       add :name, :string
-      add :start_datetime, :utc_datetime
-      add :frozen_datetime, :utc_datetime
-      add :expired_datetime, :utc_datetime
+      add :start_datetime, :utc_datetime_usec
+      add :frozen_datetime, :utc_datetime_usec
+      add :expired_datetime, :utc_datetime_usec
       add :descriptions, :string, size: 1000
       add :organization_id, references(:organizations, on_delete: :nothing)
       add :main_user_id, references(:users, on_delete: :nothing)

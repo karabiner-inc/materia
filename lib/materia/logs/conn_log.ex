@@ -2,6 +2,7 @@ defmodule Materia.Logs.ConnLog do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @timestamps_opts [type: :naive_datetime_usec] # timestamps() の型
 
   schema "conn_logs" do
     field :assigns, :string

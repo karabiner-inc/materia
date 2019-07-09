@@ -119,8 +119,8 @@ defmodule Materia.Tags do
 
   Perform SQL Like search for specified search string
 
-  iex(1)> Materia.Tags.merge_tag(%{}, "catA", "あイ０A")
-  iex(2)> Materia.Tags.merge_tag(%{}, "catA", "アxxx x")
+  iex(1)> Materia.Tags.merge_tag(Application.get_env(:materia, :repo), %{}, "catA", "あイ０A")
+  iex(2)> Materia.Tags.merge_tag(Application.get_env(:materia, :repo), %{}, "catA", "アxxx x")
   iex(3)> tags = Materia.Tags.list_tags_by_normalized("catA", "ｱ   %")
   iex(4)> length(tags)
   2
@@ -144,17 +144,17 @@ defmodule Materia.Tags do
 　If the label is already registered, reply the existing registration contents without registering
 　Identity of registration is judged by perfect match of label
 
-  iex(1)> {:ok, tag} = Materia.Tags.merge_tag(%{}, "merge_tag_001", "TagA")
-  iex(2)> {:ok, tag} = Materia.Tags.merge_tag(%{}, "merge_tag_001", "Taga")
+  iex(1)> {:ok, tag} = Materia.Tags.merge_tag(Application.get_env(:materia, :repo), %{}, "merge_tag_001", "TagA")
+  iex(2)> {:ok, tag} = Materia.Tags.merge_tag(Application.get_env(:materia, :repo), %{}, "merge_tag_001", "Taga")
   iex(3)> tags = Materia.Tags.list_tags_by_normalized("merge_tag_001", "%")
   iex(4)> length(tags)
   2
-  iex(5)> {:ok, tag} = Materia.Tags.merge_tag(%{}, "merge_tag_001", "TagA")
+  iex(5)> {:ok, tag} = Materia.Tags.merge_tag(Application.get_env(:materia, :repo), %{}, "merge_tag_001", "TagA")
   iex(6)> length(tags)
   2
 
   """
-  def merge_tag(%{}, tag_category, label) do
+  def merge_tag(_repo, %{}, tag_category, label) do
     tag = get_tag_by_label(tag_category, label)
     tag =
     if tag == nil do

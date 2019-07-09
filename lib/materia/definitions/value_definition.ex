@@ -2,6 +2,7 @@ defmodule Materia.Definitions.ValueDefinition do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @timestamps_opts [type: :naive_datetime_usec] # timestamps() の型
 
   schema "value_definitions" do
     field :definition_abbreviated, :string

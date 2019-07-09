@@ -691,7 +691,7 @@ defmodule Materia.Accounts do
   ## Examples
 
   ```
-  iex(1)> {:ok, tmp_user} = Materia.Accounts.regster_tmp_user(%{}, "test001@example.com", "operator")
+  iex(1)> {:ok, tmp_user} = Materia.Accounts.regster_tmp_user(Application.get_env(:materia, :repo), %{}, "test001@example.com", "operator")
   iex(2)> MateriaWeb.UserView.render("show.json", %{user: tmp_user.user}) |> Map.delete(:id)
   %{
     addresses: [],
@@ -710,7 +710,7 @@ defmodule Materia.Accounts do
   iex(3)> tmp_user.user_registration_token != nil
   true
   """
-  def regster_tmp_user(_result, email, role) do
+  def regster_tmp_user(_repo, _result, email, role) do
     config = Application.get_env(:materia, Materia.Accounts)
 
     user = get_user_by_email(email)
@@ -765,7 +765,7 @@ defmodule Materia.Accounts do
   ```
 
   iex(1)> user = Materia.Accounts.get_user!(1)
-  iex(13)> {:ok, updated_user} = Materia.Accounts.update_user(%{}, user, %{name: "updated user"})
+  iex(13)> {:ok, updated_user} = Materia.Accounts.update_user(Application.get_env(:materia, :repo), %{}, user, %{name: "updated user"})
   iex(15)> MateriaWeb.UserView.render("show.json", %{user: updated_user})
   %{
     addresses: [
@@ -825,7 +825,7 @@ defmodule Materia.Accounts do
   ```
 
   """
-  def update_user(_result, user, attr) do
+  def update_user(_repo, _result, user, attr) do
     update_user(user, attr)
   end
 
@@ -837,8 +837,8 @@ defmodule Materia.Accounts do
   ## Examples
 
   ```
-  iex(1)> {:ok, tmp_user} = Materia.Accounts.regster_tmp_user(%{}, "test002@example.com", "operator")
-  iex(2)> {:ok, user} = Materia.Accounts.registration_user(%{}, tmp_user.user, %{name: "test002 user", password: "password"})
+  iex(1)> {:ok, tmp_user} = Materia.Accounts.regster_tmp_user(Application.get_env(:materia, :repo), %{}, "test002@example.com", "operator")
+  iex(2)> {:ok, user} = Materia.Accounts.registration_user(Application.get_env(:materia, :repo), %{}, tmp_user.user, %{name: "test002 user", password: "password"})
   iex(3)> MateriaWeb.UserView.render("show.json", %{user: user}) |> Map.delete(:id)
   %{
     addresses: [],
@@ -855,7 +855,7 @@ defmodule Materia.Accounts do
     status: 1
   }
   """
-  def registration_user(_result, user, attr) do
+  def registration_user(_repo, _result, user, attr) do
     config = Application.get_env(:materia, Materia.Accounts)
 
     #仮登録ユーザーでなければエラー
@@ -893,8 +893,8 @@ defmodule Materia.Accounts do
   ## Examples
 
   ```
-  iex(1)> {:ok, tmp_user} = Materia.Accounts.regster_tmp_user(%{}, "test003@example.com", "operator")
-  iex(2)> {:ok, user_token} = Materia.Accounts.registration_user_and_sign_in(%{}, tmp_user.user, %{name: "test003 user", password: "password"})
+  iex(1)> {:ok, tmp_user} = Materia.Accounts.regster_tmp_user(Application.get_env(:materia, :repo), %{}, "test003@example.com", "operator")
+  iex(2)> {:ok, user_token} = Materia.Accounts.registration_user_and_sign_in(Application.get_env(:materia, :repo), %{}, tmp_user.user, %{name: "test003 user", password: "password"})
   iex(3)> MateriaWeb.UserView.render("show.json", %{user: user_token.user}) |> Map.delete(:id)
   %{
     addresses: [],
@@ -915,9 +915,9 @@ defmodule Materia.Accounts do
   iex(5)> user_token.refresh_token != nil
   true
   """
-  def registration_user_and_sign_in(_result, user, attr) do
+  def registration_user_and_sign_in(_repo, _result, user, attr) do
 
-    {:ok, user} = registration_user(_result, user, attr)
+    {:ok, user} = registration_user(_repo, _result, user, attr)
 
     {:ok, result} = UserAuthenticator.sign_in(user.email, user.password)
 
@@ -940,11 +940,11 @@ defmodule Materia.Accounts do
   ## Examples
 
   ```
-  iex(1)> {:ok, token} = Materia.Accounts.request_password_reset(%{}, "hogehoge@example.com")
+  iex(1)> {:ok, token} = Materia.Accounts.request_password_reset(Application.get_env(:materia, :repo), %{}, "hogehoge@example.com")
   iex(2)> token.password_reset_token != nil
   true
   """
-  def request_password_reset(_result, email) do
+  def request_password_reset(_repo, _result, email) do
     config = Application.get_env(:materia, Materia.Accounts)
 
     # ユーザーの存在チェック
@@ -987,7 +987,7 @@ defmodule Materia.Accounts do
 
   ```
   iex(1)> user = Materia.Accounts.get_user!(1)
-  iex(2)> {:ok, updated_user} = Materia.Accounts.reset_my_password(%{}, user, "password2")
+  iex(2)> {:ok, updated_user} = Materia.Accounts.reset_my_password(Application.get_env(:materia, :repo), %{}, user, "password2")
   iex(3)> MateriaWeb.UserView.render("show.json", %{user: updated_user}) |> Map.delete(:id)
   %{
     addresses: [
@@ -1043,7 +1043,7 @@ defmodule Materia.Accounts do
     status: 1
   }
   """
-  def reset_my_password(_result, user, password) do
+  def reset_my_password(_repo, _result, user, password) do
     config = Application.get_env(:materia, Materia.Accounts)
 
     if user.status != User.status().activated do
@@ -1205,16 +1205,14 @@ defmodule Materia.Accounts do
   def update_account(%Account{} = account, attrs) do
 
     # ステータスが更新されている場合、
-    if Map.has_key?(attrs, "status") do
-      attrs =
-      cond do
+    attrs = cond do
+      !Map.has_key?(attrs, "status") -> attrs
       attrs["status"] == Account.status.activated ->
         Map.put(attrs, "start_datetime", CalendarUtil.now())
       attrs["status"] == Account.status.frozen ->
         Map.put(attrs, "frozen_datetime", CalendarUtil.now())
       attrs["status"] == Account.status.expired ->
         Map.put(attrs, "expired_datetime", CalendarUtil.now())
-      end
     end
 
     account

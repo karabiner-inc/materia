@@ -464,8 +464,8 @@ defmodule MateriaWeb.UserControllerTest do
   #  end
   #end
 
-  defp create_user(_) do
-    user = fixture(:user)
-    {:ok, user: user}
-  end
+#  defp create_user(_) do
+#    user = fixture(:user)
+#    {:ok, user: user}
+#  end
 end

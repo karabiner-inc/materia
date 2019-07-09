@@ -3,7 +3,7 @@ defmodule Materia.Repo.Migrations.CreateClientLogs do
 
   def change do
     create table(:client_logs) do
-      add :log_datetime, :utc_datetime
+      add :log_datetime, :utc_datetime_usec
       add :user_id, :bigint
       add :client_ip, :string
       add :user_agent, :string
