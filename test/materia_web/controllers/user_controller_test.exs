@@ -28,15 +28,198 @@ defmodule MateriaWeb.UserControllerTest do
 
       # show self info
       show_me_conn = get conn, user_path(conn, :show_me)
-      assert json_response(show_me_conn, 200) == %{"email" => "hogehoge@example.com", "id" => 1, "name" => "hogehoge", "role" => "admin", "addresses" => [%{"address1" => "福岡市中央区", "address2" => "大名 x-x-xx", "id" => 2,"latitude" => nil, "location" => "福岡県", "lock_version" => 0, "longitude" => nil, "organization" => nil, "subject" => "billing", "user" => [], "zip_code" => "810-ZZZZ"}, %{"address1" => "福岡市中央区", "address2" => "港 x-x-xx", "id" => 1, "latitude" => nil, "location" => "福岡県", "lock_version" => 0, "longitude" => nil, "organization" => nil, "subject" => "living", "user" =>[], "zip_code" => "810-ZZZZ"}], "back_ground_img_url" => nil, "descriptions" => nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 2, "organization" => %{"addresses" => [], "back_ground_img_url" => "https://hogehoge.com/ib_img.jpg", "hp_url" => "https://hogehoge.inc", "id" => 1, "lock_version" => 1, "name" => "hogehoge.inc", "one_line_message" => "let's do this.", "phone_number" => nil, "profile_img_url" => "https://hogehoge.com/prof_img.jpg", "status" => 1, "users" => []}, "phone_number" => nil, "status" => 1}
+      assert json_response(show_me_conn, 200) == %{
+               "email" => "hogehoge@example.com",
+               "id" => 1,
+               "name" => "hogehoge",
+               "role" => "admin",
+               "addresses" => [
+                 %{
+                   "address1" => "福岡市中央区",
+                   "address2" => "大名 x-x-xx",
+                   "id" => 2,
+                   "latitude" => nil,
+                   "location" => "福岡県",
+                   "lock_version" => 0,
+                   "longitude" => nil,
+                   "organization" => nil,
+                   "subject" => "billing",
+                   "user" => [],
+                   "zip_code" => "810-ZZZZ",
+                   "address1_phonetic" => "address1_phonetic",
+                   "address2_phonetic" => "address2_phonetic",
+                   "address3" => "address3",
+                   "address3_phonetic" => "address3_phonetic",
+                   "notation_name" => "notation_name",
+                   "notation_org_name" => "notation_org_name",
+                   "notation_org_phonetic" => "notation_org_phonetic",
+                   "notation_phonetic" => "notation_phonetic",
+                   "phone_number" => "phone_number"
+                 },
+                 %{
+                   "address1" => "福岡市中央区",
+                   "address2" => "港 x-x-xx",
+                   "id" => 1,
+                   "latitude" => nil,
+                   "location" => "福岡県",
+                   "lock_version" => 0,
+                   "longitude" => nil,
+                   "organization" => nil,
+                   "subject" => "living",
+                   "user" => [],
+                   "zip_code" => "810-ZZZZ",
+                   "address1_phonetic" => "address1_phonetic",
+                   "address2_phonetic" => "address2_phonetic",
+                   "address3" => "address3",
+                   "address3_phonetic" => "address3_phonetic",
+                   "notation_name" => "notation_name",
+                   "notation_org_name" => "notation_org_name",
+                   "notation_org_phonetic" => "notation_org_phonetic",
+                   "notation_phonetic" => "notation_phonetic",
+                   "phone_number" => "phone_number"
+                 }
+               ],
+               "back_ground_img_url" => nil,
+               "descriptions" => nil,
+               "external_user_id" => nil,
+               "icon_img_url" => nil,
+               "lock_version" => 2,
+               "organization" => %{
+                 "addresses" => [],
+                 "back_ground_img_url" => "https://hogehoge.com/ib_img.jpg",
+                 "hp_url" => "https://hogehoge.inc",
+                 "id" => 1,
+                 "lock_version" => 1,
+                 "name" => "hogehoge.inc",
+                 "one_line_message" => "let's do this.",
+                 "phone_number" => nil,
+                 "profile_img_url" => "https://hogehoge.com/prof_img.jpg",
+                 "status" => 1,
+                 "users" => [],
+                 "ext_organization_branch_id" => "ext_organization_branch_id",
+                 "ext_organization_id" => "ext_organization_id",
+                 "phonetic" => "phonetic"
+               },
+               "phone_number" => nil,
+               "status" => 1,
+               "phonetic" => "phonetic"
+             }
 
       # show user list (allow anybody)
       users_conn = get conn, user_path(conn, :index)
-      assert json_response(users_conn, 200) == [%{"email" => "fugafuga@example.com", "id" => 2, "name" => "fugafuga", "role" => "operator", "addresses" => [], "back_ground_img_url" => nil, "descriptions" => nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 1, "organization" => nil, "phone_number" => nil, "status" => 1}, %{"email" => "hogehoge@example.com", "id" => 1, "name" => "hogehoge", "role" => "admin", "addresses" => [%{"address1" => "福岡市中央区", "address2" => "港 x-x-xx", "id" => 1, "latitude" => nil, "location" => "福岡県", "lock_version" => 0, "longitude" => nil, "organization" => nil, "subject" => "living", "user" => [], "zip_code" => "810-ZZZZ"}, %{"address1" => "福岡市中央区", "address2" => "大名 x-x-xx", "id" => 2, "latitude" => nil, "location" => "福岡県", "lock_version" => 0, "longitude" => nil, "organization" => nil, "subject" => "billing", "user" => [], "zip_code" => "810-ZZZZ"}], "back_ground_img_url" => nil, "descriptions" =>nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 2, "organization" => %{"addresses" => [], "back_ground_img_url" => "https://hogehoge.com/ib_img.jpg", "hp_url" => "https://hogehoge.inc", "id" => 1, "lock_version" => 1, "name" => "hogehoge.inc", "one_line_message" => "let's do this.", "phone_number" => nil, "profile_img_url" => "https://hogehoge.com/prof_img.jpg", "status" => 1, "users" => []}, "phone_number" => nil, "status" => 1}]
+      assert json_response(users_conn, 200) == [
+               %{
+                 "email" => "fugafuga@example.com",
+                 "id" => 2,
+                 "name" => "fugafuga",
+                 "role" => "operator",
+                 "addresses" => [],
+                 "back_ground_img_url" => nil,
+                 "descriptions" => nil,
+                 "external_user_id" => nil,
+                 "icon_img_url" => nil,
+                 "lock_version" => 1,
+                 "organization" => nil,
+                 "phone_number" => nil,
+                 "status" => 1,
+                 "phonetic" => "phonetic"
+               },
+               %{
+                 "email" => "hogehoge@example.com",
+                 "id" => 1,
+                 "name" => "hogehoge",
+                 "role" => "admin",
+                 "addresses" => [
+                   %{
+                     "address1" => "福岡市中央区",
+                     "address2" => "港 x-x-xx",
+                     "id" => 1,
+                     "latitude" => nil,
+                     "location" => "福岡県",
+                     "lock_version" => 0,
+                     "longitude" => nil,
+                     "organization" => nil,
+                     "subject" => "living",
+                     "user" => [],
+                     "zip_code" => "810-ZZZZ",
+                     "address1_phonetic" => "address1_phonetic",
+                     "address2_phonetic" => "address2_phonetic",
+                     "address3" => "address3",
+                     "address3_phonetic" => "address3_phonetic",
+                     "notation_name" => "notation_name",
+                     "notation_org_name" => "notation_org_name",
+                     "notation_org_phonetic" => "notation_org_phonetic",
+                     "notation_phonetic" => "notation_phonetic",
+                     "phone_number" => "phone_number"
+                   },
+                   %{
+                     "address1" => "福岡市中央区",
+                     "address2" => "大名 x-x-xx",
+                     "id" => 2,
+                     "latitude" => nil,
+                     "location" => "福岡県",
+                     "lock_version" => 0,
+                     "longitude" => nil,
+                     "organization" => nil,
+                     "subject" => "billing",
+                     "user" => [],
+                     "zip_code" => "810-ZZZZ",
+                     "address1_phonetic" => "address1_phonetic",
+                     "address2_phonetic" => "address2_phonetic",
+                     "address3" => "address3",
+                     "address3_phonetic" => "address3_phonetic",
+                     "notation_name" => "notation_name",
+                     "notation_org_name" => "notation_org_name",
+                     "notation_org_phonetic" => "notation_org_phonetic",
+                     "notation_phonetic" => "notation_phonetic",
+                     "phone_number" => "phone_number"
+                   }
+                 ],
+                 "back_ground_img_url" => nil,
+                 "descriptions" => nil,
+                 "external_user_id" => nil,
+                 "icon_img_url" => nil,
+                 "lock_version" => 2,
+                 "organization" => %{
+                   "addresses" => [],
+                   "back_ground_img_url" => "https://hogehoge.com/ib_img.jpg",
+                   "hp_url" => "https://hogehoge.inc",
+                   "id" => 1,
+                   "lock_version" => 1,
+                   "name" => "hogehoge.inc",
+                   "one_line_message" => "let's do this.",
+                   "phone_number" => nil,
+                   "profile_img_url" => "https://hogehoge.com/prof_img.jpg",
+                   "status" => 1,
+                   "users" => [],
+                   "ext_organization_branch_id" => "ext_organization_branch_id",
+                   "ext_organization_id" => "ext_organization_id",
+                   "phonetic" => "phonetic"
+                 },
+                 "phone_number" => nil,
+                 "status" => 1,
+                 "phonetic" => "phonetic"
+               }
+             ]
 
       # show other user info (allow anybody)
       user_conn = get conn, user_path(conn, :show, 2)
-      assert json_response(user_conn, 200) == %{"email" => "fugafuga@example.com", "id" => 2, "name" => "fugafuga", "role" => "operator", "addresses" => [], "back_ground_img_url" => nil, "descriptions" => nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 1, "organization" => nil, "phone_number" => nil, "status" => 1}
+      assert json_response(user_conn, 200) == %{
+               "email" => "fugafuga@example.com",
+               "id" => 2,
+               "name" => "fugafuga",
+               "role" => "operator",
+               "addresses" => [],
+               "back_ground_img_url" => nil,
+               "descriptions" => nil,
+               "external_user_id" => nil,
+               "icon_img_url" => nil,
+               "lock_version" => 1,
+               "organization" => nil,
+               "phone_number" => nil,
+               "status" => 1,
+               "phonetic" => "phonetic"
+             }
 
      # show role grant list (allow anybody)
      role_grant_conn = post conn, grant_path(conn, :get_by_role), %{"role" => "admin"}
@@ -95,17 +278,200 @@ defmodule MateriaWeb.UserControllerTest do
 
       # show self info
       show_me_conn = get conn, user_path(conn, :show_me)
-      assert json_response(show_me_conn, 200) == %{"email" => "fugafuga@example.com", "id" => 2, "name" => "fugafuga", "role" => "operator", "addresses" => [], "back_ground_img_url" => nil, "descriptions" => nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 1, "organization" => nil, "phone_number" => nil, "status" => 1}
+      assert json_response(show_me_conn, 200) == %{
+               "email" => "fugafuga@example.com",
+               "id" => 2,
+               "name" => "fugafuga",
+               "role" => "operator",
+               "addresses" => [],
+               "back_ground_img_url" => nil,
+               "descriptions" => nil,
+               "external_user_id" => nil,
+               "icon_img_url" => nil,
+               "lock_version" => 1,
+               "organization" => nil,
+               "phone_number" => nil,
+               "status" => 1,
+               "phonetic" => "phonetic"
+             }
 
       # show user list (allow only administrator)
       users_conn = get conn, user_path(conn, :index)
       #assert response(users_conn, 401) == "{\"message\":\"invalid_token\"}"
-      assert json_response(users_conn, 200) == [%{"email" => "fugafuga@example.com", "id" => 2, "name" => "fugafuga", "role" => "operator", "addresses" => [], "back_ground_img_url" => nil, "descriptions" => nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 1, "organization" => nil, "phone_number" => nil, "status" => 1}, %{"email" => "hogehoge@example.com", "id" => 1, "name" => "hogehoge", "role" => "admin", "addresses" => [%{"address1" => "福岡市中央区", "address2" => "港 x-x-xx", "id" => 1, "latitude" => nil, "location" => "福岡県", "lock_version" => 0, "longitude" => nil, "organization" => nil, "subject" => "living", "user" => [], "zip_code" => "810-ZZZZ"}, %{"address1" => "福岡市中央区", "address2" => "大名 x-x-xx", "id" => 2, "latitude" => nil, "location" => "福岡県", "lock_version" => 0, "longitude" => nil, "organization" => nil, "subject" => "billing", "user" => [], "zip_code" => "810-ZZZZ"}], "back_ground_img_url" => nil, "descriptions" =>nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 2, "organization" => %{"addresses" => [], "back_ground_img_url" => "https://hogehoge.com/ib_img.jpg", "hp_url" => "https://hogehoge.inc", "id" => 1, "lock_version" => 1, "name" => "hogehoge.inc", "one_line_message" => "let's do this.", "phone_number" => nil, "profile_img_url" => "https://hogehoge.com/prof_img.jpg", "status" => 1, "users" => []}, "phone_number" => nil, "status" => 1}]
+      assert json_response(users_conn, 200) == [
+               %{
+                 "email" => "fugafuga@example.com",
+                 "id" => 2,
+                 "name" => "fugafuga",
+                 "role" => "operator",
+                 "addresses" => [],
+                 "back_ground_img_url" => nil,
+                 "descriptions" => nil,
+                 "external_user_id" => nil,
+                 "icon_img_url" => nil,
+                 "lock_version" => 1,
+                 "organization" => nil,
+                 "phone_number" => nil,
+                 "status" => 1,
+                 "phonetic" => "phonetic"
+               },
+               %{
+                 "email" => "hogehoge@example.com",
+                 "id" => 1,
+                 "name" => "hogehoge",
+                 "role" => "admin",
+                 "addresses" => [
+                   %{
+                     "address1" => "福岡市中央区",
+                     "address2" => "港 x-x-xx",
+                     "id" => 1,
+                     "latitude" => nil,
+                     "location" => "福岡県",
+                     "lock_version" => 0,
+                     "longitude" => nil,
+                     "organization" => nil,
+                     "subject" => "living",
+                     "user" => [],
+                     "zip_code" => "810-ZZZZ",
+                     "address1_phonetic" => "address1_phonetic",
+                     "address2_phonetic" => "address2_phonetic",
+                     "address3" => "address3",
+                     "address3_phonetic" => "address3_phonetic",
+                     "notation_name" => "notation_name",
+                     "notation_org_name" => "notation_org_name",
+                     "notation_org_phonetic" => "notation_org_phonetic",
+                     "notation_phonetic" => "notation_phonetic",
+                     "phone_number" => "phone_number"
+                   },
+                   %{
+                     "address1" => "福岡市中央区",
+                     "address2" => "大名 x-x-xx",
+                     "id" => 2,
+                     "latitude" => nil,
+                     "location" => "福岡県",
+                     "lock_version" => 0,
+                     "longitude" => nil,
+                     "organization" => nil,
+                     "subject" => "billing",
+                     "user" => [],
+                     "zip_code" => "810-ZZZZ",
+                     "address1_phonetic" => "address1_phonetic",
+                     "address2_phonetic" => "address2_phonetic",
+                     "address3" => "address3",
+                     "address3_phonetic" => "address3_phonetic",
+                     "notation_name" => "notation_name",
+                     "notation_org_name" => "notation_org_name",
+                     "notation_org_phonetic" => "notation_org_phonetic",
+                     "notation_phonetic" => "notation_phonetic",
+                     "phone_number" => "phone_number"
+                   }
+                 ],
+                 "back_ground_img_url" => nil,
+                 "descriptions" => nil,
+                 "external_user_id" => nil,
+                 "icon_img_url" => nil,
+                 "lock_version" => 2,
+                 "organization" => %{
+                   "addresses" => [],
+                   "back_ground_img_url" => "https://hogehoge.com/ib_img.jpg",
+                   "hp_url" => "https://hogehoge.inc",
+                   "id" => 1,
+                   "lock_version" => 1,
+                   "name" => "hogehoge.inc",
+                   "one_line_message" => "let's do this.",
+                   "phone_number" => nil,
+                   "profile_img_url" => "https://hogehoge.com/prof_img.jpg",
+                   "status" => 1,
+                   "users" => [],
+                   "ext_organization_branch_id" => "ext_organization_branch_id",
+                   "ext_organization_id" => "ext_organization_id",
+                   "phonetic" => "phonetic"
+                 },
+                 "phone_number" => nil,
+                 "status" => 1,
+                 "phonetic" => "phonetic"
+               }
+             ]
 
       # show other user info (allow anybody)
       user_conn = get conn, user_path(conn, :show, 1)
       #assert response(user_conn, 401) == "{\"message\":\"invalid_token\"}"
-      assert json_response(user_conn, 200) == %{"email" => "hogehoge@example.com", "id" => 1, "name" => "hogehoge", "role" => "admin", "addresses" => [%{"address1" => "福岡市中央区", "address2" => "大名 x-x-xx", "id" => 2,"latitude" => nil, "location" => "福岡県", "lock_version" => 0, "longitude" => nil, "organization" => nil, "subject" => "billing", "user" => [], "zip_code" => "810-ZZZZ"}, %{"address1" => "福岡市中央区", "address2" => "港 x-x-xx", "id" => 1, "latitude" => nil, "location" => "福岡県", "lock_version" => 0, "longitude" => nil, "organization" => nil, "subject" => "living", "user" =>[], "zip_code" => "810-ZZZZ"}], "back_ground_img_url" => nil, "descriptions" => nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 2, "organization" => %{"addresses" => [], "back_ground_img_url" => "https://hogehoge.com/ib_img.jpg", "hp_url" => "https://hogehoge.inc", "id" => 1, "lock_version" => 1, "name" => "hogehoge.inc", "one_line_message" => "let's do this.", "phone_number" => nil, "profile_img_url" => "https://hogehoge.com/prof_img.jpg", "status" => 1, "users" => []}, "phone_number" => nil, "status" => 1}
+      assert json_response(user_conn, 200) == %{
+               "email" => "hogehoge@example.com",
+               "id" => 1,
+               "name" => "hogehoge",
+               "role" => "admin",
+               "addresses" => [
+                 %{
+                   "address1" => "福岡市中央区",
+                   "address2" => "大名 x-x-xx",
+                   "id" => 2,
+                   "latitude" => nil,
+                   "location" => "福岡県",
+                   "lock_version" => 0,
+                   "longitude" => nil,
+                   "organization" => nil,
+                   "subject" => "billing",
+                   "user" => [],
+                   "zip_code" => "810-ZZZZ",
+                   "address1_phonetic" => "address1_phonetic",
+                   "address2_phonetic" => "address2_phonetic",
+                   "address3" => "address3",
+                   "address3_phonetic" => "address3_phonetic",
+                   "notation_name" => "notation_name",
+                   "notation_org_name" => "notation_org_name",
+                   "notation_org_phonetic" => "notation_org_phonetic",
+                   "notation_phonetic" => "notation_phonetic",
+                   "phone_number" => "phone_number"
+                 },
+                 %{
+                   "address1" => "福岡市中央区",
+                   "address2" => "港 x-x-xx",
+                   "id" => 1,
+                   "latitude" => nil,
+                   "location" => "福岡県",
+                   "lock_version" => 0,
+                   "longitude" => nil,
+                   "organization" => nil,
+                   "subject" => "living",
+                   "user" => [],
+                   "zip_code" => "810-ZZZZ",
+                   "address1_phonetic" => "address1_phonetic",
+                   "address2_phonetic" => "address2_phonetic",
+                   "address3" => "address3",
+                   "address3_phonetic" => "address3_phonetic",
+                   "notation_name" => "notation_name",
+                   "notation_org_name" => "notation_org_name",
+                   "notation_org_phonetic" => "notation_org_phonetic",
+                   "notation_phonetic" => "notation_phonetic",
+                   "phone_number" => "phone_number"
+                 }
+               ],
+               "back_ground_img_url" => nil,
+               "descriptions" => nil,
+               "external_user_id" => nil,
+               "icon_img_url" => nil,
+               "lock_version" => 2,
+               "organization" => %{
+                 "addresses" => [],
+                 "back_ground_img_url" => "https://hogehoge.com/ib_img.jpg",
+                 "hp_url" => "https://hogehoge.inc",
+                 "id" => 1,
+                 "lock_version" => 1,
+                 "name" => "hogehoge.inc",
+                 "one_line_message" => "let's do this.",
+                 "phone_number" => nil,
+                 "profile_img_url" => "https://hogehoge.com/prof_img.jpg",
+                 "status" => 1,
+                 "users" => [],
+                 "ext_organization_branch_id" => "ext_organization_branch_id",
+                 "ext_organization_id" => "ext_organization_id",
+                 "phonetic" => "phonetic"
+               },
+               "phone_number" => nil,
+               "status" => 1,
+               "phonetic" => "phonetic"
+             }
 
      # show role grant list (allow anybody)
      role_grant_conn = post conn, grant_path(conn, :get_by_role), %{"role" => "admin"}
@@ -172,11 +538,39 @@ defmodule MateriaWeb.UserControllerTest do
     # create user
     create_conn = post conn, user_path(conn, :create), @other_user_attrs
     create_resp = json_response(create_conn, 201)
-    assert create_resp |> Map.delete("id") == %{"email" => "ugauga@example.com", "name" => "ugauga", "role" => "operator", "addresses" => [], "back_ground_img_url" => nil, "descriptions" => nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 1, "organization" => nil, "phone_number" => nil, "status" => 1}
+    assert create_resp |> Map.delete("id") == %{
+             "email" => "ugauga@example.com",
+             "name" => "ugauga",
+             "role" => "operator",
+             "addresses" => [],
+             "back_ground_img_url" => nil,
+             "descriptions" => nil,
+             "external_user_id" => nil,
+             "icon_img_url" => nil,
+             "lock_version" => 1,
+             "organization" => nil,
+             "phone_number" => nil,
+             "status" => 1,
+             "phonetic" => nil
+           }
 
     # update user
     update_conn = put conn, user_path(conn, :update, create_resp["id"]), @update_user_attrs
-    assert json_response(update_conn, 200) |> Map.delete("id") == %{"email" => "ageage@example.com","name" => "ageage", "role" => "admin", "addresses" => [], "back_ground_img_url" => nil, "descriptions" => nil, "external_user_id" => nil, "icon_img_url" => nil, "lock_version" => 2, "organization" => nil, "phone_number" => nil, "status" => 1}
+    assert json_response(update_conn, 200) |> Map.delete("id") == %{
+             "email" => "ageage@example.com",
+             "name" => "ageage",
+             "role" => "admin",
+             "addresses" => [],
+             "back_ground_img_url" => nil,
+             "descriptions" => nil,
+             "external_user_id" => nil,
+             "icon_img_url" => nil,
+             "lock_version" => 2,
+             "organization" => nil,
+             "phone_number" => nil,
+             "status" => 1,
+             "phonetic" => nil
+           }
 
     # delete user
     delete_conn = delete conn, user_path(conn, :delete, create_resp["id"])
@@ -464,8 +858,8 @@ defmodule MateriaWeb.UserControllerTest do
   #  end
   #end
 
-  defp create_user(_) do
-    user = fixture(:user)
-    {:ok, user: user}
-  end
+#  defp create_user(_) do
+#    user = fixture(:user)
+#    {:ok, user: user}
+#  end
 end

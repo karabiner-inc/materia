@@ -14,8 +14,12 @@ defmodule MateriaWeb.OrganizationView do
   end
 
   def render("organization.json", %{organization: organization}) do
-    result_map = %{id: organization.id,
+    result_map = %{
+      id: organization.id,
+      ext_organization_id: organization.ext_organization_id,
+      ext_organization_branch_id: organization.ext_organization_branch_id,
       name: organization.name,
+      phonetic: organization.phonetic,
       hp_url: organization.hp_url,
       profile_img_url: organization.profile_img_url,
       back_ground_img_url: organization.back_ground_img_url,
@@ -25,11 +29,11 @@ defmodule MateriaWeb.OrganizationView do
       status: organization.status,
     }
     result_map =
-    if Ecto.assoc_loaded?(organization.users) do
-      Map.put(result_map, :users, UserView.render("index.json", %{users: organization.users}))
-    else
-      Map.put(result_map, :users, [])
-    end
+      if Ecto.assoc_loaded?(organization.users) do
+        Map.put(result_map, :users, UserView.render("index.json", %{users: organization.users}))
+      else
+        Map.put(result_map, :users, [])
+      end
     result_map =
       if Ecto.assoc_loaded?(organization.addresses) do
         Map.put(result_map, :addresses, AddressView.render("index.json", %{addresses: organization.addresses}))
