@@ -13,9 +13,10 @@ defmodule MateriaWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    result_map =%{
+    result_map = %{
       id: user.id,
       name: user.name,
+      name_phonetic: user.name_phonetic,
       email: user.email,
       role: user.role,
       status: user.status,

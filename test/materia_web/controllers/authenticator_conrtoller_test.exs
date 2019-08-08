@@ -34,7 +34,8 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
       "organization" => nil,
       "phone_number" => nil,
       "role" => "operator",
-      "status" => 1
+      "status" => 1,
+      "name_phonetic" => "name_phonetic"
     }
 
     conn_valid = get(conn_auth, "/api/auth-check")
@@ -64,7 +65,8 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
       "organization" => nil,
       "phone_number" => nil,
       "role" => "operator",
-      "status" => 1
+      "status" => 1,
+      "name_phonetic" => "name_phonetic"
     }
 
     # sign-out
@@ -108,7 +110,16 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
           "organization" => nil,
           "subject" => "billing",
           "user" => [],
-          "zip_code" => "810-ZZZZ"
+          "zip_code" => "810-ZZZZ",
+          "address1_phonetic" => "address1_phonetic",
+          "address2_phonetic" => "address2_phonetic",
+          "address3" => "address3",
+          "address3_phonetic" => "address3_phonetic",
+          "notation_name" => "notation_name",
+          "notation_org_name" => "notation_org_name",
+          "notation_org_name_phonetic" => "notation_org_name_phonetic",
+          "notation_name_phonetic" => "notation_name_phonetic",
+          "phone_number" => "phone_number"
         },
         %{
           "address1" => "福岡市中央区",
@@ -121,7 +132,16 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
           "organization" => nil,
           "subject" => "living",
           "user" => [],
-          "zip_code" => "810-ZZZZ"
+          "zip_code" => "810-ZZZZ",
+          "address1_phonetic" => "address1_phonetic",
+          "address2_phonetic" => "address2_phonetic",
+          "address3" => "address3",
+          "address3_phonetic" => "address3_phonetic",
+          "notation_name" => "notation_name",
+          "notation_org_name" => "notation_org_name",
+          "notation_org_name_phonetic" => "notation_org_name_phonetic",
+          "notation_name_phonetic" => "notation_name_phonetic",
+          "phone_number" => "phone_number"
         }
       ],
       "back_ground_img_url" => nil,
@@ -143,11 +163,15 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
         "phone_number" => nil,
         "profile_img_url" => "https://hogehoge.com/prof_img.jpg",
         "status" => 1,
-        "users" => []
+        "users" => [],
+        "ext_organization_branch_id" => "ext_organization_branch_id",
+        "ext_organization_id" => "ext_organization_id",
+        "name_phonetic" => "name_phonetic"
       },
       "phone_number" => nil,
       "role" => "admin",
-      "status" => 1
+      "status" => 1,
+      "name_phonetic" => "name_phonetic"
     }
 
     conn_show_my_account = get(conn_auth, account_path(conn, :show_my_account))

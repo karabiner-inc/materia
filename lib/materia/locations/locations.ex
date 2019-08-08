@@ -14,17 +14,25 @@ defmodule Materia.Locations do
 
   ```
   iex(1)> addresses = Materia.Locations.list_addresses()
-  iex(2)> MateriaWeb.AddressView.render("index.json", %{addresses: addresses})
-  [
+  iex(2)> MateriaWeb.AddressView.render("show.json", %{address: addresses |> Enum.filter(fn x -> x.id == 1 end) |> hd})
   %{
     address1: "福岡市中央区",
+    address1_phonetic: "address1_phonetic",
     address2: "港 x-x-xx",
+    address2_phonetic: "address2_phonetic",
+    address3: "address3",
+    address3_phonetic: "address3_phonetic",
     id: 1,
     latitude: nil,
     location: "福岡県",
     lock_version: 0,
     longitude: nil,
+    notation_name: "notation_name",
+    notation_org_name: "notation_org_name",
+    notation_org_name_phonetic: "notation_org_name_phonetic",
+    notation_name_phonetic: "notation_name_phonetic",
     organization: nil,
+    phone_number: "phone_number",
     subject: "living",
     user: %{
       addresses: [],
@@ -38,89 +46,12 @@ defmodule Materia.Locations do
       name: "hogehoge",
       organization: nil,
       phone_number: nil,
+      name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
     },
     zip_code: "810-ZZZZ"
-  },
-  %{
-    address1: "福岡市中央区",
-    address2: "大名 x-x-xx",
-    id: 2,
-    latitude: nil,
-    location: "福岡県",
-    lock_version: 0,
-    longitude: nil,
-    organization: nil,
-    subject: "billing",
-    user: %{
-      addresses: [],
-      back_ground_img_url: nil,
-      descriptions: nil,
-      email: "hogehoge@example.com",
-      external_user_id: nil,
-      icon_img_url: nil,
-      id: 1,
-      lock_version: 2,
-      name: "hogehoge",
-      organization: nil,
-      phone_number: nil,
-      role: "admin",
-      status: 1
-    },
-    zip_code: "810-ZZZZ"
-  },
-  %{
-    address1: "福岡市中央区",
-    address2: "天神 x-x-xx",
-    id: 3,
-    latitude: nil,
-    location: "福岡県",
-    lock_version: 0,
-    longitude: nil,
-    organization: %{
-      addresses: [],
-      back_ground_img_url: "https://hogehoge.com/ib_img.jpg",
-      hp_url: "https://hogehoge.inc",
-      id: 1,
-      lock_version: 1,
-      name: "hogehoge.inc",
-      one_line_message: "let's do this.",
-      phone_number: nil,
-      profile_img_url: "https://hogehoge.com/prof_img.jpg",
-      status: 1,
-      users: []
-    },
-    subject: "registry",
-    user: nil,
-    zip_code: "810-ZZZZ"
-  },
-  %{
-    address1: "北九州市小倉北区",
-    address2: "浅野 x-x-xx",
-    id: 4,
-    latitude: nil,
-    location: "福岡県",
-    lock_version: 0,
-    longitude: nil,
-    organization: %{
-      addresses: [],
-      back_ground_img_url: "https://hogehoge.com/ib_img.jpg",
-      hp_url: "https://hogehoge.inc",
-      id: 1,
-      lock_version: 1,
-      name: "hogehoge.inc",
-      one_line_message: "let's do this.",
-      phone_number: nil,
-      profile_img_url: "https://hogehoge.com/prof_img.jpg",
-      status: 1,
-      users: []
-    },
-    subject: "branch",
-    user: nil,
-    zip_code: "812-ZZZZ"
   }
-]
 
   ```
   """
@@ -141,13 +72,22 @@ defmodule Materia.Locations do
   iex(2)> MateriaWeb.AddressView.render("show.json", %{address: address})
   %{
     address1: "福岡市中央区",
+    address1_phonetic: "address1_phonetic",
     address2: "港 x-x-xx",
+    address2_phonetic: "address2_phonetic",
+    address3: "address3",
+    address3_phonetic: "address3_phonetic",
     id: 1,
     latitude: nil,
     location: "福岡県",
     lock_version: 0,
     longitude: nil,
+    notation_name: "notation_name",
+    notation_org_name: "notation_org_name",
+    notation_org_name_phonetic: "notation_org_name_phonetic",
+    notation_name_phonetic: "notation_name_phonetic",
     organization: nil,
+    phone_number: "phone_number",
     subject: "living",
     user: %{
       addresses: [],
@@ -161,6 +101,7 @@ defmodule Materia.Locations do
       name: "hogehoge",
       organization: nil,
       phone_number: nil,
+      name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
     },
@@ -186,20 +127,28 @@ defmodule Materia.Locations do
   iex(1)> {:ok, address} = Materia.Locations.create_address(%{subject: "living"})
   iex(2)> MateriaWeb.AddressView.render("show.json", %{address: address}) |> Map.delete(:id)
   %{
-  address1: nil,
-  address2: nil,
-  latitude: nil,
-  location: nil,
-  lock_version: 0,
-  longitude: nil,
-  organization: nil,
-  subject: "living",
-  user: [],
-  zip_code: nil
-}
+    address1: nil,
+    address1_phonetic: nil,
+    address2: nil,
+    address2_phonetic: nil,
+    address3: nil,
+    address3_phonetic: nil,
+    latitude: nil,
+    location: nil,
+    lock_version: 0,
+    longitude: nil,
+    notation_name: nil,
+    notation_org_name: nil,
+    notation_org_name_phonetic: nil,
+    notation_name_phonetic: nil,
+    organization: nil,
+    phone_number: nil,
+    subject: "living",
+    user: [],
+    zip_code: nil
+  }
 
   ```
-
 
   """
   def create_address(attrs \\ %{}) do
@@ -221,13 +170,22 @@ defmodule Materia.Locations do
   iex(3)> MateriaWeb.AddressView.render("show.json", %{address: updated_address})
   %{
     address1: "福岡市中央区",
+    address1_phonetic: "address1_phonetic",
     address2: "港 x-x-xx",
+    address2_phonetic: "address2_phonetic",
+    address3: "address3",
+    address3_phonetic: "address3_phonetic",
     id: 1,
     latitude: nil,
     location: "Fukuoka City",
     lock_version: 1,
     longitude: nil,
+    notation_name: "notation_name",
+    notation_org_name: "notation_org_name",
+    notation_org_name_phonetic: "notation_org_name_phonetic",
+    notation_name_phonetic: "notation_name_phonetic",
     organization: nil,
+    phone_number: "phone_number",
     subject: "living",
     user: %{
       addresses: [],
@@ -241,13 +199,13 @@ defmodule Materia.Locations do
       name: "hogehoge",
       organization: nil,
       phone_number: nil,
+      name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
     },
     zip_code: "810-ZZZZ"
   }
   ```
-
 
   """
   def update_address(%Address{} = address, attrs) do
@@ -266,89 +224,9 @@ defmodule Materia.Locations do
   ```
   iex(1)> address = Materia.Locations.get_address!(1)
   iex(2)> {:ok, address} = Materia.Locations.delete_address(address)
-  iex(3)> addresses = Materia.Locations.list_addresses()
-  iex(4)> MateriaWeb.AddressView.render("index.json", %{addresses: addresses})
-  [
-    %{
-      address1: "福岡市中央区",
-      address2: "大名 x-x-xx",
-      id: 2,
-      latitude: nil,
-      location: "福岡県",
-      lock_version: 0,
-      longitude: nil,
-      organization: nil,
-      subject: "billing",
-      user: %{
-        addresses: [],
-        back_ground_img_url: nil,
-        descriptions: nil,
-        email: "hogehoge@example.com",
-        external_user_id: nil,
-        icon_img_url: nil,
-        id: 1,
-        lock_version: 2,
-        name: "hogehoge",
-        organization: nil,
-        phone_number: nil,
-        role: "admin",
-        status: 1
-      },
-      zip_code: "810-ZZZZ"
-    },
-    %{
-      address1: "福岡市中央区",
-      address2: "天神 x-x-xx",
-      id: 3,
-      latitude: nil,
-      location: "福岡県",
-      lock_version: 0,
-      longitude: nil,
-      organization: %{
-        addresses: [],
-        back_ground_img_url: "https://hogehoge.com/ib_img.jpg",
-        hp_url: "https://hogehoge.inc",
-        id: 1,
-        lock_version: 1,
-        name: "hogehoge.inc",
-        one_line_message: "let's do this.",
-        phone_number: nil,
-        profile_img_url: "https://hogehoge.com/prof_img.jpg",
-        status: 1,
-        users: []
-      },
-      subject: "registry",
-      user: nil,
-      zip_code: "810-ZZZZ"
-    },
-    %{
-      address1: "北九州市小倉北区",
-      address2: "浅野 x-x-xx",
-      id: 4,
-      latitude: nil,
-      location: "福岡県",
-      lock_version: 0,
-      longitude: nil,
-      organization: %{
-        addresses: [],
-        back_ground_img_url: "https://hogehoge.com/ib_img.jpg",
-        hp_url: "https://hogehoge.inc",
-        id: 1,
-        lock_version: 1,
-        name: "hogehoge.inc",
-        one_line_message: "let's do this.",
-        phone_number: nil,
-        profile_img_url: "https://hogehoge.com/prof_img.jpg",
-        status: 1,
-        users: []
-      },
-      subject: "branch",
-      user: nil,
-      zip_code: "812-ZZZZ"
-    }
-  ]
+  iex(3)> Materia.Locations.list_addresses() |> Enum.count()
+  3
   ```
-
 
   """
   def delete_address(%Address{} = address) do

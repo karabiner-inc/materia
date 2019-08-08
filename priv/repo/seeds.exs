@@ -21,17 +21,17 @@ Accounts.create_grant(%{ role: "operator", method: "GET", request_path: "/api/op
 Accounts.create_grant(%{ role: "anybody", method: "ANY", request_path: "/api/ops/organizations" })
 Accounts.create_grant(%{ role: "anybody", method: "ANY", request_path: "/api/ops/mail-templates" })
 
-{:ok, user_hogehoge} = Accounts.create_user(%{ name: "hogehoge", email: "hogehoge@example.com", password: "hogehoge", role: "admin"})
-Accounts.create_user(%{ name: "fugafuga", email: "fugafuga@example.com", password: "fugafuga", role: "operator"})
-Locations.create_address(%{user_id: user_hogehoge.id, subject: "living", location: "福岡県", zip_code: "810-ZZZZ", address1: "福岡市中央区", address2: "港 x-x-xx"})
-Locations.create_address(%{user_id: user_hogehoge.id, subject: "billing", location: "福岡県", zip_code: "810-ZZZZ", address1: "福岡市中央区", address2: "大名 x-x-xx"})
+{:ok, user_hogehoge} = Accounts.create_user(%{ name: "hogehoge", email: "hogehoge@example.com", password: "hogehoge", role: "admin", name_phonetic: "name_phonetic"})
+Accounts.create_user(%{ name: "fugafuga", email: "fugafuga@example.com", password: "fugafuga", role: "operator", name_phonetic: "name_phonetic"})
+Locations.create_address(%{user_id: user_hogehoge.id, subject: "living", location: "福岡県", zip_code: "810-ZZZZ", address1: "福岡市中央区", address2: "港 x-x-xx", address1_phonetic: "address1_phonetic", address2_phonetic: "address2_phonetic", address3_phonetic: "address3_phonetic", address3: "address3", phone_number: "phone_number", notation_org_name: "notation_org_name", notation_org_name_phonetic: "notation_org_name_phonetic", notation_name: "notation_name", notation_name_phonetic: "notation_name_phonetic"})
+Locations.create_address(%{user_id: user_hogehoge.id, subject: "billing", location: "福岡県", zip_code: "810-ZZZZ", address1: "福岡市中央区", address2: "大名 x-x-xx", address1_phonetic: "address1_phonetic", address2_phonetic: "address2_phonetic", address3_phonetic: "address3_phonetic", address3: "address3", phone_number: "phone_number", notation_org_name: "notation_org_name", notation_org_name_phonetic: "notation_org_name_phonetic", notation_name: "notation_name", notation_name_phonetic: "notation_name_phonetic" })
 
 alias Materia.Organizations
 
-{:ok, organization_hogehoge} = Organizations.create_organization( %{name: "hogehoge.inc", one_line_message: "let's do this.", back_ground_img_url: "https://hogehoge.com/ib_img.jpg", profile_img_url: "https://hogehoge.com/prof_img.jpg", hp_url: "https://hogehoge.inc"})
+{:ok, organization_hogehoge} = Organizations.create_organization( %{name: "hogehoge.inc", one_line_message: "let's do this.", back_ground_img_url: "https://hogehoge.com/ib_img.jpg", profile_img_url: "https://hogehoge.com/prof_img.jpg", hp_url: "https://hogehoge.inc", ext_organization_id: "ext_organization_id", ext_organization_branch_id: "ext_organization_branch_id", name_phonetic: "name_phonetic"})
 Accounts.update_user(user_hogehoge, %{organization_id: organization_hogehoge.id})
-Locations.create_address(%{organization_id: organization_hogehoge.id, subject: "registry", location: "福岡県", zip_code: "810-ZZZZ", address1: "福岡市中央区", address2: "天神 x-x-xx"})
-Locations.create_address(%{organization_id: organization_hogehoge.id, subject: "branch", location: "福岡県", zip_code: "812-ZZZZ", address1: "北九州市小倉北区", address2: "浅野 x-x-xx"})
+Locations.create_address(%{organization_id: organization_hogehoge.id, subject: "registry", location: "福岡県", zip_code: "810-ZZZZ", address1: "福岡市中央区", address2: "天神 x-x-xx", address1_phonetic: "address1_phonetic", address2_phonetic: "address2_phonetic", address3_phonetic: "address3_phonetic", address3: "address3", phone_number: "phone_number", notation_org_name: "notation_org_name", notation_org_name_phonetic: "notation_org_name_phonetic", notation_name: "notation_name", notation_name_phonetic: "notation_name_phonetic"})
+Locations.create_address(%{organization_id: organization_hogehoge.id, subject: "branch", location: "福岡県", zip_code: "812-ZZZZ", address1: "北九州市小倉北区", address2: "浅野 x-x-xx", address1_phonetic: "address1_phonetic", address2_phonetic: "address2_phonetic", address3_phonetic: "address3_phonetic", address3: "address3", phone_number: "phone_number", notation_org_name: "notation_org_name", notation_org_name_phonetic: "notation_org_name_phonetic", notation_name: "notation_name", notation_name_phonetic: "notation_name_phonetic"})
 
 {:ok, account} = Accounts.create_account(%{"external_code" => "hogehoge_code", "name" => "hogehoge account", "start_datetime" => "2019-01-10T10:03:50.293740Z", "main_user_id" => user_hogehoge.id, "organization_id" => organization_hogehoge.id})
 
