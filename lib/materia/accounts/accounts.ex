@@ -45,7 +45,7 @@ defmodule Materia.Accounts do
       name: "fugafuga",
       organization: nil,
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       role: "operator",
       status: 1
     },
@@ -65,8 +65,8 @@ defmodule Materia.Accounts do
           longitude: nil,
           notation_name: "notation_name",
           notation_org_name: "notation_org_name",
-          notation_org_phonetic: "notation_org_phonetic",
-          notation_phonetic: "notation_phonetic",
+          notation_org_name_phonetic: "notation_org_name_phonetic",
+          notation_name_phonetic: "notation_name_phonetic",
           organization: nil,
           phone_number: "phone_number",
           subject: "living",
@@ -87,8 +87,8 @@ defmodule Materia.Accounts do
           longitude: nil,
           notation_name: "notation_name",
           notation_org_name: "notation_org_name",
-          notation_org_phonetic: "notation_org_phonetic",
-          notation_phonetic: "notation_phonetic",
+          notation_org_name_phonetic: "notation_org_name_phonetic",
+          notation_name_phonetic: "notation_name_phonetic",
           organization: nil,
           phone_number: "phone_number",
           subject: "billing",
@@ -115,13 +115,13 @@ defmodule Materia.Accounts do
         name: "hogehoge.inc",
         one_line_message: "let's do this.",
         phone_number: nil,
-        phonetic: "phonetic",
+        name_phonetic: "name_phonetic",
         profile_img_url: "https://hogehoge.com/prof_img.jpg",
         status: 1,
         users: []
       },
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
     }
@@ -166,13 +166,13 @@ defmodule Materia.Accounts do
         name: "hogehoge.inc",
         one_line_message: "let's do this.",
         phone_number: nil,
-        phonetic: "phonetic",
+        name_phonetic: "name_phonetic",
         profile_img_url: "https://hogehoge.com/prof_img.jpg",
         status: 1,
         users: []
       },
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
     }
@@ -192,7 +192,7 @@ defmodule Materia.Accounts do
       name: "fugafuga",
       organization: nil,
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       role: "operator",
       status: 1
     },
@@ -217,13 +217,13 @@ defmodule Materia.Accounts do
         name: "hogehoge.inc",
         one_line_message: "let's do this.",
         phone_number: nil,
-        phonetic: "phonetic",
+        name_phonetic: "name_phonetic",
         profile_img_url: "https://hogehoge.com/prof_img.jpg",
         status: 1,
         users: []
       },
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
     }
@@ -264,8 +264,8 @@ defmodule Materia.Accounts do
         longitude: nil,
         notation_name: "notation_name",
         notation_org_name: "notation_org_name",
-        notation_org_phonetic: "notation_org_phonetic",
-        notation_phonetic: "notation_phonetic",
+        notation_org_name_phonetic: "notation_org_name_phonetic",
+        notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
         subject: "billing",
@@ -286,8 +286,8 @@ defmodule Materia.Accounts do
         longitude: nil,
         notation_name: "notation_name",
         notation_org_name: "notation_org_name",
-        notation_org_phonetic: "notation_org_phonetic",
-        notation_phonetic: "notation_phonetic",
+        notation_org_name_phonetic: "notation_org_name_phonetic",
+        notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
         subject: "living",
@@ -314,13 +314,13 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
-    phonetic: "phonetic",
+    name_phonetic: "name_phonetic",
     role: "admin",
     status: 1
   }
@@ -363,13 +363,13 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
-    phonetic: "phonetic",
+    name_phonetic: "name_phonetic",
     role: "admin",
     status: 1
   }
@@ -415,7 +415,7 @@ defmodule Materia.Accounts do
     name: "テスト０１",
     organization: nil,
     phone_number: nil,
-    phonetic: nil,
+    name_phonetic: nil,
     role: "operator",
     status: 1
   }
@@ -432,7 +432,7 @@ defmodule Materia.Accounts do
     name: "テスト０２",
     organization: nil,
     phone_number: "090-YYYY-XXXX",
-    phonetic: nil,
+    name_phonetic: nil,
     role: "operator",
     status: 1
   }
@@ -474,8 +474,8 @@ defmodule Materia.Accounts do
         longitude: nil,
         notation_name: "notation_name",
         notation_org_name: "notation_org_name",
-        notation_org_phonetic: "notation_org_phonetic",
-        notation_phonetic: "notation_phonetic",
+        notation_org_name_phonetic: "notation_org_name_phonetic",
+        notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
         subject: "billing",
@@ -496,8 +496,8 @@ defmodule Materia.Accounts do
         longitude: nil,
         notation_name: "notation_name",
         notation_org_name: "notation_org_name",
-        notation_org_phonetic: "notation_org_phonetic",
-        notation_phonetic: "notation_phonetic",
+        notation_org_name_phonetic: "notation_org_name_phonetic",
+        notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
         subject: "living",
@@ -524,13 +524,13 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
-    phonetic: "phonetic",
+    name_phonetic: "name_phonetic",
     role: "admin",
     status: 1
   }
@@ -786,7 +786,7 @@ defmodule Materia.Accounts do
     name: nil,
     organization: nil,
     phone_number: nil,
-    phonetic: nil,
+    name_phonetic: nil,
     role: "operator",
     status: 0
   }
@@ -866,8 +866,8 @@ defmodule Materia.Accounts do
         longitude: nil,
         notation_name: "notation_name",
         notation_org_name: "notation_org_name",
-        notation_org_phonetic: "notation_org_phonetic",
-        notation_phonetic: "notation_phonetic",
+        notation_org_name_phonetic: "notation_org_name_phonetic",
+        notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
         subject: "billing",
@@ -888,8 +888,8 @@ defmodule Materia.Accounts do
         longitude: nil,
         notation_name: "notation_name",
         notation_org_name: "notation_org_name",
-        notation_org_phonetic: "notation_org_phonetic",
-        notation_phonetic: "notation_phonetic",
+        notation_org_name_phonetic: "notation_org_name_phonetic",
+        notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
         subject: "living",
@@ -916,13 +916,13 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
-    phonetic: "phonetic",
+    name_phonetic: "name_phonetic",
     role: "admin",
     status: 1
   }
@@ -956,7 +956,7 @@ defmodule Materia.Accounts do
     name: "test002 user",
     organization: nil,
     phone_number: nil,
-    phonetic: nil,
+    name_phonetic: nil,
     role: "operator",
     status: 1
   }
@@ -1013,7 +1013,7 @@ defmodule Materia.Accounts do
     name: "test003 user",
     organization: nil,
     phone_number: nil,
-    phonetic: nil,
+    name_phonetic: nil,
     role: "operator",
     status: 1
   }
@@ -1112,8 +1112,8 @@ defmodule Materia.Accounts do
         longitude: nil,
         notation_name: "notation_name",
         notation_org_name: "notation_org_name",
-        notation_org_phonetic: "notation_org_phonetic",
-        notation_phonetic: "notation_phonetic",
+        notation_org_name_phonetic: "notation_org_name_phonetic",
+        notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
         subject: "billing",
@@ -1134,8 +1134,8 @@ defmodule Materia.Accounts do
         longitude: nil,
         notation_name: "notation_name",
         notation_org_name: "notation_org_name",
-        notation_org_phonetic: "notation_org_phonetic",
-        notation_phonetic: "notation_phonetic",
+        notation_org_name_phonetic: "notation_org_name_phonetic",
+        notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
         subject: "living",
@@ -1161,13 +1161,13 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
-      phonetic: "phonetic",
+      name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
-    phonetic: "phonetic",
+    name_phonetic: "name_phonetic",
     role: "admin",
     status: 1
   }

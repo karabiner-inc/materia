@@ -12,9 +12,9 @@ defmodule Materia.Locations.Address do
     field :address3_phonetic, :string
     field :phone_number, :string
     field :notation_org_name, :string
-    field :notation_org_phonetic, :string
+    field :notation_org_name_phonetic, :string
     field :notation_name, :string
-    field :notation_phonetic, :string
+    field :notation_name_phonetic, :string
     field :latitude, :decimal
     field :location, :string
     field :longitude, :decimal
@@ -30,13 +30,13 @@ defmodule Materia.Locations.Address do
   @doc false
   def create_changeset(address, attrs) do
     address
-    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitude, :longitude, :user_id, :organization_id, :subject, :lock_version, :address1_phonetic, :address2, :address2_phonetic, :address3, :address3_phonetic, :phone_number, :notation_org_name, :notation_org_phonetic, :notation_name, :notation_phonetic])
+    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitude, :longitude, :user_id, :organization_id, :subject, :lock_version, :address1_phonetic, :address2, :address2_phonetic, :address3, :address3_phonetic, :phone_number, :notation_org_name, :notation_org_name_phonetic, :notation_name, :notation_name_phonetic])
     |> validate_required([:subject])
   end
 
   def update_changeset(address, attrs) do
     address
-    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitude, :longitude, :user_id, :organization_id, :subject, :lock_version, :address1_phonetic, :address2, :address2_phonetic, :address3, :address3_phonetic, :phone_number, :notation_org_name, :notation_org_phonetic, :notation_name, :notation_phonetic])
+    |> cast(attrs, [:location, :zip_code, :address1, :address2, :latitude, :longitude, :user_id, :organization_id, :subject, :lock_version, :address1_phonetic, :address2, :address2_phonetic, :address3, :address3_phonetic, :phone_number, :notation_org_name, :notation_org_name_phonetic, :notation_name, :notation_name_phonetic])
     |> validate_required([:lock_version])
     |> optimistic_lock(:lock_version)
   end

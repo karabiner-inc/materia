@@ -35,7 +35,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
       "phone_number" => nil,
       "role" => "operator",
       "status" => 1,
-      "phonetic" => "phonetic"
+      "name_phonetic" => "name_phonetic"
     }
 
     conn_valid = get(conn_auth, "/api/auth-check")
@@ -66,7 +66,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
       "phone_number" => nil,
       "role" => "operator",
       "status" => 1,
-      "phonetic" => "phonetic"
+      "name_phonetic" => "name_phonetic"
     }
 
     # sign-out
@@ -117,8 +117,8 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
           "address3_phonetic" => "address3_phonetic",
           "notation_name" => "notation_name",
           "notation_org_name" => "notation_org_name",
-          "notation_org_phonetic" => "notation_org_phonetic",
-          "notation_phonetic" => "notation_phonetic",
+          "notation_org_name_phonetic" => "notation_org_name_phonetic",
+          "notation_name_phonetic" => "notation_name_phonetic",
           "phone_number" => "phone_number"
         },
         %{
@@ -139,8 +139,8 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
           "address3_phonetic" => "address3_phonetic",
           "notation_name" => "notation_name",
           "notation_org_name" => "notation_org_name",
-          "notation_org_phonetic" => "notation_org_phonetic",
-          "notation_phonetic" => "notation_phonetic",
+          "notation_org_name_phonetic" => "notation_org_name_phonetic",
+          "notation_name_phonetic" => "notation_name_phonetic",
           "phone_number" => "phone_number"
         }
       ],
@@ -166,12 +166,12 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
         "users" => [],
         "ext_organization_branch_id" => "ext_organization_branch_id",
         "ext_organization_id" => "ext_organization_id",
-        "phonetic" => "phonetic"
+        "name_phonetic" => "name_phonetic"
       },
       "phone_number" => nil,
       "role" => "admin",
       "status" => 1,
-      "phonetic" => "phonetic"
+      "name_phonetic" => "name_phonetic"
     }
 
     conn_show_my_account = get(conn_auth, account_path(conn, :show_my_account))

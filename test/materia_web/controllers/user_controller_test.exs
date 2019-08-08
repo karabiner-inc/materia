@@ -52,8 +52,8 @@ defmodule MateriaWeb.UserControllerTest do
                    "address3_phonetic" => "address3_phonetic",
                    "notation_name" => "notation_name",
                    "notation_org_name" => "notation_org_name",
-                   "notation_org_phonetic" => "notation_org_phonetic",
-                   "notation_phonetic" => "notation_phonetic",
+                   "notation_org_name_phonetic" => "notation_org_name_phonetic",
+                   "notation_name_phonetic" => "notation_name_phonetic",
                    "phone_number" => "phone_number"
                  },
                  %{
@@ -74,8 +74,8 @@ defmodule MateriaWeb.UserControllerTest do
                    "address3_phonetic" => "address3_phonetic",
                    "notation_name" => "notation_name",
                    "notation_org_name" => "notation_org_name",
-                   "notation_org_phonetic" => "notation_org_phonetic",
-                   "notation_phonetic" => "notation_phonetic",
+                   "notation_org_name_phonetic" => "notation_org_name_phonetic",
+                   "notation_name_phonetic" => "notation_name_phonetic",
                    "phone_number" => "phone_number"
                  }
                ],
@@ -98,11 +98,11 @@ defmodule MateriaWeb.UserControllerTest do
                  "users" => [],
                  "ext_organization_branch_id" => "ext_organization_branch_id",
                  "ext_organization_id" => "ext_organization_id",
-                 "phonetic" => "phonetic"
+                 "name_phonetic" => "name_phonetic"
                },
                "phone_number" => nil,
                "status" => 1,
-               "phonetic" => "phonetic"
+               "name_phonetic" => "name_phonetic"
              }
 
       # show user list (allow anybody)
@@ -122,7 +122,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "organization" => nil,
                  "phone_number" => nil,
                  "status" => 1,
-                 "phonetic" => "phonetic"
+                 "name_phonetic" => "name_phonetic"
                },
                %{
                  "email" => "hogehoge@example.com",
@@ -148,8 +148,8 @@ defmodule MateriaWeb.UserControllerTest do
                      "address3_phonetic" => "address3_phonetic",
                      "notation_name" => "notation_name",
                      "notation_org_name" => "notation_org_name",
-                     "notation_org_phonetic" => "notation_org_phonetic",
-                     "notation_phonetic" => "notation_phonetic",
+                     "notation_org_name_phonetic" => "notation_org_name_phonetic",
+                     "notation_name_phonetic" => "notation_name_phonetic",
                      "phone_number" => "phone_number"
                    },
                    %{
@@ -170,8 +170,8 @@ defmodule MateriaWeb.UserControllerTest do
                      "address3_phonetic" => "address3_phonetic",
                      "notation_name" => "notation_name",
                      "notation_org_name" => "notation_org_name",
-                     "notation_org_phonetic" => "notation_org_phonetic",
-                     "notation_phonetic" => "notation_phonetic",
+                     "notation_org_name_phonetic" => "notation_org_name_phonetic",
+                     "notation_name_phonetic" => "notation_name_phonetic",
                      "phone_number" => "phone_number"
                    }
                  ],
@@ -194,11 +194,11 @@ defmodule MateriaWeb.UserControllerTest do
                    "users" => [],
                    "ext_organization_branch_id" => "ext_organization_branch_id",
                    "ext_organization_id" => "ext_organization_id",
-                   "phonetic" => "phonetic"
+                   "name_phonetic" => "name_phonetic"
                  },
                  "phone_number" => nil,
                  "status" => 1,
-                 "phonetic" => "phonetic"
+                 "name_phonetic" => "name_phonetic"
                }
              ]
 
@@ -218,7 +218,7 @@ defmodule MateriaWeb.UserControllerTest do
                "organization" => nil,
                "phone_number" => nil,
                "status" => 1,
-               "phonetic" => "phonetic"
+               "name_phonetic" => "name_phonetic"
              }
 
      # show role grant list (allow anybody)
@@ -292,7 +292,7 @@ defmodule MateriaWeb.UserControllerTest do
                "organization" => nil,
                "phone_number" => nil,
                "status" => 1,
-               "phonetic" => "phonetic"
+               "name_phonetic" => "name_phonetic"
              }
 
       # show user list (allow only administrator)
@@ -313,7 +313,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "organization" => nil,
                  "phone_number" => nil,
                  "status" => 1,
-                 "phonetic" => "phonetic"
+                 "name_phonetic" => "name_phonetic"
                },
                %{
                  "email" => "hogehoge@example.com",
@@ -339,8 +339,8 @@ defmodule MateriaWeb.UserControllerTest do
                      "address3_phonetic" => "address3_phonetic",
                      "notation_name" => "notation_name",
                      "notation_org_name" => "notation_org_name",
-                     "notation_org_phonetic" => "notation_org_phonetic",
-                     "notation_phonetic" => "notation_phonetic",
+                     "notation_org_name_phonetic" => "notation_org_name_phonetic",
+                     "notation_name_phonetic" => "notation_name_phonetic",
                      "phone_number" => "phone_number"
                    },
                    %{
@@ -361,8 +361,8 @@ defmodule MateriaWeb.UserControllerTest do
                      "address3_phonetic" => "address3_phonetic",
                      "notation_name" => "notation_name",
                      "notation_org_name" => "notation_org_name",
-                     "notation_org_phonetic" => "notation_org_phonetic",
-                     "notation_phonetic" => "notation_phonetic",
+                     "notation_org_name_phonetic" => "notation_org_name_phonetic",
+                     "notation_name_phonetic" => "notation_name_phonetic",
                      "phone_number" => "phone_number"
                    }
                  ],
@@ -385,11 +385,11 @@ defmodule MateriaWeb.UserControllerTest do
                    "users" => [],
                    "ext_organization_branch_id" => "ext_organization_branch_id",
                    "ext_organization_id" => "ext_organization_id",
-                   "phonetic" => "phonetic"
+                   "name_phonetic" => "name_phonetic"
                  },
                  "phone_number" => nil,
                  "status" => 1,
-                 "phonetic" => "phonetic"
+                 "name_phonetic" => "name_phonetic"
                }
              ]
 
@@ -420,8 +420,8 @@ defmodule MateriaWeb.UserControllerTest do
                    "address3_phonetic" => "address3_phonetic",
                    "notation_name" => "notation_name",
                    "notation_org_name" => "notation_org_name",
-                   "notation_org_phonetic" => "notation_org_phonetic",
-                   "notation_phonetic" => "notation_phonetic",
+                   "notation_org_name_phonetic" => "notation_org_name_phonetic",
+                   "notation_name_phonetic" => "notation_name_phonetic",
                    "phone_number" => "phone_number"
                  },
                  %{
@@ -442,8 +442,8 @@ defmodule MateriaWeb.UserControllerTest do
                    "address3_phonetic" => "address3_phonetic",
                    "notation_name" => "notation_name",
                    "notation_org_name" => "notation_org_name",
-                   "notation_org_phonetic" => "notation_org_phonetic",
-                   "notation_phonetic" => "notation_phonetic",
+                   "notation_org_name_phonetic" => "notation_org_name_phonetic",
+                   "notation_name_phonetic" => "notation_name_phonetic",
                    "phone_number" => "phone_number"
                  }
                ],
@@ -466,11 +466,11 @@ defmodule MateriaWeb.UserControllerTest do
                  "users" => [],
                  "ext_organization_branch_id" => "ext_organization_branch_id",
                  "ext_organization_id" => "ext_organization_id",
-                 "phonetic" => "phonetic"
+                 "name_phonetic" => "name_phonetic"
                },
                "phone_number" => nil,
                "status" => 1,
-               "phonetic" => "phonetic"
+               "name_phonetic" => "name_phonetic"
              }
 
      # show role grant list (allow anybody)
@@ -551,7 +551,7 @@ defmodule MateriaWeb.UserControllerTest do
              "organization" => nil,
              "phone_number" => nil,
              "status" => 1,
-             "phonetic" => nil
+             "name_phonetic" => nil
            }
 
     # update user
@@ -569,7 +569,7 @@ defmodule MateriaWeb.UserControllerTest do
              "organization" => nil,
              "phone_number" => nil,
              "status" => 1,
-             "phonetic" => nil
+             "name_phonetic" => nil
            }
 
     # delete user

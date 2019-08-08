@@ -3,7 +3,7 @@ defmodule Materia.Repo.Migrations.AddColumnUsers do
 
   def change do
     alter table(:users) do
-      add :phonetic, :string
+      add :name_phonetic, :string
     end
   end
 end
