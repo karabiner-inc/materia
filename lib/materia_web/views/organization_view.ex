@@ -25,6 +25,7 @@ defmodule MateriaWeb.OrganizationView do
       back_ground_img_url: organization.back_ground_img_url,
       one_line_message: organization.one_line_message,
       phone_number: organization.phone_number,
+      fax_number: organization.fax_number,
       lock_version: organization.lock_version,
       status: organization.status,
     }

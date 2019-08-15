@@ -23,6 +23,7 @@ defmodule MateriaWeb.AddressView do
       address3: address.address3,
       address3_phonetic: address.address3_phonetic,
       phone_number: address.phone_number,
+      fax_number: address.fax_number,
       notation_org_name: address.notation_org_name,
       notation_org_name_phonetic: address.notation_org_name_phonetic,
       notation_name: address.notation_name,

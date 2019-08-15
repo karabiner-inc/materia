@@ -45,6 +45,7 @@ defmodule Materia.Accounts do
       name: "fugafuga",
       organization: nil,
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       role: "operator",
       status: 1
@@ -69,6 +70,7 @@ defmodule Materia.Accounts do
           notation_name_phonetic: "notation_name_phonetic",
           organization: nil,
           phone_number: "phone_number",
+          fax_number: "fax_number",
           subject: "living",
           user: [],
           zip_code: "810-ZZZZ"
@@ -91,6 +93,7 @@ defmodule Materia.Accounts do
           notation_name_phonetic: "notation_name_phonetic",
           organization: nil,
           phone_number: "phone_number",
+          fax_number: "fax_number",
           subject: "billing",
           user: [],
           zip_code: "810-ZZZZ"
@@ -115,12 +118,14 @@ defmodule Materia.Accounts do
         name: "hogehoge.inc",
         one_line_message: "let's do this.",
         phone_number: nil,
+        fax_number: "fax_number",
         name_phonetic: "name_phonetic",
         profile_img_url: "https://hogehoge.com/prof_img.jpg",
         status: 1,
         users: []
       },
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
@@ -166,12 +171,14 @@ defmodule Materia.Accounts do
         name: "hogehoge.inc",
         one_line_message: "let's do this.",
         phone_number: nil,
+        fax_number: "fax_number",
         name_phonetic: "name_phonetic",
         profile_img_url: "https://hogehoge.com/prof_img.jpg",
         status: 1,
         users: []
       },
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
@@ -192,6 +199,7 @@ defmodule Materia.Accounts do
       name: "fugafuga",
       organization: nil,
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       role: "operator",
       status: 1
@@ -217,12 +225,14 @@ defmodule Materia.Accounts do
         name: "hogehoge.inc",
         one_line_message: "let's do this.",
         phone_number: nil,
+        fax_number: "fax_number",
         name_phonetic: "name_phonetic",
         profile_img_url: "https://hogehoge.com/prof_img.jpg",
         status: 1,
         users: []
       },
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
@@ -268,6 +278,7 @@ defmodule Materia.Accounts do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "billing",
         user: [],
         zip_code: "810-ZZZZ"
@@ -290,6 +301,7 @@ defmodule Materia.Accounts do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "living",
         user: [],
         zip_code: "810-ZZZZ"
@@ -314,12 +326,14 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
+    fax_number: "fax_number",
     name_phonetic: "name_phonetic",
     role: "admin",
     status: 1
@@ -363,12 +377,14 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
+    fax_number: "fax_number",
     name_phonetic: "name_phonetic",
     role: "admin",
     status: 1
@@ -415,11 +431,12 @@ defmodule Materia.Accounts do
     name: "テスト０１",
     organization: nil,
     phone_number: nil,
+    fax_number: nil,
     name_phonetic: nil,
     role: "operator",
     status: 1
   }
-  iex(3)> {:ok, user} = Materia.Accounts.create_user(%{name: "テスト０２", email: "test02@example.com", password: "test01", role: "operator", back_ground_img_url: "https://test02.com/bg_img.jpg", icon_img_url: "https://test02.com/icon_img.png", descriptions: "説明", phone_number: "090-YYYY-XXXX", status: 1})
+  iex(3)> {:ok, user} = Materia.Accounts.create_user(%{name: "テスト０２", email: "test02@example.com", password: "test01", role: "operator", back_ground_img_url: "https://test02.com/bg_img.jpg", icon_img_url: "https://test02.com/icon_img.png", descriptions: "説明", phone_number: "090-YYYY-XXXX", status: 1, fax_number: "fax_number"})
   iex(4)> MateriaWeb.UserView.render("show.json", %{user: user}) |> Map.delete(:id)
   %{
     addresses: [],
@@ -432,6 +449,7 @@ defmodule Materia.Accounts do
     name: "テスト０２",
     organization: nil,
     phone_number: "090-YYYY-XXXX",
+    fax_number: "fax_number",
     name_phonetic: nil,
     role: "operator",
     status: 1
@@ -478,6 +496,7 @@ defmodule Materia.Accounts do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "billing",
         user: [],
         zip_code: "810-ZZZZ"
@@ -500,6 +519,7 @@ defmodule Materia.Accounts do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "living",
         user: [],
         zip_code: "810-ZZZZ"
@@ -524,12 +544,14 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
+    fax_number: "fax_number",
     name_phonetic: "name_phonetic",
     role: "admin",
     status: 1
@@ -786,6 +808,7 @@ defmodule Materia.Accounts do
     name: nil,
     organization: nil,
     phone_number: nil,
+    fax_number: nil,
     name_phonetic: nil,
     role: "operator",
     status: 0
@@ -870,6 +893,7 @@ defmodule Materia.Accounts do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "billing",
         user: [],
         zip_code: "810-ZZZZ"
@@ -892,6 +916,7 @@ defmodule Materia.Accounts do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "living",
         user: [],
         zip_code: "810-ZZZZ"
@@ -916,12 +941,14 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
+    fax_number: "fax_number",
     name_phonetic: "name_phonetic",
     role: "admin",
     status: 1
@@ -956,6 +983,7 @@ defmodule Materia.Accounts do
     name: "test002 user",
     organization: nil,
     phone_number: nil,
+    fax_number: nil,
     name_phonetic: nil,
     role: "operator",
     status: 1
@@ -1013,6 +1041,7 @@ defmodule Materia.Accounts do
     name: "test003 user",
     organization: nil,
     phone_number: nil,
+    fax_number: nil,
     name_phonetic: nil,
     role: "operator",
     status: 1
@@ -1116,6 +1145,7 @@ defmodule Materia.Accounts do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "billing",
         user: [],
         zip_code: "810-ZZZZ"
@@ -1138,6 +1168,7 @@ defmodule Materia.Accounts do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "living",
         user: [],
         zip_code: "810-ZZZZ"
@@ -1161,12 +1192,14 @@ defmodule Materia.Accounts do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
       users: []
     },
     phone_number: nil,
+    fax_number: "fax_number",
     name_phonetic: "name_phonetic",
     role: "admin",
     status: 1

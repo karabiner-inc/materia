@@ -54,7 +54,8 @@ defmodule MateriaWeb.UserControllerTest do
                    "notation_org_name" => "notation_org_name",
                    "notation_org_name_phonetic" => "notation_org_name_phonetic",
                    "notation_name_phonetic" => "notation_name_phonetic",
-                   "phone_number" => "phone_number"
+                   "phone_number" => "phone_number",
+                   "fax_number" => "fax_number",
                  },
                  %{
                    "address1" => "福岡市中央区",
@@ -76,7 +77,8 @@ defmodule MateriaWeb.UserControllerTest do
                    "notation_org_name" => "notation_org_name",
                    "notation_org_name_phonetic" => "notation_org_name_phonetic",
                    "notation_name_phonetic" => "notation_name_phonetic",
-                   "phone_number" => "phone_number"
+                   "phone_number" => "phone_number",
+                   "fax_number" => "fax_number",
                  }
                ],
                "back_ground_img_url" => nil,
@@ -93,6 +95,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "name" => "hogehoge.inc",
                  "one_line_message" => "let's do this.",
                  "phone_number" => nil,
+                 "fax_number" => "fax_number",
                  "profile_img_url" => "https://hogehoge.com/prof_img.jpg",
                  "status" => 1,
                  "users" => [],
@@ -101,6 +104,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "name_phonetic" => "name_phonetic"
                },
                "phone_number" => nil,
+               "fax_number" => "fax_number",
                "status" => 1,
                "name_phonetic" => "name_phonetic"
              }
@@ -121,6 +125,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "lock_version" => 1,
                  "organization" => nil,
                  "phone_number" => nil,
+                 "fax_number" => "fax_number",
                  "status" => 1,
                  "name_phonetic" => "name_phonetic"
                },
@@ -150,7 +155,8 @@ defmodule MateriaWeb.UserControllerTest do
                      "notation_org_name" => "notation_org_name",
                      "notation_org_name_phonetic" => "notation_org_name_phonetic",
                      "notation_name_phonetic" => "notation_name_phonetic",
-                     "phone_number" => "phone_number"
+                     "phone_number" => "phone_number",
+                     "fax_number" => "fax_number",
                    },
                    %{
                      "address1" => "福岡市中央区",
@@ -172,7 +178,8 @@ defmodule MateriaWeb.UserControllerTest do
                      "notation_org_name" => "notation_org_name",
                      "notation_org_name_phonetic" => "notation_org_name_phonetic",
                      "notation_name_phonetic" => "notation_name_phonetic",
-                     "phone_number" => "phone_number"
+                     "phone_number" => "phone_number",
+                     "fax_number" => "fax_number",
                    }
                  ],
                  "back_ground_img_url" => nil,
@@ -189,6 +196,7 @@ defmodule MateriaWeb.UserControllerTest do
                    "name" => "hogehoge.inc",
                    "one_line_message" => "let's do this.",
                    "phone_number" => nil,
+                   "fax_number" => "fax_number",
                    "profile_img_url" => "https://hogehoge.com/prof_img.jpg",
                    "status" => 1,
                    "users" => [],
@@ -197,6 +205,7 @@ defmodule MateriaWeb.UserControllerTest do
                    "name_phonetic" => "name_phonetic"
                  },
                  "phone_number" => nil,
+                 "fax_number" => "fax_number",
                  "status" => 1,
                  "name_phonetic" => "name_phonetic"
                }
@@ -217,6 +226,7 @@ defmodule MateriaWeb.UserControllerTest do
                "lock_version" => 1,
                "organization" => nil,
                "phone_number" => nil,
+               "fax_number" => "fax_number",
                "status" => 1,
                "name_phonetic" => "name_phonetic"
              }
@@ -291,6 +301,7 @@ defmodule MateriaWeb.UserControllerTest do
                "lock_version" => 1,
                "organization" => nil,
                "phone_number" => nil,
+               "fax_number" => "fax_number",
                "status" => 1,
                "name_phonetic" => "name_phonetic"
              }
@@ -312,6 +323,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "lock_version" => 1,
                  "organization" => nil,
                  "phone_number" => nil,
+                 "fax_number" => "fax_number",
                  "status" => 1,
                  "name_phonetic" => "name_phonetic"
                },
@@ -341,7 +353,8 @@ defmodule MateriaWeb.UserControllerTest do
                      "notation_org_name" => "notation_org_name",
                      "notation_org_name_phonetic" => "notation_org_name_phonetic",
                      "notation_name_phonetic" => "notation_name_phonetic",
-                     "phone_number" => "phone_number"
+                     "phone_number" => "phone_number",
+                     "fax_number" => "fax_number",
                    },
                    %{
                      "address1" => "福岡市中央区",
@@ -363,7 +376,8 @@ defmodule MateriaWeb.UserControllerTest do
                      "notation_org_name" => "notation_org_name",
                      "notation_org_name_phonetic" => "notation_org_name_phonetic",
                      "notation_name_phonetic" => "notation_name_phonetic",
-                     "phone_number" => "phone_number"
+                     "phone_number" => "phone_number",
+                     "fax_number" => "fax_number",
                    }
                  ],
                  "back_ground_img_url" => nil,
@@ -380,6 +394,7 @@ defmodule MateriaWeb.UserControllerTest do
                    "name" => "hogehoge.inc",
                    "one_line_message" => "let's do this.",
                    "phone_number" => nil,
+                   "fax_number" => "fax_number",
                    "profile_img_url" => "https://hogehoge.com/prof_img.jpg",
                    "status" => 1,
                    "users" => [],
@@ -388,6 +403,7 @@ defmodule MateriaWeb.UserControllerTest do
                    "name_phonetic" => "name_phonetic"
                  },
                  "phone_number" => nil,
+                 "fax_number" => "fax_number",
                  "status" => 1,
                  "name_phonetic" => "name_phonetic"
                }
@@ -422,7 +438,8 @@ defmodule MateriaWeb.UserControllerTest do
                    "notation_org_name" => "notation_org_name",
                    "notation_org_name_phonetic" => "notation_org_name_phonetic",
                    "notation_name_phonetic" => "notation_name_phonetic",
-                   "phone_number" => "phone_number"
+                   "phone_number" => "phone_number",
+                   "fax_number" => "fax_number",
                  },
                  %{
                    "address1" => "福岡市中央区",
@@ -444,7 +461,8 @@ defmodule MateriaWeb.UserControllerTest do
                    "notation_org_name" => "notation_org_name",
                    "notation_org_name_phonetic" => "notation_org_name_phonetic",
                    "notation_name_phonetic" => "notation_name_phonetic",
-                   "phone_number" => "phone_number"
+                   "phone_number" => "phone_number",
+                   "fax_number" => "fax_number",
                  }
                ],
                "back_ground_img_url" => nil,
@@ -461,6 +479,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "name" => "hogehoge.inc",
                  "one_line_message" => "let's do this.",
                  "phone_number" => nil,
+                 "fax_number" => "fax_number",
                  "profile_img_url" => "https://hogehoge.com/prof_img.jpg",
                  "status" => 1,
                  "users" => [],
@@ -469,6 +488,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "name_phonetic" => "name_phonetic"
                },
                "phone_number" => nil,
+               "fax_number" => "fax_number",
                "status" => 1,
                "name_phonetic" => "name_phonetic"
              }
@@ -551,7 +571,8 @@ defmodule MateriaWeb.UserControllerTest do
              "organization" => nil,
              "phone_number" => nil,
              "status" => 1,
-             "name_phonetic" => nil
+             "name_phonetic" => nil,
+             "fax_number" => nil,
            }
 
     # update user
@@ -569,7 +590,8 @@ defmodule MateriaWeb.UserControllerTest do
              "organization" => nil,
              "phone_number" => nil,
              "status" => 1,
-             "name_phonetic" => nil
+             "name_phonetic" => nil,
+             "fax_number" => nil,
            }
 
     # delete user

@@ -33,6 +33,7 @@ defmodule Materia.Locations do
     notation_name_phonetic: "notation_name_phonetic",
     organization: nil,
     phone_number: "phone_number",
+    fax_number: "fax_number",
     subject: "living",
     user: %{
       addresses: [],
@@ -46,6 +47,7 @@ defmodule Materia.Locations do
       name: "hogehoge",
       organization: nil,
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
@@ -88,6 +90,7 @@ defmodule Materia.Locations do
     notation_name_phonetic: "notation_name_phonetic",
     organization: nil,
     phone_number: "phone_number",
+    fax_number: "fax_number",
     subject: "living",
     user: %{
       addresses: [],
@@ -101,6 +104,7 @@ defmodule Materia.Locations do
       name: "hogehoge",
       organization: nil,
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       role: "admin",
       status: 1
@@ -143,6 +147,7 @@ defmodule Materia.Locations do
     notation_name_phonetic: nil,
     organization: nil,
     phone_number: nil,
+    fax_number: nil,
     subject: "living",
     user: [],
     zip_code: nil
@@ -186,6 +191,7 @@ defmodule Materia.Locations do
     notation_name_phonetic: "notation_name_phonetic",
     organization: nil,
     phone_number: "phone_number",
+    fax_number: "fax_number",
     subject: "living",
     user: %{
       addresses: [],
@@ -199,6 +205,7 @@ defmodule Materia.Locations do
       name: "hogehoge",
       organization: nil,
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       role: "admin",
       status: 1

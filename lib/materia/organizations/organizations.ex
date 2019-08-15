@@ -43,6 +43,7 @@ defmodule Materia.Organizations do
           notation_name_phonetic: "notation_name_phonetic",
           organization: nil,
           phone_number: "phone_number",
+          fax_number: "fax_number",
           subject: "branch",
           user: [],
           zip_code: "812-ZZZZ"
@@ -65,6 +66,7 @@ defmodule Materia.Organizations do
           notation_name_phonetic: "notation_name_phonetic",
           organization: nil,
           phone_number: "phone_number",
+          fax_number: "fax_number",
           subject: "registry",
           user: [],
           zip_code: "810-ZZZZ"
@@ -79,6 +81,7 @@ defmodule Materia.Organizations do
       name: "hogehoge.inc",
       one_line_message: "let's do this.",
       phone_number: nil,
+      fax_number: "fax_number",
       name_phonetic: "name_phonetic",
       profile_img_url: "https://hogehoge.com/prof_img.jpg",
       status: 1,
@@ -142,6 +145,7 @@ defmodule Materia.Organizations do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "branch",
         user: [],
         zip_code: "812-ZZZZ"
@@ -164,6 +168,7 @@ defmodule Materia.Organizations do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "registry",
         user: [],
         zip_code: "810-ZZZZ"
@@ -178,6 +183,7 @@ defmodule Materia.Organizations do
     name: "hogehoge.inc",
     one_line_message: "let's do this.",
     phone_number: nil,
+    fax_number: "fax_number",
     name_phonetic: "name_phonetic",
     profile_img_url: "https://hogehoge.com/prof_img.jpg",
     status: 1,
@@ -211,6 +217,7 @@ defmodule Materia.Organizations do
     name: "MyCompany",
     one_line_message: nil,
     phone_number: nil,
+    fax_number: nil,
     name_phonetic: nil,
     profile_img_url: nil,
     status: 1,
@@ -246,6 +253,7 @@ defmodule Materia.Organizations do
     one_line_message: nil,
     phone_number: nil,
     name_phonetic: nil,
+    fax_number: nil,
     profile_img_url: nil,
     status: 1,
     users: [
@@ -261,6 +269,7 @@ defmodule Materia.Organizations do
         name: "hogehoge",
         organization: nil,
         phone_number: nil,
+        fax_number: "fax_number",
         name_phonetic: "name_phonetic",
         role: "admin",
         status: 1
@@ -309,6 +318,7 @@ defmodule Materia.Organizations do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "branch",
         user: [],
         zip_code: "812-ZZZZ"
@@ -331,6 +341,7 @@ defmodule Materia.Organizations do
         notation_name_phonetic: "notation_name_phonetic",
         organization: nil,
         phone_number: "phone_number",
+        fax_number: "fax_number",
         subject: "registry",
         user: [],
         zip_code: "810-ZZZZ"
@@ -346,6 +357,7 @@ defmodule Materia.Organizations do
     one_line_message: "let's do this.",
     phone_number: nil,
     name_phonetic: "name_phonetic",
+    fax_number: "fax_number",
     profile_img_url: "https://hogehoge.com/prof_img.jpg",
     status: 1,
     users: []
