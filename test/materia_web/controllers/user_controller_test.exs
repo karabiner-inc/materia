@@ -46,14 +46,14 @@ defmodule MateriaWeb.UserControllerTest do
                    "subject" => "billing",
                    "user" => [],
                    "zip_code" => "810-ZZZZ",
-                   "address1_phonetic" => "address1_phonetic",
-                   "address2_phonetic" => "address2_phonetic",
+                   "address1_p" => "address1_p",
+                   "address2_p" => "address2_p",
                    "address3" => "address3",
-                   "address3_phonetic" => "address3_phonetic",
+                   "address3_p" => "address3_p",
                    "notation_name" => "notation_name",
                    "notation_org_name" => "notation_org_name",
-                   "notation_org_name_phonetic" => "notation_org_name_phonetic",
-                   "notation_name_phonetic" => "notation_name_phonetic",
+                   "notation_org_name_p" => "notation_org_name_p",
+                   "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
                    "fax_number" => "fax_number",
                  },
@@ -69,14 +69,14 @@ defmodule MateriaWeb.UserControllerTest do
                    "subject" => "living",
                    "user" => [],
                    "zip_code" => "810-ZZZZ",
-                   "address1_phonetic" => "address1_phonetic",
-                   "address2_phonetic" => "address2_phonetic",
+                   "address1_p" => "address1_p",
+                   "address2_p" => "address2_p",
                    "address3" => "address3",
-                   "address3_phonetic" => "address3_phonetic",
+                   "address3_p" => "address3_p",
                    "notation_name" => "notation_name",
                    "notation_org_name" => "notation_org_name",
-                   "notation_org_name_phonetic" => "notation_org_name_phonetic",
-                   "notation_name_phonetic" => "notation_name_phonetic",
+                   "notation_org_name_p" => "notation_org_name_p",
+                   "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
                    "fax_number" => "fax_number",
                  }
@@ -101,12 +101,12 @@ defmodule MateriaWeb.UserControllerTest do
                  "users" => [],
                  "ext_organization_branch_id" => "ext_organization_branch_id",
                  "ext_organization_id" => "ext_organization_id",
-                 "name_phonetic" => "name_phonetic"
+                 "name_p" => "name_p"
                },
                "phone_number" => nil,
                "fax_number" => "fax_number",
                "status" => 1,
-               "name_phonetic" => "name_phonetic"
+               "name_p" => "name_p"
              }
 
       # show user list (allow anybody)
@@ -127,7 +127,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "phone_number" => nil,
                  "fax_number" => "fax_number",
                  "status" => 1,
-                 "name_phonetic" => "name_phonetic"
+                 "name_p" => "name_p"
                },
                %{
                  "email" => "hogehoge@example.com",
@@ -147,14 +147,14 @@ defmodule MateriaWeb.UserControllerTest do
                      "subject" => "living",
                      "user" => [],
                      "zip_code" => "810-ZZZZ",
-                     "address1_phonetic" => "address1_phonetic",
-                     "address2_phonetic" => "address2_phonetic",
+                     "address1_p" => "address1_p",
+                     "address2_p" => "address2_p",
                      "address3" => "address3",
-                     "address3_phonetic" => "address3_phonetic",
+                     "address3_p" => "address3_p",
                      "notation_name" => "notation_name",
                      "notation_org_name" => "notation_org_name",
-                     "notation_org_name_phonetic" => "notation_org_name_phonetic",
-                     "notation_name_phonetic" => "notation_name_phonetic",
+                     "notation_org_name_p" => "notation_org_name_p",
+                     "notation_name_p" => "notation_name_p",
                      "phone_number" => "phone_number",
                      "fax_number" => "fax_number",
                    },
@@ -170,14 +170,14 @@ defmodule MateriaWeb.UserControllerTest do
                      "subject" => "billing",
                      "user" => [],
                      "zip_code" => "810-ZZZZ",
-                     "address1_phonetic" => "address1_phonetic",
-                     "address2_phonetic" => "address2_phonetic",
+                     "address1_p" => "address1_p",
+                     "address2_p" => "address2_p",
                      "address3" => "address3",
-                     "address3_phonetic" => "address3_phonetic",
+                     "address3_p" => "address3_p",
                      "notation_name" => "notation_name",
                      "notation_org_name" => "notation_org_name",
-                     "notation_org_name_phonetic" => "notation_org_name_phonetic",
-                     "notation_name_phonetic" => "notation_name_phonetic",
+                     "notation_org_name_p" => "notation_org_name_p",
+                     "notation_name_p" => "notation_name_p",
                      "phone_number" => "phone_number",
                      "fax_number" => "fax_number",
                    }
@@ -202,12 +202,12 @@ defmodule MateriaWeb.UserControllerTest do
                    "users" => [],
                    "ext_organization_branch_id" => "ext_organization_branch_id",
                    "ext_organization_id" => "ext_organization_id",
-                   "name_phonetic" => "name_phonetic"
+                   "name_p" => "name_p"
                  },
                  "phone_number" => nil,
                  "fax_number" => "fax_number",
                  "status" => 1,
-                 "name_phonetic" => "name_phonetic"
+                 "name_p" => "name_p"
                }
              ]
 
@@ -228,7 +228,7 @@ defmodule MateriaWeb.UserControllerTest do
                "phone_number" => nil,
                "fax_number" => "fax_number",
                "status" => 1,
-               "name_phonetic" => "name_phonetic"
+               "name_p" => "name_p"
              }
 
      # show role grant list (allow anybody)
@@ -303,7 +303,7 @@ defmodule MateriaWeb.UserControllerTest do
                "phone_number" => nil,
                "fax_number" => "fax_number",
                "status" => 1,
-               "name_phonetic" => "name_phonetic"
+               "name_p" => "name_p"
              }
 
       # show user list (allow only administrator)
@@ -325,7 +325,7 @@ defmodule MateriaWeb.UserControllerTest do
                  "phone_number" => nil,
                  "fax_number" => "fax_number",
                  "status" => 1,
-                 "name_phonetic" => "name_phonetic"
+                 "name_p" => "name_p"
                },
                %{
                  "email" => "hogehoge@example.com",
@@ -345,14 +345,14 @@ defmodule MateriaWeb.UserControllerTest do
                      "subject" => "living",
                      "user" => [],
                      "zip_code" => "810-ZZZZ",
-                     "address1_phonetic" => "address1_phonetic",
-                     "address2_phonetic" => "address2_phonetic",
+                     "address1_p" => "address1_p",
+                     "address2_p" => "address2_p",
                      "address3" => "address3",
-                     "address3_phonetic" => "address3_phonetic",
+                     "address3_p" => "address3_p",
                      "notation_name" => "notation_name",
                      "notation_org_name" => "notation_org_name",
-                     "notation_org_name_phonetic" => "notation_org_name_phonetic",
-                     "notation_name_phonetic" => "notation_name_phonetic",
+                     "notation_org_name_p" => "notation_org_name_p",
+                     "notation_name_p" => "notation_name_p",
                      "phone_number" => "phone_number",
                      "fax_number" => "fax_number",
                    },
@@ -368,14 +368,14 @@ defmodule MateriaWeb.UserControllerTest do
                      "subject" => "billing",
                      "user" => [],
                      "zip_code" => "810-ZZZZ",
-                     "address1_phonetic" => "address1_phonetic",
-                     "address2_phonetic" => "address2_phonetic",
+                     "address1_p" => "address1_p",
+                     "address2_p" => "address2_p",
                      "address3" => "address3",
-                     "address3_phonetic" => "address3_phonetic",
+                     "address3_p" => "address3_p",
                      "notation_name" => "notation_name",
                      "notation_org_name" => "notation_org_name",
-                     "notation_org_name_phonetic" => "notation_org_name_phonetic",
-                     "notation_name_phonetic" => "notation_name_phonetic",
+                     "notation_org_name_p" => "notation_org_name_p",
+                     "notation_name_p" => "notation_name_p",
                      "phone_number" => "phone_number",
                      "fax_number" => "fax_number",
                    }
@@ -400,12 +400,12 @@ defmodule MateriaWeb.UserControllerTest do
                    "users" => [],
                    "ext_organization_branch_id" => "ext_organization_branch_id",
                    "ext_organization_id" => "ext_organization_id",
-                   "name_phonetic" => "name_phonetic"
+                   "name_p" => "name_p"
                  },
                  "phone_number" => nil,
                  "fax_number" => "fax_number",
                  "status" => 1,
-                 "name_phonetic" => "name_phonetic"
+                 "name_p" => "name_p"
                }
              ]
 
@@ -430,14 +430,14 @@ defmodule MateriaWeb.UserControllerTest do
                    "subject" => "billing",
                    "user" => [],
                    "zip_code" => "810-ZZZZ",
-                   "address1_phonetic" => "address1_phonetic",
-                   "address2_phonetic" => "address2_phonetic",
+                   "address1_p" => "address1_p",
+                   "address2_p" => "address2_p",
                    "address3" => "address3",
-                   "address3_phonetic" => "address3_phonetic",
+                   "address3_p" => "address3_p",
                    "notation_name" => "notation_name",
                    "notation_org_name" => "notation_org_name",
-                   "notation_org_name_phonetic" => "notation_org_name_phonetic",
-                   "notation_name_phonetic" => "notation_name_phonetic",
+                   "notation_org_name_p" => "notation_org_name_p",
+                   "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
                    "fax_number" => "fax_number",
                  },
@@ -453,14 +453,14 @@ defmodule MateriaWeb.UserControllerTest do
                    "subject" => "living",
                    "user" => [],
                    "zip_code" => "810-ZZZZ",
-                   "address1_phonetic" => "address1_phonetic",
-                   "address2_phonetic" => "address2_phonetic",
+                   "address1_p" => "address1_p",
+                   "address2_p" => "address2_p",
                    "address3" => "address3",
-                   "address3_phonetic" => "address3_phonetic",
+                   "address3_p" => "address3_p",
                    "notation_name" => "notation_name",
                    "notation_org_name" => "notation_org_name",
-                   "notation_org_name_phonetic" => "notation_org_name_phonetic",
-                   "notation_name_phonetic" => "notation_name_phonetic",
+                   "notation_org_name_p" => "notation_org_name_p",
+                   "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
                    "fax_number" => "fax_number",
                  }
@@ -485,12 +485,12 @@ defmodule MateriaWeb.UserControllerTest do
                  "users" => [],
                  "ext_organization_branch_id" => "ext_organization_branch_id",
                  "ext_organization_id" => "ext_organization_id",
-                 "name_phonetic" => "name_phonetic"
+                 "name_p" => "name_p"
                },
                "phone_number" => nil,
                "fax_number" => "fax_number",
                "status" => 1,
-               "name_phonetic" => "name_phonetic"
+               "name_p" => "name_p"
              }
 
      # show role grant list (allow anybody)
@@ -571,7 +571,7 @@ defmodule MateriaWeb.UserControllerTest do
              "organization" => nil,
              "phone_number" => nil,
              "status" => 1,
-             "name_phonetic" => nil,
+             "name_p" => nil,
              "fax_number" => nil,
            }
 
@@ -590,7 +590,7 @@ defmodule MateriaWeb.UserControllerTest do
              "organization" => nil,
              "phone_number" => nil,
              "status" => 1,
-             "name_phonetic" => nil,
+             "name_p" => nil,
              "fax_number" => nil,
            }
 

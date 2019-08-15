@@ -19,7 +19,7 @@ defmodule MateriaWeb.OrganizationView do
       ext_organization_id: organization.ext_organization_id,
       ext_organization_branch_id: organization.ext_organization_branch_id,
       name: organization.name,
-      name_phonetic: organization.name_phonetic,
+      name_p: organization.name_p,
       hp_url: organization.hp_url,
       profile_img_url: organization.profile_img_url,
       back_ground_img_url: organization.back_ground_img_url,

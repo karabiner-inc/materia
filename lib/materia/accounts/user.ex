@@ -8,7 +8,7 @@ defmodule Materia.Accounts.User do
     field :hashed_password, :string
     field :password, :string, virtual: true
     field :name, :string
-    field :name_phonetic, :string
+    field :name_p, :string
     field :role, :string
     field :back_ground_img_url, :string
     field :external_user_id, :string
@@ -29,7 +29,7 @@ defmodule Materia.Accounts.User do
   @doc false
   def changeset_tmp_registration(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :password, :role, :status, :external_user_id, :back_ground_img_url, :icon_img_url, :one_line_message, :descriptions, :phone_number, :lock_version, :name_phonetic, :fax_number])
+    |> cast(attrs, [:name, :email, :password, :role, :status, :external_user_id, :back_ground_img_url, :icon_img_url, :one_line_message, :descriptions, :phone_number, :lock_version, :name_p, :fax_number])
     |> put_change(:status, status.unactivated)
     |> validate_required([:email, :role, :status])
     |> unique_constraint(:email)
@@ -39,7 +39,7 @@ defmodule Materia.Accounts.User do
   @doc false
   def changeset_registration(user, attrs) do
     user
-    |> cast(attrs, [:name, :password, :role, :status, :external_user_id, :back_ground_img_url, :icon_img_url, :one_line_message, :descriptions, :phone_number, :lock_version, :name_phonetic, :fax_number])
+    |> cast(attrs, [:name, :password, :role, :status, :external_user_id, :back_ground_img_url, :icon_img_url, :one_line_message, :descriptions, :phone_number, :lock_version, :name_p, :fax_number])
     |> put_change(:status, status.activated)
     |> validate_required([:name, :password, :role])
     |> put_password_hash()
@@ -49,7 +49,7 @@ defmodule Materia.Accounts.User do
   @doc false
   def changeset_create(user, attrs) do
     user
-    |> cast(attrs, [:organization_id, :name, :email, :password, :role, :status, :external_user_id, :back_ground_img_url, :icon_img_url, :one_line_message, :descriptions, :phone_number, :lock_version, :name_phonetic, :fax_number])
+    |> cast(attrs, [:organization_id, :name, :email, :password, :role, :status, :external_user_id, :back_ground_img_url, :icon_img_url, :one_line_message, :descriptions, :phone_number, :lock_version, :name_p, :fax_number])
     |> validate_required([:email, :password, :role])
     |> unique_constraint(:email)
     |> put_password_hash()
@@ -59,7 +59,7 @@ defmodule Materia.Accounts.User do
   @doc false
   def changeset_update(user, attrs) do
     user
-    |> cast(attrs, [:organization_id, :name, :email, :password, :role, :status, :external_user_id, :back_ground_img_url, :icon_img_url, :one_line_message, :descriptions, :phone_number, :lock_version, :name_phonetic, :fax_number])
+    |> cast(attrs, [:organization_id, :name, :email, :password, :role, :status, :external_user_id, :back_ground_img_url, :icon_img_url, :one_line_message, :descriptions, :phone_number, :lock_version, :name_p, :fax_number])
     |> validate_required([:lock_version])
     |> unique_constraint(:email)
     |> put_password_hash()

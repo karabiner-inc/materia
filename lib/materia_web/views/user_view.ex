@@ -16,7 +16,7 @@ defmodule MateriaWeb.UserView do
     result_map = %{
       id: user.id,
       name: user.name,
-      name_phonetic: user.name_phonetic,
+      name_p: user.name_p,
       email: user.email,
       role: user.role,
       status: user.status,
