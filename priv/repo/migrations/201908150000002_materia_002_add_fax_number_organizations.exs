@@ -3,9 +3,7 @@ defmodule Materia.Repo.Migrations.AddColumnOrganizations do
 
   def change do
     alter table(:organizations) do
-      add :name_p, :string
-      add :ext_organization_id, :string
-      add :ext_organization_branch_id, :string
+      add :fax_number, :string
     end
   end
 end
