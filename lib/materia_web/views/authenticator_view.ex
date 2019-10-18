@@ -11,9 +11,8 @@ defmodule MateriaWeb.AuthenticatorView do
   end
 
   def render("authenticator.json", %{authenticator: authenticator}) do
-    result = %{id: authenticator.id,
-      access_token: authenticator.access_token,
-    }
+    result = %{id: authenticator.id, access_token: authenticator.access_token}
+
     if Map.has_key?(authenticator, :refresh_token) and authenticator.refresh_token != nil do
       Map.put(result, :refresh_token, authenticator.refresh_token)
     else
@@ -21,7 +20,7 @@ defmodule MateriaWeb.AuthenticatorView do
     end
   end
 
-  def render("401.json", %{ message: message }) do
+  def render("401.json", %{message: message}) do
     [
       %{
         id: "UNAUTHORIZED",
@@ -30,10 +29,9 @@ defmodule MateriaWeb.AuthenticatorView do
         status: 401
       }
     ]
-
   end
 
-  def render("403.json", %{ message: message }) do
+  def render("403.json", %{message: message}) do
     [
       %{
         id: "FORBIDDEN",
@@ -46,8 +44,7 @@ defmodule MateriaWeb.AuthenticatorView do
 
   def render("delete.json", _) do
     %{
-        ok: true
-     }
+      ok: true
+    }
   end
-
 end

@@ -4,7 +4,7 @@ defmodule MateriaWeb.ValueDefinitionController do
   alias Materia.Definitions
   alias Materia.Definitions.ValueDefinition
 
-  action_fallback MateriaWeb.FallbackController
+  action_fallback(MateriaWeb.FallbackController)
 
   def index(conn, _params) do
     value_definitions = Definitions.list_value_definitions()
@@ -28,13 +28,15 @@ defmodule MateriaWeb.ValueDefinitionController do
   def update(conn, %{"id" => id, "value_definition" => value_definition_params}) do
     value_definition = Definitions.get_value_definition!(id)
 
-    with {:ok, %ValueDefinition{} = value_definition} <- Definitions.update_value_definition(value_definition, value_definition_params) do
+    with {:ok, %ValueDefinition{} = value_definition} <-
+           Definitions.update_value_definition(value_definition, value_definition_params) do
       render(conn, "show.json", value_definition: value_definition)
     end
   end
 
   def delete(conn, %{"id" => id}) do
     value_definition = Definitions.get_value_definition!(id)
+
     with {:ok, %ValueDefinition{}} <- Definitions.delete_value_definition(value_definition) do
       send_resp(conn, :no_content, "")
     end

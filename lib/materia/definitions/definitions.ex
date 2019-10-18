@@ -21,13 +21,10 @@ defmodule Materia.Definitions do
   """
   def list_value_definitions do
     @repo.all(ValueDefinition)
-    |> Enum.sort(
-         fn x, y ->
-           x.definition_category < y.definition_category or (
-             x.definition_category == y.definition_category and
-             x.display_sort_no < y.display_sort_no)
-         end
-       )
+    |> Enum.sort(fn x, y ->
+      x.definition_category < y.definition_category or
+        (x.definition_category == y.definition_category and x.display_sort_no < y.display_sort_no)
+    end)
   end
 
   @doc """
@@ -158,12 +155,9 @@ defmodule Materia.Definitions do
   """
   def list_value_definitions_by_params(params) do
     EctoUtil.select_by_param(@repo, ValueDefinition, params)
-    |> Enum.sort(
-         fn x, y ->
-           x.definition_category < y.definition_category or (
-             x.definition_category == y.definition_category and
-             x.display_sort_no < y.display_sort_no)
-         end
-       )
+    |> Enum.sort(fn x, y ->
+      x.definition_category < y.definition_category or
+        (x.definition_category == y.definition_category and x.display_sort_no < y.display_sort_no)
+    end)
   end
 end

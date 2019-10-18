@@ -56,36 +56,39 @@ defmodule Materia.Plug.ApplicationKeyChecker do
     Logger.debug("#{__MODULE__}--- call ---------------------")
 
     app_key =
-    if conn.params["app_key"] == nil do
-      authorization = conn.req_headers
-      |> Enum.find(fn{k,v} -> String.downcase(k) == "authorization" end)
-      if authorization == nil do
-        nil
+      if conn.params["app_key"] == nil do
+        authorization =
+          conn.req_headers
+          |> Enum.find(fn {k, v} -> String.downcase(k) == "authorization" end)
+
+        if authorization == nil do
+          nil
+        else
+          {k, v} = authorization
+          v
+        end
       else
-         {k, v} = authorization
-         v
+        conn.params["app_key"]
       end
-    else
-      conn.params["app_key"]
-    end
 
     Logger.debug("#{__MODULE__}--- call opt:#{opts[:conf][:app_key]}")
     Logger.debug("#{__MODULE__}--- call request app_key:#{app_key}")
 
-    if app_key != nil &&  app_key == opts[:conf][:app_key] do
+    if app_key != nil && app_key == opts[:conf][:app_key] do
       Logger.debug("#{__MODULE__}--- call app_key is valid ---------------------")
       # remove api_key in params
-      removed_params = conn.params
-      |> Map.delete("app_key")
+      removed_params =
+        conn.params
+        |> Map.delete("app_key")
 
       conn
       |> Map.put(:params, removed_params)
     else
       Logger.debug("#{__MODULE__}--- call app_key is invalid ---------------------")
+
       conn
       |> halt()
       |> send_resp(401, Poison.encode!(%{message: "invalid_token"}))
     end
   end
-
 end

@@ -11,7 +11,7 @@ defmodule Materia.Test.Application do
       # Start the Ecto repository
       supervisor(Materia.Test.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(MateriaWeb.Test.Endpoint, []),
+      supervisor(MateriaWeb.Test.Endpoint, [])
       # Start your own worker by calling: Materia.Worker.start_link(arg1, arg2, arg3)
       # worker(Materia.Worker, [arg1, arg2, arg3]),
       # worker(Guardian.DB.Token.SweeperServer, [])

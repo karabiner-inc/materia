@@ -15,7 +15,7 @@ defmodule MateriaWeb.TagView do
       id: tag.id,
       tag_category: tag.tag_category,
       label: tag.label,
-      normalized: tag.normalized,
+      normalized: tag.normalized
     }
   end
 end

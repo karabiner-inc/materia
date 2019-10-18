@@ -2,21 +2,21 @@ defmodule Materia.Tags do
   @moduledoc """
   The Tags context.
 
-　Provide functions for the purpose of tag master management
-　Tags are managed for each tag_category, and the same tag can be registered between different tag_categories.
-　New tag registration is always done using merge / 2.
-　When the same tag is already registered, the existing registration data is returned without newly registering.
-　
-　normalize * 1 label entered at the time of registration in merge, and save.
-　When searching for a tag candidate, list_tags_by_normalized / 2 is used, and the possibility of being registered with different character strings of already registered tags is reduced by performing the candidate search.
-　
-　It is possible to register the same normalized tag with different strings because the identity in merge / 2 is judged by the exact match of label.
-　
-　* 1 normalize
-　- Uppercase->Lowercase
-　- Hiragana->Katakana
-　- Full size->Half size
-　- Delete space
+  　Provide functions for the purpose of tag master management
+  　Tags are managed for each tag_category, and the same tag can be registered between different tag_categories.
+  　New tag registration is always done using merge / 2.
+  　When the same tag is already registered, the existing registration data is returned without newly registering.
+  　
+  　normalize * 1 label entered at the time of registration in merge, and save.
+  　When searching for a tag candidate, list_tags_by_normalized / 2 is used, and the possibility of being registered with different character strings of already registered tags is reduced by performing the candidate search.
+  　
+  　It is possible to register the same normalized tag with different strings because the identity in merge / 2 is judged by the exact match of label.
+  　
+  　* 1 normalize
+  　- Uppercase->Lowercase
+  　- Hiragana->Katakana
+  　- Full size->Half size
+  　- Delete space
 
   """
 
@@ -27,7 +27,6 @@ defmodule Materia.Tags do
 
   alias MateriaUtils.Ecto.EctoUtil
   alias MateriaUtils.String.StringUtil
-
 
   @doc """
   Returns the list of tags.
@@ -130,8 +129,10 @@ defmodule Materia.Tags do
 
   """
   def list_tags_by_normalized(tag_category, search_string) do
-    normalized = search_string
-    |> StringUtil.japanese_normalize()
+    normalized =
+      search_string
+      |> StringUtil.japanese_normalize()
+
     query = "select * from tags where tag_category = $1::varchar and normalized like $2::varchar"
     EctoUtil.query(@repo, query, [tag_category, normalized])
   end
@@ -140,9 +141,9 @@ defmodule Materia.Tags do
 
   Merge tags
 
-　If it is an unregistered label without the set tag_categry, register new
-　If the label is already registered, reply the existing registration contents without registering
-　Identity of registration is judged by perfect match of label
+  　If it is an unregistered label without the set tag_categry, register new
+  　If the label is already registered, reply the existing registration contents without registering
+  　Identity of registration is judged by perfect match of label
 
   iex(1)> {:ok, tag} = Materia.Tags.merge_tag(%{}, "merge_tag_001", "TagA")
   iex(2)> {:ok, tag} = Materia.Tags.merge_tag(%{}, "merge_tag_001", "Taga")
@@ -156,14 +157,13 @@ defmodule Materia.Tags do
   """
   def merge_tag(%{}, tag_category, label) do
     tag = get_tag_by_label(tag_category, label)
+
     tag =
-    if tag == nil do
-
-      normalized = StringUtil.japanese_normalize(label)
-      {:ok, tag}  = create_tag(%{tag_category: tag_category, label: label, normalized: normalized})
-    else
-      {:ok, tag}
-    end
+      if tag == nil do
+        normalized = StringUtil.japanese_normalize(label)
+        {:ok, tag} = create_tag(%{tag_category: tag_category, label: label, normalized: normalized})
+      else
+        {:ok, tag}
+      end
   end
-
 end

@@ -30,24 +30,27 @@ defmodule MateriaWeb.ConnLogControllerTest do
       params = %{"and" => [%{"req_path" => "/api/sign-in"}]}
       conn = post(conn, conn_log_path(conn, :list_conn_logs_by_params, params))
       resp = json_response(conn, 200)
-      log = resp
-      |> List.last()
+
+      log =
+        resp
+        |> List.last()
+
       assert log == %{
-        "assigns" => "%{}",
-        "id" => log["id"],
-        "inserted_at" => log["inserted_at"],
-        "owner_pid" => log["owner_pid"],
-        "remote_ip" => log["remote_ip"],
-        "req_body_params" =>
-          "%{\"account\" => \"hogehoge_code\", \"email\" => \"hogehoge@example.com\", \"password\" => \"[FILTERED]\"}",
-        "req_headers" =>
-          "[{\"accept\", \"application/json\"}, {\"content-type\", \"multipart/mixed; boundary=plug_conn_test\"}]",
-        "req_method" => "POST",
-        "req_path" => "/api/sign-in",
-        "req_path_params" => "%{}",
-        "user_agent" => nil,
-        "user_id" => nil
-      }
+               "assigns" => "%{}",
+               "id" => log["id"],
+               "inserted_at" => log["inserted_at"],
+               "owner_pid" => log["owner_pid"],
+               "remote_ip" => log["remote_ip"],
+               "req_body_params" =>
+                 "%{\"account\" => \"hogehoge_code\", \"email\" => \"hogehoge@example.com\", \"password\" => \"[FILTERED]\"}",
+               "req_headers" =>
+                 "[{\"accept\", \"application/json\"}, {\"content-type\", \"multipart/mixed; boundary=plug_conn_test\"}]",
+               "req_method" => "POST",
+               "req_path" => "/api/sign-in",
+               "req_path_params" => "%{}",
+               "user_agent" => nil,
+               "user_id" => nil
+             }
 
       # 一覧紹介
       conn_index0 = get(conn_auth, account_path(conn, :index))
@@ -57,22 +60,25 @@ defmodule MateriaWeb.ConnLogControllerTest do
       params = %{"and" => [%{"req_path" => "/api/accounts"}]}
       conn = post(conn, conn_log_path(conn, :list_conn_logs_by_params, params))
       resp = json_response(conn, 200)
-      log = resp
-      |> List.last()
+
+      log =
+        resp
+        |> List.last()
+
       assert log == %{
-        "assigns" => "%{}",
-        "id" => log["id"],
-        "inserted_at" => log["inserted_at"],
-        "owner_pid" => log["owner_pid"],
-        "remote_ip" => log["remote_ip"],
-        "req_body_params" => "%{}",
-        "req_headers" => log["req_headers"],
-        "req_method" => "GET",
-        "req_path" => "/api/accounts",
-        "req_path_params" => "%{}",
-        "user_agent" => nil,
-        "user_id" => 1
-      }
+               "assigns" => "%{}",
+               "id" => log["id"],
+               "inserted_at" => log["inserted_at"],
+               "owner_pid" => log["owner_pid"],
+               "remote_ip" => log["remote_ip"],
+               "req_body_params" => "%{}",
+               "req_headers" => log["req_headers"],
+               "req_method" => "GET",
+               "req_path" => "/api/accounts",
+               "req_path_params" => "%{}",
+               "user_agent" => nil,
+               "user_id" => 1
+             }
     end
   end
 end

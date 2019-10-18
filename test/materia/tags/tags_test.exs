@@ -4,5 +4,4 @@ defmodule Materia.TagsTest do
   doctest Materia.Tags
 
   alias Materia.Tags
-
 end

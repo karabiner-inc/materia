@@ -7,9 +7,42 @@ defmodule Materia.DefinitionsTest do
   describe "value_definitions" do
     alias Materia.Definitions.ValueDefinition
 
-    @valid_attrs %{definition_abbreviated: "some definition_abbreviated", definition_category: "some definition_category", definition_code: "some definition_code", definition_name: "some definition_name", definition_value: "some definition_value", display_discernment_code: "some display_discernment_code", display_sort_no: 42, language_code: "some language_code", lock_version: 42, status: 42}
-    @update_attrs %{definition_abbreviated: "some updated definition_abbreviated", definition_category: "some updated definition_category", definition_code: "some updated definition_code", definition_name: "some updated definition_name", definition_value: "some updated definition_value", display_discernment_code: "some updated display_discernment_code", display_sort_no: 43, language_code: "some updated language_code", lock_version: 43, status: 43}
-    @invalid_attrs %{definition_abbreviated: nil, definition_category: nil, definition_code: nil, definition_name: nil, definition_value: nil, display_discernment_code: nil, display_sort_no: nil, language_code: nil, lock_version: nil, status: nil}
+    @valid_attrs %{
+      definition_abbreviated: "some definition_abbreviated",
+      definition_category: "some definition_category",
+      definition_code: "some definition_code",
+      definition_name: "some definition_name",
+      definition_value: "some definition_value",
+      display_discernment_code: "some display_discernment_code",
+      display_sort_no: 42,
+      language_code: "some language_code",
+      lock_version: 42,
+      status: 42
+    }
+    @update_attrs %{
+      definition_abbreviated: "some updated definition_abbreviated",
+      definition_category: "some updated definition_category",
+      definition_code: "some updated definition_code",
+      definition_name: "some updated definition_name",
+      definition_value: "some updated definition_value",
+      display_discernment_code: "some updated display_discernment_code",
+      display_sort_no: 43,
+      language_code: "some updated language_code",
+      lock_version: 43,
+      status: 43
+    }
+    @invalid_attrs %{
+      definition_abbreviated: nil,
+      definition_category: nil,
+      definition_code: nil,
+      definition_name: nil,
+      definition_value: nil,
+      display_discernment_code: nil,
+      display_sort_no: nil,
+      language_code: nil,
+      lock_version: nil,
+      status: nil
+    }
 
     def value_definition_fixture(attrs \\ %{}) do
       {:ok, value_definition} =
@@ -84,53 +117,63 @@ defmodule Materia.DefinitionsTest do
     test "list_value_definitions_by_params/1 and returns list_value_definition" do
       params = %{"and" => [%{"definition_category" => "Test1"}, %{"language_code" => "JP"}]}
       results = Definitions.list_value_definitions_by_params(params)
+
       results
-      |> Enum.map(
-           fn result ->
-             assert result.status == 1
-             assert result.language_code == "JP"
-             assert result.definition_category == "Test1"
-             assert result.definition_name == "定義1"
-             cond do
-               result.definition_code == "Test_1_01" ->
-                 assert result.display_sort_no == 1
-                 assert result.definition_abbreviated == "1_1"
-                 assert result.definition_value == "定義値1_1"
-               result.definition_code == "Test_1_02" ->
-                 assert result.display_sort_no == 2
-                 assert result.definition_abbreviated == "1_2"
-                 assert result.definition_value == "定義値1_2"
-               true -> assert false
-             end
-           end
-         )
+      |> Enum.map(fn result ->
+        assert result.status == 1
+        assert result.language_code == "JP"
+        assert result.definition_category == "Test1"
+        assert result.definition_name == "定義1"
+
+        cond do
+          result.definition_code == "Test_1_01" ->
+            assert result.display_sort_no == 1
+            assert result.definition_abbreviated == "1_1"
+            assert result.definition_value == "定義値1_1"
+
+          result.definition_code == "Test_1_02" ->
+            assert result.display_sort_no == 2
+            assert result.definition_abbreviated == "1_2"
+            assert result.definition_value == "定義値1_2"
+
+          true ->
+            assert false
+        end
+      end)
     end
 
     test "list_value_definitions_by_params/1 and or returns list_value_definition" do
-      params = %{"and" => [%{"language_code" => "JP"}], "or" => [%{"definition_code" => "Test_1_01"}, %{"definition_code" => "Test_2_02"}]}
+      params = %{
+        "and" => [%{"language_code" => "JP"}],
+        "or" => [%{"definition_code" => "Test_1_01"}, %{"definition_code" => "Test_2_02"}]
+      }
+
       results = Definitions.list_value_definitions_by_params(params)
+
       results
-      |> Enum.map(
-           fn result ->
-             assert result.status == 1
-             assert result.language_code == "JP"
-             cond do
-               result.definition_code == "Test_1_01" ->
-                 assert result.display_sort_no == 1
-                 assert result.definition_abbreviated == "1_1"
-                 assert result.definition_value == "定義値1_1"
-                 assert result.definition_category == "Test1"
-                 assert result.definition_name == "定義1"
-               result.definition_code == "Test_2_02" ->
-                 assert result.display_sort_no == 2
-                 assert result.definition_abbreviated == "2_2"
-                 assert result.definition_value == "定義値2_2"
-                 assert result.definition_category == "Test2"
-                 assert result.definition_name == "定義2"
-               true -> assert false
-             end
-           end
-         )
+      |> Enum.map(fn result ->
+        assert result.status == 1
+        assert result.language_code == "JP"
+
+        cond do
+          result.definition_code == "Test_1_01" ->
+            assert result.display_sort_no == 1
+            assert result.definition_abbreviated == "1_1"
+            assert result.definition_value == "定義値1_1"
+            assert result.definition_category == "Test1"
+            assert result.definition_name == "定義1"
+
+          result.definition_code == "Test_2_02" ->
+            assert result.display_sort_no == 2
+            assert result.definition_abbreviated == "2_2"
+            assert result.definition_value == "定義値2_2"
+            assert result.definition_category == "Test2"
+            assert result.definition_name == "定義2"
+
+          true ->
+            assert false
+        end
+      end)
     end
   end
 end

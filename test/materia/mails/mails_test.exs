@@ -4,5 +4,4 @@ defmodule Materia.MailsTest do
   doctest Materia.Accounts
 
   alias Materia.Mails
-
 end
