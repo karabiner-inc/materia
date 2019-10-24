@@ -4,7 +4,7 @@ use Mix.Config
 # you can enable the server option below.
 config :materia, MateriaWeb.Test.Endpoint,
   http: [port: 4001],
-  # server: false,
+  #server: false,
   debug_errors: true,
   code_reloader: false,
   check_origin: false,
@@ -26,33 +26,31 @@ config :materia, repo: Materia.Test.Repo
 
 # Configures GuardianDB
 config :guardian, Guardian.DB,
-  repo: Materia.Test.Repo,
-  # default
-  schema_name: "guardian_tokens",
-  # token_types: ["refresh_token"], # store all token types if not set
-  # default: 60 minutes
-  sweep_interval: 60
+ repo: Materia.Test.Repo,
+ schema_name: "guardian_tokens", # default
+#token_types: ["refresh_token"], # store all token types if not set
+ sweep_interval: 60 # default: 60 minutes
+
 
 # Configure materia mail
 config :materia, Materia.Mails.MailClient,
-  # use AmazonSES settings
-  #  client_module: Materia.Mails.MailClientAwsSes,
-  #  mail_ses_region: "us-west-2"
+# use AmazonSES settings
+#  client_module: Materia.Mails.MailClientAwsSes,
+#  mail_ses_region: "us-west-2"
 
-  # use SendGrid settings
-  # client_module: Materia.Mails.MailClientSendGrid
-  #
-  # config :sendgrid,
-  # api_key: "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"
+# use SendGrid settings
+# client_module: Materia.Mails.MailClientSendGrid
+#
+#config :sendgrid,
+# api_key: "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"
 
-  # use StubMailClient settings
-  client_module: Materia.Mail.MailClientStub
+# use StubMailClient settings
+ client_module: Materia.Mail.MailClientStub
 
 # Configure materia user registration flow mails
 config :materia, Materia.Accounts,
   system_from_email: "team_bi@karabiner.tech",
-  # not effect when use Materia.Mails.MailClientAwsSes
-  system_from_name: "カラビナテクノロジーテスト事務局",
+  system_from_name: "カラビナテクノロジーテスト事務局", # not effect when use Materia.Mails.MailClientAwsSes
   user_registration_request_mail_template_type: "user_registration_request",
   user_registration_url: "hogehoge.example.com/user-registration",
   user_registration_completed_mail_template_type: "user_registration_completed",
@@ -63,4 +61,7 @@ config :materia, Materia.Accounts,
 
 # Configure materia application authenticator
 # recomend you generate complex app_key by "mix phx.gen.secret" command.
-config :materia, Materia.Plug.ApplicationKeyChecker, app_key: "test_app_key"
+config :materia, Materia.Plug.ApplicationKeyChecker,
+  app_key: "test_app_key"
+
+

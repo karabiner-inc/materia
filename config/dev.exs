@@ -82,14 +82,15 @@ config :materia, Materia.Accounts,
 ＜お問い合わせ＞
  @support_url@
 ",
-  rregstered_mail_subject: "【開発環境】ServiceX ユーザ登録完了",
-  # registrated_mail template
+
+rregstered_mail_subject: "【開発環境】ServiceX ユーザ登録完了",
+# registrated_mail template
   # place holders
   #  @user_name@  display user name.
   #  @user_mail@ display mail address.
   #  @conntact_url@  support page url
   #  @password_reset_url@ password reset page url
-  regstered_mail_template: "@user_name@ 様
+regstered_mail_template: "@user_name@ 様
 この度は弊社サービスにご登録いただきありがとうございます。
 
 メールアドレス： @user_mail@
@@ -104,8 +105,10 @@ config :materia, Materia.Accounts,
  @support_url@
 "
 
-config :materia, Materia.MailClient, verify_mail_ses_region: "us-west-2"
+config :materia, Materia.MailClient,
+  verify_mail_ses_region: "us-west-2"
 
 # Configure materia application authenticator
 # recomend you generate complex app_key by "mix phx.gen.secret" command.
-config :materia, Materia.Plug.ApplicationKeyChecker, app_key: "test_app_key"
+config :materia, Materia.Plug.ApplicationKeyChecker,
+  app_key: "test_app_key"

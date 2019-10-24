@@ -6,14 +6,16 @@
 use Mix.Config
 
 # General application configuration
-config :materia, ecto_repos: [Materia.Test.Repo]
+config :materia,
+  ecto_repos: [Materia.Test.Repo]
 
 # Configures the endpoint
 config :materia, MateriaWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "xAeVCjjYbPDJQW5oou/zXYHs9KpzNG3XOO/zZuEFxKpTCAwc09sEm9REdzlGPqnE",
   render_errors: [view: MateriaWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Materia.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Materia.PubSub,
+           adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -22,10 +24,8 @@ config :logger, :console,
 
 # Configures Materia.Authenticator
 config :materia, Materia.Authenticator,
-  # 必須
-  access_token_ttl: {10, :minutes},
-  # refresh_tokenを定義しない場合sign-inはaccess_tokenのみ返す
-  refresh_token_ttl: {1, :days},
+  access_token_ttl: {10, :minutes}, #必須
+  refresh_token_ttl: {1, :days}, # refresh_tokenを定義しない場合sign-inはaccess_tokenのみ返す
   user_registration_token_ttl: {35, :minutes},
   password_reset_token_ttl: {35, :minutes}
 
@@ -46,4 +46,5 @@ config :materia, gettext: MateriaWeb.Gettext
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env()}.exs"
+import_config "#{Mix.env}.exs"
+
