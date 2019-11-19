@@ -3,9 +3,9 @@ defmodule Materia.Accounts.Grant do
   import Ecto.Changeset
 
   schema "grants" do
-    field :request_path, :string
-    field :method, :string
-    field :role, :string
+    field(:request_path, :string)
+    field(:method, :string)
+    field(:role, :string)
 
     timestamps()
   end
@@ -15,15 +15,15 @@ defmodule Materia.Accounts.Grant do
     grant
     |> cast(attrs, [:role, :method, :request_path])
     |> validate_required([:role, :method, :request_path])
-    #|> unique_constraint([:role, :method, :request_path])
+
+    # |> unique_constraint([:role, :method, :request_path])
   end
 
   def method do
-    %{ any: "ANY" }
+    %{any: "ANY"}
   end
 
   def role do
-    %{ anybody: "anybody" }
+    %{anybody: "anybody"}
   end
-
 end

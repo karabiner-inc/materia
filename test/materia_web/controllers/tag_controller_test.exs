@@ -13,7 +13,6 @@ defmodule MateriaWeb.TagControllerTest do
 
   describe "merge and search test" do
     test "tag life cycle", %{conn: conn} do
-
       # merge tag
       params = %{"tag_category" => "merge_test001", "label" => "Elixir01"}
       conn = post(conn, tag_path(conn, :merge, params))
@@ -53,7 +52,6 @@ defmodule MateriaWeb.TagControllerTest do
       conn = post(conn, tag_path(conn, :list_tags_by_normalized, params))
       resp = json_response(conn, 200)
       assert length(resp) == 1
-
     end
   end
 end

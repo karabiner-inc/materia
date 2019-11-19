@@ -4,7 +4,7 @@ defmodule MateriaWeb.GrantController do
   alias Materia.Accounts
   alias Materia.Accounts.Grant
 
-  action_fallback MateriaWeb.FallbackController
+  action_fallback(MateriaWeb.FallbackController)
 
   def index(conn, _params) do
     grants = Accounts.list_grants()
@@ -40,6 +40,7 @@ defmodule MateriaWeb.GrantController do
 
   def delete(conn, %{"id" => id}) do
     grant = Accounts.get_grant!(id)
+
     with {:ok, %Grant{}} <- Accounts.delete_grant(grant) do
       send_resp(conn, :no_content, "")
     end

@@ -27,14 +27,16 @@ defmodule MateriaWeb.OrganizationView do
       phone_number: organization.phone_number,
       fax_number: organization.fax_number,
       lock_version: organization.lock_version,
-      status: organization.status,
+      status: organization.status
     }
+
     result_map =
       if Ecto.assoc_loaded?(organization.users) do
         Map.put(result_map, :users, UserView.render("index.json", %{users: organization.users}))
       else
         Map.put(result_map, :users, [])
       end
+
     result_map =
       if Ecto.assoc_loaded?(organization.addresses) do
         Map.put(result_map, :addresses, AddressView.render("index.json", %{addresses: organization.addresses}))

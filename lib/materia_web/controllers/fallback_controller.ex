@@ -21,6 +21,7 @@ defmodule MateriaWeb.FallbackController do
 
   def call(conn, %BusinessError{} = error) do
     IO.inspect(error)
+
     conn
     |> put_status(:bad_request)
     |> MateriaWeb.ErrorView.render_error(error)
@@ -40,10 +41,10 @@ defmodule MateriaWeb.FallbackController do
 
   def call(conn, error) do
     try do
-      IO.puts Exception.format_stacktrace(System.stacktrace())
-      throw error
+      IO.puts(Exception.format_stacktrace(System.stacktrace()))
+      throw(error)
     rescue
-      e -> throw e
+      e -> throw(e)
     after
       conn
       |> put_status(:internal_server_error)

@@ -2,13 +2,12 @@ defmodule Materia.Mails.MailTemplate do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "mail_templates" do
-    field :body, :string
-    field :lock_version, :integer, default: 1
-    field :status, :integer, default: 1
-    field :subject, :string
-    field :mail_template_type, :string
+    field(:body, :string)
+    field(:lock_version, :integer, default: 1)
+    field(:status, :integer, default: 1)
+    field(:subject, :string)
+    field(:mail_template_type, :string)
 
     timestamps()
   end
@@ -30,8 +29,10 @@ defmodule Materia.Mails.MailTemplate do
 
   def status() do
     %{
-      active: 1, # 有効
-      inactive: 2, # 無効
+      # 有効
+      active: 1,
+      # 無効
+      inactive: 2
     }
   end
 end

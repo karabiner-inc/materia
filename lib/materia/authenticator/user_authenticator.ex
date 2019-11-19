@@ -21,8 +21,8 @@ defmodule Materia.UserAuthenticator do
     # A unique `id` is a good subject, a non-unique email address
     # is a poor subject.
     Logger.debug("---  #{__MODULE__} subject_for_token --------------")
-    #sub = to_string(resource.id)
-    {:ok, sub} =  Poison.encode(%{user_id: resource.id})
+    # sub = to_string(resource.id)
+    {:ok, sub} = Poison.encode(%{user_id: resource.id})
     {:ok, sub}
   end
 
@@ -66,23 +66,20 @@ defmodule Materia.UserAuthenticator do
         else
           if Comeonin.Bcrypt.checkpw(password, resource.hashed_password) do
             Logger.debug("#{__MODULE__} --- sign_in Comeonin.Bcrypt.checkpw == true")
+
             with {:ok, access_token, _access_claims} <-
-              encode_and_sign_cb(resource, claims, token_type: "access", ttl: access_token_ttl) do
+                   encode_and_sign_cb(resource, claims, token_type: "access", ttl: access_token_ttl) do
               Logger.debug("#{__MODULE__} --- sign_in Materia.Authenticator.encode_and_sign ok")
               Logger.debug("#{__MODULE__} --- sign_in access_token:#{access_token}")
               result = %{id: resource.id, access_token: access_token}
               refresh_token_ttl = config[:refresh_token_ttl]
 
-              Logger.debug(
-                "#{__MODULE__} --- sign_in refresh_token_ttl:#{inspect(refresh_token_ttl)}"
-              )
+              Logger.debug("#{__MODULE__} --- sign_in refresh_token_ttl:#{inspect(refresh_token_ttl)}")
 
               if refresh_token_ttl != nil do
                 refresh_token_ttl = config[:refresh_token_ttl]
 
-                Logger.debug(
-                  "#{__MODULE__} --- sign_in refresh_token_ttl:#{inspect(refresh_token_ttl)}"
-                )
+                Logger.debug("#{__MODULE__} --- sign_in refresh_token_ttl:#{inspect(refresh_token_ttl)}")
 
                 with {:ok, refresh_token, _refresh_claims} <-
                        encode_and_sign(
@@ -125,5 +122,4 @@ defmodule Materia.UserAuthenticator do
   def refresh_cb(refresh_token, options) do
     refresh(refresh_token, options)
   end
-
 end

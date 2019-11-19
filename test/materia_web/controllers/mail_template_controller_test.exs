@@ -56,7 +56,7 @@ defmodule MateriaWeb.TemplateControllerTest do
           subject: "some updated subject"
         })
 
-        resp_update = json_response(conn_update, 200)
+      resp_update = json_response(conn_update, 200)
 
       # 照会
       conn_show = get(conn_auth, mail_template_path(conn, :show, id))

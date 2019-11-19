@@ -13,7 +13,8 @@ defmodule MateriaWeb.AddressView do
   end
 
   def render("address.json", %{address: address}) do
-    result_map = %{id: address.id,
+    result_map = %{
+      id: address.id,
       location: address.location,
       zip_code: address.zip_code,
       address1: address.address1,
@@ -31,14 +32,16 @@ defmodule MateriaWeb.AddressView do
       latitude: address.latitude,
       longitude: address.longitude,
       subject: address.subject,
-      lock_version: address.lock_version,
+      lock_version: address.lock_version
     }
+
     result_map =
       if Ecto.assoc_loaded?(address.user) do
         Map.put(result_map, :user, UserView.render("show.json", %{user: address.user}))
       else
         Map.put(result_map, :user, [])
       end
+
     result_map =
       if Ecto.assoc_loaded?(address.organization) do
         Map.put(result_map, :organization, OrganizationView.render("show.json", %{organization: address.organization}))

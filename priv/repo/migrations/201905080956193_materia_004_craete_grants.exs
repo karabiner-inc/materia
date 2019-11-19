@@ -3,13 +3,13 @@ defmodule Materia.Repo.Migrations.CreateGrants do
 
   def change do
     create table(:grants) do
-      add :role, :string
-      add :method, :string
-      add :request_path, :string
+      add(:role, :string)
+      add(:method, :string)
+      add(:request_path, :string)
 
       timestamps()
     end
 
-    create unique_index(:grants, [:role, :method, :request_path])
+    create(unique_index(:grants, [:role, :method, :request_path]))
   end
 end

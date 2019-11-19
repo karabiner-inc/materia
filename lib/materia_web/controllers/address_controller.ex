@@ -5,7 +5,7 @@ defmodule MateriaWeb.AddressController do
   alias Materia.Locations.Address
   alias MateriaWeb.ControllerBase
 
-  action_fallback MateriaWeb.FallbackController
+  action_fallback(MateriaWeb.FallbackController)
 
   def index(conn, _params) do
     addresses = Locations.list_addresses()
@@ -22,10 +22,10 @@ defmodule MateriaWeb.AddressController do
   end
 
   def create_my_address(conn, address_params) do
-    #id = String.to_integer(conn.private.guardian_default_claims["sub"])
+    # id = String.to_integer(conn.private.guardian_default_claims["sub"])
     id = ControllerBase.get_user_id(conn)
-    address_params =
-      address_params |> Map.put("user_id", id)
+    address_params = address_params |> Map.put("user_id", id)
+
     with {:ok, %Address{} = address} <- Locations.create_address(address_params) do
       conn
       |> put_status(:created)
@@ -49,6 +49,7 @@ defmodule MateriaWeb.AddressController do
 
   def delete(conn, %{"id" => id}) do
     address = Locations.get_address!(id)
+
     with {:ok, %Address{}} <- Locations.delete_address(address) do
       send_resp(conn, :no_content, "")
     end

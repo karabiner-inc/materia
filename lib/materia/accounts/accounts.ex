@@ -135,7 +135,6 @@ defmodule Materia.Accounts do
 
   """
   def list_users do
-
     User
     |> @repo.all()
     |> @repo.preload([:organization, :addresses])
@@ -242,7 +241,6 @@ defmodule Materia.Accounts do
 
   """
   def list_users_by_params(params) do
-
     @repo
     |> EctoUtil.select_by_param(User, params)
     |> @repo.preload(:organization)
@@ -343,8 +341,6 @@ defmodule Materia.Accounts do
 
   """
   def get_user!(id) do
-
-
     User
     |> @repo.get!(id)
     |> @repo.preload([:organization, :addresses])
@@ -395,8 +391,6 @@ defmodule Materia.Accounts do
 
   """
   def get_user_by_email(email) do
-
-
     user =
       with [user] <-
              User
@@ -459,8 +453,6 @@ defmodule Materia.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
-
-
     %User{}
     |> User.changeset_create(attrs)
     |> @repo.insert()
@@ -561,7 +553,6 @@ defmodule Materia.Accounts do
 
   """
   def update_user(%User{} = user, attrs) do
-
     user
     |> User.changeset_update(attrs)
     |> @repo.update()
@@ -588,7 +579,6 @@ defmodule Materia.Accounts do
 
   """
   def delete_user(%User{} = user) do
-
     @repo.delete(user)
   end
 
@@ -622,7 +612,6 @@ defmodule Materia.Accounts do
 
   """
   def list_grants do
-
     @repo.all(Grant)
   end
 
@@ -643,7 +632,6 @@ defmodule Materia.Accounts do
 
   """
   def get_grant!(id) do
-
     @repo.get!(Grant, id)
   end
 
@@ -677,7 +665,6 @@ defmodule Materia.Accounts do
 
   """
   def get_grant_by_role(role) do
-
     dc_role = String.downcase(role)
 
     Grant
@@ -700,7 +687,6 @@ defmodule Materia.Accounts do
 
   """
   def create_grant(attrs \\ %{}) do
-
     %Grant{}
     |> Grant.changeset(attrs)
     |> @repo.insert()
@@ -723,7 +709,6 @@ defmodule Materia.Accounts do
 
   """
   def update_grant(%Grant{} = grant, attrs) do
-
     grant
     |> Grant.changeset(attrs)
     |> @repo.update()
@@ -758,7 +743,6 @@ defmodule Materia.Accounts do
 
   """
   def delete_grant(%Grant{} = grant) do
-
     @repo.delete(grant)
   end
 
@@ -781,7 +765,6 @@ defmodule Materia.Accounts do
 
   @doc false
   defp create_tmp_user(attrs \\ %{}) do
-
     %User{}
     |> User.changeset_tmp_registration(attrs)
     |> @repo.insert()
@@ -859,7 +842,6 @@ defmodule Materia.Accounts do
 
   @doc false
   defp registration_user(%User{} = user, attrs) do
-
     user
     |> User.changeset_registration(attrs)
     |> @repo.update()
@@ -992,8 +974,8 @@ defmodule Materia.Accounts do
   def registration_user(_result, user, attr) do
     config = Application.get_env(:materia, Materia.Accounts)
 
-    #仮登録ユーザーでなければエラー
-    if user.status != User.status.unactivated do
+    # 仮登録ユーザーでなければエラー
+    if user.status != User.status().unactivated do
       raise BusinessError, message: @msg_err_duplicate_emal
     end
 
@@ -1052,7 +1034,6 @@ defmodule Materia.Accounts do
   true
   """
   def registration_user_and_sign_in(_result, user, attr) do
-
     {:ok, user} = registration_user(_result, user, attr)
 
     {:ok, result} = UserAuthenticator.sign_in(user.email, user.password)
@@ -1060,12 +1041,12 @@ defmodule Materia.Accounts do
     user_with_token = %{
       user: user,
       access_token: result.access_token,
-      refresh_token: result.refresh_token,
+      refresh_token: result.refresh_token
     }
+
     Map.merge(user, result)
 
     {:ok, user_with_token}
-
   end
 
   @doc """
@@ -1085,6 +1066,7 @@ defmodule Materia.Accounts do
 
     # ユーザーの存在チェック
     user = get_user_by_email(email)
+
     if user == nil do
       # ユーザーが存在しない場合も素知らぬ顔で正常終了する
       {:ok, %{password_reset_token: ""}}
@@ -1109,9 +1091,7 @@ defmodule Materia.Accounts do
       end
 
       {:ok, %{password_reset_token: password_reset_token}}
-
     end
-
   end
 
   @doc """
@@ -1232,14 +1212,12 @@ defmodule Materia.Accounts do
     end
 
     {:ok, user}
-
   end
 
   @doc false
   defp send_email(template_type, from_email, email, replace_list, from_name \\ nil) do
     if from_email == nil do
-      raise BusinessError,
-        message: "config :materia, Materia.Accounts, system_from_email not found."
+      raise BusinessError, message: "config :materia, Materia.Accounts, system_from_email not found."
     end
 
     template = Mails.get_mail_template_by_mail_template_type(template_type)
@@ -1248,16 +1226,11 @@ defmodule Materia.Accounts do
       raise BusinessError, message: "mail_template not found. template_type: #{template_type}"
     end
 
-    with {:ok, message} <-
-           Mails.send_mail(from_email, email, template.subject, template.body, replace_list, from_name) do
-      Logger.debug(
-        "#{__MODULE__} registration_user. send mail success. message:#{inspect(message)}"
-      )
+    with {:ok, message} <- Mails.send_mail(from_email, email, template.subject, template.body, replace_list, from_name) do
+      Logger.debug("#{__MODULE__} registration_user. send mail success. message:#{inspect(message)}")
     else
       {:error, reason} ->
-        Logger.debug(
-          "#{__MODULE__} registration_user. send mail error. reason:#{inspect(reason)}"
-        )
+        Logger.debug("#{__MODULE__} registration_user. send mail error. reason:#{inspect(reason)}")
         raise BusinessError, message: "send user registration mail error."
     end
   end
@@ -1305,7 +1278,6 @@ defmodule Materia.Accounts do
   """
   def get_account!(id), do: @repo.get!(Account, id)
 
-
   @doc """
   iex(1)> accounts = Materia.Accounts.list_accounts_by_params(%{"and" => [ %{"status" => 1}, %{"organization_id" => 1} ]})
   iex(2)> length(accounts)
@@ -1341,11 +1313,12 @@ defmodule Materia.Accounts do
   """
   def create_account(attrs \\ %{}) do
     attrs =
-    if Map.has_key?(attrs, "start_datetime") do
-      attrs
-    else
-      Map.put(attrs, "start_datetime", CalendarUtil.now())
-    end
+      if Map.has_key?(attrs, "start_datetime") do
+        attrs
+      else
+        Map.put(attrs, "start_datetime", CalendarUtil.now())
+      end
+
     %Account{}
     |> Account.create_changeset(attrs)
     |> @repo.insert()
@@ -1365,18 +1338,19 @@ defmodule Materia.Accounts do
 
   """
   def update_account(%Account{} = account, attrs) do
-
     # ステータスが更新されている場合、
     if Map.has_key?(attrs, "status") do
       attrs =
-      cond do
-      attrs["status"] == Account.status.activated ->
-        Map.put(attrs, "start_datetime", CalendarUtil.now())
-      attrs["status"] == Account.status.frozen ->
-        Map.put(attrs, "frozen_datetime", CalendarUtil.now())
-      attrs["status"] == Account.status.expired ->
-        Map.put(attrs, "expired_datetime", CalendarUtil.now())
-      end
+        cond do
+          attrs["status"] == Account.status().activated ->
+            Map.put(attrs, "start_datetime", CalendarUtil.now())
+
+          attrs["status"] == Account.status().frozen ->
+            Map.put(attrs, "frozen_datetime", CalendarUtil.now())
+
+          attrs["status"] == Account.status().expired ->
+            Map.put(attrs, "expired_datetime", CalendarUtil.now())
+        end
     end
 
     account
@@ -1398,6 +1372,4 @@ defmodule Materia.Accounts do
   def delete_account(%Account{} = account) do
     @repo.delete(account)
   end
-
-
 end

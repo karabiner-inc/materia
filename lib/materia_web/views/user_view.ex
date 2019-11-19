@@ -26,14 +26,16 @@ defmodule MateriaWeb.UserView do
       descriptions: user.descriptions,
       phone_number: user.phone_number,
       fax_number: user.fax_number,
-      lock_version: user.lock_version,
+      lock_version: user.lock_version
     }
+
     result_map =
       if Ecto.assoc_loaded?(user.addresses) do
         Map.put(result_map, :addresses, AddressView.render("index.json", %{addresses: user.addresses}))
       else
         Map.put(result_map, :addresses, [])
       end
+
     result_map =
       if Ecto.assoc_loaded?(user.organization) do
         Map.put(result_map, :organization, OrganizationView.render("show.json", %{organization: user.organization}))
@@ -45,7 +47,7 @@ defmodule MateriaWeb.UserView do
   def render("show.json", %{tmp_user: tmp_user}) do
     %{
       user: render("user.json", %{user: tmp_user.user}),
-      user_registration_token: tmp_user.user_registration_token,
+      user_registration_token: tmp_user.user_registration_token
     }
   end
 
@@ -53,13 +55,13 @@ defmodule MateriaWeb.UserView do
     %{
       user: render("user.json", %{user: user_token.user}),
       access_token: user_token.access_token,
-      refresh_token: user_token.refresh_token,
+      refresh_token: user_token.refresh_token
     }
   end
 
   def render("show.json", %{password_reset: password_reset}) do
     %{
-      password_reset_token: password_reset.password_reset_token,
+      password_reset_token: password_reset.password_reset_token
     }
   end
 end

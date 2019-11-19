@@ -11,11 +11,13 @@ defmodule MateriaWeb.MailTemplateView do
   end
 
   def render("mail_template.json", %{mail_template: mail_template}) do
-    %{id: mail_template.id,
+    %{
+      id: mail_template.id,
       mail_template_type: mail_template.mail_template_type,
       subject: mail_template.subject,
       body: mail_template.body,
       status: mail_template.status,
-      lock_version: mail_template.lock_version}
+      lock_version: mail_template.lock_version
+    }
   end
 end

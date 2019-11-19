@@ -98,5 +98,4 @@ defmodule Materia.Logs do
     |> ConnLog.changeset(attrs)
     |> @repo.insert()
   end
-
 end

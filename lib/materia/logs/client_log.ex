@@ -2,15 +2,14 @@ defmodule Materia.Logs.ClientLog do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "client_logs" do
-    field :client_ip, :string
-    field :evidence_url, :string
-    field :log_datetime, :utc_datetime
-    field :routing_path, :string
-    field :trace_log, :string
-    field :user_agent, :string
-    field :user_id, :integer
+    field(:client_ip, :string)
+    field(:evidence_url, :string)
+    field(:log_datetime, :utc_datetime)
+    field(:routing_path, :string)
+    field(:trace_log, :string)
+    field(:user_agent, :string)
+    field(:user_id, :integer)
 
     timestamps()
   end

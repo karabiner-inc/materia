@@ -4,7 +4,7 @@ defmodule MateriaWeb.OrganizationController do
   alias Materia.Organizations
   alias Materia.Organizations.Organization
 
-  action_fallback MateriaWeb.FallbackController
+  action_fallback(MateriaWeb.FallbackController)
 
   def index(conn, _params) do
     organizations = Organizations.list_organizations()
@@ -35,9 +35,9 @@ defmodule MateriaWeb.OrganizationController do
 
   def delete(conn, %{"id" => id}) do
     organization = Organizations.get_organization!(id)
+
     with {:ok, %Organization{}} <- Organizations.delete_organization(organization) do
       send_resp(conn, :no_content, "")
     end
   end
-
 end

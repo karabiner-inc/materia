@@ -4,7 +4,7 @@ defmodule MateriaWeb.ClientLogController do
   alias Materia.Logs
   alias Materia.Logs.ClientLog
 
-  action_fallback MateriaWeb.FallbackController
+  action_fallback(MateriaWeb.FallbackController)
 
   def create(conn, client_log_params) do
     with {:ok, %ClientLog{} = client_log} <- Logs.create_client_log(client_log_params) do
@@ -24,5 +24,4 @@ defmodule MateriaWeb.ClientLogController do
     client_logs = Logs.list_client_logs_by_params(params)
     render(conn, "index.json", client_logs: client_logs)
   end
-
 end

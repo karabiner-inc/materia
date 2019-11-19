@@ -5,7 +5,7 @@ defmodule MateriaWeb.AccountController do
   alias Materia.Accounts.Account
   alias MateriaWeb.ControllerBase
 
-  action_fallback MateriaWeb.FallbackController
+  action_fallback(MateriaWeb.FallbackController)
 
   def index(conn, _params) do
     accounts = Accounts.list_accounts()
@@ -18,7 +18,7 @@ defmodule MateriaWeb.AccountController do
   end
 
   def create(conn, account_params) do
-    with {:ok, %Account{} = account} <-Accounts.create_account(account_params) do
+    with {:ok, %Account{} = account} <- Accounts.create_account(account_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", account_path(conn, :show, account))
@@ -39,6 +39,7 @@ defmodule MateriaWeb.AccountController do
 
   def update(conn, account_params) do
     account = Accounts.get_account!(account_params["id"])
+
     with {:ok, %Account{} = account} <- Accounts.update_account(account, account_params) do
       render(conn, "show.json", account: account)
     end
@@ -46,6 +47,7 @@ defmodule MateriaWeb.AccountController do
 
   def delete(conn, %{"id" => id}) do
     account = Accounts.get_account!(id)
+
     with {:ok, %Account{}} <- Accounts.delete_account(account) do
       send_resp(conn, :no_content, "")
     end
