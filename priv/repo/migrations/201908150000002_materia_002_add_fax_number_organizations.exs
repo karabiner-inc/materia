@@ -3,7 +3,7 @@ defmodule Materia.Repo.Migrations.AddColumnOrganizations do
 
   def change do
     alter table(:organizations) do
-      add :fax_number, :string
+      add(:fax_number, :string)
     end
   end
 end

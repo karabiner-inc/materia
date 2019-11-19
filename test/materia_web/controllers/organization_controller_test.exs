@@ -38,7 +38,7 @@ defmodule MateriaWeb.OrganizationControllerTest do
           "back_ground_img_url" => "some back_ground_img_url",
           "one_line_message" => "some one_line_message",
           "phone_number" => "some phone_number",
-          "status" => Organization.status.active,
+          "status" => Organization.status().active
         })
 
       assert %{"id" => id} = json_response(conn, 201)
@@ -57,17 +57,17 @@ defmodule MateriaWeb.OrganizationControllerTest do
           "back_ground_img_url" => "updated back_ground_img_url",
           "one_line_message" => "updated one_line_message",
           "phone_number" => "updated phone_number",
-          "status" => Organization.status.unactive,
+          "status" => Organization.status().unactive,
           "lock_version" => 1
         })
 
-        resp_update = json_response(conn_update, 200)
+      resp_update = json_response(conn_update, 200)
 
       # 照会
       conn_show = get(conn_auth, organization_path(conn, :show, id))
       resp_show = json_response(conn_show, 200)
 
-      assert resp_show["lock_version"]  == 2
+      assert resp_show["lock_version"] == 2
 
       # 削除
       conn_del = delete(conn_auth, organization_path(conn, :delete, id))

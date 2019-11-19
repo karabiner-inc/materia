@@ -11,9 +11,6 @@ defmodule MateriaWeb.GrantView do
   end
 
   def render("grant.json", %{grant: grant}) do
-    %{id: grant.id,
-      role: grant.role,
-      method: grant.method,
-      request_path: grant.request_path}
+    %{id: grant.id, role: grant.role, method: grant.method, request_path: grant.request_path}
   end
 end

@@ -11,7 +11,8 @@ defmodule MateriaWeb.ConnLogView do
   end
 
   def render("conn_log.json", %{conn_log: conn_log}) do
-    %{id: conn_log.id,
+    %{
+      id: conn_log.id,
       user_id: conn_log.user_id,
       remote_ip: conn_log.remote_ip,
       user_agent: conn_log.user_agent,
@@ -22,7 +23,7 @@ defmodule MateriaWeb.ConnLogView do
       req_path_params: conn_log.req_path_params,
       req_body_params: conn_log.req_body_params,
       assigns: conn_log.assigns,
-      inserted_at: conn_log.inserted_at,
+      inserted_at: conn_log.inserted_at
     }
   end
 end

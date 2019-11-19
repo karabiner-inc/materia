@@ -39,7 +39,7 @@ defmodule MateriaWeb.AddressControllerTest do
           "latitude" => 0.1,
           "user_id" => 1,
           "organization_id" => 1,
-          "subject" => "some subject",
+          "subject" => "some subject"
         })
 
       assert %{"id" => id} = json_response(conn_create, 201)
@@ -63,13 +63,13 @@ defmodule MateriaWeb.AddressControllerTest do
           "lock_version" => 0
         })
 
-        resp_update = json_response(conn_update, 200)
+      resp_update = json_response(conn_update, 200)
 
       # 照会
       conn_show = get(conn_auth, address_path(conn, :show, id))
       resp_show = json_response(conn_show, 200)
 
-      assert resp_show["lock_version"]  == 1
+      assert resp_show["lock_version"] == 1
 
       # 削除
       conn_del = delete(conn_auth, address_path(conn, :delete, id))
@@ -78,7 +78,6 @@ defmodule MateriaWeb.AddressControllerTest do
       conn_index2 = get(conn_auth, address_path(conn, :index))
       resp_index2 = json_response(conn_index2, 200)
       assert length(resp_index2) == 4
-
     end
 
     test "create my_address test", %{conn: conn} do
@@ -102,8 +101,8 @@ defmodule MateriaWeb.AddressControllerTest do
           "address1" => "some address1",
           "address2" => "some address2",
           "latitude" => 0.1,
-          "user_id" => 999999,
-          "subject" => "some subject",
+          "user_id" => 999_999,
+          "subject" => "some subject"
         })
 
       assert %{"id" => id} = json_response(conn_create, 201)
@@ -111,7 +110,7 @@ defmodule MateriaWeb.AddressControllerTest do
       # 紹介(認証者本人のアドレスが登録された)
       conn_show = get(conn_auth, address_path(conn, :show, id))
       resp_show = json_response(conn_show, 200)
-      assert resp_show["user"]["id"]  == ope_id
+      assert resp_show["user"]["id"] == ope_id
 
       # 削除
       conn_del = delete(conn_auth, address_path(conn, :delete, id))
@@ -120,7 +119,6 @@ defmodule MateriaWeb.AddressControllerTest do
       conn_index2 = get(conn_auth, address_path(conn, :index))
       resp_index2 = json_response(conn_index2, 200)
       assert length(resp_index2) == 4
-
     end
   end
 end

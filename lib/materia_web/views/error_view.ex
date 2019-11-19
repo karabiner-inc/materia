@@ -20,27 +20,35 @@ defmodule MateriaWeb.ErrorView do
   end
 
   def render_error(conn, %BusinessError{} = error) do
-    message = error.message
-    |> gettext_message()
-    |> encode_message()
+    message =
+      error.message
+      |> gettext_message()
+      |> encode_message()
+
     Plug.Conn.send_resp(conn, :bad_request, message)
   end
 
   def render_error(conn, %StaleEntryError{} = error) do
     Logger.error("#{__MODULE__} render_error/2. error:#{inspect(error)}")
+
     # StaleEntryErrorのmessageはスキーマの全情報が含まれる。隠匿の為固定メッセージでエラー送出する
-    message = "attempted to update a stale struct"
-    |> gettext_message()
-    |> encode_message()
+    message =
+      "attempted to update a stale struct"
+      |> gettext_message()
+      |> encode_message()
+
     Plug.Conn.send_resp(conn, :unprocessable_entity, message)
   end
 
   def render_error(conn, error) do
     Logger.error("#{__MODULE__} render_error/2. error:#{inspect(error)}")
+
     # errorによってどのような項目が含まれているか異なる為、隠匿の為固定メッセージでエラー送出する
-    message = "Internal Server Error"
-    |> gettext_message()
-    |> encode_message()
+    message =
+      "Internal Server Error"
+      |> gettext_message()
+      |> encode_message()
+
     Plug.Conn.send_resp(conn, :internal_server_error, message)
   end
 
@@ -54,7 +62,6 @@ defmodule MateriaWeb.ErrorView do
   end
 
   def encode_message(message) do
-
     with {:ok, json_message} <- Poison.encode(message) do
       json_message
     else

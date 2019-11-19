@@ -4,7 +4,7 @@ defmodule MateriaWeb.MailTemplateController do
   alias Materia.Mails
   alias Materia.Mails.MailTemplate
 
-  action_fallback MateriaWeb.FallbackController
+  action_fallback(MateriaWeb.FallbackController)
 
   def index(conn, _params) do
     mail_templates = Mails.list_mail_templates()
@@ -35,6 +35,7 @@ defmodule MateriaWeb.MailTemplateController do
 
   def delete(conn, %{"id" => id}) do
     mail_template = Mails.get_mail_template!(id)
+
     with {:ok, %MailTemplate{}} <- Mails.delete_mail_template(mail_template) do
       send_resp(conn, :no_content, "")
     end

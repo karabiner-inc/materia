@@ -94,6 +94,7 @@ defmodule Materia.Organizations do
   """
   def list_organizations do
     repo = Application.get_env(:materia, :repo)
+
     Organization
     |> repo.all()
     |> repo.preload(:addresses)
@@ -110,6 +111,7 @@ defmodule Materia.Organizations do
   """
   def list_organizations_by_params(params) do
     repo = Application.get_env(:materia, :repo)
+
     repo
     |> EctoUtil.select_by_param(Organization, params)
     |> repo.preload(:addresses)
@@ -194,6 +196,7 @@ defmodule Materia.Organizations do
   """
   def get_organization!(id) do
     repo = Application.get_env(:materia, :repo)
+
     Organization
     |> repo.get!(id)
     |> repo.preload(:addresses)
@@ -228,6 +231,7 @@ defmodule Materia.Organizations do
   """
   def create_organization(attrs \\ %{}) do
     repo = Application.get_env(:materia, :repo)
+
     %Organization{}
     |> Organization.changeset(attrs)
     |> repo.insert()
@@ -367,6 +371,7 @@ defmodule Materia.Organizations do
   """
   def update_organization(%Organization{} = organization, attrs) do
     repo = Application.get_env(:materia, :repo)
+
     organization
     |> Organization.update_changeset(attrs)
     |> repo.update()
@@ -390,5 +395,4 @@ defmodule Materia.Organizations do
     repo = Application.get_env(:materia, :repo)
     repo.delete(organization)
   end
-
 end

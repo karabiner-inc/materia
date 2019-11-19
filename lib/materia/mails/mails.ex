@@ -115,9 +115,12 @@ defmodule Materia.Mails do
   """
   def get_mail_template_by_mail_template_type(mail_template_type) do
     repo = Application.get_env(:materia, :repo)
-    [mail_template] = MailTemplate
-    |> where(mail_template_type: ^mail_template_type)
-    |> repo.all()
+
+    [mail_template] =
+      MailTemplate
+      |> where(mail_template_type: ^mail_template_type)
+      |> repo.all()
+
     mail_template
   end
 
@@ -204,7 +207,7 @@ defmodule Materia.Mails do
   end
 
   @doc """
- send mail action.
+  send mail action.
 
   ## Examples
 
@@ -222,9 +225,9 @@ defmodule Materia.Mails do
   """
   def send_mail(from_email, to_email, subject, body, replace_list, from_name \\ nil) do
     if @mail_client == nil do
-
-      Logger.warn("mail client config not found. not send email. if you want send mail, configure like :materia, Materia.MailClient, client_module: [Mail Client Module]")
-
+      Logger.warn(
+        "mail client config not found. not send email. if you want send mail, configure like :materia, Materia.MailClient, client_module: [Mail Client Module]"
+      )
     else
       replaced_subject =
         replace_list
@@ -240,8 +243,7 @@ defmodule Materia.Mails do
           String.replace(replaced_acc, place_holder, value)
         end)
 
-      {:ok, result} =
-        @mail_client.send_mail(from_email, to_email, replaced_subject, replaced_body_text, from_name)
+      {:ok, result} = @mail_client.send_mail(from_email, to_email, replaced_subject, replaced_body_text, from_name)
     end
   end
 end

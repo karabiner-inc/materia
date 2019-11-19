@@ -9,11 +9,11 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
 
   describe "sign-in by user " do
     test "sign-in life cycle by user", %{conn: conn} do
-
       attr = %{
         "email" => "fugafuga@example.com",
-        "password" => "fugafuga",
+        "password" => "fugafuga"
       }
+
       token_conn = post(conn, authenticator_path(conn, :sign_in), attr)
       resp_token = json_response(token_conn, 201)
       access_token = resp_token["access_token"]
@@ -21,6 +21,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
 
       conn_show_me = get(conn_auth, user_path(conn, :show_me))
       resp_show_me = json_response(conn_show_me, 200)
+
       assert resp_show_me == %{
                "addresses" => [],
                "back_ground_img_url" => nil,
@@ -53,6 +54,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
 
       conn_show_me2 = get(conn_auth2, user_path(conn, :show_me))
       resp_show_me2 = json_response(conn_show_me2, 200)
+
       assert resp_show_me2 == %{
                "addresses" => [],
                "back_ground_img_url" => nil,
@@ -79,19 +81,17 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
       conn_valid3 = get(conn_auth2, "/api/auth-check")
       resp_valid3 = response(conn_valid3, 401)
       assert resp_valid3 == "{\"message\":\"invalid_token\"}"
-
-
     end
   end
 
   describe "sign-in by account and user" do
     test "sign-in life cycle by account and user", %{conn: conn} do
-
       attr = %{
         "account" => "hogehoge_code",
         "email" => "hogehoge@example.com",
-        "password" => "hogehoge",
+        "password" => "hogehoge"
       }
+
       token_conn = post(conn, authenticator_path(conn, :sign_in), attr)
       resp_token = json_response(token_conn, 201)
       access_token = resp_token["access_token"]
@@ -99,6 +99,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
 
       conn_show_me = get(conn_auth, user_path(conn, :show_me))
       resp_show_me = json_response(conn_show_me, 200)
+
       assert resp_show_me == %{
                "addresses" => [
                  %{
@@ -122,7 +123,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
                    "notation_org_name_p" => "notation_org_name_p",
                    "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
-                   "fax_number" => "fax_number",
+                   "fax_number" => "fax_number"
                  },
                  %{
                    "address1" => "福岡市中央区",
@@ -145,7 +146,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
                    "notation_org_name_p" => "notation_org_name_p",
                    "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
-                   "fax_number" => "fax_number",
+                   "fax_number" => "fax_number"
                  }
                ],
                "back_ground_img_url" => nil,
@@ -182,6 +183,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
 
       conn_show_my_account = get(conn_auth, account_path(conn, :show_my_account))
       resp_show_my_account = json_response(conn_show_my_account, 200)
+
       assert resp_show_my_account == %{
                "descriptions" => nil,
                "expired_datetime" => nil,
@@ -210,6 +212,7 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
 
       conn_show_my_account2 = get(conn_auth2, account_path(conn, :show_my_account))
       resp_show_my_account2 = json_response(conn_show_my_account2, 200)
+
       assert resp_show_my_account2 == %{
                "descriptions" => nil,
                "expired_datetime" => nil,
@@ -232,34 +235,37 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
       conn_valid3 = get(conn_auth2, "/api/auth-check")
       resp_valid3 = response(conn_valid3, 401)
       assert resp_valid3 == "{\"message\":\"invalid_token\"}"
-
     end
   end
 
   describe "application authentication pattern" do
     test "valid case app_key in params", %{conn: conn} do
-      get_conn = get(conn, "/app/is_authenticated_app", [app_key: "test_app_key"])
+      get_conn = get(conn, "/app/is_authenticated_app", app_key: "test_app_key")
       resp = response(get_conn, 200)
       assert resp == "{\"message\":\"authenticated\"}"
     end
 
     test "invalid case app_key in params", %{conn: conn} do
-      get_conn = get(conn, "/app/is_authenticated_app", [app_key: "hogehoge"])
+      get_conn = get(conn, "/app/is_authenticated_app", app_key: "hogehoge")
       resp = response(get_conn, 401)
       assert resp == "{\"message\":\"invalid_token\"}"
     end
 
     test "valid case app_key in req_header", %{conn: conn} do
-      puted_conn = conn
-                   |> put_req_header("authorization", "test_app_key")
+      puted_conn =
+        conn
+        |> put_req_header("authorization", "test_app_key")
+
       get_conn = get(puted_conn, "/app/is_authenticated_app")
       resp = response(get_conn, 200)
       assert resp == "{\"message\":\"authenticated\"}"
     end
 
     test "invalid case app_key in req_header", %{conn: conn} do
-      puted_conn = conn
-                   |> put_req_header("authorization", "test_app_xxx_key")
+      puted_conn =
+        conn
+        |> put_req_header("authorization", "test_app_xxx_key")
+
       get_conn = get(puted_conn, "/app/is_authenticated_app")
       resp = response(get_conn, 401)
       assert resp == "{\"message\":\"invalid_token\"}"
@@ -270,7 +276,5 @@ defmodule MateriaWeb.AuthenticatorControllerTest do
       resp = response(get_conn, 401)
       assert resp == "{\"message\":\"invalid_token\"}"
     end
-
   end
-
 end

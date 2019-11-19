@@ -59,6 +59,7 @@ defmodule Materia.Locations do
   """
   def list_addresses do
     repo = Application.get_env(:materia, :repo)
+
     Address
     |> repo.all()
     |> repo.preload([:user, :organization])
@@ -117,8 +118,9 @@ defmodule Materia.Locations do
   """
   def get_address!(id) do
     repo = Application.get_env(:materia, :repo)
+
     Address
-    |>repo.get!(id)
+    |> repo.get!(id)
     |> repo.preload([:user, :organization])
   end
 
@@ -240,5 +242,4 @@ defmodule Materia.Locations do
     repo = Application.get_env(:materia, :repo)
     repo.delete(address)
   end
-
 end

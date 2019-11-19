@@ -10,5 +10,4 @@ defmodule Materia.Plug.Debug do
     IO.puts("--- Materia.Plug.Debug call conn ---------------------")
     IO.inspect(conn)
   end
-
 end
