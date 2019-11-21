@@ -95,6 +95,9 @@ defmodule MateriaWeb.Router do
     post("/search-accounts", AccountController, :list_accounts_by_params)
     resources("/value-definitions", ValueDefinitionController, except: [:new, :edit])
     post("/search-definitions", ValueDefinitionController, :list_definitions_by_params)
+    put("/delete-users/:id", UserController, :logical_delete)
+    post("/search-organizations", OrganizationController, :list_organizations_by_params)
+    put("/delete-organizations/:id", OrganizationController, :logical_delete)
   end
 
   scope "/api", MateriaWeb do

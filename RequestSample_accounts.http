@@ -43,4 +43,13 @@ GET {{url}}/api/ops/users/1 HTTP/1.1
 Content-Type: application/json
 Authorization: {{token}}
 
+### 論理削除
+PUT {{url}}/api/delete-users/1 HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
 
+{
+  "lock_version": 2
+}
+
+###
