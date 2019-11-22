@@ -116,4 +116,9 @@ defmodule MateriaWeb.UserController do
     Materia.UserAuthenticator.revoke(token)
     conn
   end
+
+  def logical_delete(conn, %{"id" => id, "lock_version" => lock_version}) do
+    user = Accounts.get_user!(id)
+    MateriaWeb.ControllerBase.transaction_flow(conn, :user, Accounts, :logical_delete, [user, lock_version])
+  end
 end

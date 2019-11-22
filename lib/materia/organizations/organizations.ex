@@ -395,4 +395,18 @@ defmodule Materia.Organizations do
     repo = Application.get_env(:materia, :repo)
     repo.delete(organization)
   end
+
+  @doc """
+  Logical Delete a Organization.
+
+  iex(1)> organization = Materia.Organizations.get_organization!(1)
+  iex(2)> {:ok, result} = Materia.Organizations.logical_delete(nil, organization, 1)
+  iex(3)> view = MateriaWeb.OrganizationView.render("show.json", %{organization: result})
+  iex(4)> %{status: view.status, lock_version: view.lock_version}
+  %{status: 9, lock_version: 2}
+  """
+  def logical_delete(_result, organization, lock_version) do
+    organization
+    |> update_organization(%{"status" => Organization.status().unactive, "lock_version" => lock_version})
+  end
 end
