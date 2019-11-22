@@ -40,4 +40,18 @@ defmodule MateriaWeb.OrganizationController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def logical_delete(conn, %{"id" => id, "lock_version" => lock_version}) do
+    organization = Organizations.get_organization!(id)
+
+    MateriaWeb.ControllerBase.transaction_flow(conn, :organization, Organizations, :logical_delete, [
+      organization,
+      lock_version
+    ])
+  end
+
+  def list_organizations_by_params(conn, params) do
+    organizations = Organizations.list_organizations_by_params(params)
+    render(conn, "index.json", organizations: organizations)
+  end
 end

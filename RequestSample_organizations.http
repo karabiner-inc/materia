@@ -105,7 +105,16 @@ Authorization: {{token}}
     "lock_version": 5
 }
 
+###
+PUT {{url}}/api/delete-organizations/1 HTTP/1.1
+Content-Type: application/json
+Authorization: {{token}}
 
+{
+  "lock_version": 1
+}
+
+###
 
 
 

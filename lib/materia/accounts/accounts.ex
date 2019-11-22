@@ -1372,4 +1372,19 @@ defmodule Materia.Accounts do
   def delete_account(%Account{} = account) do
     @repo.delete(account)
   end
+
+  @doc """
+  Logical Delete a User.
+
+  iex(1)> user = Materia.Accounts.get_user!(1)
+  iex(2)> {:ok, result} = Materia.Accounts.logical_delete(nil, user, 2)
+  iex(3)> view = MateriaWeb.UserView.render("show.json", %{user: result})
+  iex(4)> %{status: view.status, lock_version: view.lock_version}
+  %{status: 9, lock_version: 3}
+
+  """
+  def logical_delete(_result, user, lock_version) do
+    user
+    |> update_user(%{"status" => User.status().expired, "lock_version" => lock_version})
+  end
 end
