@@ -32,7 +32,9 @@ defmodule MateriaWeb.AddressView do
       latitude: address.latitude,
       longitude: address.longitude,
       subject: address.subject,
-      lock_version: address.lock_version
+      lock_version: address.lock_version,
+      area_code: address.area_code,
+      status: address.status
     }
 
     result_map =

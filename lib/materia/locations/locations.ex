@@ -52,7 +52,9 @@ defmodule Materia.Locations do
       role: "admin",
       status: 1
     },
-    zip_code: "810-ZZZZ"
+    zip_code: "810-ZZZZ",
+    area_code: nil,
+    status: 1
   }
 
   ```
@@ -110,7 +112,9 @@ defmodule Materia.Locations do
       role: "admin",
       status: 1
     },
-    zip_code: "810-ZZZZ"
+    zip_code: "810-ZZZZ",
+    area_code: nil,
+    status: 1
   }
   ```
 
@@ -130,7 +134,7 @@ defmodule Materia.Locations do
   ## Examples
 
   ```
-  iex(1)> {:ok, address} = Materia.Locations.create_address(%{subject: "living"})
+  iex(1)> {:ok, address} = Materia.Locations.create_address(%{subject: "living", area_code: "TEST"})
   iex(2)> MateriaWeb.AddressView.render("show.json", %{address: address}) |> Map.delete(:id)
   %{
     address1: nil,
@@ -152,7 +156,9 @@ defmodule Materia.Locations do
     fax_number: nil,
     subject: "living",
     user: [],
-    zip_code: nil
+    zip_code: nil,
+    area_code: "TEST",
+    status: 1
   }
 
   ```
@@ -212,7 +218,9 @@ defmodule Materia.Locations do
       role: "admin",
       status: 1
     },
-    zip_code: "810-ZZZZ"
+    zip_code: "810-ZZZZ",
+    area_code: nil,
+    status: 1
   }
   ```
 
