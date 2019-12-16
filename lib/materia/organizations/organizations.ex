@@ -46,7 +46,9 @@ defmodule Materia.Organizations do
           fax_number: "fax_number",
           subject: "branch",
           user: [],
-          zip_code: "812-ZZZZ"
+          zip_code: "812-ZZZZ",
+          area_code: nil,
+          status: 1
         },
         %{
           address1: "福岡市中央区",
@@ -69,7 +71,9 @@ defmodule Materia.Organizations do
           fax_number: "fax_number",
           subject: "registry",
           user: [],
-          zip_code: "810-ZZZZ"
+          zip_code: "810-ZZZZ",
+          area_code: nil,
+          status: 1
         }
       ],
       back_ground_img_url: "https://hogehoge.com/ib_img.jpg",
@@ -150,7 +154,9 @@ defmodule Materia.Organizations do
         fax_number: "fax_number",
         subject: "branch",
         user: [],
-        zip_code: "812-ZZZZ"
+        zip_code: "812-ZZZZ",
+        area_code: nil,
+        status: 1
       },
       %{
         address1: "福岡市中央区",
@@ -173,7 +179,9 @@ defmodule Materia.Organizations do
         fax_number: "fax_number",
         subject: "registry",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+        status: 1
       }
     ],
     back_ground_img_url: "https://hogehoge.com/ib_img.jpg",
@@ -325,7 +333,9 @@ defmodule Materia.Organizations do
         fax_number: "fax_number",
         subject: "branch",
         user: [],
-        zip_code: "812-ZZZZ"
+        zip_code: "812-ZZZZ",
+        area_code: nil,
+        status: 1
       },
       %{
         address1: "福岡市中央区",
@@ -348,7 +358,9 @@ defmodule Materia.Organizations do
         fax_number: "fax_number",
         subject: "registry",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+       status: 1
       }
     ],
     back_ground_img_url: "https://hogehoge.com/ib_img.jpg",

@@ -61,7 +61,9 @@ defmodule MateriaWeb.UserControllerTest do
                    "notation_org_name_p" => "notation_org_name_p",
                    "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
-                   "fax_number" => "fax_number"
+                   "fax_number" => "fax_number",
+                   "area_code" => nil,
+                   "status" => 1
                  },
                  %{
                    "address1" => "福岡市中央区",
@@ -84,7 +86,9 @@ defmodule MateriaWeb.UserControllerTest do
                    "notation_org_name_p" => "notation_org_name_p",
                    "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
-                   "fax_number" => "fax_number"
+                   "fax_number" => "fax_number",
+                   "area_code" => nil,
+                   "status" => 1
                  }
                ],
                "back_ground_img_url" => nil,
@@ -163,7 +167,9 @@ defmodule MateriaWeb.UserControllerTest do
                      "notation_org_name_p" => "notation_org_name_p",
                      "notation_name_p" => "notation_name_p",
                      "phone_number" => "phone_number",
-                     "fax_number" => "fax_number"
+                     "fax_number" => "fax_number",
+                     "area_code" => nil,
+                     "status" => 1
                    },
                    %{
                      "address1" => "福岡市中央区",
@@ -186,7 +192,9 @@ defmodule MateriaWeb.UserControllerTest do
                      "notation_org_name_p" => "notation_org_name_p",
                      "notation_name_p" => "notation_name_p",
                      "phone_number" => "phone_number",
-                     "fax_number" => "fax_number"
+                     "fax_number" => "fax_number",
+                     "area_code" => nil,
+                     "status" => 1
                    }
                  ],
                  "back_ground_img_url" => nil,
@@ -369,7 +377,9 @@ defmodule MateriaWeb.UserControllerTest do
                      "notation_org_name_p" => "notation_org_name_p",
                      "notation_name_p" => "notation_name_p",
                      "phone_number" => "phone_number",
-                     "fax_number" => "fax_number"
+                     "fax_number" => "fax_number",
+                     "area_code" => nil,
+                     "status" => 1
                    },
                    %{
                      "address1" => "福岡市中央区",
@@ -392,7 +402,9 @@ defmodule MateriaWeb.UserControllerTest do
                      "notation_org_name_p" => "notation_org_name_p",
                      "notation_name_p" => "notation_name_p",
                      "phone_number" => "phone_number",
-                     "fax_number" => "fax_number"
+                     "fax_number" => "fax_number",
+                     "area_code" => nil,
+                     "status" => 1
                    }
                  ],
                  "back_ground_img_url" => nil,
@@ -454,7 +466,9 @@ defmodule MateriaWeb.UserControllerTest do
                    "notation_org_name_p" => "notation_org_name_p",
                    "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
-                   "fax_number" => "fax_number"
+                   "fax_number" => "fax_number",
+                   "area_code" => nil,
+                   "status" => 1
                  },
                  %{
                    "address1" => "福岡市中央区",
@@ -477,7 +491,9 @@ defmodule MateriaWeb.UserControllerTest do
                    "notation_org_name_p" => "notation_org_name_p",
                    "notation_name_p" => "notation_name_p",
                    "phone_number" => "phone_number",
-                   "fax_number" => "fax_number"
+                   "fax_number" => "fax_number",
+                   "area_code" => nil,
+                   "status" => 1
                  }
                ],
                "back_ground_img_url" => nil,
