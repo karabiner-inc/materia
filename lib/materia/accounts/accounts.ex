@@ -73,7 +73,9 @@ defmodule Materia.Accounts do
           fax_number: "fax_number",
           subject: "living",
           user: [],
-          zip_code: "810-ZZZZ"
+          zip_code: "810-ZZZZ",
+          area_code: nil,
+          status: 1
         },
         %{
           address1: "福岡市中央区",
@@ -96,7 +98,9 @@ defmodule Materia.Accounts do
           fax_number: "fax_number",
           subject: "billing",
           user: [],
-          zip_code: "810-ZZZZ"
+          zip_code: "810-ZZZZ",
+          area_code: nil,
+          status: 1
         }
       ],
       back_ground_img_url: nil,
@@ -279,7 +283,9 @@ defmodule Materia.Accounts do
         fax_number: "fax_number",
         subject: "billing",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+        status: 1
       },
       %{
         address1: "福岡市中央区",
@@ -302,7 +308,9 @@ defmodule Materia.Accounts do
         fax_number: "fax_number",
         subject: "living",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+        status: 1
       }
     ],
     back_ground_img_url: nil,
@@ -491,7 +499,9 @@ defmodule Materia.Accounts do
         fax_number: "fax_number",
         subject: "billing",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+        status: 1
       },
       %{
         address1: "福岡市中央区",
@@ -514,7 +524,9 @@ defmodule Materia.Accounts do
         fax_number: "fax_number",
         subject: "living",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+        status: 1
       }
     ],
     back_ground_img_url: nil,
@@ -878,7 +890,9 @@ defmodule Materia.Accounts do
         fax_number: "fax_number",
         subject: "billing",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+        status: 1
       },
       %{
         address1: "福岡市中央区",
@@ -901,7 +915,9 @@ defmodule Materia.Accounts do
         fax_number: "fax_number",
         subject: "living",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+        status: 1
       }
     ],
     back_ground_img_url: nil,
@@ -1128,7 +1144,9 @@ defmodule Materia.Accounts do
         fax_number: "fax_number",
         subject: "billing",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+        status: 1
       },
       %{
         address1: "福岡市中央区",
@@ -1151,7 +1169,9 @@ defmodule Materia.Accounts do
         fax_number: "fax_number",
         subject: "living",
         user: [],
-        zip_code: "810-ZZZZ"
+        zip_code: "810-ZZZZ",
+        area_code: nil,
+        status: 1
       }
     ],
     back_ground_img_url: nil,
